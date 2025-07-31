@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://lysrnk033b8v"]
+
+[ext_resource type="Script" uid="uid://csl8qcwcrq6i1" path="res://desktop/window/test_window/test_window.gd" id="1_cxhuy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxhuy"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y4nv2"]
+bg_color = Color(0.139198, 0.223356, 0.283347, 1)
+
+[node name="TestWindow" type="ReferenceRect"]
+offset_right = 419.0
+offset_bottom = 299.0
+script = ExtResource("1_cxhuy")
+
+[node name="CentralContentPivot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="CentralContentPivot"]
+unique_name_in_owner = true
+offset_left = -209.5
+offset_top = -149.5
+offset_right = 209.5
+offset_bottom = 149.5
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxhuy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CentralContentPivot/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CentralContentPivot/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="DragBar" type="Panel" parent="CentralContentPivot/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y4nv2")
+
+[node name="CloseButton" type="Button" parent="CentralContentPivot/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "X"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CentralContentPivot/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+text = "Hello world!"
+fit_content = true

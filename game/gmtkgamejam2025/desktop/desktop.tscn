@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://baai2h5kog4i6"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
-[ext_resource type="PackedScene" uid="uid://eho0bjxll72b" path="res://desktop/windows/window/window.tscn" id="2_87qqj"]
+[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
