@@ -33,7 +33,7 @@ func remove_task(window: DesktopWindow) -> void:
 	shortcuts.erase(shortcut)
 	window_dict.erase(window)
 	
-	shortcut.queue_free()
+	shortcut.remove()
 	
 	_arrange_icons()
 

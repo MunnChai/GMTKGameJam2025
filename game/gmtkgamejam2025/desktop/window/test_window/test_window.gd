@@ -21,17 +21,17 @@ func _ready() -> void:
 
 ## @OVERRIDE
 func boot(args: Dictionary = {}) -> void:
-	print("You are booting the test window!")
-	if not args.is_empty():
-		print("You have arguments!")
-		print("Keys: " + str(args.keys()))
-		print("Values: " + str(args.values()))
-		print("Arguing is not allowed.")
-	else:
-		print("You have no arguments.")
-		print("I like that about you.")
-		print("You do not do silly things like \"talk\", or \"have opinions.\"")
-		print("Very well!")
+	#print("You are booting the test window!")
+	#if not args.is_empty():
+		#print("You have arguments!")
+		#print("Keys: " + str(args.keys()))
+		#print("Values: " + str(args.values()))
+		#print("Arguing is not allowed.")
+	#else:
+		#print("You have no arguments.")
+		#print("I like that about you.")
+		#print("You do not do silly things like \"talk\", or \"have opinions.\"")
+		#print("Very well!")
 	
 	# Pick text
 	%RichTextLabel.text = demo_strings[Desktop.window_counter % demo_strings.size()]

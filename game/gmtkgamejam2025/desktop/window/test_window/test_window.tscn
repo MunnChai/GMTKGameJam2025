@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://lysrnk033b8v"]
+[gd_scene load_steps=6 format=3 uid="uid://lysrnk033b8v"]
 
 [ext_resource type="Script" uid="uid://csl8qcwcrq6i1" path="res://desktop/window/test_window/test_window.gd" id="1_cxhuy"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_712ap"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="2_y4nv2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
+bg_color = Color(0, 0, 0, 0.294118)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxhuy"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)
@@ -29,6 +32,22 @@ offset_top = -149.5
 offset_right = 209.5
 offset_bottom = 149.5
 mouse_filter = 1
+
+[node name="Control" type="Control" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShadowPanel" type="Panel" parent="JuicePivot/MainPanel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
 
 [node name="VerticalSplit" type="VBoxContainer" parent="JuicePivot/MainPanel"]
 layout_mode = 2

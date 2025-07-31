@@ -11,7 +11,7 @@ extends Node2D
 
 ## TODO:
 ## - Make closing windows stay on top while playing close animation
-## - Add shadows to windows
+## - Add movement to hovering icons, add shadows to icons
 
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]

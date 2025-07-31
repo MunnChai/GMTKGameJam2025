@@ -68,6 +68,7 @@ func boot(args: Dictionary = {}) -> void:
 ## Override to supply your own shutdown behaviour
 func close() -> void:
 	while not all_clear_for_queue_free:
+		move_to_front()
 		await get_tree().process_frame
 	queue_free()
 

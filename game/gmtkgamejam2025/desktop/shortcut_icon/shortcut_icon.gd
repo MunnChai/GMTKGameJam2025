@@ -20,14 +20,21 @@ enum IconType {
 @export var args: Dictionary[StringName, Variant]
 var window_instance: DesktopWindow
 
+var being_removed := false
+
 func _ready() -> void:
 	%Button.pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
+	if being_removed:
+		return
 	trigger()
+	TweenUtil.pop_delta(self, Vector2(0.2, 0.2), 0.3)
 
 ## Trigger this shortcut
 func trigger() -> void:
+	if being_removed:
+		return
 	match type:
 		IconType.BOOT_NEW:
 			if Desktop.is_instanced():
@@ -42,3 +49,10 @@ func trigger() -> void:
 					window_instance = Desktop.instance.execute(app_id, args)
 				else:
 					Desktop.instance.bring_to_front(window_instance)
+
+func remove() -> void:
+	if being_removed:
+		return
+	being_removed = true
+	await TweenUtil.scale_to(self, Vector2.ZERO, 0.3).finished
+	queue_free()
