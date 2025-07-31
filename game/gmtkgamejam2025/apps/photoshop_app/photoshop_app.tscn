@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://omxyukgp61bw"]
+[gd_scene load_steps=7 format=3 uid="uid://omxyukgp61bw"]
 
 [ext_resource type="Script" uid="uid://o62f4k604x6h" path="res://apps/photoshop_app/photoshop_app.gd" id="1_5byx1"]
+[ext_resource type="Script" uid="uid://krmcm86dpw8a" path="res://apps/photoshop_app/multipolygon.gd" id="2_b7jc0"]
 [ext_resource type="Texture2D" uid="uid://u7milfln4xo0" path="res://icon.svg" id="2_khpmc"]
+[ext_resource type="Script" uid="uid://dsbxsdbpygkhs" path="res://apps/photoshop_app/editing_panel.gd" id="2_pedke"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4qq7r"]
 size = Vector2(1, 60)
@@ -98,6 +100,7 @@ unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_pedke")
 
 [node name="EditingAnchor" type="Control" parent="PanelContainer/VBoxContainer/Body/EditingPanel"]
 unique_name_in_owner = true
@@ -107,33 +110,31 @@ offset_top = 330.0
 offset_right = 610.0
 offset_bottom = 330.0
 
-[node name="EditableImage" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
+[node name="EditableImage" type="Node2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true
+script = ExtResource("2_b7jc0")
+texture = ExtResource("2_khpmc")
+
+[node name="Sprite2D" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor/EditableImage"]
 texture = ExtResource("2_khpmc")
 texture_offset = Vector2(64, 64)
-polygon = PackedVector2Array(-68, -62, -64, 64, 63, 60, 62, -63)
+polygon = PackedVector2Array(64, -64, 64, 64, -64, 64, -64, -64)
 
 [node name="Cutter" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true
 visible = false
-polygon = PackedVector2Array(-135, -125, 181, 111, 503, 204, 179, -252)
+position = Vector2(0, -2.78261)
+scale = Vector2(1, 0.956522)
+polygon = PackedVector2Array(-35, 25.9091, 11, 18.5909, 32, -42.0454, -21, -26.3636)
 
-[node name="PastedSelection" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
+[node name="PastedSelection" type="Node2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true
-texture = ExtResource("2_khpmc")
+script = ExtResource("2_b7jc0")
 
-[node name="TESTBUTTON" type="Button" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
 layout_mode = 0
-offset_left = -460.0
-offset_top = -198.0
-offset_right = -280.0
-offset_bottom = -118.0
-text = "CUT THE GODOT"
-
-[node name="TESTBUTTON2" type="Button" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
-layout_mode = 0
-offset_left = -459.0
-offset_top = -284.0
-offset_right = -279.0
-offset_bottom = -204.0
-text = "show polygon"
+offset_left = -313.0
+offset_top = -35.0
+offset_right = -198.0
+offset_bottom = -4.0
+text = "show selection polygon"
