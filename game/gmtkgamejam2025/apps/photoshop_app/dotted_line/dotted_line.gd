@@ -5,7 +5,7 @@ extends Node2D
 ## DOTTED LINE
 ## Add and remove points
 ## Automatically manages endpoint visibility and positions
-
+## NOTE: Make sure to manually clear and close (indicate the loop to be closed) when necessary
 ## ---
 
 ## USAGE
