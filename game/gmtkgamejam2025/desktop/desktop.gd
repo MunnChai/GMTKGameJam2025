@@ -9,6 +9,10 @@ extends Node2D
 ## - Other misc. desktop details
 ## ---
 
+## TODO:
+## - Make closing windows stay on top while playing close animation
+## - Add shadows to windows
+
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]
 
@@ -25,14 +29,11 @@ static func is_instanced() -> bool:
 func _ready() -> void:
 	instance = self
 
+## When we press left mouse button, bring the hovered window to front
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"lmb"):
 		if has_hovered_window():
 			bring_to_front(get_hovered_window())
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"rmb"):
-		execute(&"hello_world", {})
 
 #region GUI PROGRAM EXECUTION
 
@@ -40,9 +41,13 @@ func _unhandled_input(event: InputEvent) -> void:
 ## passing the specified param dictionary to the boot sequence
 ## Returns the window after execution
 func execute(id: StringName, args: Dictionary = {}) -> DesktopWindow:
+	## Make the window
 	var window: DesktopWindow = window_packed_scenes.get(id).instantiate()
 	%Windows.add_child(window)
+	## Boot!
 	window.boot(args)
+	## Add a task bar icon...
+	%TaskBar.add_task(window)
 	return window
 
 #endregion
@@ -98,6 +103,9 @@ func bring_to_front(window: DesktopWindow) -> void:
 func close_window(window: DesktopWindow) -> void:
 	if not has_window(window) or window.is_closing:
 		return
+	
+	%TaskBar.remove_task(window)
+	
 	var index = get_index_of_window(window)
 	windows.erase(window)
 	window.close_self()

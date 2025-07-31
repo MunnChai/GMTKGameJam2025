@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://baai2h5kog4i6"]
+[gd_scene load_steps=5 format=3 uid="uid://baai2h5kog4i6"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
+[ext_resource type="PackedScene" uid="uid://bf2h01ok52xw4" path="res://desktop/shortcut_icon/shortcut_icon.tscn" id="3_py4qr"]
+[ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
@@ -9,22 +11,74 @@ window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"hello_world": ExtResource("2_87qqj")
 })
 
-[node name="DesktopBg" type="ColorRect" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DesktopBg" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -2500.0
-offset_top = -2500.0
-offset_right = 2500.0
-offset_bottom = 2500.0
+offset_left = -3140.0
+offset_top = -2860.0
+offset_right = 1860.0
+offset_bottom = 2140.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.845329, 0.845329, 0.845329, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Windows" type="Node2D" parent="."]
+[node name="TaskBar" parent="CanvasLayer" instance=ExtResource("4_xkt3d")]
 unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DesktopIcons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 64
+
+[node name="ShortcutIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+
+[node name="ShortcutIcon2" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+args = Dictionary[StringName, Variant]({
+&"text": "This was shortcut no. 2"
+})
+
+[node name="ShortcutIcon3" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+args = Dictionary[StringName, Variant]({
+&"color": Color(1, 1, 1, 1)
+})
+
+[node name="Windows" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2

@@ -141,8 +141,8 @@ func constrain_to_viewport() -> void:
 	position = constrain_position(position, get_viewport_rect().size / -2.0, get_viewport_rect().size / 2.0)
 	target_pos = constrain_position(target_pos, get_viewport_rect().size / -2.0, get_viewport_rect().size / 2.0)
 
-func center_window_to(global_pos: Vector2) -> void:
-	global_position = Vector2(global_pos.x - (size.x / 2.0), global_pos.y - (size.y / 2.0))
+func center_window_to(local_pos: Vector2) -> void:
+	position = Vector2(local_pos.x - (size.x / 2.0), local_pos.y - (size.y / 2.0))
 	target_pos = position
 	constrain_to_viewport()
 
