@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://chx03v1b1ftmr"]
+[gd_scene load_steps=3 format=3 uid="uid://chx03v1b1ftmr"]
+
+[ext_resource type="Script" uid="uid://bihaanncehmrv" path="res://apps/file_explorer_app/file_explorer.gd" id="1_wo53c"]
+[ext_resource type="Script" uid="uid://bilb5mvh75gsb" path="res://apps/file_explorer_app/file_system.gd" id="2_tnlw6"]
 
 [node name="FileExplorerApp" type="Control"]
 layout_mode = 3
@@ -7,3 +10,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="FileExplorer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wo53c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FileExplorer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="HBoxContainer" parent="FileExplorer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="FileExplorer/VBoxContainer/TopBar"]
+layout_mode = 2
+text = "Back"
+
+[node name="PathLabel" type="Label" parent="FileExplorer/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileView" type="ScrollContainer" parent="FileExplorer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FileGrid" type="GridContainer" parent="FileExplorer/VBoxContainer/FileView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 6
+
+[node name="FileSystemNode" type="Node" parent="FileExplorer"]
+script = ExtResource("2_tnlw6")
