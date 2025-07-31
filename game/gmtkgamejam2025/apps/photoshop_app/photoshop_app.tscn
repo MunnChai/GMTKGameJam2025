@@ -113,13 +113,14 @@ texture = ExtResource("2_khpmc")
 texture_offset = Vector2(64, 64)
 polygon = PackedVector2Array(-68, -62, -64, 64, 63, 60, 62, -63)
 
-[node name="PastedSelection" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
-unique_name_in_owner = true
-
 [node name="Cutter" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true
-position = Vector2(-59, -40)
-polygon = PackedVector2Array(-8, -276, 9, 326, 503, 204, 179, -252)
+visible = false
+polygon = PackedVector2Array(-135, -125, 181, 111, 503, 204, 179, -252)
+
+[node name="PastedSelection" type="Polygon2D" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
+unique_name_in_owner = true
+texture = ExtResource("2_khpmc")
 
 [node name="TESTBUTTON" type="Button" parent="PanelContainer/VBoxContainer/Body/EditingPanel/EditingAnchor"]
 layout_mode = 0
