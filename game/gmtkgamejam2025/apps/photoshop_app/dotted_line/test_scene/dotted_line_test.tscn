@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5u2udcrr5k7m"]
+
+[ext_resource type="PackedScene" uid="uid://j0imf1m4hv8n" path="res://apps/photoshop_app/dotted_line/dotted_line.tscn" id="1_w8ttb"]
+[ext_resource type="Script" uid="uid://daotf25os8thg" path="res://apps/photoshop_app/dotted_line/test_scene/dotted_line_test.gd" id="1_yiiji"]
+
+[node name="DottedLineTest" type="Node2D"]
+script = ExtResource("1_yiiji")
+
+[node name="DottedLine" parent="." instance=ExtResource("1_w8ttb")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

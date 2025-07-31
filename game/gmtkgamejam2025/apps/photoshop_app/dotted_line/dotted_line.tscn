@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://j0imf1m4hv8n"]
+
+[ext_resource type="Script" uid="uid://dq8cjpnq6xcnt" path="res://apps/photoshop_app/dotted_line/dotted_line.gd" id="1_3oiol"]
+[ext_resource type="Shader" uid="uid://cf23o1gyjfhux" path="res://apps/photoshop_app/dotted_line/shaders/basic_dotted.gdshader" id="2_0t561"]
+[ext_resource type="PackedScene" uid="uid://23uo0rkmj8j5" path="res://apps/photoshop_app/dotted_line/endpoints/endpoint_circle.tscn" id="3_yker6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3oiol"]
+shader = ExtResource("2_0t561")
+shader_parameter/frequency = 0.97
+shader_parameter/amplitude = 1000.0
+shader_parameter/speed = 10.0
+shader_parameter/direction = 1.0
+shader_parameter/color1 = Color(1, 1, 1, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/opacity = 1.0
+
+[node name="DottedLine" type="Node2D"]
+script = ExtResource("1_3oiol")
+
+[node name="Line" type="Line2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_3oiol")
+width = 3.44
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Startpoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-1, 0)
+
+[node name="EndpointCircle" parent="Startpoint" instance=ExtResource("3_yker6")]
+
+[node name="Endpoint" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(28, 20)
+
+[node name="EndpointCircle" parent="Endpoint" instance=ExtResource("3_yker6")]
+metadata/_edit_use_anchors_ = true
