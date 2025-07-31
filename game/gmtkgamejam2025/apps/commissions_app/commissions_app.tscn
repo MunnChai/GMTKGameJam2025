@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=5 format=3 uid="uid://ch0ww8kp2820e"]
+
+[ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
+[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="2_2e8ng"]
+[ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_one.tres" id="3_3bsde"]
+[ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_two.tres" id="4_3bsde"]
 
 [node name="CommissionsApp" type="Control"]
 layout_mode = 3
@@ -7,3 +12,38 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qmn3t")
+commissions = Dictionary[int, ExtResource("2_2e8ng")]({
+1: ExtResource("3_3bsde"),
+2: ExtResource("4_3bsde")
+})
+
+[node name="Title" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Description" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Id" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Download" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Submit" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

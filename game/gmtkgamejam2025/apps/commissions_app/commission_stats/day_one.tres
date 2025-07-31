@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=3 format=3 uid="uid://cfn2kqlu7midd"]
+
+[ext_resource type="Texture2D" uid="uid://dyoilnc30k1fe" path="res://apps/commissions_app/imgs/day_one_tmp.png" id="1_kdkyl"]
+[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="1_ttxtp"]
+
+[resource]
+script = ExtResource("1_ttxtp")
+id = "bald_guy"
+title = "Can you give me hair?"
+desc = "This is my Tinder profile pic and I would love to have more hair on my scalp.
+
+Also it'd be nice if you can make me look cool :D"
+day = 1
+assets = Array[Texture2D]([ExtResource("1_kdkyl")])
+metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
