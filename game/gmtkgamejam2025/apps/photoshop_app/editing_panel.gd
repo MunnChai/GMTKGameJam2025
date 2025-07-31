@@ -1,20 +1,14 @@
 class_name EditingPanel
 extends Control
 
-## Editing tools
-@onready var lasso_button: Button = %LassoButton
-@onready var cut_button: Button = %CutButton
-@onready var undo_button: Button = %UndoButton
-@onready var redo_button: Button = %RedoButton
-
 ## Editing nodes
 @onready var editing_panel: Control = %EditingPanel
 @onready var editing_anchor: Control = %EditingAnchor
+@onready var canvas_border: Polygon2D = %CanvasBorder
 @onready var editable_image: MultiPolygon = %EditableImage
 @onready var pasted_selection: MultiPolygon = %PastedSelection
 @onready var cutter: Polygon2D = %Cutter
 
-@onready var button: Button = $EditingAnchor/Button
 
 ## Panel movement/zoom
 var previous_mouse_position: Vector2
@@ -35,12 +29,15 @@ var copied_offset: Vector2
 ## Moving pasted selection
 var is_pasted_moveable: bool = false
 
+var true_image: Image
+var canvas_size: Vector2
+
+
 func _ready() -> void:
 	await get_tree().process_frame
 	editing_anchor.position = editing_panel.size / 2
 	
-	button.pressed.connect(func():
-		cutter.visible = !cutter.visible)
+	true_image = editable_image.texture.get_image()
 
 func _process(delta: float) -> void:
 	handle_actions(delta)
@@ -57,8 +54,6 @@ func handle_actions(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("paste"):
 		paste_selection()
-
-
 
 func handle_movement(delta: float) -> void:
 	var current_mouse_position: Vector2 = editing_panel.get_local_mouse_position()
@@ -83,6 +78,9 @@ func handle_movement(delta: float) -> void:
 		if pasted_selection.is_pos_in_polygons(local_mouse_pos):
 			is_pasted_moveable = true
 		else:
+			if is_pasted_moveable:
+				paste_selection_to_image()
+			
 			is_pasted_moveable = false
 	
 	if Input.is_action_pressed("drag_pasted_selection") and is_pasted_moveable and not is_zero_approx(diff.length()):
@@ -108,6 +106,8 @@ func handle_zoom(delta: float) -> void:
 
 
 
+
+
 func copy_selection() -> Array[PackedVector2Array]:
 	copied_offset = editable_image.texture_offset
 	copied_texture = editable_image.texture
@@ -123,12 +123,59 @@ func copy_selection() -> Array[PackedVector2Array]:
 	
 	return copied_polygons
 
-
 func delete_selection() -> void:
 	editable_image.delete_from_polygon(cutter.polygon)
 
 func paste_selection() -> void:
+	if copied_polygons.is_empty():
+		return
 	pasted_selection.clear()
+	pasted_selection.position = Vector2.ZERO
 	pasted_selection.add_polygons(copied_polygons)
 	pasted_selection.set_texture(copied_texture)
 	pasted_selection.set_texture_offset(copied_offset)
+
+func reset_paste_selection() -> void:
+	pasted_selection.clear()
+	pasted_selection.position = Vector2.ZERO
+	#copied_polygons.clear()
+	#copied_texture = null
+	#copied_offset = Vector2.ZERO
+
+func paste_selection_to_image() -> void:
+	# Create a new image
+	var image: Image = true_image.duplicate()
+	var pasted_selection_image: Image = pasted_selection.texture.get_image()
+	for x: int in pasted_selection_image.get_size().x:
+		for y: int in pasted_selection_image.get_size().y:
+			var coord := Vector2i(x, y)
+			var translated_coord: Vector2i = coord + Vector2i(pasted_selection.position)
+			
+			if not pasted_selection.is_pos_in_polygons(translated_coord - pasted_selection_image.get_size() / 2):
+				continue
+			if translated_coord.x < 0 or translated_coord.x >= image.get_size().x:
+				continue
+			if translated_coord.y < 0 or translated_coord.y >= image.get_size().y:
+				continue
+			
+			image.set_pixelv(translated_coord, pasted_selection_image.get_pixelv(coord))
+	
+	var image_texture := ImageTexture.create_from_image(image)
+	editable_image.set_texture(image_texture)
+	
+	# Merged pasted polygon into editable image polygons
+	# WARNING: ASSUMES PASTED SELECTION ONLY HAS ONE POLYGON... should be true without figure 8 shapes
+	var pasted_polygon_translated: PackedVector2Array = pasted_selection.get_children()[0].polygon.duplicate()
+	for i in pasted_polygon_translated.size():
+		pasted_polygon_translated[i] += pasted_selection.position
+	
+	editable_image.merge_polygon(pasted_polygon_translated)
+	
+	editable_image.clear_polygons()
+	
+	# Clip result with border polygon
+	#editable_image.call_deferred("clip_polygon", canvas_border.polygon)
+	
+	true_image = image
+	
+	reset_paste_selection()
