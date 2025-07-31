@@ -19,6 +19,8 @@ extends DesktopWindow
 var day: int
 var commission_stat: CommissionStat
 
+const FileIconScene = preload("res://apps/file_explorer_app/file_icon.tscn")
+
 signal day_changed
 
 func _ready() -> void:
@@ -40,6 +42,9 @@ func on_submit_pressed() -> void:
 	day_changed.emit()
 
 func update_comm() -> void:
+	if not commissions.has(day):
+		return
+		
 	var stat: CommissionStat = commissions[day]
 	if not stat:
 		return
@@ -49,6 +54,15 @@ func update_comm() -> void:
 	title.text = "[b][i]" + stat.title + "[/i][/b]"
 	desc.text = stat.desc
 	
-	var assets: Array[Texture2D] = stat.assets
+	for child in asset_list.get_children():
+		child.queue_free()
+	
+	var assets: Dictionary[String, Texture2D] = stat.assets
 	if not assets:
 		return
+	for file_name in assets.keys():
+		#icon_instance.pressed.connect(file_system.open_file.bind(file_node))
+		var file: File = File.new(file_name, "image", assets[file_name])
+		var icon_instance = FileIconScene.instantiate()
+		asset_list.add_child(icon_instance)
+		icon_instance.setup(file)

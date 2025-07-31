@@ -10,5 +10,7 @@ title = "Can you give me hair?"
 desc = "This is my Tinder profile pic and I would love to have more hair on my scalp.
 Also it'd be nice if you can make me look cool :D"
 day = 1
-assets = Array[Texture2D]([ExtResource("1_kdkyl")])
+assets = Dictionary[String, Texture2D]({
+"profile pic.png": ExtResource("1_kdkyl")
+})
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
