@@ -29,14 +29,14 @@ func merge_polygon(polygon: PackedVector2Array) -> void:
 		if not intersect.is_empty():
 			for intersected_polygon: PackedVector2Array in intersect:
 				var merged = Geometry2D.merge_polygons(polygon2d.polygon, polygon)
-				print("Merged!")
+				#print("Merged!")
 				polygon2d.polygon = merged[0]
-			print("Finished merging")
+			#print("Finished merging")
 			return
 	
 	# No intersect was found, add polygon
 	add_polygon(polygon)
-	print("Added new polygon during merge")
+	#print("Added new polygon during merge")
 
 func set_polygons(polygons: Array[PackedVector2Array]) -> void:
 	for child in get_children():
@@ -51,20 +51,20 @@ func clip_polygon(clip_polygon: PackedVector2Array) -> void:
 	for polygon2d: Polygon2D in get_children():
 		var intersecting_polygons = Geometry2D.intersect_polygons(polygon2d.polygon, clip_polygon)
 		if intersecting_polygons.is_empty():
-			print("NO INTERSECTIONS")
+			#print("NO INTERSECTIONS")
 			continue
 		
 		for intersecting_polygon in intersecting_polygons:
-			print("Intersecting: ", intersecting_polygon)
+			#print("Intersecting: ", intersecting_polygon)
 			var clipped_polygons = Geometry2D.clip_polygons(polygon2d.polygon, intersecting_polygon)
-			print("Clipped: ", clipped_polygons)
+			#print("Clipped: ", clipped_polygons)
 			if clipped_polygons.is_empty():
-				print("NO CLIPS")
+				#print("NO CLIPS")
 				break
 			
 			if clipped_polygons.size() == 1:
 				polygon2d.polygon = clipped_polygons[0]
-				print("YA")
+				#print("YA")
 				break
 
 func set_texture(texture: Texture2D) -> void:

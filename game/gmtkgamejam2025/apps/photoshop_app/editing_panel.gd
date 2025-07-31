@@ -179,7 +179,7 @@ func paste_selection() -> void:
 	pasted_selection.set_texture_offset(copied_offset)
 	
 	is_paste_confirmable = true
-	print("Confirmable!")
+	#print("Confirmable!")
 
 func reset_paste_selection() -> void:
 	pasted_selection.clear()
@@ -188,7 +188,7 @@ func reset_paste_selection() -> void:
 	copied_texture = null
 	copied_offset = Vector2.ZERO
 	is_paste_confirmable = false
-	print("No longer confirmable!")
+	#print("No longer confirmable!")
 
 func paste_selection_to_image() -> void:
 	var image: Image = true_image.duplicate()
