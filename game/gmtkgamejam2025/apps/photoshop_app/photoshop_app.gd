@@ -44,8 +44,22 @@ func _ready() -> void:
 	testbutton.pressed.connect(_on_test_button_pressed)
 
 func _process(delta: float) -> void:
-	var current_mouse_position: Vector2 = editing_panel.get_local_mouse_position()
+	handle_actions(delta)
+	handle_movement(delta)
+	handle_zoom(delta)
+
+func handle_actions(delta: float) -> void:
+	if Input.is_action_just_pressed("copy"):
+		pass
 	
+	if Input.is_action_just_pressed("cut"):
+		pass
+	
+	if Input.is_action_just_pressed("paste"):
+		pass
+
+func handle_movement(delta: float) -> void:
+	var current_mouse_position: Vector2 = editing_panel.get_local_mouse_position()
 	var diff: Vector2 = current_mouse_position - previous_mouse_position
 	
 	if Input.is_action_pressed("edit_panel_move") and not is_zero_approx(diff.length()):
@@ -61,6 +75,9 @@ func _process(delta: float) -> void:
 		elif editing_anchor.position.y > editing_panel.size.y:
 			editing_anchor.position.y = editing_panel.size.y
 	
+	previous_mouse_position = current_mouse_position
+
+func handle_zoom(delta: float) -> void:
 	if Input.is_action_just_pressed("edit_panel_zoom_out"):
 		current_zoom_index += 1
 		if current_zoom_index >= ZOOM_LEVELS.size():
@@ -72,19 +89,16 @@ func _process(delta: float) -> void:
 		if current_zoom_index < 0:
 			current_zoom_index = 0
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
-	
-	previous_mouse_position = current_mouse_position
 
 func _on_test_button_pressed() -> void:
-	print(cutter.polygon)
-	print(editable_image.polygon)
+	
 	var new_polygon = Geometry2D.intersect_polygons(editable_image.polygon, cutter.polygon)
-	print(new_polygon)
 	if new_polygon.is_empty():
 		return
 	
 	var newnew_polygon = Geometry2D.clip_polygons(editable_image.polygon, new_polygon[0])
-	print(newnew_polygon[0])
+	if newnew_polygon.is_empty():
+		return
 	editable_image.polygon = newnew_polygon[0]
 
 func _show_cutter() -> void:
