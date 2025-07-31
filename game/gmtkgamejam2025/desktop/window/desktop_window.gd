@@ -9,6 +9,10 @@ signal shifted_forward
 signal shifted_back
 signal closed
 
+signal drag_started
+signal drag_released
+signal drag_moved(delta: Vector2)
+
 ## ---
 ## DESKTOP WINDOW
 ## ABSTRACT base class!!!
@@ -24,6 +28,8 @@ signal closed
 ##   so that all mouse events will be able to be detected by the window
 ## ---
 
+@export var window_bar: WindowBar
+
 ## The window's index
 ## 0 being highest, larger numbers being further back
 var window_index := 0
@@ -33,8 +39,6 @@ var mouse_hovered := false # Hovered over anywhere on the window?
 var drag_hovered := false # Hovered over drag bar?
 var is_dragging := false # Clicked while hovering over drag bar?
 
-@onready var close_button: Button = %CloseButton
-
 func _ready() -> void:
 	if Desktop.is_instanced():
 		Desktop.instance.open_window(self)
@@ -43,6 +47,13 @@ func _ready() -> void:
 	
 	self.mouse_entered.connect(_on_mouse_entered)
 	self.mouse_exited.connect(_on_mouse_exited)
+	
+	if window_bar:
+		window_bar.close_pressed.connect(_on_close_pressed)
+		window_bar.drag_bar_hover_entered.connect(_on_drag_entered)
+		window_bar.drag_bar_hover_exited.connect(_on_drag_exited)
+	else:
+		print("WARNING! Creating a window without an initial window bar, is this intentional?")
 
 ## @Abstract
 ## Function called when a program window is "executed" via the desktop
@@ -51,7 +62,8 @@ func boot(args: Dictionary = {}) -> void:
 	pass
 
 func _process(delta: float) -> void:
-	pass
+	position = MathUtil.decay(position, target_pos, 64.0, delta)
+	constrain_to_viewport()
 
 func _on_close_pressed() -> void:
 	if Desktop.is_instanced():
@@ -67,6 +79,8 @@ func _input(event: InputEvent) -> void:
 
 #region WINDOW MOVEMENT
 
+@onready var target_pos := position
+
 func _on_drag_entered() -> void:
 	drag_hovered = true
 func _on_drag_exited() -> void:
@@ -76,41 +90,46 @@ func handle_drag_input(event: InputEvent) -> void:
 	## DRAG LOGIC
 	if event.is_action_pressed(&"lmb") and drag_hovered:
 		is_dragging = true
+		drag_started.emit()
 	if event.is_action_released(&"lmb"):
 		is_dragging = false
+		drag_released.emit()
 	
 	if event is InputEventMouseMotion:
 		if is_dragging:
-			position += event.screen_relative
+			target_pos += event.screen_relative
+			drag_moved.emit(event.screen_relative)
 			constrain_to_viewport()
 
 ## CONSTRAIN WINDOW MOVEMENT
 ## Clamp the position so that the window doesn't go off the screen
 ## NOTE: Deals with local position
-func constrain_position(min_point: Vector2, max_point: Vector2) -> void:
+func constrain_position(point: Vector2, min_point: Vector2, max_point: Vector2) -> Vector2:
 	var final_point := Vector2.ZERO
-	if position.x < min_point.x:
+	if point.x < min_point.x:
 		final_point.x = min_point.x
-	elif (position.x + size.x) > max_point.x:
+	elif (point.x + size.x) > max_point.x:
 		final_point.x = max_point.x - size.x
 	else:
-		final_point.x = position.x
+		final_point.x = point.x
 	
-	if position.y < min_point.y:
+	if point.y < min_point.y:
 		final_point.y = min_point.y
-	elif (position.y + size.y) > max_point.y:
+	elif (point.y + size.y) > max_point.y:
 		final_point.y = max_point.y - size.y
 	else:
-		final_point.y = position.y
+		final_point.y = point.y
 	
-	position = final_point
+	return final_point
 
 ## Does the constraining to the viewport size, centered about (0,0) local position
 func constrain_to_viewport() -> void:
-	constrain_position(get_viewport_rect().size / -2.0, get_viewport_rect().size / 2.0)
+	position = constrain_position(position, get_viewport_rect().size / -2.0, get_viewport_rect().size / 2.0)
+	target_pos = constrain_position(target_pos, get_viewport_rect().size / -2.0, get_viewport_rect().size / 2.0)
 
 func center_window_to(global_pos: Vector2) -> void:
 	global_position = Vector2(global_pos.x - (size.x / 2.0), global_pos.y - (size.y / 2.0))
+	target_pos = position
 	constrain_to_viewport()
 
 #endregion

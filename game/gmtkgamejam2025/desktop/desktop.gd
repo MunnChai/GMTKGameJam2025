@@ -31,8 +31,8 @@ func _input(event: InputEvent) -> void:
 			bring_to_front(get_hovered_window())
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(&"lmb"):
-		execute(&"hello_world", { "count": window_counter })
+	if event.is_action_pressed(&"rmb"):
+		execute(&"hello_world", {})
 
 #region GUI PROGRAM EXECUTION
 

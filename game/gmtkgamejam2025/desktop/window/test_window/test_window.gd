@@ -1,6 +1,12 @@
 class_name TestWindow
 extends DesktopWindow
 
+## ---
+## TEST WINDOW
+## A window to demonstrate how to setup a window
+## Create by executing the hello_world program from desktop
+## ---
+
 var demo_strings := [
 	"Hello world!",
 	"Aren't you forgetting something?",
@@ -11,20 +17,9 @@ var demo_strings := [
 ]
 
 func _ready() -> void:
-	close_button.pressed.connect(_on_close_pressed)
-	
-	%RichTextLabel.text = demo_strings[Desktop.window_counter % demo_strings.size()]
-	
-	#$PanelContainer.mouse_entered.connect(_on_mouse_entered)
-	#$PanelContainer.mouse_exited.connect(_on_mouse_exited)
-	
-	%DragBar.mouse_entered.connect(_on_drag_entered)
-	%DragBar.mouse_exited.connect(_on_drag_exited)
-	
-	%PanelContainer.add_theme_stylebox_override("panel", %PanelContainer.get_theme_stylebox("panel").duplicate())
-	%PanelContainer.get_theme_stylebox("panel").bg_color = Color(randf(), randf(), randf())
-	
 	super._ready()
+
+
 
 ## @OVERRIDE
 func boot(args: Dictionary = {}) -> void:
@@ -39,3 +34,16 @@ func boot(args: Dictionary = {}) -> void:
 		print("I like that about you.")
 		print("You do not do silly things like \"talk\", or \"have opinions.\"")
 		print("Very well!")
+	
+	# Pick text
+	%RichTextLabel.text = demo_strings[Desktop.window_counter % demo_strings.size()]
+	if args.has("text"):
+		%RichTextLabel.text = args.get("text")
+	
+	# Randomize colour
+	%BgPanelContainer.add_theme_stylebox_override("panel", %BgPanelContainer.get_theme_stylebox("panel").duplicate())
+	%BgPanelContainer.get_theme_stylebox("panel").bg_color = Color(randf(), randf(), randf())
+	if args.has("color"):
+		%BgPanelContainer.get_theme_stylebox("panel").bg_color = args.get("color")
+	
+	%WindowBar.set_window_title("Demo Program " + str(Desktop.window_counter))
