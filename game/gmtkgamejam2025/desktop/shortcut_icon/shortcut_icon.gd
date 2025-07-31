@@ -22,8 +22,18 @@ var window_instance: DesktopWindow
 
 var being_removed := false
 
+var is_hovered := false
+
 func _ready() -> void:
 	%Button.pressed.connect(_on_pressed)
+	
+	%Button.mouse_entered.connect(_on_mouse_entered)
+	%Button.mouse_exited.connect(_on_mouse_exited)
+
+func _on_mouse_entered() -> void:
+	is_hovered = true
+func _on_mouse_exited() -> void:
+	is_hovered = false
 
 func _on_pressed() -> void:
 	if being_removed:
@@ -56,3 +66,15 @@ func remove() -> void:
 	being_removed = true
 	await TweenUtil.scale_to(self, Vector2.ZERO, 0.3).finished
 	queue_free()
+
+@onready var base_pos: Vector2 = %Circle.position
+@onready var target_pos := base_pos
+
+func _process(delta: float) -> void:
+	target_pos = base_pos
+	if window_instance and window_instance.is_active:
+		target_pos += Vector2.UP * 8.0
+	if is_hovered:
+		target_pos += Vector2.UP * 6.0
+	
+	%Circle.position = MathUtil.decay(%Circle.position, target_pos, 15.0, delta)

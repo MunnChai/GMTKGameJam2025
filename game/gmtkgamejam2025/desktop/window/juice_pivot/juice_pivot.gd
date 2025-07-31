@@ -27,6 +27,8 @@ func _ready() -> void:
 
 func _on_opened() -> void:
 	TweenUtil.pop_delta(self, Vector2(0.1, 0.1), 0.2)
+	TweenUtil.whoosh(self, position, 0.25, Tween.TransitionType.TRANS_CUBIC, Tween.EaseType.EASE_OUT)
+	position += Vector2.DOWN * 32.0
 func _on_brought_to_front(explicit: bool) -> void:
 	if explicit: ## TODO: Only pop if there was something overlapping..?
 		if not window.is_dragging:
@@ -40,14 +42,22 @@ func _on_shifted_back() -> void:
 func _on_closed() -> void:
 	window.all_clear_for_queue_free = false
 	var tween := TweenUtil.scale_to(self, Vector2.ZERO, 0.15)
+	TweenUtil.whoosh(self, position + Vector2.DOWN * 128.0, 0.15, Tween.TransitionType.TRANS_EXPO, Tween.EaseType.EASE_IN)
 	await tween.finished
 	window.all_clear_for_queue_free = true
 
 func _on_drag() -> void:
 	TweenUtil.scale_to(self, Vector2(1.05, 1.05), 0.1)
 
+var target_rot := rotation_degrees
+
 func _on_drag_move(delta: Vector2) -> void:
-	pass
+	var amount := delta.x / 20.0
+	target_rot -= amount
 
 func _on_drag_release() -> void:
 	TweenUtil.scale_to(self, Vector2(1.0, 1.0), 0.1)
+
+func _process(delta: float) -> void:
+	rotation_degrees = MathUtil.decay(rotation_degrees, target_rot, 15.0, delta)
+	target_rot = MathUtil.decay(target_rot, 0.0, 15.0, delta)
