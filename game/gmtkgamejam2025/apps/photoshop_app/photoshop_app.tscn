@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://omxyukgp61bw"]
+[gd_scene load_steps=14 format=3 uid="uid://omxyukgp61bw"]
 
 [ext_resource type="Script" uid="uid://o62f4k604x6h" path="res://apps/photoshop_app/photoshop_app.gd" id="1_5byx1"]
 [ext_resource type="Script" uid="uid://krmcm86dpw8a" path="res://apps/photoshop_app/multipolygon.gd" id="2_b7jc0"]
 [ext_resource type="Texture2D" uid="uid://u7milfln4xo0" path="res://icon.svg" id="2_khpmc"]
 [ext_resource type="Script" uid="uid://dsbxsdbpygkhs" path="res://apps/photoshop_app/editing_panel.gd" id="2_pedke"]
 [ext_resource type="Texture2D" uid="uid://bb038ihonibbj" path="res://apps/photoshop_app/transparent_background_texture.png" id="3_2tu6o"]
+[ext_resource type="Texture2D" uid="uid://cj7nbd7op7h2s" path="res://apps/photoshop_app/Field_in_Kärkölä.jpg" id="3_rqrjq"]
 [ext_resource type="PackedScene" uid="uid://j0imf1m4hv8n" path="res://apps/photoshop_app/dotted_line/dotted_line.tscn" id="6_i8qo4"]
 [ext_resource type="Script" uid="uid://ddjyetu5ajpwf" path="res://apps/photoshop_app/lasso_controller.gd" id="6_kyq4q"]
 
@@ -76,6 +77,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
 script = ExtResource("2_pedke")
+test_texture = ExtResource("3_rqrjq")
 
 [node name="ToolbarContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/EditingPanel"]
 z_index = 1
@@ -133,9 +135,8 @@ offset_bottom = 330.0
 
 [node name="CanvasBorder" type="Polygon2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true
-invert_enabled = true
-invert_border = 0.1
-polygon = PackedVector2Array(64, 64, 64, -64, -64, -64, -64, 64)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(64, 64, 64, -64, -64, -64, -64, 64, 64, 64, 128, 128, -128, 128, -128, -128, 128, -128, 128, 128)
 
 [node name="CanvasBackground" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true

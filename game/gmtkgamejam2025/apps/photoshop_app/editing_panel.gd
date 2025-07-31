@@ -5,12 +5,13 @@ extends Control
 @onready var editing_panel: Control = %EditingPanel
 @onready var editing_anchor: Control = %EditingAnchor
 @onready var canvas_border: Polygon2D = %CanvasBorder
+@onready var canvas_background: Sprite2D = %CanvasBackground
 @onready var editable_image: MultiPolygon = %EditableImage
 @onready var pasted_selection: MultiPolygon = %PastedSelection
 @onready var lasso_controller: Node2D = %LassoController
 @onready var dotted_line: DottedLine = %DottedLine
 
-
+@export var test_texture: Texture2D
 
 ## Panel movement/zoom
 var previous_mouse_position: Vector2
@@ -41,6 +42,8 @@ func _ready() -> void:
 	editing_anchor.position = editing_panel.size / 2
 	
 	true_image = editable_image.texture.get_image()
+	
+	set_original_texture(test_texture)
 
 func _process(delta: float) -> void:
 	handle_actions(delta)
@@ -97,9 +100,6 @@ func handle_movement(delta: float) -> void:
 	
 	previous_mouse_position = current_mouse_position
 
-
-
-
 func handle_zoom(delta: float) -> void:
 	if Input.is_action_just_pressed("edit_panel_zoom_out"):
 		current_zoom_index += 1
@@ -113,6 +113,33 @@ func handle_zoom(delta: float) -> void:
 			current_zoom_index = 0
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
 
+
+
+func set_original_texture(texture: Texture2D) -> void:
+	true_image = texture.get_image()
+	
+	canvas_background.region_rect.size = texture.get_size()
+	print(texture.get_size())
+	var border_polygons: PackedVector2Array = []
+	border_polygons.append(Vector2(-texture.get_size().x / 2, -texture.get_size().y / 2))
+	border_polygons.append(Vector2(texture.get_size().x / 2, -texture.get_size().y / 2))
+	border_polygons.append(Vector2(texture.get_size().x / 2, texture.get_size().y / 2))
+	border_polygons.append(Vector2(-texture.get_size().x / 2, texture.get_size().y / 2))
+	
+	
+	editable_image.clear_polygons()
+	editable_image.set_texture(texture)
+	editable_image.add_polygon(border_polygons)
+	
+	border_polygons.append(Vector2(-texture.get_size().x / 2, -texture.get_size().y / 2))
+	border_polygons.append(Vector2(-texture.get_size().x, -texture.get_size().y))
+	border_polygons.append(Vector2(-texture.get_size().x, texture.get_size().y))
+	border_polygons.append(Vector2(texture.get_size().x, texture.get_size().y))
+	border_polygons.append(Vector2(texture.get_size().x, -texture.get_size().y))
+	border_polygons.append(Vector2(-texture.get_size().x, -texture.get_size().y))
+	canvas_border.polygon = border_polygons
+	
+	reset_paste_selection()
 
 
 
@@ -164,7 +191,6 @@ func reset_paste_selection() -> void:
 	print("No longer confirmable!")
 
 func paste_selection_to_image() -> void:
-	# Create a new image
 	var image: Image = true_image.duplicate()
 	var pasted_selection_image: Image = pasted_selection.texture.get_image()
 	for x: int in pasted_selection_image.get_size().x:
@@ -184,9 +210,6 @@ func paste_selection_to_image() -> void:
 				continue
 			image.set_pixelv(translated_coord, color)
 	
-	var image_texture := ImageTexture.create_from_image(image)
-	editable_image.set_texture(image_texture)
-	
 	# Merged pasted polygon into editable image polygons
 	# WARNING: ASSUMES PASTED SELECTION ONLY HAS ONE POLYGON... should be true without figure 8 shapes
 	for polygon2d: Polygon2D in pasted_selection.get_children():
@@ -196,9 +219,10 @@ func paste_selection_to_image() -> void:
 		
 		editable_image.merge_polygon(pasted_polygon_translated)
 	
-	# Clip result with border polygon
-	#editable_image.call_deferred("clip_polygon", canvas_border.polygon)
+	editable_image.delete_from_polygon(canvas_border.polygon)
 	
+	var image_texture := ImageTexture.create_from_image(image)
 	true_image = image
+	editable_image.set_texture(image_texture)
 	
 	reset_paste_selection()

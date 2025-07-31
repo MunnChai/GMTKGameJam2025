@@ -8,7 +8,6 @@ func _ready() -> void:
 	if not is_instance_valid(texture):
 		return
 	set_texture(texture)
-	set_texture_offset(texture.get_size() / 2)
 
 
 
@@ -72,6 +71,8 @@ func set_texture(texture: Texture2D) -> void:
 	self.texture = texture
 	for polygon: Polygon2D in get_children():
 		polygon.texture = texture
+	
+	set_texture_offset(texture.get_size() / 2)
 
 func set_texture_offset(offset: Vector2) -> void:
 	texture_offset = offset
@@ -90,7 +91,7 @@ func delete_from_polygon(cut_polygon: PackedVector2Array) -> void:
 		var polygon_edited: bool = false
 		
 		var intersecting_polygons = Geometry2D.intersect_polygons(polygon2d.polygon, cut_polygon)
-		print(intersecting_polygons)
+		#print(intersecting_polygons)
 		if intersecting_polygons.is_empty():
 			continue
 		
