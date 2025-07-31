@@ -7,7 +7,9 @@ extends Control
 @onready var canvas_border: Polygon2D = %CanvasBorder
 @onready var editable_image: MultiPolygon = %EditableImage
 @onready var pasted_selection: MultiPolygon = %PastedSelection
-@onready var cutter: Polygon2D = %Cutter
+@onready var lasso_controller: Node2D = %LassoController
+@onready var dotted_line: DottedLine = %DottedLine
+
 
 
 ## Panel movement/zoom
@@ -28,6 +30,7 @@ var copied_offset: Vector2
 
 ## Moving pasted selection
 var is_pasted_moveable: bool = false
+var is_paste_confirmable: bool = false
 
 var true_image: Image
 var canvas_size: Vector2
@@ -43,6 +46,11 @@ func _process(delta: float) -> void:
 	handle_actions(delta)
 	handle_movement(delta)
 	handle_zoom(delta)
+	
+	if is_pasted_moveable:
+		lasso_controller.disable()
+	else:
+		lasso_controller.enable()
 
 func handle_actions(delta: float) -> void:
 	if Input.is_action_just_pressed("copy"):
@@ -78,13 +86,14 @@ func handle_movement(delta: float) -> void:
 		if pasted_selection.is_pos_in_polygons(local_mouse_pos):
 			is_pasted_moveable = true
 		else:
-			if is_pasted_moveable:
+			if is_paste_confirmable:
 				paste_selection_to_image()
 			
 			is_pasted_moveable = false
 	
 	if Input.is_action_pressed("drag_pasted_selection") and is_pasted_moveable and not is_zero_approx(diff.length()):
 		pasted_selection.position += diff / editing_anchor.scale
+		lasso_controller.position = pasted_selection.position
 	
 	previous_mouse_position = current_mouse_position
 
@@ -109,22 +118,29 @@ func handle_zoom(delta: float) -> void:
 
 
 func copy_selection() -> Array[PackedVector2Array]:
+	print("Copying")
 	copied_offset = editable_image.texture_offset
 	copied_texture = editable_image.texture
 	
 	copied_polygons = []
 	var editable_polygons = editable_image.get_children()
 	for polygon2d: Polygon2D in editable_polygons:
-		var new_polygons = Geometry2D.intersect_polygons(polygon2d.polygon, cutter.polygon)
+		var translated_lasso_points = dotted_line.get_points()
+		for i in translated_lasso_points.size():
+			translated_lasso_points[i] += lasso_controller.position
+		var new_polygons = Geometry2D.intersect_polygons(polygon2d.polygon, translated_lasso_points)
 		if new_polygons.is_empty():
-			return []
+			continue
 		
 		copied_polygons.append_array(new_polygons)
 	
 	return copied_polygons
 
 func delete_selection() -> void:
-	editable_image.delete_from_polygon(cutter.polygon)
+	var translated_lasso_points = dotted_line.get_points()
+	for i in translated_lasso_points.size():
+		translated_lasso_points[i] += lasso_controller.position
+	editable_image.delete_from_polygon(translated_lasso_points)
 
 func paste_selection() -> void:
 	if copied_polygons.is_empty():
@@ -134,13 +150,18 @@ func paste_selection() -> void:
 	pasted_selection.add_polygons(copied_polygons)
 	pasted_selection.set_texture(copied_texture)
 	pasted_selection.set_texture_offset(copied_offset)
+	
+	is_paste_confirmable = true
+	print("Confirmable!")
 
 func reset_paste_selection() -> void:
 	pasted_selection.clear()
 	pasted_selection.position = Vector2.ZERO
-	#copied_polygons.clear()
-	#copied_texture = null
-	#copied_offset = Vector2.ZERO
+	copied_polygons.clear()
+	copied_texture = null
+	copied_offset = Vector2.ZERO
+	is_paste_confirmable = false
+	print("No longer confirmable!")
 
 func paste_selection_to_image() -> void:
 	# Create a new image
@@ -158,20 +179,22 @@ func paste_selection_to_image() -> void:
 			if translated_coord.y < 0 or translated_coord.y >= image.get_size().y:
 				continue
 			
-			image.set_pixelv(translated_coord, pasted_selection_image.get_pixelv(coord))
+			var color: Color = pasted_selection_image.get_pixelv(coord)
+			if is_zero_approx(color.a):
+				continue
+			image.set_pixelv(translated_coord, color)
 	
 	var image_texture := ImageTexture.create_from_image(image)
 	editable_image.set_texture(image_texture)
 	
 	# Merged pasted polygon into editable image polygons
 	# WARNING: ASSUMES PASTED SELECTION ONLY HAS ONE POLYGON... should be true without figure 8 shapes
-	var pasted_polygon_translated: PackedVector2Array = pasted_selection.get_children()[0].polygon.duplicate()
-	for i in pasted_polygon_translated.size():
-		pasted_polygon_translated[i] += pasted_selection.position
-	
-	editable_image.merge_polygon(pasted_polygon_translated)
-	
-	editable_image.clear_polygons()
+	for polygon2d: Polygon2D in pasted_selection.get_children():
+		var pasted_polygon_translated: PackedVector2Array = polygon2d.polygon.duplicate()
+		for i in pasted_polygon_translated.size():
+			pasted_polygon_translated[i] += pasted_selection.position
+		
+		editable_image.merge_polygon(pasted_polygon_translated)
 	
 	# Clip result with border polygon
 	#editable_image.call_deferred("clip_polygon", canvas_border.polygon)

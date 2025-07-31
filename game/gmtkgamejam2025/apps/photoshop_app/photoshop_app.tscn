@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://omxyukgp61bw"]
+[gd_scene load_steps=13 format=3 uid="uid://omxyukgp61bw"]
 
 [ext_resource type="Script" uid="uid://o62f4k604x6h" path="res://apps/photoshop_app/photoshop_app.gd" id="1_5byx1"]
 [ext_resource type="Script" uid="uid://krmcm86dpw8a" path="res://apps/photoshop_app/multipolygon.gd" id="2_b7jc0"]
 [ext_resource type="Texture2D" uid="uid://u7milfln4xo0" path="res://icon.svg" id="2_khpmc"]
 [ext_resource type="Script" uid="uid://dsbxsdbpygkhs" path="res://apps/photoshop_app/editing_panel.gd" id="2_pedke"]
 [ext_resource type="Texture2D" uid="uid://bb038ihonibbj" path="res://apps/photoshop_app/transparent_background_texture.png" id="3_2tu6o"]
+[ext_resource type="PackedScene" uid="uid://j0imf1m4hv8n" path="res://apps/photoshop_app/dotted_line/dotted_line.tscn" id="6_i8qo4"]
+[ext_resource type="Script" uid="uid://ddjyetu5ajpwf" path="res://apps/photoshop_app/lasso_controller.gd" id="6_kyq4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2tu6o"]
 bg_color = Color(0.212305, 0.212305, 0.212305, 1)
@@ -152,11 +154,13 @@ texture = ExtResource("2_khpmc")
 texture_offset = Vector2(64, 64)
 polygon = PackedVector2Array(64, -64, 64, 64, -64, 64, -64, -64)
 
-[node name="Cutter" type="Polygon2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
-unique_name_in_owner = true
-scale = Vector2(1, 0.956522)
-polygon = PackedVector2Array(-4, -85.7273, -10, -5.22729, -1, 73.1818, 114, 70.0454, 104, -99.3182)
-
 [node name="PastedSelection" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
 unique_name_in_owner = true
 script = ExtResource("2_b7jc0")
+
+[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
+unique_name_in_owner = true
+script = ExtResource("6_kyq4q")
+
+[node name="DottedLine" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor/LassoController" instance=ExtResource("6_i8qo4")]
+unique_name_in_owner = true

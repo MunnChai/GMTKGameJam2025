@@ -26,13 +26,18 @@ func add_polygons(polygons: Array[PackedVector2Array]) -> void:
 func merge_polygon(polygon: PackedVector2Array) -> void:
 	for polygon2d: Polygon2D in get_children():
 		var intersect = Geometry2D.intersect_polygons(polygon2d.polygon, polygon)
-		if intersect.is_empty():
-			continue
-		
-		for intersected_polygon: PackedVector2Array in intersect:
-			var merged = Geometry2D.merge_polygons(polygon2d.polygon, intersected_polygon)
-			print("Merged: ", merged)
-			polygon2d.polygon = merged[0]
+		# Intersect exists, merge them
+		if not intersect.is_empty():
+			for intersected_polygon: PackedVector2Array in intersect:
+				var merged = Geometry2D.merge_polygons(polygon2d.polygon, polygon)
+				print("Merged!")
+				polygon2d.polygon = merged[0]
+			print("Finished merging")
+			return
+	
+	# No intersect was found, add polygon
+	add_polygon(polygon)
+	print("Added new polygon during merge")
 
 func set_polygons(polygons: Array[PackedVector2Array]) -> void:
 	for child in get_children():
@@ -81,11 +86,11 @@ func clear() -> void:
 
 func delete_from_polygon(cut_polygon: PackedVector2Array) -> void:
 	for polygon2d: Polygon2D in get_children():
-		
 		var original_polygon: PackedVector2Array = polygon2d.polygon
 		var polygon_edited: bool = false
 		
 		var intersecting_polygons = Geometry2D.intersect_polygons(polygon2d.polygon, cut_polygon)
+		print(intersecting_polygons)
 		if intersecting_polygons.is_empty():
 			continue
 		
@@ -94,11 +99,12 @@ func delete_from_polygon(cut_polygon: PackedVector2Array) -> void:
 			var clipped_polygons = Geometry2D.clip_polygons(polygon2d.polygon, intersecting_polygon)
 			#print("Clipped: ", clipped_polygons)
 			if clipped_polygons.is_empty():
-				break
+				polygon2d.queue_free()
+				continue
 			
 			if clipped_polygons.size() == 1:
 				polygon2d.polygon = clipped_polygons[0]
-				break
+				continue
 			
 			var inner_polygons: Array[PackedVector2Array] = []
 			var outer_polygons: Array[PackedVector2Array] = []

@@ -43,6 +43,9 @@ func remove_last() -> void:
 func get_point(index: int) -> Vector2:
 	return line.points[index]
 
+func get_points() -> PackedVector2Array:
+	return line.points
+
 ## Returns true if no points, false if at least one
 func is_empty() -> bool:
 	return line.points.is_empty()
