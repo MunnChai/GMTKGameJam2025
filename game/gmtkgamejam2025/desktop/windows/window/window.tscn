@@ -14,6 +14,7 @@ anchors_preset = 0
 script = ExtResource("1_t505n")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_right = 419.0
 offset_bottom = 299.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ojmwe")

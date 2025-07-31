@@ -8,7 +8,6 @@ script = ExtResource("1_ttxtp")
 id = "bald_guy"
 title = "Can you give me hair?"
 desc = "This is my Tinder profile pic and I would love to have more hair on my scalp.
-
 Also it'd be nice if you can make me look cool :D"
 day = 1
 assets = Array[Texture2D]([ExtResource("1_kdkyl")])

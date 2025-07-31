@@ -1,49 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=7 format=3 uid="uid://cvhqup0ds5r4a"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="2_2e8ng"]
 [ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_one.tres" id="3_3bsde"]
 [ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_two.tres" id="4_3bsde"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojmwe"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_foefx"]
+bg_color = Color(0.139198, 0.223356, 0.283347, 1)
+
 [node name="CommissionsApp" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
 script = ExtResource("1_qmn3t")
 commissions = Dictionary[int, ExtResource("2_2e8ng")]({
 1: ExtResource("3_3bsde"),
 2: ExtResource("4_3bsde")
 })
 
-[node name="Title" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 703.0
+offset_bottom = 444.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ojmwe")
 
-[node name="Description" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
 
-[node name="Id" type="RichTextLabel" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="Download" type="Button" parent="."]
+[node name="CloseButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "X"
 
-[node name="Submit" type="Button" parent="."]
+[node name="DragBar" type="Panel" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_foefx")
+
+[node name="Id" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Id"
+fit_content = true
+
+[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Title"
+fit_content = true
+
+[node name="Description" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Description"
+fit_content = true
+
+[node name="Download" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Download"
+
+[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Submit"
+
+[node name="Feedbacks" type="Button" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Feedbacks"
