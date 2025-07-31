@@ -62,6 +62,8 @@ var windows: Array[DesktopWindow] = []
 func open_window(window: DesktopWindow) -> bool:
 	if has_window(window):
 		return false ## Don't open the same window twice!
+	if window.is_closing:
+		return false ## Don't reopen a closing window!
 	windows.push_front(window) ## Open at the front
 	window.open_self()
 	
@@ -75,6 +77,8 @@ func open_window(window: DesktopWindow) -> bool:
 ## If it is not already open, opens it instead of bringing it forward
 ## Shifts every other window back
 func bring_to_front(window: DesktopWindow) -> void:
+	if window.is_closing:
+		return
 	if not has_window(window):
 		open_window(window) ## Not open, just open...
 		return
@@ -92,7 +96,7 @@ func bring_to_front(window: DesktopWindow) -> void:
 ## Windows in front are unaffected
 ## Windows behind are shifted forward
 func close_window(window: DesktopWindow) -> void:
-	if not has_window(window):
+	if not has_window(window) or window.is_closing:
 		return
 	var index = get_index_of_window(window)
 	windows.erase(window)
@@ -132,12 +136,14 @@ func get_hovered_window() -> DesktopWindow:
 func _shift_windows_back(front_index: int = 0) -> void:
 	## Push every other window back, after the front index
 	for i in range(front_index + 1, windows.size()):
-		windows[i].shift_self_back(i)
+		if not windows[i].is_closing:
+			windows[i].shift_self_back(i)
 
 ## Shifts every window behind the front window forward, by updating with new index
 func _shift_windows_forward(front_index: int = 0) -> void:
 	## Push every other window back, after the front index
 	for i in range(front_index + 1, windows.size()):
-		windows[i].shift_self_forward(i)
+		if not windows[i].is_closing:
+			windows[i].shift_self_forward(i)
 
 #endregion

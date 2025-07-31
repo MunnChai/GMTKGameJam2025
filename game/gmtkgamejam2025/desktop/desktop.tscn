@@ -9,6 +9,21 @@ window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"hello_world": ExtResource("2_87qqj")
 })
 
+[node name="DesktopBg" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2500.0
+offset_top = -2500.0
+offset_right = 2500.0
+offset_bottom = 2500.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.845329, 0.845329, 0.845329, 1)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Windows" type="Node2D" parent="."]

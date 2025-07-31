@@ -19,8 +19,6 @@ var demo_strings := [
 func _ready() -> void:
 	super._ready()
 
-
-
 ## @OVERRIDE
 func boot(args: Dictionary = {}) -> void:
 	print("You are booting the test window!")

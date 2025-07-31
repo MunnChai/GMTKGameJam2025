@@ -38,7 +38,10 @@ func _on_shifted_back() -> void:
 	#TweenUtil.pop_delta(%CentralPivot, Vector2(0.1, 0.1))
 	pass
 func _on_closed() -> void:
-	TweenUtil.pop_delta(self, Vector2(0.1, 0.1))
+	window.all_clear_for_queue_free = false
+	var tween := TweenUtil.scale_to(self, Vector2.ZERO, 0.15)
+	await tween.finished
+	window.all_clear_for_queue_free = true
 
 func _on_drag() -> void:
 	TweenUtil.scale_to(self, Vector2(1.05, 1.05), 0.1)

@@ -34,6 +34,8 @@ signal drag_moved(delta: Vector2)
 ## 0 being highest, larger numbers being further back
 var window_index := 0
 var is_active := false
+var is_closing := false
+var all_clear_for_queue_free := false
 
 var mouse_hovered := false # Hovered over anywhere on the window?
 var drag_hovered := false # Hovered over drag bar?
@@ -55,18 +57,26 @@ func _ready() -> void:
 	else:
 		print("WARNING! Creating a window without an initial window bar, is this intentional?")
 
-## @Abstract
+## @ABSTRACT
 ## Function called when a program window is "executed" via the desktop
 ## Override to supply your own startup behaviour
 func boot(args: Dictionary = {}) -> void:
 	pass
+
+## @ABSTRACT
+## Function called when a program window is marked for closing
+## Override to supply your own shutdown behaviour
+func close() -> void:
+	while not all_clear_for_queue_free:
+		await get_tree().process_frame
+	queue_free()
 
 func _process(delta: float) -> void:
 	position = MathUtil.decay(position, target_pos, 64.0, delta)
 	constrain_to_viewport()
 
 func _on_close_pressed() -> void:
-	if Desktop.is_instanced():
+	if Desktop.is_instanced() and not is_closing:
 		Desktop.instance.close_window(self)
 
 func _on_mouse_entered() -> void:
@@ -74,6 +84,7 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	mouse_hovered = false
 
+## When input is recieved for this window...
 func _input(event: InputEvent) -> void:
 	handle_drag_input(event)
 
@@ -87,6 +98,9 @@ func _on_drag_exited() -> void:
 	drag_hovered = false
 
 func handle_drag_input(event: InputEvent) -> void:
+	if is_closing:
+		return
+	
 	## DRAG LOGIC
 	if event.is_action_pressed(&"lmb") and drag_hovered:
 		is_dragging = true
@@ -177,9 +191,10 @@ func shift_self_forward(new_index: int) -> void:
 func close_self() -> void:
 	## CLOSE THIS WINDOW
 	is_active = false
-	closed.emit()
+	is_closing = true
+	all_clear_for_queue_free = true
+	closed.emit() # NOTE: Some things from the signal may change all_clear_for_queue_free
 	
-	## TODO: Closing animation
-	queue_free()
+	close()
 
 #endregion
