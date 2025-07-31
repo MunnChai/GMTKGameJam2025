@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://omxyukgp61bw"]
+[gd_scene load_steps=2 format=3 uid="uid://omxyukgp61bw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4qq7r"]
+size = Vector2(1, 60)
 
 [node name="PhotoshopApp" type="Control"]
 layout_mode = 3
@@ -7,3 +10,40 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_4qq7r")
+
+[node name="Filebar" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
+layout_mode = 2
+disabled = true
+text = "Save"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
+layout_mode = 2
+text = "Reset"
+
+[node name="Button3" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
+layout_mode = 2
+text = "Export"
+
+[node name="Body" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
