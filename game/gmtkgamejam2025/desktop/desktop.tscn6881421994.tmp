@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=3 uid="uid://dvrpk4wp2vd4u"]
+
+[ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
+[ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
+[ext_resource type="PackedScene" uid="uid://84nw05m865xp" path="res://desktop/window/error_popup/error_popup.tscn" id="3_irqsv"]
+[ext_resource type="PackedScene" uid="uid://bf2h01ok52xw4" path="res://desktop/shortcut_icon/shortcut_icon.tscn" id="3_py4qr"]
+[ext_resource type="PackedScene" uid="uid://icmnoob2solt" path="res://apps/settings_app/settings_window/settings_window.tscn" id="4_hbe16"]
+[ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
+[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.tscn" id="5_6vopt"]
+[ext_resource type="PackedScene" uid="uid://ba01qxttnfxam" path="res://apps/commissions_app/commissions_window/commissions_window.tscn" id="6_r3xg6"]
+[ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
+[ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="9_jsfay"]
+
+[node name="Desktop" type="Node2D"]
+script = ExtResource("1_cg3fv")
+window_packed_scenes = Dictionary[StringName, PackedScene]({
+&"commissions": ExtResource("6_r3xg6"),
+&"error": ExtResource("3_irqsv"),
+&"file_explorer": ExtResource("5_6vopt"),
+&"hello_world": ExtResource("2_87qqj"),
+&"photoshop": ExtResource("6_t632k"),
+&"settings": ExtResource("4_hbe16")
+})
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DesktopBg" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.845329, 0.845329, 0.845329, 1)
+
+[node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DesktopIcons"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 64
+
+[node name="DemoIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+
+[node name="SettingsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"settings"
+type = 2
+
+[node name="ErrorIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"error"
+args = Dictionary[StringName, Variant]({
+&"text": "Something went wrong!"
+})
+
+[node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"file_explorer"
+args = Dictionary[StringName, Variant]({
+&"text": "Something went wrong!"
+})
+
+[node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"commissions"
+type = 2
+
+[node name="PhotoshopIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"photoshop"
+args = Dictionary[StringName, Variant]({
+&"file": ExtResource("9_jsfay")
+})
+
+[node name="Windows" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TaskBar" parent="CanvasLayer" instance=ExtResource("4_xkt3d")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0

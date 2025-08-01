@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FileResource" load_steps=2 format=3 uid="uid://ovp2n5v5d7xd"]
+
+[ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_v5jkv"]
+
+[resource]
+script = ExtResource("1_v5jkv")
+file_name = ""
+metadata/_custom_type_script = "uid://c35i354iy57g4"

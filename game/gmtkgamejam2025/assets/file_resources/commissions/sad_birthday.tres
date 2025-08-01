@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FileResource" load_steps=4 format=3 uid="uid://ygrurk35boet"]
+
+[ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_7utc1"]
+[ext_resource type="Texture2D" uid="uid://blihwae41o5s" path="res://assets/images/commissions/sad_birthday.png" id="2_3jkgg"]
+[ext_resource type="Texture2D" uid="uid://js0ely6ogy08" path="res://assets/images/commissions/sad_birthday_trait.png" id="3_v5uh6"]
+
+[resource]
+script = ExtResource("1_7utc1")
+file_name = "sad_birthday.png"
+texture = ExtResource("2_3jkgg")
+trait_texture = ExtResource("3_v5uh6")
+metadata/_custom_type_script = "uid://c35i354iy57g4"

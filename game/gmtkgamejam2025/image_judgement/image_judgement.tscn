@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcvtwsr1aa460"]
+
+[ext_resource type="Script" uid="uid://2gjtp3ohff6c" path="res://image_judgement/image_judgement.gd" id="1_nf0f8"]
+
+[node name="ImageJudgement" type="Node"]
+script = ExtResource("1_nf0f8")
+trait_colors = Dictionary[int, Color]({
+-5: Color(0.666667, 0.666667, 0.666667, 1),
+-4: Color(0.733333, 0.733333, 0.733333, 1),
+-3: Color(0.8, 0.8, 0.8, 1),
+-2: Color(0.866667, 0.866667, 0.866667, 1),
+-1: Color(0.933333, 0.933333, 0.933333, 1),
+0: Color(1, 0.784314, 0.588235, 1),
+1: Color(0, 0, 0, 1),
+2: Color(1, 0, 1, 1),
+3: Color(1, 0, 0, 1),
+4: Color(0, 1, 0, 1),
+5: Color(0, 1, 1, 1),
+6: Color(0, 0.501961, 1, 1),
+7: Color(1, 1, 0, 1),
+8: Color(0, 0, 1, 1),
+9: Color(1, 0.501961, 0, 1),
+10: Color(1, 0, 0.501961, 1)
+})

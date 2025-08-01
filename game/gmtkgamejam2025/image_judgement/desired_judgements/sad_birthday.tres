@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://cj83obmb3epgd"]
+
+[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_6j2b4"]
+
+[resource]
+script = ExtResource("1_6j2b4")
+desired_traits = Dictionary[int, Vector2]({})
+desired_modification = Vector2(0, 0)
+feedback_comments = Dictionary[int, PackedStringArray]({})
+metadata/_custom_type_script = "uid://bku7ds6r61ofw"
