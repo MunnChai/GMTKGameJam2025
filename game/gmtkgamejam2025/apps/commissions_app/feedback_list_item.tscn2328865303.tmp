@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl1xh4ieujfcs"]
+
+[ext_resource type="Script" uid="uid://cba1ci6sl6c7l" path="res://apps/commissions_app/feedback_list_item.gd" id="1_vi54g"]
+
+[node name="FeedbackListItem" type="Button"]
+custom_minimum_size = Vector2(665, 100)
+script = ExtResource("1_vi54g")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ItemTitle" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Commission Title"
+fit_content = true
+
+[node name="ClientId" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "User balabala"
+fit_content = true

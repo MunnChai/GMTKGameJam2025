@@ -21,6 +21,7 @@ commissions = Dictionary[int, ExtResource("2_2e8ng")]({
 })
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(705, 750)
 layout_mode = 0
 offset_right = 703.0
 offset_bottom = 444.0
@@ -46,25 +47,31 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_foefx")
 
-[node name="Content" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+current_tab = 1
+
+[node name="Commissions" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Content"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Id" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Content/VBoxContainer"]
+[node name="Id" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "Id"
 fit_content = true
 
-[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Content/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/bold_italics_font_size = 30
@@ -72,20 +79,20 @@ bbcode_enabled = true
 text = "Title"
 fit_content = true
 
-[node name="Description" type="RichTextLabel" parent="PanelContainer/VBoxContainer/Content/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Description"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/Content/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 10
 
-[node name="AssetList" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Content/VBoxContainer/MarginContainer"]
+[node name="AssetList" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
@@ -93,21 +100,71 @@ size_flags_vertical = 4
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Content/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Download" type="Button" parent="PanelContainer/VBoxContainer/Content/VBoxContainer/VBoxContainer"]
+[node name="Download" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Download"
 
-[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/Content/VBoxContainer/VBoxContainer"]
+[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Submit"
 
-[node name="Feedbacks" type="Button" parent="PanelContainer/VBoxContainer/Content/VBoxContainer/VBoxContainer"]
+[node name="Feedbacks" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Feedbacks"
+
+[node name="Feedbacks" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+metadata/_tab_index = 1
+
+[node name="FeedbackList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Back"
+
+[node name="FeedbackId" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "User"
+fit_content = true
+
+[node name="FeedbackTitle" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Title of original commission"
+fit_content = true
+
+[node name="FeedbackDesc" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Description of commission"
+fit_content = true
+
+[node name="SubmittedWork" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+layout_mode = 2
