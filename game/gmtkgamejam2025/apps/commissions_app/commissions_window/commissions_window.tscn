@@ -80,6 +80,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cxhuy")
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="CommissionsApp" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent" instance=ExtResource("4_vixk8")]
 layout_mode = 2

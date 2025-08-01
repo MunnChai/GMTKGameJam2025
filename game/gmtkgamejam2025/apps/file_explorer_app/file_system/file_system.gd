@@ -35,6 +35,9 @@ func _ready():
 	var images_folder = Folder.new("images")
 	add_file_node_at("/", images_folder)
 	add_file_node_at("/images", file1)
+	
+	var file3 = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
+	add_file_node_at("/", file3)
 
 func open_file_at(path: String) -> bool:
 	var node: FileNode = parse_path(path)
@@ -50,7 +53,7 @@ func open_file(node: FileNode) -> bool:
 	
 	match file.file_type:
 		"image":
-			Desktop.instance.execute(&"photoshop", {"texture": node.texture })
+			Desktop.instance.execute(&"photoshop", {"file": file.get_file_resource() })
 		_:
 			Desktop.instance.execute(&"error", {"text": "Unsupported file type. Please update to OS 96."})
 	return true

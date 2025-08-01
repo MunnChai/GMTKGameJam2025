@@ -29,3 +29,10 @@ func _init(new_name: String, new_type: String, new_texture: Texture = null, new_
 	file_type = new_type
 	texture = new_texture
 	trait_texture = new_trait_texture
+
+func get_file_resource() -> FileResource:
+	var res = FileResource.new()
+	res.file_name = node_name
+	res.texture = texture
+	res.trait_texture = trait_texture
+	return res

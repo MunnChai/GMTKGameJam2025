@@ -11,7 +11,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
 
-[node name="TestWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
+[node name="PhotoshopWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
 offset_right = 837.0
 offset_bottom = 535.0
 script = ExtResource("1_dcbwl")
@@ -64,7 +64,15 @@ unique_name_in_owner = true
 layout_mode = 2
 window_icon = ExtResource("5_xn7q2")
 
-[node name="PhotoshopApp" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("4_dcbwl")]
+[node name="MarginContainer" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="PhotoshopApp" parent="JuicePivot/MainPanel/VerticalSplit/MarginContainer" instance=ExtResource("4_dcbwl")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
