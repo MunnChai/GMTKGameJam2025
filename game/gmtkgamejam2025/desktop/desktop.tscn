@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=13 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.tscn" id="5_6vopt"]
 [ext_resource type="PackedScene" uid="uid://ba01qxttnfxam" path="res://apps/commissions_app/commissions_window/commissions_window.tscn" id="6_r3xg6"]
 [ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
+[ext_resource type="PackedScene" uid="uid://n64dite5vves" path="res://desktop/window/export_success/export_success.tscn" id="8_b6j2u"]
 [ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="9_jsfay"]
 [ext_resource type="Texture2D" uid="uid://d2etpwefg0clb" path="res://assets/ui/icons/PhotoLoopIcon.png" id="10_4ndcx"]
 
@@ -17,6 +18,7 @@ script = ExtResource("1_cg3fv")
 window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"commissions": ExtResource("6_r3xg6"),
 &"error": ExtResource("3_irqsv"),
+&"export_success": ExtResource("8_b6j2u"),
 &"file_explorer": ExtResource("5_6vopt"),
 &"hello_world": ExtResource("2_87qqj"),
 &"photoshop": ExtResource("6_t632k"),

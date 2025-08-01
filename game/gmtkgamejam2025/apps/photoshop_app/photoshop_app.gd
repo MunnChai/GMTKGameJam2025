@@ -30,3 +30,4 @@ func _on_export_pressed() -> void:
 	var file: File = editing_panel.get_current_file()
 	
 	FileSystem.add_file_node_at("/exports/", file) 
+	Desktop.instance.execute("export_success", {"text": "files/exports/" + file.node_name})
