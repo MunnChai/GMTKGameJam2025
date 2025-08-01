@@ -32,7 +32,7 @@ signal drag_moved(delta: Vector2)
 ##   (including the window bar) and make sure that the JuicePivot is in the center!
 ## ---
 
-@export var window_bar: WindowBar
+@export var window_bar: WindowBar 
 
 ## The window's index
 ## 0 being highest, larger numbers being further back

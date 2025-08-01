@@ -20,28 +20,21 @@ func _ready():
 
 	# --- Create a sample file structure ---
 	# NOTE: You must have these images in the specified path for them to load.
-	var cat_image = load("res://assets/images/nutreents_logo.png") 
-	var dog_image = load("res://assets/images/dog.png")
+	var nutreents_image = load("res://assets/images/nutreents_logo.png") 
 
-	var file1 = File.new("cat_photo.png", "image", cat_image)
-	var file2 = File.new("dog_picture.jpg", "image", dog_image)
-	var file3 = File.new("important_document.txt", "text")
+	var file1 = File.new("nutreents.png", "image", nutreents_image)
+	var file_2 = File.new("passwords.txt", "text", null)
+
+	add_file_node_at("/", file_2)
 
 	# Create a "commissions" folder
-	var commissions_folder = Folder.new("Commissions")
+	var commissions_folder = Folder.new("commissions")
 	add_file_node_at("/", commissions_folder)
-
-	# Create a client folder
-	var client1_folder = Folder.new("Client_A")
-	add_file_node_at("/Commissions", client1_folder)
-	add_file_node_at("/Commissions/Client_A", file1)
-
-	# Create another client folder
-	var client2_folder = Folder.new("Client_B")
-	add_file_node_at("/Commissions", client2_folder)
-	add_file_node_at("/Commissions/Client_B", file2)
 	
-	add_file_node_at("/", file3)
+	# Create a "images" folder
+	var images_folder = Folder.new("images")
+	add_file_node_at("/", images_folder)
+	add_file_node_at("/images", file1)
 
 func open_file_at(path: String) -> bool:
 	var node: FileNode = parse_path(path)
@@ -52,8 +45,14 @@ func open_file(node: FileNode) -> bool:
 		return false
 	if node is Folder:
 		return false
-	#Desktop.instance.execute(&"error", {})
-	Desktop.instance.execute(&"photoshop", {"texture": node.texture })
+	
+	var file: File = node
+	
+	match file.file_type:
+		"image":
+			Desktop.instance.execute(&"photoshop", {"texture": node.texture })
+		_:
+			Desktop.instance.execute(&"error", {"text": "Unsupported file type. Please update to OS 96."})
 	return true
 
 func add_file_node_at(path: String, file_node: FileNode) -> bool:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bf2h01ok52xw4"]
+[gd_scene load_steps=13 format=3 uid="uid://bf2h01ok52xw4"]
 
 [ext_resource type="Script" uid="uid://baqi0xt5imkpu" path="res://desktop/shortcut_icon/shortcut_icon.gd" id="1_npcrg"]
-[ext_resource type="Texture2D" uid="uid://d2etpwefg0clb" path="res://assets/ui/icons/PhotoLoopIcon.png" id="2_ylw04"]
+[ext_resource type="Texture2D" uid="uid://112pdxc6afet" path="res://assets/ui/icons/netscape_missing.png" id="2_5ky6a"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_5ky6a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylw04"]
 bg_color = Color(0, 0, 0, 0.294118)
@@ -47,6 +48,7 @@ anti_aliasing = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_npcrg")
+icon = ExtResource("2_5ky6a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -68,6 +70,7 @@ mouse_filter = 2
 
 [node name="ShadowCircle" type="PanelContainer" parent="MarginContainer/Control"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_top = 5.89
 offset_right = 40.0
@@ -81,12 +84,13 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2ijdd")
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/Circle"]
+[node name="IconTexture" type="TextureRect" parent="MarginContainer/Circle"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_ylw04")
+texture = ExtResource("2_5ky6a")
 expand_mode = 2
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="Circle2" type="PanelContainer" parent="MarginContainer"]
 unique_name_in_owner = true
@@ -107,3 +111,35 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_s17x7")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ikcii")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_2guql")
 flat = true
+
+[node name="LabelPivot" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ShortcutName" type="RichTextLabel" parent="LabelPivot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -3.0
+offset_right = 49.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("3_5ky6a")
+text = "app"
+horizontal_alignment = 1
