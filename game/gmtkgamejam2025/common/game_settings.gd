@@ -1,8 +1,8 @@
-class_name Settings
+class_name GameSettings
 extends Node
 
 ## ---
-## SETTINGS
+## GAME SETTINGS
 ## A collection of static methods for general setting loading/saving using config files
 ## ---
 ## Last edited: July 31st, 2025
