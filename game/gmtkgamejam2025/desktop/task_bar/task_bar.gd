@@ -6,7 +6,7 @@ extends Control
 ## The task bar at the bottom of the desktop
 ## ---
 
-const ICON_SPACING := 48.0
+const ICON_SPACING := 64.0
 
 var window_dict: Dictionary[DesktopWindow, ShortcutIcon]
 var shortcuts: Array[ShortcutIcon]
@@ -18,6 +18,11 @@ func add_task(window: DesktopWindow) -> void:
 	
 	var shortcut := create_task_bar_shortcut()
 	shortcut.window_instance = window
+	
+	if window.taskbar_icon:
+		shortcut.set_icon(window.taskbar_icon)
+	if window.window_bar:
+		shortcut.set_shortcut_name(window.window_bar.window_title)
 	
 	window_dict.set(window, shortcut)
 	shortcuts.append(shortcut)

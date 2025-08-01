@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://882mgtlsvpqt"]
+[gd_scene load_steps=7 format=3 uid="uid://882mgtlsvpqt"]
 
 [ext_resource type="Script" uid="uid://b40xncak1ms7s" path="res://apps/file_explorer_app/file_icon.gd" id="1_abi7j"]
+[ext_resource type="Texture2D" uid="uid://112pdxc6afet" path="res://assets/ui/icons/netscape_missing.png" id="2_ud68x"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_vi54o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abi7j"]
 bg_color = Color(0.290196, 0.317647, 0.360784, 1)
@@ -51,11 +53,14 @@ clip_contents = true
 custom_minimum_size = Vector2(64, 140)
 layout_mode = 2
 mouse_filter = 2
+texture = ExtResource("2_ud68x")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 3
 
 [node name="NameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_vi54o")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "e"
 horizontal_alignment = 1
 autowrap_mode = 3

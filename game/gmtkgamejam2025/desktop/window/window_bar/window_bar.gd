@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 	if window_icon:
 		%WindowIcon.texture = window_icon
+	else:
+		%WindowIcon.hide()
 
 func assign_window(_window: DesktopWindow) -> void:
 	window = _window

@@ -44,6 +44,10 @@ func set_icon(_icon: Texture2D) -> void:
 	if icon != null:
 		%IconTexture.texture = icon
 
+func set_shortcut_name(_name: String) -> void:
+	shortcut_name = _name
+	%ShortcutName.text = shortcut_name
+
 func _on_mouse_entered() -> void:
 	is_hovered = true
 func _on_mouse_exited() -> void:

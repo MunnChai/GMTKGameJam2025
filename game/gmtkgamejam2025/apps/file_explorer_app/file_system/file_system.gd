@@ -16,7 +16,7 @@ var root: Folder
 
 func _ready():
 	# Create the root directory
-	root = Folder.new("root")
+	root = Folder.new("user")
 
 	# --- Create a sample file structure ---
 	# NOTE: You must have these images in the specified path for them to load.

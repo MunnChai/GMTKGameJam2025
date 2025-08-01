@@ -33,6 +33,7 @@ signal drag_moved(delta: Vector2)
 ## ---
 
 @export var window_bar: WindowBar 
+@export var taskbar_icon: Texture2D
 
 ## The window's index
 ## 0 being highest, larger numbers being further back
