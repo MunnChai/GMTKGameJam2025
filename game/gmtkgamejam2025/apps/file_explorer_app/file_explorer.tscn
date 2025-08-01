@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bihaanncehmrv" path="res://apps/file_explorer_app/file_explorer.gd" id="1_ylx0t"]
 [ext_resource type="Texture2D" uid="uid://ck62yw53r3drq" path="res://assets/ui/windows/window_inner_nine_patch_rect.png" id="2_6j7i7"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_led7x"]
-[ext_resource type="Script" uid="uid://pmxmwwfvu7gl" path="res://apps/file_explorer_app/file_system_access.gd" id="2_ylx0t"]
+[ext_resource type="Script" path="res://apps/file_explorer_app/file_system_access.gd" id="2_ylx0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo53c"]
 bg_color = Color(0.172549, 0.188235, 0.215686, 1)
