@@ -2,6 +2,8 @@ class_name SpriteBuffer
 extends Sprite2D
 
 var pixel_buffer: Array[PackedColorArray]
+var trait_buffer: Array[PackedInt32Array]
+var modified_buffer: Array[PackedInt32Array]
 
 func set_pixel_buffer(given_pixel_buffer: Array[PackedColorArray]) -> void:
 	var image: Image = Image.create_empty(given_pixel_buffer.size(), given_pixel_buffer[0].size(), false, Image.FORMAT_RGBA8)
@@ -19,6 +21,9 @@ func set_pixel_buffer_from_texture(given_texture: Texture2D) -> void:
 	var image: Image = Image.create_empty(given_texture.get_size().x, given_texture.get_size().y, false, Image.FORMAT_RGBA8)
 	
 	pixel_buffer.resize(given_texture.get_size().x)
+	trait_buffer.resize(given_texture.get_size().x)
+	modified_buffer.resize(given_texture.get_size().x)
+	
 	for i in pixel_buffer.size():
 		var new_pixel_array: PackedColorArray = []
 		new_pixel_array.resize(given_texture.get_size().y)

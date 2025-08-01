@@ -12,4 +12,6 @@ func boot(args: Dictionary = {}) -> void:
 		printerr("WARNING: Photoshop window opened with non-Texture2D arg!!!")
 		return
 	
+	%WindowBar.set_window_title("PhotoLoop")
+	
 	photoshop_app.set_texture(args.get("texture"))
