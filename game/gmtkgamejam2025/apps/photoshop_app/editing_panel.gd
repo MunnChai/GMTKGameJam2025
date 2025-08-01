@@ -30,11 +30,14 @@ var original_texture: Texture2D
 ## Moving pasted selection
 var is_pasted_moveable: bool = false
 var is_paste_confirmable: bool = false
+var is_pasted_locked: bool = false
 
 var true_image: Image
 var canvas_size: Vector2
 
 var is_hovered: bool = false
+
+var is_waiting_for_thread: bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
@@ -44,6 +47,11 @@ func _ready() -> void:
 		is_hovered = true)
 	editing_node.mouse_exited.connect(func():
 		is_hovered = false)
+	
+	
+	editable_image.got_buffers.connect(_set_copied_buffers)
+	editable_image.finished_deletion.connect(_on_deletion_finished)
+	editable_image.finished_pasting.connect(_on_paste_confirm_finished)
 
 func _process(delta: float) -> void:
 	if not is_hovered:
@@ -54,13 +62,15 @@ func _process(delta: float) -> void:
 	handle_zoom(delta)
 
 func handle_actions(delta: float) -> void:
+	if is_waiting_for_thread:
+		return
+	
 	if Input.is_action_just_pressed("copy"):
 		copy_selection()
 		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("cut"):
 		cut_selection()
-		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("paste"):
 		paste_selection()
@@ -88,12 +98,12 @@ func handle_movement(delta: float) -> void:
 		if pasted_selection.is_pos_in_pixel_buffer(local_mouse_pos):
 			is_pasted_moveable = true
 		else:
-			if is_paste_confirmable:
+			if is_paste_confirmable and not is_waiting_for_thread:
 				paste_selection_to_image()
 			
 			is_pasted_moveable = false
 	
-	if Input.is_action_pressed("drag_pasted_selection") and is_pasted_moveable and not is_zero_approx(diff.length()):
+	if Input.is_action_pressed("drag_pasted_selection") and is_pasted_moveable and not is_pasted_locked and not is_zero_approx(diff.length()):
 		pasted_selection.position += diff / editing_anchor.scale
 		lasso_controller.position = pasted_selection.position + PhotoshopManager.copied_lasso_pos
 	
@@ -130,8 +140,9 @@ func copy_selection() -> void:
 	for i in translated_polygon.size():
 		translated_polygon[i] += lasso_controller.position
 	
-	PhotoshopManager.copied_buffer = editable_image.get_pixel_buffer_in_polygon(translated_polygon)
-	PhotoshopManager.copied_trait_buffer = editable_image.get_trait_buffer_in_polygon(translated_polygon)
+	editable_image.get_buffers_in_polygon(translated_polygon)
+	is_waiting_for_thread = true
+	
 	PhotoshopManager.copied_lasso = dotted_line.get_points()
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 
@@ -140,19 +151,18 @@ func cut_selection() -> void:
 	for i in translated_polygon.size():
 		translated_polygon[i] += lasso_controller.position
 	
-	var buffers: Dictionary = editable_image.get_buffers_in_polygon_and_delete(translated_polygon)
+	editable_image.get_buffers_in_polygon_and_delete(translated_polygon)
+	is_waiting_for_thread = true
 	
-	PhotoshopManager.copied_buffer = buffers["pixel"]
-	PhotoshopManager.copied_trait_buffer = buffers["trait"]
 	PhotoshopManager.copied_lasso = dotted_line.get_points()
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 
-func delete_selection() -> void:
-	var translated_polygon: PackedVector2Array = dotted_line.get_points()
-	for i in translated_polygon.size():
-		translated_polygon[i] += lasso_controller.position
-	
-	editable_image.erase_pixels_in_polygon(translated_polygon)
+#func delete_selection() -> void:
+	#var translated_polygon: PackedVector2Array = dotted_line.get_points()
+	#for i in translated_polygon.size():
+		#translated_polygon[i] += lasso_controller.position
+	#
+	#editable_image.erase_pixels_in_polygon(translated_polygon)
 
 func paste_selection() -> void:
 	if PhotoshopManager.copied_buffer.is_empty():
@@ -163,6 +173,7 @@ func paste_selection() -> void:
 	pasted_selection.set_trait_buffer(PhotoshopManager.copied_trait_buffer)
 	
 	is_paste_confirmable = true
+	is_pasted_locked = false
 	
 	dotted_line.set_points(PhotoshopManager.copied_lasso)
 	lasso_controller.position = PhotoshopManager.copied_lasso_pos
@@ -170,9 +181,24 @@ func paste_selection() -> void:
 
 func paste_selection_to_image() -> void:
 	editable_image.impose_image(pasted_selection, pasted_selection.position)
-	
-	is_paste_confirmable = false
-	
-	pasted_selection.clear()
+	is_waiting_for_thread = true
+	is_pasted_moveable = false
+	is_pasted_locked = true
 	dotted_line.clear()
+
+#region Thread Return Setters
+
+func _on_paste_confirm_finished() -> void:
+	pasted_selection.clear()
 	lasso_controller.enable()
+	is_paste_confirmable = false
+	is_waiting_for_thread = false
+
+func _on_deletion_finished() -> void:
+	dotted_line.clear()
+	is_waiting_for_thread = false
+
+func _set_copied_buffers(buffers: Dictionary) -> void:
+	PhotoshopManager.copied_buffer = buffers["pixel"]
+	PhotoshopManager.copied_trait_buffer = buffers["trait"]
+	is_waiting_for_thread = false
