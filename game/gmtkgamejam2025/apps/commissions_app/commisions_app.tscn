@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dss4i4l62pfqh"]
+[gd_scene load_steps=2 format=3 uid="uid://cbbfhj4g08bf2"]
 
 [sub_resource type="GDScript" id="GDScript_ngi2p"]
 script/source = "class_name Commission

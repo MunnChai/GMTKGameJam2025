@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://eho0bjxll72b"]
 
-[ext_resource type="Script" uid="uid://1s27rtk685v2" path="res://desktop/window/desktop_window.gd" id="1_t505n"]
+[ext_resource type="Script" path="res://desktop/window/desktop_window.gd" id="1_t505n"]
 
 [node name="Window" type="ReferenceRect"]
 script = ExtResource("1_t505n")

@@ -1,5 +1,5 @@
 class_name CommissionApp
-extends DesktopWindow
+extends Control
 
 # TODO for commission app
 # update asset list (working with file explorer maybe)

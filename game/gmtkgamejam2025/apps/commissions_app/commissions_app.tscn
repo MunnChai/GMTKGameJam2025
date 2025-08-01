@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvhqup0ds5r4a"]
+[gd_scene load_steps=7 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="2_2e8ng"]
