@@ -38,16 +38,25 @@ var is_paste_confirmable: bool = false
 var true_image: Image
 var canvas_size: Vector2
 
+var is_hovered: bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
 	editing_anchor.position = editing_node.size / 2
 	
+	editing_node.mouse_entered.connect(func():
+		is_hovered = true)
+	editing_node.mouse_exited.connect(func():
+		is_hovered = false)
+	
 	#true_image = editable_image.texture.get_image()
 	
-	set_original_texture(test_texture)
+	#set_original_texture(test_texture)
 
 func _process(delta: float) -> void:
+	if not is_hovered:
+		return
+	
 	handle_actions(delta)
 	handle_movement(delta)
 	handle_zoom(delta)
@@ -140,6 +149,8 @@ func delete_selection() -> void:
 	editable_image.erase_pixels_in_polygon(translated_polygon)
 
 func paste_selection() -> void:
+	if copied_buffer.is_empty():
+		return
 	pasted_selection.position = Vector2.ZERO
 	lasso_controller.position = Vector2.ZERO
 	pasted_selection.set_pixel_buffer(copied_buffer)

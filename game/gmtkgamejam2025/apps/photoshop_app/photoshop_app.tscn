@@ -45,7 +45,6 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
-z_index = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i8qo4")
 
@@ -84,7 +83,6 @@ script = ExtResource("2_pedke")
 test_texture = ExtResource("3_rqrjq")
 
 [node name="ToolbarContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/EditingPanel"]
-z_index = 1
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2tu6o")
 
@@ -159,9 +157,10 @@ script = ExtResource("6_rqrjq")
 unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
-[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor"]
+[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor" node_paths=PackedStringArray("editing_node")]
 unique_name_in_owner = true
 script = ExtResource("6_kyq4q")
+editing_node = NodePath("../..")
 
 [node name="DottedLine" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor/LassoController" instance=ExtResource("6_i8qo4")]
 unique_name_in_owner = true

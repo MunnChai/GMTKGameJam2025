@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=10 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://icmnoob2solt" path="res://apps/settings_app/settings_window/settings_window.tscn" id="4_hbe16"]
 [ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
 [ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="5_6vopt"]
+[ext_resource type="Texture2D" uid="uid://u7milfln4xo0" path="res://icon.svg" id="7_r3xg6"]
+[ext_resource type="Texture2D" uid="uid://cj7nbd7op7h2s" path="res://apps/photoshop_app/Field_in_Kärkölä.jpg" id="8_t632k"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
@@ -72,7 +74,14 @@ args = Dictionary[StringName, Variant]({
 layout_mode = 2
 app_id = &"photoshop"
 args = Dictionary[StringName, Variant]({
-&"text": "Something went wrong!"
+&"texture": ExtResource("7_r3xg6")
+})
+
+[node name="Photoshop2" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"photoshop"
+args = Dictionary[StringName, Variant]({
+&"texture": ExtResource("8_t632k")
 })
 
 [node name="Windows" type="Control" parent="CanvasLayer"]

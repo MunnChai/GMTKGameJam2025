@@ -32,6 +32,7 @@ visible = false
 position = Vector2(-1, 0)
 
 [node name="EndpointCircle" parent="Startpoint" instance=ExtResource("3_yker6")]
+mouse_filter = 1
 
 [node name="Endpoint" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -39,4 +40,5 @@ visible = false
 position = Vector2(28, 20)
 
 [node name="EndpointCircle" parent="Endpoint" instance=ExtResource("3_yker6")]
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
