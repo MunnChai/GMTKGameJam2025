@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://23uo0rkmj8j5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0mbw"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10000
+corner_radius_top_right = 10000
+corner_radius_bottom_right = 10000
+corner_radius_bottom_left = 10000
+anti_aliasing = false
+
+[node name="EndpointCircle" type="Panel"]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s0mbw")
