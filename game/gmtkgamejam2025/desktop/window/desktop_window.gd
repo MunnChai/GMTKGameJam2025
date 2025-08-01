@@ -20,12 +20,16 @@ signal drag_moved(delta: Vector2)
 ## Capable of being opened, moved, set active, and closed
 ## ---
 ## NOTE: TO CREATE A NEW WINDOW
+## Reference the test window...
+
 ## - Extend this script (Don't make an inherited scenes unless needed, those are kinda scuffed)
 ## - Create a new scene using a ReferenceRect node
 ## - Attach this script
 ## - Set the ReferenceRect size to encompass the content (used for mouse detection)
 ## - Make sure that all CONTROL NODES in your content use Mouse: Pass (Propogate Up),
 ##   so that all mouse events will be able to be detected by the window
+## - If using JuicePivot (for tweening/rotation), make sure all content is a child of that 
+##   (including the window bar) and make sure that the JuicePivot is in the center!
 ## ---
 
 @export var window_bar: WindowBar
@@ -112,8 +116,8 @@ func handle_drag_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		if is_dragging:
-			target_pos += event.screen_relative
-			drag_moved.emit(event.screen_relative)
+			target_pos += event.relative
+			drag_moved.emit(event.relative)
 			constrain_to_viewport()
 
 ## CONSTRAIN WINDOW MOVEMENT

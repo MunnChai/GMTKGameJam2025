@@ -7,6 +7,22 @@ extends DesktopWindow
 ## Create by executing the hello_world program from desktop
 ## ---
 
+## NOTE:
+## - Set the Window reference rect to encompass the entire area of the window
+## (INCLUDING the WindowBar). This is used for detecting mouse clicks for focus.
+## - Have the window start in the top-left corner, like you see here...
+## - For juice, attach the juice pivot in the middle of the window content, 
+##   so that rotation and scaling of windows works correctly. Have ALL VISIBLE CONTENT
+##   be a child of this control node.
+## - Include whatever content you would like, though I recommend keeping the shadow panel
+##   and definitely the WindowBar
+## - Assign the WindowBar in the export for this window, so it knows to drag/close
+## - Put whatever app you have below the WindowBar
+
+## ALSO: NOTE: Make sure that all control nodes in any child scene use mouse mode
+## of Ignore or Pass (Propogate Up). Stop will prevent this window from recieving focus
+## if it is clicked, because it won't be able to detect that the mouse is hovering over it!
+
 var demo_strings := [
 	"Hello world!",
 	"Aren't you forgetting something?",

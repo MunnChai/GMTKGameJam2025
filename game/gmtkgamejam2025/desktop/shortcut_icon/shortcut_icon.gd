@@ -78,3 +78,5 @@ func _process(delta: float) -> void:
 		target_pos += Vector2.UP * 6.0
 	
 	%Circle.position = MathUtil.decay(%Circle.position, target_pos, 15.0, delta)
+	
+	## TODO: Update icon with icon texture specified in the window
