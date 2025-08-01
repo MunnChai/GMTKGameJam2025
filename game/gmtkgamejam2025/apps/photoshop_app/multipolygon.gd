@@ -144,30 +144,31 @@ func delete_from_polygon(cut_polygon: PackedVector2Array) -> void:
 			
 			var original_polygon_copy: PackedVector2Array = original_polygon.duplicate()
 			# O1, O2, ..., On, O1
-			original_polygon_copy.reverse()
+			if Geometry2D.is_polygon_clockwise(original_polygon_copy):
+				original_polygon_copy.reverse()
+			
 			new_polygon.append_array(original_polygon_copy)
 			new_polygon.append(original_polygon_copy[0])
 			
 			for inner_polygon: PackedVector2Array in inner_polygons:
 				var inner_polygon_copy: PackedVector2Array = inner_polygon.duplicate()
 				# I1, I2, ..., Im, I1
-				inner_polygon_copy.reverse()
+				if not Geometry2D.is_polygon_clockwise(inner_polygon_copy):
+					inner_polygon_copy.reverse()
 				new_polygon.append_array(inner_polygon_copy)
 				new_polygon.append(inner_polygon_copy[0])
 				new_polygon.append(original_polygon_copy[0])
 			
 			polygon2d.polygon = new_polygon
+			#print(new_polygon)
 			polygon_edited = true
 			#print("Created new polygon with hole: ", new_polygon)
 
 
 func is_pos_in_polygons(pos: Vector2) -> bool:
+	pos -= self.position
 	for polygon2d: Polygon2D in get_children():
-		var translated_selection_polygon: PackedVector2Array = polygon2d.polygon
-		for i in translated_selection_polygon.size():
-			translated_selection_polygon[i] += self.position
-		
-		if Geometry2D.is_point_in_polygon(pos, translated_selection_polygon):
+		if Geometry2D.is_point_in_polygon(pos, polygon2d.polygon):
 			return true
 	
 	return false

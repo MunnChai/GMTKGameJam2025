@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var dotted_line: DottedLine = %DottedLine
 
+const MIN_POINT_DIST: float = 10
+var previous_point: Vector2
+
 var is_pressed: bool = false
 var is_enabled: bool = true
 
@@ -12,11 +15,17 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"lmb"):
 		is_pressed = true
 		dotted_line.clear()
-		dotted_line.add_global_point(get_global_mouse_position())
+		var pos = get_global_mouse_position()
+		if pos.distance_to(previous_point) >= MIN_POINT_DIST:
+			dotted_line.add_global_point(pos)
+			previous_point = pos
 
 	if is_pressed:
 		if event is InputEventMouseMotion:
-			dotted_line.add_global_point(get_global_mouse_position())
+			var pos = get_global_mouse_position()
+			if pos.distance_to(previous_point) >= MIN_POINT_DIST:
+				dotted_line.add_global_point(pos)
+				previous_point = pos
 
 	if event.is_action_released(&"lmb"):
 		is_pressed = false
