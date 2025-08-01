@@ -1,5 +1,7 @@
 extends Node
 
+const NO_TRAIT_COLOR: Color = Color.WHITE
+
 enum Trait {
 	NONE = -999,
 	PERSON_1 = -5,
@@ -22,6 +24,14 @@ enum Trait {
 }
 
 @export var trait_colors: Dictionary[Trait, Color]
+var color_to_trait: Dictionary[Color, Trait]
+
+func _ready() -> void:
+	generate_inverse_color_dict()
+
+func generate_inverse_color_dict() -> void:
+	for key in trait_colors.keys():
+		color_to_trait[trait_colors[key]] = key
 
 func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
 	pass
@@ -39,6 +49,7 @@ func get_file_info(file: File) -> Dictionary:
 	for x in trait_image.get_size().x:
 		for y in trait_image.get_size().y:
 			var trait_color: Color = trait_image.get_pixel(x, y)
+			
 			var trait_type: Trait = get_trait_from_color(trait_color)
 			if traits.has(trait_type):
 				traits[trait_type] += 1
@@ -51,10 +62,7 @@ func get_file_info(file: File) -> Dictionary:
 	return info_dict
 
 func get_trait_from_color(color: Color) -> Trait:
-	for _trait: Trait in trait_colors.keys():
-		var trait_color: Color = trait_colors[_trait]
-		
-		if trait_color == color:
-			return _trait
+	if not color_to_trait.has(color):
+		return Trait.NONE
 	
-	return Trait.NONE
+	return color_to_trait[color]

@@ -132,6 +132,7 @@ func copy_selection() -> void:
 		translated_polygon[i] += lasso_controller.position
 	
 	PhotoshopManager.copied_buffer = editable_image.get_pixel_buffer_in_polygon(translated_polygon)
+	PhotoshopManager.copied_trait_buffer = editable_image.get_trait_buffer_in_polygon(translated_polygon)
 	PhotoshopManager.copied_lasso = dotted_line.get_points()
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 
@@ -148,6 +149,7 @@ func paste_selection() -> void:
 	pasted_selection.position = Vector2.ZERO
 	lasso_controller.position = Vector2.ZERO
 	pasted_selection.set_pixel_buffer(PhotoshopManager.copied_buffer)
+	pasted_selection.set_trait_buffer(PhotoshopManager.copied_trait_buffer)
 	
 	is_paste_confirmable = true
 	
