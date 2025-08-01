@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 FileSystem="*res://apps/file_explorer_app/file_system/file_system.gd"
 PhotoshopManager="*res://apps/photoshop_app/photoshop_manager/photoshop_manager.gd"
+GameStateManager="*res://game_state/game_state_manager.gd"
 
 [display]
 

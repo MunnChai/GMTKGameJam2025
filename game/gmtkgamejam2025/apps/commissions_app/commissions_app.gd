@@ -11,6 +11,7 @@ extends Control
 @onready var desc: RichTextLabel = %Description
 
 @onready var download_button: Button = %Download
+@onready var upload_button: Button = %Upload
 @onready var submit_button: Button = %Submit
 @onready var asset_list: HBoxContainer = %AssetList
 @onready var back_button: Button = %BackButton
@@ -24,31 +25,23 @@ extends Control
 
 @export var commissions: Dictionary[int, CommissionStat]
 
-var day: int
 var commission_stat: CommissionStat
 
 const FileIconScene = preload("res://apps/file_explorer_app/file_icon.tscn")
 const FeedbackListItemScene = preload("res://apps/commissions_app/feedback_list_item.tscn")
 
-signal day_changed
 
 func _ready() -> void:
-	if not day:
-		day = 1
 	connect_signals()
 	update_comm()
 
 func connect_signals() -> void:
 	download_button.pressed.connect(on_download_pressed)
+	upload_button.pressed.connect(on_upload_pressed)
 	submit_button.pressed.connect(on_submit_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
 	
 func on_download_pressed() -> void:
-	# Create a client folder
-	#var client1_folder = Folder.new("Client_A")
-	#add_file_node_at("/Commissions", client1_folder)
-	#add_file_node_at("/Commissions/Client_A", file1)
-	
 	var files = asset_list.get_children()
 	var folder_name: String = "Client " + commission_stat.id
 	var client_folder = Folder.new(folder_name)
@@ -56,11 +49,14 @@ func on_download_pressed() -> void:
 	for file in files:
 		FileSystem.add_file_node_at("/Commissions/" + folder_name, file.file_node)
 
+func on_upload_pressed() -> void:
+#	Desktop.instance.execute(&"photoshop", {"texture": node.texture })
+	Desktop.instance.execute(&"file_explorer", {"upload": true})
+
 func on_submit_pressed() -> void:
 	add_feedback()
-	day = day + 1
+	GameStateManager.next_day()
 	update_comm()
-	day_changed.emit()
 	
 func add_feedback() -> void:
 	var feedback_instance: FeedbackListItem = FeedbackListItemScene.instantiate()
@@ -83,6 +79,8 @@ func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_work.texture = item.submission
 
 func update_comm() -> void:
+	var day: int = GameStateManager.day
+	
 	if not commissions.has(day):
 		return
 		
