@@ -155,16 +155,24 @@ func handle_boundaries() -> void:
 
 func handle_zoom(delta: float) -> void:
 	if Input.is_action_just_pressed("edit_panel_zoom_out"):
+		var current_mouse_position = editing_node.get_local_mouse_position()
+		var old_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
 		current_zoom_index += 1
 		if current_zoom_index >= ZOOM_LEVELS.size():
 			current_zoom_index = ZOOM_LEVELS.size() - 1
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
+		var new_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
+		editing_anchor.position += (new_mouse_pos - old_mouse_pos) * editing_anchor.scale
 	
 	if Input.is_action_just_pressed("edit_panel_zoom_in"):
+		var current_mouse_position = editing_node.get_local_mouse_position()
+		var old_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
 		current_zoom_index -= 1
 		if current_zoom_index < 0:
 			current_zoom_index = 0
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
+		var new_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
+		editing_anchor.position += (new_mouse_pos - old_mouse_pos) * editing_anchor.scale
 
 func reset_texture() -> void:
 	init_canvas(original_file)
