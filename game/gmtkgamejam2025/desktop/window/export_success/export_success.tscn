@@ -11,7 +11,7 @@ bg_color = Color(0, 0, 0, 0.294118)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra3x3"]
 
-[node name="ErrorPopup" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
+[node name="ExportSuccess" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
 offset_right = 445.0
 offset_bottom = 138.0
 border_width = 0.0

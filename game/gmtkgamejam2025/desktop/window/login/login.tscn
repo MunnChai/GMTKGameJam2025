@@ -1,0 +1,195 @@
+[gd_scene load_steps=11 format=3 uid="uid://lhahjhcphvs"]
+
+[ext_resource type="Script" uid="uid://c7t72ybuufey8" path="res://desktop/window/export_success/export_success.gd" id="1_f2gex"]
+[ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_roinn"]
+[ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_7qujq"]
+[ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="4_chdpo"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="5_oiafk"]
+[ext_resource type="Theme" uid="uid://dwjva6iavrd2o" path="res://assets/themes/os_95_top_buttons.tres" id="6_uqsks"]
+[ext_resource type="Texture2D" uid="uid://dvw6gu8cmy168" path="res://assets/ui/buttons/button_default.png" id="7_jacfh"]
+[ext_resource type="Texture2D" uid="uid://cvmpmymnwn5c7" path="res://assets/ui/buttons/button_pressed.png" id="8_fx06e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
+bg_color = Color(0, 0, 0, 0.294118)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra3x3"]
+
+[node name="Login" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
+offset_right = 333.0
+offset_bottom = 151.0
+border_width = 0.0
+script = ExtResource("1_f2gex")
+window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
+
+[node name="JuicePivot" parent="." instance=ExtResource("2_roinn")]
+layout_mode = 1
+
+[node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.5
+offset_top = -75.5
+offset_right = 166.5
+offset_bottom = 75.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShadowPanel" type="Panel" parent="JuicePivot/MainPanel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
+
+[node name="OS95WindowNinePatchRect" type="NinePatchRect" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("3_7qujq")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VerticalSplit" type="VBoxContainer" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("4_chdpo")]
+unique_name_in_owner = true
+layout_mode = 2
+window_icon = null
+
+[node name="BgPanelContainer" type="PanelContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ra3x3")
+
+[node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent"]
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer"]
+custom_minimum_size = Vector2(7.29, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 6
+
+[node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("5_oiafk")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Enter a username and password to login."
+fit_content = true
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 28)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("5_oiafk")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Username: "
+fit_content = true
+vertical_alignment = 1
+
+[node name="UsernameEdit" type="LineEdit" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme = ExtResource("6_uqsks")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+mouse_filter = 1
+theme = ExtResource("5_oiafk")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Password:"
+fit_content = true
+vertical_alignment = 1
+
+[node name="PasswordEdit" type="LineEdit" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme = ExtResource("6_uqsks")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureButton" type="TextureButton" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("7_jacfh")
+texture_pressed = ExtResource("8_fx06e")
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/TextureButton"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 50.0
+offset_bottom = 26.0
+theme = ExtResource("5_oiafk")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Login"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2

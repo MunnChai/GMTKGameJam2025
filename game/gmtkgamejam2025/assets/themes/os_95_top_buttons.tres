@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dwjva6iavrd2o"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dwjva6iavrd2o"]
 
 [ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="1_6eb55"]
 [ext_resource type="FontFile" uid="uid://cilb2yb8y16fb" path="res://assets/fonts/dot_gothic_16_regular.ttf" id="1_eseb5"]
 [ext_resource type="Texture2D" uid="uid://8hx1vewrqp8a" path="res://assets/ui/buttons/top_button_hovered.png" id="1_mo6rq"]
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="3_duiel"]
+[ext_resource type="Texture2D" uid="uid://bhw2fu8536qnv" path="res://assets/ui/text_box/text_box.png" id="4_8adp7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_duiel"]
 
@@ -28,6 +29,12 @@ texture_margin_top = 8.0
 texture_margin_right = 8.0
 texture_margin_bottom = 8.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e6n7i"]
+texture = ExtResource("4_8adp7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rrg2q"]
+texture = ExtResource("4_8adp7")
+
 [resource]
 default_font = ExtResource("1_eseb5")
 default_font_size = 13
@@ -40,3 +47,5 @@ Button/styles/focus = SubResource("StyleBoxEmpty_duiel")
 Button/styles/hover = SubResource("StyleBoxTexture_duiel")
 Button/styles/normal = SubResource("StyleBoxTexture_mo6rq")
 Button/styles/pressed = SubResource("StyleBoxTexture_8adp7")
+LineEdit/styles/focus = SubResource("StyleBoxTexture_e6n7i")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_rrg2q")
