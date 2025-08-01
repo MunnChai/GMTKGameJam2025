@@ -38,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_2tu6o")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
@@ -46,6 +47,7 @@ theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i8qo4")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/PanelContainer"]
@@ -84,6 +86,7 @@ test_texture = ExtResource("3_rqrjq")
 
 [node name="ToolbarContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/EditingPanel"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2tu6o")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer"]

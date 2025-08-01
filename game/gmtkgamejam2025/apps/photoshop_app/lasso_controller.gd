@@ -17,7 +17,7 @@ func _ready() -> void:
 	editing_node.mouse_exited.connect(func():
 		is_hovered = false)
 
-func _input(event: InputEvent) -> void:
+func _process(_delta: float) -> void:
 	if not is_enabled:
 		return
 	
@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 	
 	var pos = get_global_mouse_position()
 	
-	if event.is_action_pressed(&"lmb"):
+	if Input.is_action_just_pressed(&"lmb"):
 		is_pressed = true
 		dotted_line.clear()
 		if pos.distance_to(previous_point) >= MIN_POINT_DIST:
@@ -34,17 +34,16 @@ func _input(event: InputEvent) -> void:
 			previous_point = pos
 
 	if is_pressed:
-		if event is InputEventMouseMotion:
-			if pos.distance_to(previous_point) >= MIN_POINT_DIST:
-				dotted_line.add_global_point(pos)
-				previous_point = pos
+		if pos.distance_to(previous_point) >= MIN_POINT_DIST:
+			dotted_line.add_global_point(pos)
+			previous_point = pos
 
-	if event.is_action_released(&"lmb"):
+	if Input.is_action_just_released(&"lmb"):
 		is_pressed = false
 		dotted_line.close()
 	
 	## Clear selection
-	if event.is_action_pressed(&"rmb") and not is_pressed:
+	if Input.is_action_pressed(&"rmb") and not is_pressed:
 		dotted_line.clear()
 
 func enable() -> void:
