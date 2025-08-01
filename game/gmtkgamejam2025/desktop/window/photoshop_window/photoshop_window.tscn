@@ -68,7 +68,7 @@ window_icon = ExtResource("5_xn7q2")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
