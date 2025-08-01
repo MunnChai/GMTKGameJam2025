@@ -19,6 +19,7 @@ extends DesktopWindow
 @onready var feedback_id: RichTextLabel = %FeedbackId
 @onready var feedback_title: RichTextLabel = %FeedbackTitle
 @onready var feedback_desc: RichTextLabel = %FeedbackDesc
+@onready var feedback_work: TextureRect = %SubmittedWork
 
 
 @export var commissions: Dictionary[int, CommissionStat]
@@ -55,6 +56,7 @@ func add_feedback() -> void:
 	var feedback_instance: FeedbackListItem = FeedbackListItemScene.instantiate()
 	feedback_list.add_child(feedback_instance)
 	feedback_instance.setup(commission_stat)
+	# add submission in the future
 	feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
 
 func on_back_button_pressed() -> void:
@@ -62,13 +64,13 @@ func on_back_button_pressed() -> void:
 	feedback_list.show()
 
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
-	print("item pressed")
 	feedback_details.show()
 	feedback_list.hide()
 	var stat: CommissionStat = item.commission_stat
 	feedback_id.text = stat.id
 	feedback_title.text = stat.title
 	feedback_desc.text = stat.desc
+	feedback_work.texture = item.submission
 
 func update_comm() -> void:
 	if not commissions.has(day):

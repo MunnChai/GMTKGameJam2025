@@ -167,4 +167,5 @@ text = "Description of commission"
 fit_content = true
 
 [node name="SubmittedWork" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
