@@ -1,13 +1,22 @@
 extends Node
 
 enum Trait {
-	BALD,
+	PERSON_1 = -5,
+	PERSON_2 = -4,
+	PERSON_3 = -3,
+	PERSON_4 = -2,
+	PERSON_5 = -1,
+	BALD = 0,
 	HAIR,
 	FISH,
-	EX,
+	EX_PARTNER,
 	CELEB,
 	COOL,
-	RAIN,
-	SUN,
+	RAINY,
+	SUNNY,
 	SAD,
+	HAPPY,
+	FRIENDS,
 }
+
+@export var trait_colors: Dictionary[Trait, Color]

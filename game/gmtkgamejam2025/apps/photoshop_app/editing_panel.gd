@@ -44,10 +44,6 @@ func _ready() -> void:
 		is_hovered = true)
 	editing_node.mouse_exited.connect(func():
 		is_hovered = false)
-	
-	#true_image = editable_image.texture.get_image()
-	
-	#set_original_texture(test_texture)
 
 func _process(delta: float) -> void:
 	if not is_hovered:
