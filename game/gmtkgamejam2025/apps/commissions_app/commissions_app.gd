@@ -44,7 +44,17 @@ func connect_signals() -> void:
 	back_button.pressed.connect(on_back_button_pressed)
 	
 func on_download_pressed() -> void:
-	return
+	# Create a client folder
+	#var client1_folder = Folder.new("Client_A")
+	#add_file_node_at("/Commissions", client1_folder)
+	#add_file_node_at("/Commissions/Client_A", file1)
+	
+	var files = asset_list.get_children()
+	var folder_name: String = "Client " + commission_stat.id
+	var client_folder = Folder.new(folder_name)
+	FileSystem.add_file_node_at("/Commissions", client_folder)
+	for file in files:
+		FileSystem.add_file_node_at("/Commissions/" + folder_name, file.file_node)
 
 func on_submit_pressed() -> void:
 	add_feedback()
