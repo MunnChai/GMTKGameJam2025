@@ -6,9 +6,9 @@ extends Control
 @onready var file_grid = %FileGrid
 @onready var file_system = $FileSystemAccess
 @onready var header = $VBoxContainer/Header
-@onready var close_button = $VBoxContainer/Header/TopBar/WindowControls/CloseButton
-@onready var min_button = $VBoxContainer/Header/TopBar/WindowControls/MinButton
-@onready var max_button = $VBoxContainer/Header/TopBar/WindowControls/MaxButton
+#@onready var close_button = $VBoxContainer/Header/TopBar/WindowControls/CloseButton
+#@onready var min_button = $VBoxContainer/Header/TopBar/WindowControls/MinButton
+#@onready var max_button = $VBoxContainer/Header/TopBar/WindowControls/MaxButton
 
 const FileIconScene = preload("res://apps/file_explorer_app/file_icon.tscn")
 
