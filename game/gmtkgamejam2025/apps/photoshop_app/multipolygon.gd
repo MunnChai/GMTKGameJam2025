@@ -31,6 +31,9 @@ func merge_polygon(polygon: PackedVector2Array) -> void:
 				var merged = Geometry2D.merge_polygons(polygon2d.polygon, polygon)
 				#print("Merged!")
 				polygon2d.polygon = merged[0]
+				if merged.size() > 1:
+					for i in range(1, merged.size()):
+						add_polygon(merged[i])
 			#print("Finished merging")
 			return
 	

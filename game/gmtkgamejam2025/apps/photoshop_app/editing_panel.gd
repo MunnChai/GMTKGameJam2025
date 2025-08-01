@@ -218,7 +218,7 @@ func paste_selection_to_image() -> void:
 		
 		editable_image.merge_polygon(pasted_polygon_translated)
 	
-	#editable_image.delete_from_polygon(canvas_border.polygon)
+	editable_image.delete_from_polygon(canvas_border.polygon)
 	
 	var image_texture := ImageTexture.create_from_image(image)
 	true_image = image
