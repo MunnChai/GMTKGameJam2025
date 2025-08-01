@@ -93,6 +93,7 @@ func _process(delta: float) -> void:
 	handle_actions(delta)
 	handle_movement(delta)
 	handle_zoom(delta)
+	handle_boundaries()
 
 func handle_actions(delta: float) -> void:
 	if is_waiting_for_thread:
@@ -117,16 +118,6 @@ func handle_movement(delta: float) -> void:
 	
 	if Input.is_action_pressed("edit_panel_move") and not is_zero_approx(diff.length()):
 		editing_anchor.position += diff
-		
-		if editing_anchor.position.x < 0:
-			editing_anchor.position.x = 0
-		elif editing_anchor.position.x > editing_node.size.x:
-			editing_anchor.position.x = editing_node.size.x
-		
-		if editing_anchor.position.y < 0:
-			editing_anchor.position.y = 0
-		elif editing_anchor.position.y > editing_node.size.y:
-			editing_anchor.position.y = editing_node.size.y
 	
 	if Input.is_action_just_pressed("drag_pasted_selection"):
 		var local_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
@@ -144,6 +135,23 @@ func handle_movement(delta: float) -> void:
 		lasso_controller.position = pasted_selection.position + PhotoshopManager.copied_lasso_pos
 	
 	previous_mouse_position = current_mouse_position
+
+func handle_boundaries() -> void:
+	var texture_size: Vector2 = original_file.texture.get_size()
+	var left = 0 - (texture_size.x / 3) * ZOOM_LEVELS[current_zoom_index]
+	var right = editing_node.size.x + (texture_size.x / 3) * ZOOM_LEVELS[current_zoom_index]
+	var top = 0 - (texture_size.y / 3) * ZOOM_LEVELS[current_zoom_index]
+	var bottom = editing_node.size.y + (texture_size.y / 3) * ZOOM_LEVELS[current_zoom_index]
+	
+	if editing_anchor.position.x < left:
+		editing_anchor.position.x = left
+	elif editing_anchor.position.x > right:
+		editing_anchor.position.x = right
+	
+	if editing_anchor.position.y < top:
+		editing_anchor.position.y = top
+	elif editing_anchor.position.y > bottom:
+		editing_anchor.position.y = bottom
 
 func handle_zoom(delta: float) -> void:
 	if Input.is_action_just_pressed("edit_panel_zoom_out"):
