@@ -1,21 +1,23 @@
 [gd_scene load_steps=10 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
-[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
+[ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
 [ext_resource type="PackedScene" uid="uid://84nw05m865xp" path="res://desktop/window/error_popup/error_popup.tscn" id="3_irqsv"]
 [ext_resource type="PackedScene" uid="uid://bf2h01ok52xw4" path="res://desktop/shortcut_icon/shortcut_icon.tscn" id="3_py4qr"]
 [ext_resource type="PackedScene" uid="uid://icmnoob2solt" path="res://apps/settings_app/settings_window/settings_window.tscn" id="4_hbe16"]
 [ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
-[ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="5_6vopt"]
-[ext_resource type="Texture2D" uid="uid://u7milfln4xo0" path="res://icon.svg" id="7_r3xg6"]
-[ext_resource type="Texture2D" uid="uid://cj7nbd7op7h2s" path="res://apps/photoshop_app/Field_in_Kärkölä.jpg" id="8_t632k"]
+[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.tscn" id="5_6vopt"]
+[ext_resource type="PackedScene" uid="uid://ba01qxttnfxam" path="res://apps/commissions_app/commissions_window/commissions_window.tscn" id="6_r3xg6"]
+[ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
 window_packed_scenes = Dictionary[StringName, PackedScene]({
+&"commissions": ExtResource("6_r3xg6"),
 &"error": ExtResource("3_irqsv"),
+&"file_explorer": ExtResource("5_6vopt"),
 &"hello_world": ExtResource("2_87qqj"),
-&"photoshop": ExtResource("5_6vopt"),
+&"photoshop": ExtResource("6_t632k"),
 &"settings": ExtResource("4_hbe16")
 })
 
@@ -55,6 +57,7 @@ layout_mode = 2
 [node name="SettingsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"settings"
+type = 2
 
 [node name="ErrorIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
@@ -70,19 +73,14 @@ args = Dictionary[StringName, Variant]({
 &"text": "Something went wrong!"
 })
 
-[node name="Photoshop" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
-app_id = &"photoshop"
-args = Dictionary[StringName, Variant]({
-&"texture": ExtResource("7_r3xg6")
-})
+app_id = &"commissions"
+type = 2
 
-[node name="Photoshop2" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="PhotoshopIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"photoshop"
-args = Dictionary[StringName, Variant]({
-&"texture": ExtResource("8_t632k")
-})
 
 [node name="Windows" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true

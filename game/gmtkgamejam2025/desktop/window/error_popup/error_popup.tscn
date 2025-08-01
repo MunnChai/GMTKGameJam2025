@@ -1,19 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://84nw05m865xp"]
+[gd_scene load_steps=8 format=3 uid="uid://84nw05m865xp"]
 
 [ext_resource type="Script" uid="uid://vi20quwut0sn" path="res://desktop/window/error_popup/error_popup.gd" id="1_mrpge"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_vcos1"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="3_nwmy6"]
+[ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_ra3x3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrpge"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra3x3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra3x3"]
 bg_color = Color(0.768627, 0, 0.0980392, 1)
@@ -31,6 +26,7 @@ anti_aliasing = false
 [node name="ErrorPopup" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
 offset_right = 244.0
 offset_bottom = 164.0
+border_width = 0.0
 script = ExtResource("1_mrpge")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
 
@@ -69,6 +65,15 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
 
+[node name="OS95WindowNinePatchRect" type="NinePatchRect" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("3_ra3x3")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
 [node name="VerticalSplit" type="VBoxContainer" parent="JuicePivot/MainPanel"]
 layout_mode = 2
 theme_override_constants/separation = 0
@@ -82,7 +87,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_mrpge")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ra3x3")
 
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
 layout_mode = 2
