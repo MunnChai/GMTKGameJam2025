@@ -10,8 +10,7 @@ extends Node2D
 ## ---
 
 ## TODO:
-## - Make closing windows stay on top while playing close animation
-## - Add movement to hovering icons, add shadows to icons
+## - Texture support for everything, really
 
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]
@@ -54,8 +53,8 @@ func execute(id: StringName, args: Dictionary = {}) -> DesktopWindow:
 
 #region WINDOW MANAGEMENT
 
-## The ACTIVE WINDOW is the topmost window
-## To get the hovered window, 
+## The ACTIVE WINDOW is the topmost window. To get it, call get_active_window
+## To get the hovered window, call get_hovered_window
 
 ## Your current windows, sorted with windows[0] being the topmost and active window 
 ## and all other windows in descending order
