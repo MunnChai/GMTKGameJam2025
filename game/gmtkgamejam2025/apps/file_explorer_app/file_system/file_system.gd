@@ -38,6 +38,9 @@ func _ready():
 	
 	var file3 = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
 	add_file_node_at("/", file3)
+	
+	var exports_folder = Folder.new("exports")
+	add_file_node_at("/", exports_folder)
 
 func open_file_at(path: String) -> bool:
 	var node: FileNode = parse_path(path)

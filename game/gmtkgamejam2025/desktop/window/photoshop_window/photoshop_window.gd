@@ -16,5 +16,3 @@ func boot(args: Dictionary = {}) -> void:
 	
 	var file: File = File.create_from_resource(args.get("file"))
 	photoshop_app.set_file(file)
-	
-	#photoshop_app.set_texture(args.get("texture"))

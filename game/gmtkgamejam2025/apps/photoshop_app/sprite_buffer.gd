@@ -22,11 +22,10 @@ signal finished_setting_buffers()
 func _ready() -> void:
 	thread = Thread.new()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("get_trait_dict") and name == "EditableImage":
-		var file: File = convert_to_file()
-		#var info = ImageJudgement.get_file_info(file)
-		#print(info)
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("get_trait_dict") and name == "EditableImage":
+		#var file: File = convert_to_file()
+		#
 
 #region Initialization
 
@@ -323,7 +322,6 @@ func _get_buffers_in_polygon_and_delete(polygon: PackedVector2Array, image: Imag
 
 func _finished_buffer_calc_and_deletion() -> void:
 	var buffers: Dictionary = thread.wait_to_finish()
-	print(buffers["pixel_texture"])
 	texture = buffers["pixel_texture"]
 	sprite_2d.texture = buffers["trait_texture"]
 	got_buffers.emit(buffers)

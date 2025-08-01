@@ -24,6 +24,7 @@ const ZOOM_LEVELS: Array = [
 var current_zoom_index: int = 1
 
 var original_texture: Texture2D
+var original_file: File
 
 ## Copied texture
 
@@ -127,18 +128,17 @@ func handle_zoom(delta: float) -> void:
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
 
 func reset_texture() -> void:
-	init_canvas(original_texture)
+	init_canvas(original_file)
 
-func init_canvas(texture: Texture2D) -> void:
-	original_texture = texture
-	true_image = texture.get_image()
+func init_canvas(file: File) -> void:
+	original_file = file
 	
-	canvas_background.region_rect.size = texture.get_size()
-
-func set_file(file: File) -> void:
-	init_canvas(file.texture)
+	canvas_background.region_rect.size = file.texture.get_size()
 	editable_image.set_buffers_from_file(file)
 	is_waiting_for_thread = true
+
+func set_file(file: File) -> void:
+	init_canvas(file)
 
 func copy_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
@@ -213,3 +213,9 @@ func _set_copied_buffers(buffers: Dictionary) -> void:
 
 func _on_buffer_set_finished() -> void:
 	is_waiting_for_thread = false
+
+
+func get_current_file() -> File:
+	var file: File = editable_image.convert_to_file()
+	file.node_name = original_file.node_name
+	return file
