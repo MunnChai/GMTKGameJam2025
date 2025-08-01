@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTKGameJam2025"
-run/main_scene="uid://chx03v1b1ftmr"
+run/main_scene="uid://nc4dkxqnh35a"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [input]
 
