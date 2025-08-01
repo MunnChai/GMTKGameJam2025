@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dmcwmwpscwsvg"]
+
+[ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="1_6eb55"]
+[ext_resource type="FontFile" uid="uid://cilb2yb8y16fb" path="res://assets/fonts/dot_gothic_16_regular.ttf" id="1_eseb5"]
+[ext_resource type="Texture2D" uid="uid://8hx1vewrqp8a" path="res://assets/ui/buttons/top_button_hovered.png" id="1_mo6rq"]
+[ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="3_duiel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_duiel"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_duiel"]
+texture = ExtResource("1_mo6rq")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mo6rq"]
+texture = ExtResource("1_6eb55")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8adp7"]
+texture = ExtResource("3_duiel")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[resource]
+default_font = ExtResource("1_eseb5")
+default_font_size = 13
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_duiel")
+Button/styles/hover = SubResource("StyleBoxTexture_duiel")
+Button/styles/normal = SubResource("StyleBoxTexture_mo6rq")
+Button/styles/pressed = SubResource("StyleBoxTexture_8adp7")

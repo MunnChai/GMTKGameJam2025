@@ -7,11 +7,11 @@ extends Control
 @onready var export_button: Button = %ExportButton
 
 ## Editing tools
-@onready var copy_button: Button = %CopyButton
-@onready var cut_button: Button = %CutButton
-@onready var paste_button: Button = %PasteButton
-@onready var undo_button: Button = %UndoButton
-@onready var redo_button: Button = %RedoButton
+@onready var copy_button: TextureButton = %CopyButton
+@onready var cut_button: TextureButton = %CutButton
+@onready var paste_button: TextureButton = %PasteButton
+@onready var undo_button: TextureButton = %UndoButton
+@onready var redo_button: TextureButton = %RedoButton
 
 ## Editing panel
 @onready var editing_panel: EditingPanel = %EditingPanel

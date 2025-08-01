@@ -1,13 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://omxyukgp61bw"]
+[gd_scene load_steps=20 format=3 uid="uid://omxyukgp61bw"]
 
 [ext_resource type="Script" uid="uid://o62f4k604x6h" path="res://apps/photoshop_app/photoshop_app.gd" id="1_5byx1"]
 [ext_resource type="Script" uid="uid://dsbxsdbpygkhs" path="res://apps/photoshop_app/editing_panel.gd" id="2_pedke"]
+[ext_resource type="Theme" uid="uid://dmcwmwpscwsvg" path="res://assets/themes/os_95_top_buttons.tres" id="2_qpycq"]
 [ext_resource type="Texture2D" uid="uid://ck62yw53r3drq" path="res://assets/ui/windows/window_inner_nine_patch_rect.png" id="2_rqrjq"]
 [ext_resource type="Texture2D" uid="uid://bb038ihonibbj" path="res://apps/photoshop_app/transparent_background_texture.png" id="3_2tu6o"]
 [ext_resource type="Texture2D" uid="uid://cj7nbd7op7h2s" path="res://apps/photoshop_app/Field_in_Kärkölä.jpg" id="3_rqrjq"]
 [ext_resource type="PackedScene" uid="uid://j0imf1m4hv8n" path="res://apps/photoshop_app/dotted_line/dotted_line.tscn" id="6_i8qo4"]
 [ext_resource type="Script" uid="uid://ddjyetu5ajpwf" path="res://apps/photoshop_app/lasso_controller.gd" id="6_kyq4q"]
 [ext_resource type="Script" uid="uid://oawoprj18hk" path="res://apps/photoshop_app/sprite_buffer.gd" id="6_rqrjq"]
+[ext_resource type="Texture2D" uid="uid://bh8gg771ffvrl" path="res://assets/ui/photoloop/lasso_tool.png" id="6_vydbk"]
+[ext_resource type="Texture2D" uid="uid://bpvcisydlm6hh" path="res://assets/ui/photoloop/cut_tool.png" id="7_vydbk"]
+[ext_resource type="Texture2D" uid="uid://bdt2myo8hflnb" path="res://assets/ui/photoloop/copy_tool.png" id="7_wr4rw"]
+[ext_resource type="Texture2D" uid="uid://brm7oyxtb41ob" path="res://assets/ui/photoloop/paste_tool.png" id="9_ljndt"]
+[ext_resource type="Texture2D" uid="uid://cb1a1kbcfjni5" path="res://assets/ui/photoloop/redo_tool.png" id="10_sgpd6"]
+[ext_resource type="Texture2D" uid="uid://c4jsm1p6udrtk" path="res://assets/ui/photoloop/undo_tool.png" id="11_a0s55"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qpycq"]
 
@@ -16,10 +23,8 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4qq7r"]
 size = Vector2(1, 60)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2tu6o"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5byx1"]
-size = Vector2(60, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljndt"]
+bg_color = Color(0.290196, 0.290196, 0.290196, 1)
 
 [node name="PhotoshopApp" type="Control"]
 layout_mode = 3
@@ -43,7 +48,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_qpycq")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -57,25 +62,30 @@ texture = SubResource("PlaceholderTexture2D_4qq7r")
 
 [node name="Filebar" type="HBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 5
 
 [node name="SaveButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-disabled = true
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_qpycq")
 text = "Save"
 
 [node name="ResetButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_qpycq")
 text = "Reset"
 
 [node name="ExportButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_qpycq")
 text = "Export"
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
@@ -95,7 +105,14 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="EditingPanel" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="EditingPanel" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
@@ -103,54 +120,63 @@ theme_override_constants/separation = 0
 script = ExtResource("2_pedke")
 test_texture = ExtResource("3_rqrjq")
 
-[node name="ToolbarContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="ToolbarContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel"]
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2tu6o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ljndt")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer"]
-visible = false
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer"]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_5byx1")
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 32
 
-[node name="Toolbar" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer"]
+[node name="Toolbar" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="CopyButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer/Toolbar"]
+[node name="LassoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-text = "Copy
-"
+texture_normal = ExtResource("6_vydbk")
 
-[node name="CutButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer/Toolbar"]
+[node name="CopyButton2" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-text = "Cut
-"
+texture_normal = ExtResource("7_wr4rw")
 
-[node name="PasteButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer/Toolbar"]
+[node name="CutButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-text = "Paste"
+texture_normal = ExtResource("7_vydbk")
 
-[node name="UndoButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer/Toolbar"]
+[node name="PasteButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-text = "Undo
-"
+texture_normal = ExtResource("9_ljndt")
 
-[node name="RedoButton" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/ToolbarContainer/Toolbar"]
+[node name="RedoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
-text = "Redo"
+texture_normal = ExtResource("10_sgpd6")
 
-[node name="EditingNode" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel"]
+[node name="UndoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+texture_normal = ExtResource("11_a0s55")
+
+[node name="EditingNode" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel"]
 unique_name_in_owner = true
 clip_children = 1
 clip_contents = true
@@ -158,7 +184,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 
-[node name="ColorRect" type="ColorRect" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode"]
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode"]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 15
@@ -168,7 +194,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="EditingAnchor" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect"]
+[node name="EditingAnchor" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 610.0
@@ -177,31 +203,31 @@ offset_right = 610.0
 offset_bottom = 330.0
 mouse_filter = 1
 
-[node name="CanvasBackground" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor"]
+[node name="CanvasBackground" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor"]
 unique_name_in_owner = true
 texture_repeat = 2
 texture = ExtResource("3_2tu6o")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="EditableImage" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor"]
+[node name="EditableImage" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor"]
 unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor/EditableImage"]
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor/EditableImage"]
 visible = false
 
-[node name="PastedSelection" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor"]
+[node name="PastedSelection" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor"]
 unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor/PastedSelection"]
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor/PastedSelection"]
 visible = false
 
-[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor" node_paths=PackedStringArray("editing_node")]
+[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor" node_paths=PackedStringArray("editing_node")]
 unique_name_in_owner = true
 script = ExtResource("6_kyq4q")
 editing_node = NodePath("../../..")
 
-[node name="DottedLine" parent="PanelContainer/VBoxContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor/LassoController" instance=ExtResource("6_i8qo4")]
+[node name="DottedLine" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/EditingNode/ColorRect/EditingAnchor/LassoController" instance=ExtResource("6_i8qo4")]
 unique_name_in_owner = true
