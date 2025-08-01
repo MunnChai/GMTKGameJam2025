@@ -4,6 +4,7 @@ extends Node
 signal feedback_added(commission_id: int, feedback: Feedback)
 
 var feedbacks: Dictionary[int, Array] = {}
+var submission: File
 
 func add_feedback(commission_id: int, feedback: Feedback) -> void:
 	if not feedbacks.has(commission_id):
@@ -16,3 +17,8 @@ func get_feedbacks(commission_id: int) -> Array:
 
 func clear_feedbacks(commission_id: int) -> void:
 	feedbacks.erase(commission_id)
+
+func add_submission(work: File) -> void:
+	if work:
+		submission = work
+		print(work)

@@ -38,3 +38,9 @@ func _on_directory_changed(contents: Array[FileNode]):
 		var folder = file_system.directory_history[i]
 		path_string += ("/" if i > 0 else "") + folder.node_name
 	path_label.text = path_string + "/"
+
+func set_upload_mode(upload: bool) -> void:
+	file_system.upload_mode = upload
+
+func get_file_system_access() -> FileSystemAccess:
+	return file_system

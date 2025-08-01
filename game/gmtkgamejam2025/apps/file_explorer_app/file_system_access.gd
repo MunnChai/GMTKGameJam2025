@@ -11,6 +11,9 @@ signal directory_changed(new_directory_contents)
 
 var current_directory: Folder
 var directory_history: Array[Folder]
+var upload_mode: bool = false
+
+signal upload_done()
 
 func _ready() -> void:
 	current_directory = FileSystem.root
@@ -46,5 +49,9 @@ func open_file(file_node: FileNode):
 		# This is where you would add logic to open a file.
 		# For now, we'll just print it.
 		print("Attempting to open file: ", file_node.node_name)
+		if upload_mode:
+			CommissionsManager.add_submission(file_node)
+			upload_done.emit()
+			return
 		FileSystem.open_file(file_node)
 		# If you re-add the photoshop app, you would connect its 'open_file' method here.

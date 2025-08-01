@@ -70,4 +70,5 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="FileExplorer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent" instance=ExtResource("4_i3qrd")]
+unique_name_in_owner = true
 layout_mode = 2
