@@ -40,6 +40,9 @@ func _input(event: InputEvent) -> void:
 ## passing the specified param dictionary to the boot sequence
 ## Returns the window after execution
 func execute(id: StringName, args: Dictionary = {}) -> DesktopWindow:
+	if not window_packed_scenes.has(id):
+		print("WARNING! Attempting to instantiate \"" + id + "\" window but it is not in the desktop registry! Do you need to restart the game?")
+		return 
 	## Make the window
 	var window: DesktopWindow = window_packed_scenes.get(id).instantiate()
 	%Windows.add_child(window)
