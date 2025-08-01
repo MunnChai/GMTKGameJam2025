@@ -26,10 +26,6 @@ var current_zoom_index: int = 1
 var original_texture: Texture2D
 
 ## Copied texture
-var copied_buffer: Array[PackedColorArray]
-var copied_texture: Texture2D
-var copied_lasso: PackedVector2Array
-var copied_lasso_pos: Vector2
 
 ## Moving pasted selection
 var is_pasted_moveable: bool = false
@@ -104,7 +100,7 @@ func handle_movement(delta: float) -> void:
 	
 	if Input.is_action_pressed("drag_pasted_selection") and is_pasted_moveable and not is_zero_approx(diff.length()):
 		pasted_selection.position += diff / editing_anchor.scale
-		lasso_controller.position = pasted_selection.position + copied_lasso_pos
+		lasso_controller.position = pasted_selection.position + PhotoshopManager.copied_lasso_pos
 	
 	previous_mouse_position = current_mouse_position
 
@@ -137,9 +133,9 @@ func copy_selection() -> void:
 	for i in translated_polygon.size():
 		translated_polygon[i] += lasso_controller.position
 	
-	copied_buffer = editable_image.get_pixel_buffer_in_polygon(translated_polygon)
-	copied_lasso = dotted_line.get_points()
-	copied_lasso_pos = lasso_controller.position
+	PhotoshopManager.copied_buffer = editable_image.get_pixel_buffer_in_polygon(translated_polygon)
+	PhotoshopManager.copied_lasso = dotted_line.get_points()
+	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 
 func delete_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
@@ -149,16 +145,16 @@ func delete_selection() -> void:
 	editable_image.erase_pixels_in_polygon(translated_polygon)
 
 func paste_selection() -> void:
-	if copied_buffer.is_empty():
+	if PhotoshopManager.copied_buffer.is_empty():
 		return
 	pasted_selection.position = Vector2.ZERO
 	lasso_controller.position = Vector2.ZERO
-	pasted_selection.set_pixel_buffer(copied_buffer)
+	pasted_selection.set_pixel_buffer(PhotoshopManager.copied_buffer)
 	
 	is_paste_confirmable = true
 	
-	dotted_line.set_points(copied_lasso)
-	lasso_controller.position = copied_lasso_pos
+	dotted_line.set_points(PhotoshopManager.copied_lasso)
+	lasso_controller.position = PhotoshopManager.copied_lasso_pos
 	lasso_controller.disable()
 
 func paste_selection_to_image() -> void:
