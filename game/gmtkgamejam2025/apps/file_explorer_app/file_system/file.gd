@@ -1,6 +1,11 @@
 class_name File
 extends FileNode
 
+## ---
+## FILE
+## Leaf of the file-folder composite
+## ---
+
 @export var file_type: String
 @export var texture: Texture
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgwj1gihalkoi"]
 
 [ext_resource type="Script" uid="uid://bihaanncehmrv" path="res://apps/file_explorer_app/file_explorer.gd" id="1_ylx0t"]
-[ext_resource type="Script" uid="uid://bilb5mvh75gsb" path="res://apps/file_explorer_app/file_system.gd" id="2_6j7i7"]
+[ext_resource type="Script" uid="uid://pmxmwwfvu7gl" path="res://apps/file_explorer_app/file_system_access.gd" id="2_ylx0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo53c"]
 bg_color = Color(0.172549, 0.188235, 0.215686, 1)
@@ -68,5 +68,5 @@ theme_override_constants/h_separation = 15
 theme_override_constants/v_separation = 15
 columns = 6
 
-[node name="FileSystemNode" type="Node" parent="."]
-script = ExtResource("2_6j7i7")
+[node name="FileSystemAccess" type="Node" parent="."]
+script = ExtResource("2_ylx0t")
