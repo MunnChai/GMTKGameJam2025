@@ -2,7 +2,7 @@ class_name EditingPanel
 extends Control
 
 ## Editing nodes
-@onready var editing_panel: Control = %EditingPanel
+@onready var editing_node: Control = %EditingNode
 @onready var editing_anchor: Control = %EditingAnchor
 @onready var canvas_background: Sprite2D = %CanvasBackground
 @onready var editable_image: SpriteBuffer = %EditableImage
@@ -23,6 +23,8 @@ const ZOOM_LEVELS: Array = [
 ]
 var current_zoom_index: int = 1
 
+var original_texture: Texture2D
+
 ## Copied texture
 var copied_buffer: Array[PackedColorArray]
 var copied_texture: Texture2D
@@ -39,7 +41,7 @@ var canvas_size: Vector2
 
 func _ready() -> void:
 	await get_tree().process_frame
-	editing_anchor.position = editing_panel.size / 2
+	editing_anchor.position = editing_node.size / 2
 	
 	#true_image = editable_image.texture.get_image()
 	
@@ -64,7 +66,7 @@ func handle_actions(delta: float) -> void:
 		paste_selection()
 
 func handle_movement(delta: float) -> void:
-	var current_mouse_position: Vector2 = editing_panel.get_local_mouse_position()
+	var current_mouse_position: Vector2 = editing_node.get_local_mouse_position()
 	var diff: Vector2 = current_mouse_position - previous_mouse_position
 	
 	if Input.is_action_pressed("edit_panel_move") and not is_zero_approx(diff.length()):
@@ -72,13 +74,13 @@ func handle_movement(delta: float) -> void:
 		
 		if editing_anchor.position.x < 0:
 			editing_anchor.position.x = 0
-		elif editing_anchor.position.x > editing_panel.size.x:
-			editing_anchor.position.x = editing_panel.size.x
+		elif editing_anchor.position.x > editing_node.size.x:
+			editing_anchor.position.x = editing_node.size.x
 		
 		if editing_anchor.position.y < 0:
 			editing_anchor.position.y = 0
-		elif editing_anchor.position.y > editing_panel.size.y:
-			editing_anchor.position.y = editing_panel.size.y
+		elif editing_anchor.position.y > editing_node.size.y:
+			editing_anchor.position.y = editing_node.size.y
 	
 	if Input.is_action_just_pressed("drag_pasted_selection"):
 		var local_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
@@ -110,7 +112,11 @@ func handle_zoom(delta: float) -> void:
 			current_zoom_index = 0
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
 
+func reset_texture() -> void:
+	set_original_texture(original_texture)
+
 func set_original_texture(texture: Texture2D) -> void:
+	original_texture = texture
 	true_image = texture.get_image()
 	
 	canvas_background.region_rect.size = texture.get_size()

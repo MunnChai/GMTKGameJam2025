@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=8 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -6,12 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bf2h01ok52xw4" path="res://desktop/shortcut_icon/shortcut_icon.tscn" id="3_py4qr"]
 [ext_resource type="PackedScene" uid="uid://icmnoob2solt" path="res://apps/settings_app/settings_window/settings_window.tscn" id="4_hbe16"]
 [ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
+[ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="5_6vopt"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
 window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"error": ExtResource("3_irqsv"),
 &"hello_world": ExtResource("2_87qqj"),
+&"photoshop": ExtResource("5_6vopt"),
 &"settings": ExtResource("4_hbe16")
 })
 
@@ -62,6 +64,13 @@ args = Dictionary[StringName, Variant]({
 [node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"file_explorer"
+args = Dictionary[StringName, Variant]({
+&"text": "Something went wrong!"
+})
+
+[node name="Photoshop" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"photoshop"
 args = Dictionary[StringName, Variant]({
 &"text": "Something went wrong!"
 })

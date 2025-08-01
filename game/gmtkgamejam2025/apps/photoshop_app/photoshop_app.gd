@@ -12,3 +12,15 @@ extends Control
 @onready var paste_button: Button = %PasteButton
 @onready var undo_button: Button = %UndoButton
 @onready var redo_button: Button = %RedoButton
+
+## Editing panel
+@onready var editing_panel: EditingPanel = %EditingPanel
+
+func _ready() -> void:
+	reset_button.pressed.connect(_on_reset_pressed)
+
+func set_texture(texture: Texture2D) -> void:
+	editing_panel.set_original_texture(texture)
+
+func _on_reset_pressed() -> void:
+	editing_panel.reset_texture()
