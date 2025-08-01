@@ -1,15 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://omxyukgp61bw"]
+[gd_scene load_steps=19 format=3 uid="uid://omxyukgp61bw"]
 
 [ext_resource type="Script" uid="uid://o62f4k604x6h" path="res://apps/photoshop_app/photoshop_app.gd" id="1_5byx1"]
 [ext_resource type="Script" uid="uid://dsbxsdbpygkhs" path="res://apps/photoshop_app/editing_panel.gd" id="2_pedke"]
-[ext_resource type="Theme" uid="uid://dmcwmwpscwsvg" path="res://assets/themes/os_95_top_buttons.tres" id="2_qpycq"]
+[ext_resource type="Theme" uid="uid://dwjva6iavrd2o" path="res://assets/themes/os_95_top_buttons.tres" id="2_qpycq"]
 [ext_resource type="Texture2D" uid="uid://ck62yw53r3drq" path="res://assets/ui/windows/window_inner_nine_patch_rect.png" id="2_rqrjq"]
 [ext_resource type="Texture2D" uid="uid://bb038ihonibbj" path="res://apps/photoshop_app/transparent_background_texture.png" id="3_2tu6o"]
 [ext_resource type="Texture2D" uid="uid://cj7nbd7op7h2s" path="res://apps/photoshop_app/Field_in_Kärkölä.jpg" id="3_rqrjq"]
 [ext_resource type="PackedScene" uid="uid://j0imf1m4hv8n" path="res://apps/photoshop_app/dotted_line/dotted_line.tscn" id="6_i8qo4"]
 [ext_resource type="Script" uid="uid://ddjyetu5ajpwf" path="res://apps/photoshop_app/lasso_controller.gd" id="6_kyq4q"]
 [ext_resource type="Script" uid="uid://oawoprj18hk" path="res://apps/photoshop_app/sprite_buffer.gd" id="6_rqrjq"]
-[ext_resource type="Texture2D" uid="uid://bh8gg771ffvrl" path="res://assets/ui/photoloop/lasso_tool.png" id="6_vydbk"]
 [ext_resource type="Texture2D" uid="uid://bpvcisydlm6hh" path="res://assets/ui/photoloop/cut_tool.png" id="7_vydbk"]
 [ext_resource type="Texture2D" uid="uid://bdt2myo8hflnb" path="res://assets/ui/photoloop/copy_tool.png" id="7_wr4rw"]
 [ext_resource type="Texture2D" uid="uid://brm7oyxtb41ob" path="res://assets/ui/photoloop/paste_tool.png" id="9_ljndt"]
@@ -140,13 +139,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="LassoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-texture_normal = ExtResource("6_vydbk")
-
-[node name="CopyButton2" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
+[node name="CopyButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1

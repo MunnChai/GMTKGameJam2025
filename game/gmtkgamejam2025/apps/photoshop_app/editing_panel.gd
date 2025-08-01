@@ -12,6 +12,12 @@ extends Control
 
 @export var test_texture: Texture2D
 
+@onready var copy_button: TextureButton = %CopyButton
+@onready var cut_button: TextureButton = %CutButton
+@onready var paste_button: TextureButton = %PasteButton
+@onready var redo_button: TextureButton = %RedoButton
+@onready var undo_button: TextureButton = %UndoButton
+
 ## Panel movement/zoom
 var previous_mouse_position: Vector2
 const ZOOM_LEVELS: Array = [
@@ -54,6 +60,31 @@ func _ready() -> void:
 	editable_image.finished_deletion.connect(_on_deletion_finished)
 	editable_image.finished_pasting.connect(_on_paste_confirm_finished)
 	editable_image.finished_setting_buffers.connect(_on_buffer_set_finished)
+	
+	copy_button.pressed.connect(_on_copy_pressed)
+	cut_button.pressed.connect(_on_cut_pressed)
+	paste_button.pressed.connect(_on_paste_pressed)
+	redo_button.pressed.connect(_on_redo_pressed)
+	undo_button.pressed.connect(_on_undo_pressed)
+
+func _on_copy_pressed() -> void:
+	copy_selection()
+	dotted_line.clear()
+
+func _on_cut_pressed() -> void:
+	cut_selection()
+
+func _on_paste_pressed() -> void:
+	if is_paste_confirmable:
+		paste_selection_to_image()
+		await editable_image.finished_pasting
+	paste_selection()
+
+func _on_redo_pressed() -> void:
+	pass
+
+func _on_undo_pressed() -> void:
+	pass
 
 func _process(delta: float) -> void:
 	if not is_hovered:

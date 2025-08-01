@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dmcwmwpscwsvg"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://dwjva6iavrd2o"]
 
 [ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="1_6eb55"]
 [ext_resource type="FontFile" uid="uid://cilb2yb8y16fb" path="res://assets/fonts/dot_gothic_16_regular.ttf" id="1_eseb5"]
