@@ -31,10 +31,9 @@ layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Commissions" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -111,6 +110,7 @@ mouse_default_cursor_shape = 2
 text = "Feedbacks"
 
 [node name="Feedbacks" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -131,7 +131,6 @@ size_flags_vertical = 0
 
 [node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails"]
