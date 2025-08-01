@@ -134,7 +134,15 @@ func delete_selection() -> void:
 	editable_image.erase_pixels_in_polygon(translated_polygon)
 
 func paste_selection() -> void:
+	pasted_selection.position = Vector2.ZERO
 	pasted_selection.set_pixel_buffer(copied_buffer)
+	
+	is_paste_confirmable = true
 
 func paste_selection_to_image() -> void:
-	pass
+	editable_image.impose_image(pasted_selection, pasted_selection.position)
+	
+	is_paste_confirmable = false
+	
+	pasted_selection.clear()
+	print("Ya")

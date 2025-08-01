@@ -67,12 +67,18 @@ func impose_image(other: SpriteBuffer, pos_offset: Vector2) -> void:
 	
 	texture = ImageTexture.create_from_image(image)
 
+func clear() -> void:
+	pixel_buffer.clear()
+	texture = null
+
+
+
 func get_pixel_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedColorArray]:
 	var translated_polygon = polygon
 	for i in translated_polygon.size():
 		translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
 	
-	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate()
+	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
 	
 	var image: Image = texture.get_image()
 	for x in pixel_buffer.size():
@@ -85,6 +91,11 @@ func get_pixel_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedCol
 	return new_buffer
 
 func is_pos_in_pixel_buffer(pos: Vector2) -> bool:
+	if pixel_buffer.is_empty():
+		return false
+	
+	pos += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2) - self.position
+	
 	if pos.x < 0 or pos.x >= pixel_buffer.size():
 		return false
 	if pos.y < 0 or pos.y >= pixel_buffer[0].size():
