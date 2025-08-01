@@ -59,8 +59,7 @@ func handle_actions(delta: float) -> void:
 		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("cut"):
-		copy_selection()
-		delete_selection()
+		cut_selection()
 		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("paste"):
@@ -133,6 +132,18 @@ func copy_selection() -> void:
 	
 	PhotoshopManager.copied_buffer = editable_image.get_pixel_buffer_in_polygon(translated_polygon)
 	PhotoshopManager.copied_trait_buffer = editable_image.get_trait_buffer_in_polygon(translated_polygon)
+	PhotoshopManager.copied_lasso = dotted_line.get_points()
+	PhotoshopManager.copied_lasso_pos = lasso_controller.position
+
+func cut_selection() -> void:
+	var translated_polygon: PackedVector2Array = dotted_line.get_points()
+	for i in translated_polygon.size():
+		translated_polygon[i] += lasso_controller.position
+	
+	var buffers: Dictionary = editable_image.get_buffers_in_polygon_and_delete(translated_polygon)
+	
+	PhotoshopManager.copied_buffer = buffers["pixel"]
+	PhotoshopManager.copied_trait_buffer = buffers["trait"]
 	PhotoshopManager.copied_lasso = dotted_line.get_points()
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 

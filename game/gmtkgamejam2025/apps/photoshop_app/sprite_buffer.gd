@@ -13,7 +13,7 @@ var modified_buffer: Array[PackedInt32Array]
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and name == "EditableImage":
+	if Input.is_action_just_pressed("get_trait_dict") and name == "EditableImage":
 		var file: File = convert_to_file()
 		var info = ImageJudgement.get_file_info(file)
 		print(info)
@@ -172,7 +172,6 @@ func impose_image(other: SpriteBuffer, pos_offset: Vector2) -> void:
 
 
 
-
 #region Helpers
 
 func get_pixel_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedColorArray]:
@@ -182,7 +181,6 @@ func get_pixel_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedCol
 	
 	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
 	
-	var image: Image = texture.get_image()
 	for x in pixel_buffer.size():
 		for y in pixel_buffer[0].size():
 			if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
@@ -201,7 +199,6 @@ func get_trait_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedCol
 		for y in trait_buffer[0].size():
 			if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
 				new_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
-				new_buffer[x][y].a = 0
 	
 	return new_buffer
 
@@ -220,12 +217,56 @@ func is_pos_in_pixel_buffer(pos: Vector2) -> bool:
 
 #endregion
 
+#region Optimized functions
+
+func get_buffers_in_polygon_and_delete(polygon: PackedVector2Array) -> Dictionary:
+	var buffers: Dictionary = {}
+	
+	var translated_polygon = polygon.duplicate()
+	for i in translated_polygon.size():
+		translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
+	
+	var image: Image = texture.get_image()
+	var trait_image: Image = sprite_2d.texture.get_image()
+	
+	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
+	var new_trait_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	
+	for x in pixel_buffer.size():
+		for y in pixel_buffer[0].size():
+			# Copy pixels within the selection and return them (done in duplicate, then remove ones outside)
+			if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
+				new_buffer[x][y].a = 0
+				new_trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
+			else: # Delete pixels within the selection
+				pixel_buffer[x][y].a = 0
+				trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
+				image.set_pixel(x, y, pixel_buffer[x][y])
+				trait_image.set_pixel(x, y, trait_buffer[x][y])
+				modified_buffer[x][y] = 1
+	
+	texture = ImageTexture.create_from_image(image)
+	sprite_2d.texture = ImageTexture.create_from_image(trait_image)
+	
+	buffers["pixel"] = new_buffer
+	buffers["trait"] = new_trait_buffer
+	
+	return buffers
+	
+	
+	return buffers
+
+
+
+
+
+
 
 #region File Conversion
 
 func convert_to_file() -> File:
-	var texture_image: Image = Image.create_empty(pixel_buffer.size(), pixel_buffer[0].size(), false, Image.FORMAT_RG8)
-	var trait_texture_image: Image = Image.create_empty(pixel_buffer.size(), pixel_buffer[0].size(), false, Image.FORMAT_RG8)
+	var texture_image: Image = Image.create_empty(pixel_buffer.size(), pixel_buffer[0].size(), false, Image.FORMAT_RGB8)
+	var trait_texture_image: Image = Image.create_empty(pixel_buffer.size(), pixel_buffer[0].size(), false, Image.FORMAT_RGB8)
 	var modified_count: int = 0
 	for x in pixel_buffer.size():
 		for y in pixel_buffer[0].size():
@@ -236,6 +277,8 @@ func convert_to_file() -> File:
 	
 	var new_texture: ImageTexture = ImageTexture.create_from_image(texture_image)
 	var new_trait_texture: ImageTexture = ImageTexture.create_from_image(trait_texture_image)
+	
+	sprite_2d.texture = new_trait_texture
 	
 	var file: File = File.create_from_data("test_image.png", new_texture, new_trait_texture, modified_count)	
 	return file

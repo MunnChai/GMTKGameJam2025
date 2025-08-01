@@ -157,14 +157,12 @@ unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor/EditableImage"]
-visible = false
 
 [node name="PastedSelection" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor"]
 unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor/PastedSelection"]
-visible = false
 
 [node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor" node_paths=PackedStringArray("editing_node")]
 unique_name_in_owner = true

@@ -1,6 +1,6 @@
 extends Node
 
-const NO_TRAIT_COLOR: Color = Color.WHITE
+const NO_TRAIT_COLOR: Color = Color(1, 1, 1, 0)
 
 enum Trait {
 	NONE = -999,
@@ -10,28 +10,19 @@ enum Trait {
 	PERSON_4 = -2,
 	PERSON_5 = -1,
 	BALD = 0,
-	HAIR,
-	FISH,
-	EX_PARTNER,
-	CELEB,
-	COOL,
-	RAINY,
-	SUNNY,
-	SAD,
-	HAPPY,
-	FRIENDS,
-	
+	HAIR = 1,
+	FISH = 2,
+	EX_PARTNER = 3,
+	CELEB = 4,
+	COOL = 5,
+	RAINY = 6,
+	SUNNY = 7,
+	SAD = 8,
+	HAPPY = 9,
+	FRIENDS = 10,
 }
 
 @export var trait_colors: Dictionary[Trait, Color]
-var color_to_trait: Dictionary[Color, Trait]
-
-func _ready() -> void:
-	generate_inverse_color_dict()
-
-func generate_inverse_color_dict() -> void:
-	for key in trait_colors.keys():
-		color_to_trait[trait_colors[key]] = key
 
 func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
 	pass
@@ -62,7 +53,8 @@ func get_file_info(file: File) -> Dictionary:
 	return info_dict
 
 func get_trait_from_color(color: Color) -> Trait:
-	if not color_to_trait.has(color):
-		return Trait.NONE
+	for key in trait_colors.keys():
+		if color.is_equal_approx(trait_colors[key]):
+			return key
 	
-	return color_to_trait[color]
+	return Trait.NONE
