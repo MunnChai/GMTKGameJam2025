@@ -1,4 +1,4 @@
-class_name CommissionsManager
+class_name CommissionsManagerGlobal
 extends Node
 
 signal feedback_added(commission_id: int, feedback: Feedback)
