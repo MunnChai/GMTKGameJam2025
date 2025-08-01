@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgjf4mr1i8ic1"
-valid=false
+uid="uid://b5gy172sawrqy"
+path="res://.godot/imported/pls_add_avenging_guys_trait.png-fb2387586bdbabe0c955895b707ad370.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/images/bald_fish_man.png"
+source_file="res://assets/images/commissions/pls_add_avenging_guys_trait.png"
+dest_files=["res://.godot/imported/pls_add_avenging_guys_trait.png-fb2387586bdbabe0c955895b707ad370.ctex"]
 
 [params]
 

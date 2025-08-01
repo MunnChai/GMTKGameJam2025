@@ -20,6 +20,7 @@ enum Trait {
 	SAD = 8,
 	HAPPY = 9,
 	FRIENDS = 10,
+	AVENGING_GUYS = 11,
 }
 
 @export var trait_colors: Dictionary[Trait, Color]

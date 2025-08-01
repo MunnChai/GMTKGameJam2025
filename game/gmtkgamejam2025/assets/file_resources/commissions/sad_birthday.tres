@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_7utc1")
-file_name = "sad_birthday.png"
+file_name = "bdayParty!.png"
 texture = ExtResource("2_3jkgg")
 trait_texture = ExtResource("3_v5uh6")
 metadata/_custom_type_script = "uid://c35i354iy57g4"
