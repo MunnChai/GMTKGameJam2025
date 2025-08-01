@@ -52,6 +52,7 @@ func _ready() -> void:
 	editable_image.got_buffers.connect(_set_copied_buffers)
 	editable_image.finished_deletion.connect(_on_deletion_finished)
 	editable_image.finished_pasting.connect(_on_paste_confirm_finished)
+	editable_image.finished_setting_buffers.connect(_on_buffer_set_finished)
 
 func _process(delta: float) -> void:
 	if not is_hovered:
@@ -137,6 +138,7 @@ func init_canvas(texture: Texture2D) -> void:
 func set_file(file: File) -> void:
 	init_canvas(file.texture)
 	editable_image.set_buffers_from_file(file)
+	is_waiting_for_thread = true
 
 func copy_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
@@ -207,4 +209,7 @@ func _on_deletion_finished() -> void:
 func _set_copied_buffers(buffers: Dictionary) -> void:
 	PhotoshopManager.copied_buffer = buffers["pixel"]
 	PhotoshopManager.copied_trait_buffer = buffers["trait"]
+	is_waiting_for_thread = false
+
+func _on_buffer_set_finished() -> void:
 	is_waiting_for_thread = false

@@ -17,6 +17,7 @@ var thread: Thread
 signal got_buffers(buffers: Dictionary)
 signal finished_deletion()
 signal finished_pasting()
+signal finished_setting_buffers()
 
 func _ready() -> void:
 	thread = Thread.new()
@@ -30,53 +31,97 @@ func _process(_delta: float) -> void:
 #region Initialization
 
 func set_buffers_from_file(file: File) -> void:
-	set_pixel_buffer_from_texture(file.texture)
-	set_trait_buffer_from_texture(file.trait_texture)
 	reset_modified_buffer(file.texture)
+	thread.start(_set_buffers_from_file.bind(file))
 
-func set_pixel_buffer_from_texture(given_texture: Texture2D) -> void:
-	var image: Image = Image.create_empty(given_texture.get_size().x, given_texture.get_size().y, false, Image.FORMAT_RGBA8)
+func _set_buffers_from_file(file: File) -> Dictionary:
 	
 	pixel_buffer.clear()
-	pixel_buffer.resize(given_texture.get_size().x)
+	pixel_buffer.resize(file.texture.get_size().x)
+	
+	trait_buffer.clear()
+	trait_buffer.resize(file.trait_texture.get_size().x)
 	
 	for i in pixel_buffer.size():
 		var new_pixel_array: PackedColorArray = []
-		new_pixel_array.resize(given_texture.get_size().y)
+		new_pixel_array.resize(file.texture.get_size().y)
 		pixel_buffer[i] = new_pixel_array
+		var new_trait_array: PackedColorArray = []
+		new_trait_array.resize(file.trait_texture.get_size().y)
+		trait_buffer[i] = new_trait_array
 	
-	var given_image: Image = given_texture.get_image()
+	var given_image: Image = file.texture.get_image().duplicate()
+	var given_trait_image: Image = file.trait_texture.get_image().duplicate()
+	var new_image: Image = Image.create_empty(file.texture.get_size().x, file.texture.get_size().y, false, Image.FORMAT_RGBA8)
+	var new_trait_image: Image = Image.create_empty(file.texture.get_size().x, file.texture.get_size().y, false, Image.FORMAT_RGBA8)
 	
 	for x in pixel_buffer.size():
 		for y in pixel_buffer[0].size():
 			var color = given_image.get_pixel(x, y)
 			pixel_buffer[x][y] = color
-			image.set_pixel(x, y, color)
+			new_image.set_pixel(x, y, color)
+			var trait_color = given_trait_image.get_pixel(x, y)
+			trait_buffer[x][y] = trait_color
+			new_trait_image.set_pixel(x, y, trait_color)
 	
-	var image_texture: ImageTexture = ImageTexture.create_from_image(image)
-	texture = image_texture
+	var textures := {
+		"pixel_texture": ImageTexture.create_from_image(new_image),
+		"trait_texture": ImageTexture.create_from_image(new_trait_image),
+	}
+	
+	call_deferred("_on_buffer_set_finished")
+	
+	return textures
 
-func set_trait_buffer_from_texture(given_trait_texture: Texture2D) -> void:
-	var image: Image = Image.create_empty(given_trait_texture.get_size().x, given_trait_texture.get_size().y, false, Image.FORMAT_RGBA8)
-	
-	trait_buffer.clear()
-	trait_buffer.resize(given_trait_texture.get_size().x)
-	
-	for i in trait_buffer.size():
-		var new_trait_array: PackedColorArray = []
-		new_trait_array.resize(given_trait_texture.get_size().y)
-		trait_buffer[i] = new_trait_array
-	
-	var given_trait_image: Image = given_trait_texture.get_image()
-	
-	for x in trait_buffer.size():
-		for y in trait_buffer[0].size():
-			var color = given_trait_image.get_pixel(x, y)
-			trait_buffer[x][y] = color
-			image.set_pixel(x, y, color)
-	
-	var image_texture: ImageTexture = ImageTexture.create_from_image(image)
-	sprite_2d.texture = image_texture
+func _on_buffer_set_finished() -> void:
+	var textures = thread.wait_to_finish()
+	texture = textures["pixel_texture"]
+	sprite_2d.texture = textures["trait_texture"]
+	finished_setting_buffers.emit()
+
+#func set_pixel_buffer_from_texture(given_texture: Texture2D) -> void:
+	#var image: Image = Image.create_empty(given_texture.get_size().x, given_texture.get_size().y, false, Image.FORMAT_RGBA8)
+	#
+	#pixel_buffer.clear()
+	#pixel_buffer.resize(given_texture.get_size().x)
+	#
+	#for i in pixel_buffer.size():
+		#var new_pixel_array: PackedColorArray = []
+		#new_pixel_array.resize(given_texture.get_size().y)
+		#pixel_buffer[i] = new_pixel_array
+	#
+	#var given_image: Image = given_texture.get_image()
+	#
+	#for x in pixel_buffer.size():
+		#for y in pixel_buffer[0].size():
+			#var color = given_image.get_pixel(x, y)
+			#pixel_buffer[x][y] = color
+			#image.set_pixel(x, y, color)
+	#
+	#var image_texture: ImageTexture = ImageTexture.create_from_image(image)
+	#texture = image_texture
+#
+#func set_trait_buffer_from_texture(given_trait_texture: Texture2D) -> void:
+	#var image: Image = Image.create_empty(given_trait_texture.get_size().x, given_trait_texture.get_size().y, false, Image.FORMAT_RGBA8)
+	#
+	#trait_buffer.clear()
+	#trait_buffer.resize(given_trait_texture.get_size().x)
+	#
+	#for i in trait_buffer.size():
+		#var new_trait_array: PackedColorArray = []
+		#new_trait_array.resize(given_trait_texture.get_size().y)
+		#trait_buffer[i] = new_trait_array
+	#
+	#var given_trait_image: Image = given_trait_texture.get_image()
+	#
+	#for x in trait_buffer.size():
+		#for y in trait_buffer[0].size():
+			#var color = given_trait_image.get_pixel(x, y)
+			#trait_buffer[x][y] = color
+			#image.set_pixel(x, y, color)
+	#
+	#var image_texture: ImageTexture = ImageTexture.create_from_image(image)
+	#sprite_2d.texture = image_texture
 
 func reset_modified_buffer(given_texture: Texture2D) -> void:
 	modified_buffer.clear()
@@ -123,26 +168,26 @@ func clear() -> void:
 
 #region Modifications
 
-func erase_pixels_in_polygon(polygon: PackedVector2Array) -> void:
-	var translated_polygon = polygon
-	for i in translated_polygon.size():
-		translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
-	
-	var image: Image = texture.get_image()
-	var trait_image: Image = sprite_2d.texture.get_image()
-	for x in pixel_buffer.size():
-		for y in pixel_buffer[0].size():
-			if Geometry2D.is_point_in_polygon(Vector2(x, y), polygon):
-				pixel_buffer[x][y].a = 0
-				trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
-				image.set_pixel(x, y, pixel_buffer[x][y])
-				trait_image.set_pixel(x, y, trait_buffer[x][y])
-				modified_buffer[x][y] = 1
-	
-	var image_texture: ImageTexture = ImageTexture.create_from_image(image)
-	texture = image_texture
-	var image_texture2: ImageTexture = ImageTexture.create_from_image(trait_image)
-	sprite_2d.texture = image_texture2
+#func erase_pixels_in_polygon(polygon: PackedVector2Array) -> void:
+	#var translated_polygon = polygon
+	#for i in translated_polygon.size():
+		#translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
+	#
+	#var image: Image = texture.get_image()
+	#var trait_image: Image = sprite_2d.texture.get_image()
+	#for x in pixel_buffer.size():
+		#for y in pixel_buffer[0].size():
+			#if Geometry2D.is_point_in_polygon(Vector2(x, y), polygon):
+				#pixel_buffer[x][y].a = 0
+				#trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
+				#image.set_pixel(x, y, pixel_buffer[x][y])
+				#trait_image.set_pixel(x, y, trait_buffer[x][y])
+				#modified_buffer[x][y] = 1
+	#
+	#var image_texture: ImageTexture = ImageTexture.create_from_image(image)
+	#texture = image_texture
+	#var image_texture2: ImageTexture = ImageTexture.create_from_image(trait_image)
+	#sprite_2d.texture = image_texture2
 
 
 func impose_image(other: SpriteBuffer, pos_offset: Vector2) -> void:
@@ -193,33 +238,33 @@ func _on_paste_finished() -> void:
 
 #region Helpers
 
-func get_pixel_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedColorArray]:
-	var translated_polygon = polygon.duplicate()
-	for i in translated_polygon.size():
-		translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
-	
-	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
-	
-	for x in pixel_buffer.size():
-		for y in pixel_buffer[0].size():
-			if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
-				new_buffer[x][y].a = 0
-	
-	return new_buffer
-
-func get_trait_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedColorArray]:
-	var translated_polygon = polygon.duplicate()
-	for i in translated_polygon.size():
-		translated_polygon[i] += Vector2(trait_buffer.size() / 2, trait_buffer[0].size() / 2)
-	
-	var new_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
-	
-	for x in trait_buffer.size():
-		for y in trait_buffer[0].size():
-			if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
-				new_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
-	
-	return new_buffer
+#func get_pixel_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedColorArray]:
+	#var translated_polygon = polygon.duplicate()
+	#for i in translated_polygon.size():
+		#translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
+	#
+	#var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
+	#
+	#for x in pixel_buffer.size():
+		#for y in pixel_buffer[0].size():
+			#if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
+				#new_buffer[x][y].a = 0
+	#
+	#return new_buffer
+#
+#func get_trait_buffer_in_polygon(polygon: PackedVector2Array) -> Array[PackedColorArray]:
+	#var translated_polygon = polygon.duplicate()
+	#for i in translated_polygon.size():
+		#translated_polygon[i] += Vector2(trait_buffer.size() / 2, trait_buffer[0].size() / 2)
+	#
+	#var new_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	#
+	#for x in trait_buffer.size():
+		#for y in trait_buffer[0].size():
+			#if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
+				#new_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
+	#
+	#return new_buffer
 
 func is_pos_in_pixel_buffer(pos: Vector2) -> bool:
 	if pixel_buffer.is_empty():
@@ -244,6 +289,9 @@ func get_buffers_in_polygon_and_delete(polygon: PackedVector2Array) -> void:
 func _get_buffers_in_polygon_and_delete(polygon: PackedVector2Array, image: Image, trait_image: Image) -> Dictionary:
 	var buffers: Dictionary = {}
 	
+	image = image.duplicate()
+	trait_image = trait_image.duplicate()
+	
 	var translated_polygon = polygon.duplicate()
 	for i in translated_polygon.size():
 		translated_polygon[i] += Vector2(pixel_buffer.size() / 2, pixel_buffer[0].size() / 2)
@@ -258,7 +306,7 @@ func _get_buffers_in_polygon_and_delete(polygon: PackedVector2Array, image: Imag
 				new_buffer[x][y].a = 0
 				new_trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
 			else: # Delete pixels within the selection
-				pixel_buffer[x][y].a = 0
+				pixel_buffer[x][y] = Color(1, 1, 1, 0)
 				trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
 				image.set_pixel(x, y, pixel_buffer[x][y])
 				trait_image.set_pixel(x, y, trait_buffer[x][y])
@@ -275,6 +323,7 @@ func _get_buffers_in_polygon_and_delete(polygon: PackedVector2Array, image: Imag
 
 func _finished_buffer_calc_and_deletion() -> void:
 	var buffers: Dictionary = thread.wait_to_finish()
+	print(buffers["pixel_texture"])
 	texture = buffers["pixel_texture"]
 	sprite_2d.texture = buffers["trait_texture"]
 	got_buffers.emit(buffers)
@@ -285,8 +334,6 @@ func get_buffers_in_polygon(polygon: PackedVector2Array) -> void:
 	thread.start(_get_buffers_in_polygon.bind(polygon))
 
 func _get_buffers_in_polygon(polygon: PackedVector2Array) -> Dictionary:
-	
-	
 	var buffers: Dictionary = {}
 	
 	var translated_polygon = polygon.duplicate()
