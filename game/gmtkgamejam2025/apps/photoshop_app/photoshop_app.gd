@@ -19,6 +19,9 @@ extends Control
 func _ready() -> void:
 	reset_button.pressed.connect(_on_reset_pressed)
 
+func set_file(file: File) -> void:
+	editing_panel.set_file(file)
+
 func set_texture(texture: Texture2D) -> void:
 	editing_panel.set_original_texture(texture)
 

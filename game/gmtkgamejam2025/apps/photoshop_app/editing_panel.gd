@@ -114,15 +114,17 @@ func handle_zoom(delta: float) -> void:
 		editing_anchor.scale = Vector2(ZOOM_LEVELS[current_zoom_index], ZOOM_LEVELS[current_zoom_index])
 
 func reset_texture() -> void:
-	set_original_texture(original_texture)
+	init_canvas(original_texture)
 
-func set_original_texture(texture: Texture2D) -> void:
+func init_canvas(texture: Texture2D) -> void:
 	original_texture = texture
 	true_image = texture.get_image()
 	
 	canvas_background.region_rect.size = texture.get_size()
-	
-	editable_image.set_pixel_buffer_from_texture(texture)
+
+func set_file(file: File) -> void:
+	init_canvas(file.texture)
+	editable_image.set_buffers_from_file(file)
 
 func copy_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()

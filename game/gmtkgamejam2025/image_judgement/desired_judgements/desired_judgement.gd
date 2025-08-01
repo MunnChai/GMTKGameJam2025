@@ -1,5 +1,14 @@
 class_name DesiredJudgement
 extends Resource
 
-@export var commission_day: int
+# A dictionary of desired traits, and the vector2 represents a range of values for the trait (x = lower bound, y = upper bound)
+# If a trait is not present in this dictionary, the judgement will not take any pixels of that trait into account
 @export var desired_traits: Dictionary[ImageJudgement.Trait, Vector2]
+
+# A range of the desired modification count (how many pixels of the original image were modified) (x = lower bound, y = upper bound)
+@export var desired_modification: Vector2
+
+# A dictionary of traits to string arrays, where the trait is which trait the commissioner is commenting on,
+# and the PackedStringArray should have 2 elements. The first element should be the comment if the trait is
+# too low, and the second element should be the comment if the trait is too high
+@export var feedback_comments: Dictionary[ImageJudgement.Trait, PackedStringArray]
