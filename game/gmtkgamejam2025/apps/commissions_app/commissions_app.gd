@@ -20,7 +20,7 @@ extends Control
 @onready var feedback_id: RichTextLabel = %FeedbackId
 @onready var feedback_title: RichTextLabel = %FeedbackTitle
 @onready var feedback_desc: RichTextLabel = %FeedbackDesc
-@onready var feedback_work: TextureRect = %SubmittedWork
+@onready var submitted_work: TextureRect = %SubmittedWork
 
 @export var commissions: Dictionary
 
@@ -42,6 +42,7 @@ func connect_signals() -> void:
 	submit_button.pressed.connect(on_submit_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
 	CommissionsManager.feedback_added.connect(_on_feedback_added)
+	CommissionsManager.submission_added.connect(_on_submission_added)
 
 func on_download_pressed() -> void:
 	var files = asset_list.get_children()
@@ -86,6 +87,13 @@ func on_back_button_pressed() -> void:
 	feedback_details.hide()
 	feedback_list.show()
 
+func _on_submission_added(work: File) -> void:
+	if not work:
+		submitted_work.hide()
+		return
+	submitted_work.show()
+	submitted_work.texture = work.texture
+
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()
 	feedback_list.hide()
@@ -93,7 +101,7 @@ func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_id.text = stat.id
 	feedback_title.text = stat.title
 	feedback_desc.text = stat.desc
-	feedback_work.texture = item.submission
+	#feedback_work.texture = item.submission
 
 func update_comm() -> void:
 	var day: int = GameStateManager.day
@@ -112,6 +120,9 @@ func update_comm() -> void:
 
 	for child in asset_list.get_children():
 		child.queue_free()
+
+	submitted_work.hide()
+	submitted_work.texture = null
 
 	var assets: Dictionary = stat.assets
 	if not assets:

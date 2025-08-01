@@ -2,6 +2,7 @@ class_name CommissionsManagerGlobal
 extends Node
 
 signal feedback_added(commission_id: int, feedback: Feedback)
+signal submission_added(work: File)
 
 var feedbacks: Dictionary[int, Array] = {}
 var submission: File
@@ -21,4 +22,4 @@ func clear_feedbacks(commission_id: int) -> void:
 func add_submission(work: File) -> void:
 	if work:
 		submission = work
-		print(work)
+		submission_added.emit(work)
