@@ -1,7 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://chx03v1b1ftmr"]
+[gd_scene load_steps=7 format=3 uid="uid://chx03v1b1ftmr"]
 
 [ext_resource type="Script" uid="uid://bihaanncehmrv" path="res://apps/file_explorer_app/file_explorer.gd" id="1_wo53c"]
 [ext_resource type="Script" uid="uid://bilb5mvh75gsb" path="res://apps/file_explorer_app/file_system.gd" id="2_tnlw6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo53c"]
+bg_color = Color(0.172549, 0.188235, 0.215686, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnlw6"]
+bg_color = Color(1, 0.372549, 0.34902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxa37"]
+bg_color = Color(1, 0.776471, 0.247059, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkvnn"]
+bg_color = Color(0.235294, 0.8, 0.368627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="FileExplorerApp" type="Control"]
 layout_mode = 3
@@ -11,45 +39,73 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FileExplorer" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Window" type="Window" parent="."]
+title = "File Explorer"
+size = Vector2i(800, 600)
+borderless = true
 script = ExtResource("1_wo53c")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="FileExplorer"]
-layout_mode = 1
+[node name="Background" type="Panel" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wo53c")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TopBar" type="HBoxContainer" parent="FileExplorer/VBoxContainer"]
+[node name="Header" type="PanelContainer" parent="Window/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TopBar" type="HBoxContainer" parent="Window/VBoxContainer/Header"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="FileExplorer/VBoxContainer/TopBar"]
+[node name="WindowControls" type="HBoxContainer" parent="Window/VBoxContainer/Header/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CloseButton" type="Button" parent="Window/VBoxContainer/Header/TopBar/WindowControls"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_tnlw6")
+
+[node name="MinButton" type="Button" parent="Window/VBoxContainer/Header/TopBar/WindowControls"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxa37")
+
+[node name="MaxButton" type="Button" parent="Window/VBoxContainer/Header/TopBar/WindowControls"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_fkvnn")
+
+[node name="BackButton" type="Button" parent="Window/VBoxContainer/Header/TopBar"]
 layout_mode = 2
 text = "Back"
 
-[node name="PathLabel" type="Label" parent="FileExplorer/VBoxContainer/TopBar"]
+[node name="PathLabel" type="Label" parent="Window/VBoxContainer/Header/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FileView" type="ScrollContainer" parent="FileExplorer/VBoxContainer"]
+[node name="FileView" type="ScrollContainer" parent="Window/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FileGrid" type="GridContainer" parent="FileExplorer/VBoxContainer/FileView"]
+[node name="FileGrid" type="GridContainer" parent="Window/VBoxContainer/FileView"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 10
-theme_override_constants/v_separation = 10
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
 columns = 6
 
-[node name="FileSystemNode" type="Node" parent="FileExplorer"]
+[node name="FileSystemNode" type="Node" parent="Window"]
 script = ExtResource("2_tnlw6")
