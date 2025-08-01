@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ch0ww8kp2820e"]
 
-[ext_resource type="Script" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
+[ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="2_2e8ng"]
 [ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_one.tres" id="3_3bsde"]
 [ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_two.tres" id="4_3bsde"]
@@ -41,11 +41,18 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions"]
+custom_minimum_size = Vector2(650, 570)
 layout_mode = 2
-theme_override_constants/separation = 15
+size_flags_horizontal = 4
+horizontal_scroll_mode = 0
 
-[node name="Id" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer"]
+custom_minimum_size = Vector2(650, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Id" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
@@ -53,7 +60,7 @@ bbcode_enabled = true
 text = "Id"
 fit_content = true
 
-[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
@@ -62,21 +69,19 @@ bbcode_enabled = true
 text = "Title"
 fit_content = true
 
-[node name="Description" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 text = "Description"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 10
 
-[node name="AssetList" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/MarginContainer"]
+[node name="AssetList" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
@@ -84,30 +89,36 @@ size_flags_vertical = 4
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer"]
+[node name="SubmittedWork" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Download" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/VBoxContainer"]
+[node name="Download" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "Download"
 
-[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/VBoxContainer"]
+[node name="Upload" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upload"
+
+[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "Submit"
-
-[node name="Feedbacks" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/VBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "Feedbacks"
 
 [node name="Feedbacks" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
 visible = false
@@ -118,7 +129,11 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
 
-[node name="FeedbackList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
+custom_minimum_size = Vector2(0, 570)
+layout_mode = 2
+
+[node name="FeedbackList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
@@ -161,7 +176,3 @@ layout_mode = 2
 mouse_filter = 1
 text = "Description of commission"
 fit_content = true
-
-[node name="SubmittedWork" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2

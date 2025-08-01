@@ -80,4 +80,5 @@ theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="FileExplorer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent" instance=ExtResource("4_i3qrd")]
+unique_name_in_owner = true
 layout_mode = 2

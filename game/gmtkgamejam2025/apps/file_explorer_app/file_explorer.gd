@@ -43,3 +43,9 @@ func _on_directory_changed(contents: Array[FileNode]):
 		back_button.disabled = true
 	else: 
 		back_button.disabled = false
+
+func set_upload_mode(upload: bool) -> void:
+	file_system.upload_mode = upload
+
+func get_file_system_access() -> FileSystemAccess:
+	return file_system
