@@ -57,6 +57,7 @@ layout_mode = 2
 [node name="SettingsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"settings"
+type = 2
 
 [node name="ErrorIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
@@ -75,6 +76,7 @@ args = Dictionary[StringName, Variant]({
 [node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"commissions"
+type = 2
 
 [node name="PhotoshopIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2

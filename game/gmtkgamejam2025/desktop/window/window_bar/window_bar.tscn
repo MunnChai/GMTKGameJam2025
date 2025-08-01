@@ -1,22 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx3qmlit7do7s"]
+[gd_scene load_steps=8 format=3 uid="uid://bx3qmlit7do7s"]
 
 [ext_resource type="Script" uid="uid://b28pgvdrq41qq" path="res://desktop/window/window_bar/window_bar.gd" id="1_n33ip"]
+[ext_resource type="Texture2D" uid="uid://g6yw2broqsqg" path="res://assets/ui/icons/Lasso Icon.png" id="2_apcxx"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_lgj8h"]
+[ext_resource type="Texture2D" uid="uid://bih3qhtry81jh" path="res://assets/ui/buttons/close_default.png" id="3_j2as5"]
+[ext_resource type="Texture2D" uid="uid://cdaaa32dslv5b" path="res://assets/ui/buttons/close_clicked.png" id="4_apcxx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n33ip"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apcxx"]
+bg_color = Color(0.517647, 0.517647, 0.517647, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgj8h"]
-bg_color = Color(0.771577, 0, 0.0993248, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j2as5"]
 
 [node name="WindowBar" type="MarginContainer"]
 offset_right = 512.0
@@ -27,40 +20,60 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_n33ip")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_apcxx")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_bottom = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="DragBar" type="PanelContainer" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_apcxx")
+stretch_mode = 3
+
+[node name="DragBar" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n33ip")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_j2as5")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/DragBar"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/DragBar"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 
-[node name="WindowTitle" type="RichTextLabel" parent="HBoxContainer/DragBar/MarginContainer"]
+[node name="WindowTitle" type="RichTextLabel" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/DragBar/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme = ExtResource("2_lgj8h")
+theme_override_constants/table_v_separation = 20
+theme_override_constants/line_separation = 0
 text = "Window Title
 "
 fit_content = true
 vertical_alignment = 1
 
-[node name="CloseButton" type="Button" parent="HBoxContainer"]
+[node name="CloseButton" type="TextureButton" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_lgj8h")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_lgj8h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_lgj8h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_lgj8h")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lgj8h")
-text = "X"
+texture_normal = ExtResource("3_j2as5")
+texture_pressed = ExtResource("4_apcxx")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://lysrnk033b8v"]
+[gd_scene load_steps=8 format=3 uid="uid://lysrnk033b8v"]
 
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="1_sdsnj"]
 [ext_resource type="Script" uid="uid://df0n55m0hujim" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.gd" id="1_ytlu5"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="2_ytlu5"]
+[ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_goage"]
 [ext_resource type="PackedScene" uid="uid://dgwj1gihalkoi" path="res://apps/file_explorer_app/file_explorer.tscn" id="4_i3qrd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
@@ -49,6 +50,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
+
+[node name="OS95WindowNinePatchRect" type="NinePatchRect" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("3_goage")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
 
 [node name="VerticalSplit" type="VBoxContainer" parent="JuicePivot/MainPanel"]
 layout_mode = 2
