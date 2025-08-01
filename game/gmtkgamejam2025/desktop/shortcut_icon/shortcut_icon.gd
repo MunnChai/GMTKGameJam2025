@@ -18,6 +18,11 @@ enum IconType {
 @export var app_id: StringName = &"hello_world"
 @export var type: IconType = IconType.BOOT_NEW
 @export var args: Dictionary[StringName, Variant]
+
+@export_category("Display")
+@export var shortcut_name: String = "shortcut"
+@export var icon: Texture2D = null
+
 var window_instance: DesktopWindow
 
 var being_removed := false
@@ -29,6 +34,19 @@ func _ready() -> void:
 	
 	%Button.mouse_entered.connect(_on_mouse_entered)
 	%Button.mouse_exited.connect(_on_mouse_exited)
+	
+	if icon:
+		%IconTexture.texture = icon
+	%ShortcutName.text = shortcut_name
+
+func set_icon(_icon: Texture2D) -> void:
+	icon = _icon
+	if icon != null:
+		%IconTexture.texture = icon
+
+func set_shortcut_name(_name: String) -> void:
+	shortcut_name = _name
+	%ShortcutName.text = shortcut_name
 
 func _on_mouse_entered() -> void:
 	is_hovered = true

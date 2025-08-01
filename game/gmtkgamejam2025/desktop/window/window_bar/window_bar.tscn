@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bx3qmlit7do7s"]
 
 [ext_resource type="Script" uid="uid://b28pgvdrq41qq" path="res://desktop/window/window_bar/window_bar.gd" id="1_n33ip"]
-[ext_resource type="Texture2D" uid="uid://g6yw2broqsqg" path="res://assets/ui/icons/Lasso Icon.png" id="2_apcxx"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_lgj8h"]
+[ext_resource type="Texture2D" uid="uid://112pdxc6afet" path="res://assets/ui/icons/netscape_missing.png" id="2_nviax"]
 [ext_resource type="Texture2D" uid="uid://bih3qhtry81jh" path="res://assets/ui/buttons/close_default.png" id="3_j2as5"]
 [ext_resource type="Texture2D" uid="uid://cdaaa32dslv5b" path="res://assets/ui/buttons/close_clicked.png" id="4_apcxx"]
 
@@ -19,6 +19,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 script = ExtResource("1_n33ip")
+window_icon = ExtResource("2_nviax")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -42,10 +43,13 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="WindowIcon" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-texture = ExtResource("2_apcxx")
-stretch_mode = 3
+texture = ExtResource("2_nviax")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="DragBar" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

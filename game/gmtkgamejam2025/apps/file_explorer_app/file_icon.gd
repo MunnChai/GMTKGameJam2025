@@ -24,13 +24,14 @@ func setup(node: FileNode):
 			# --- Logic for Shaped Icons ---
 			if file.file_type == "text":
 				# Apply the document style and hide the texture
-				add_theme_stylebox_override("normal", document_stylebox)
-				texture_rect.hide()
+				#add_theme_stylebox_override("normal", document_stylebox)
+				#texture_rect.hide()
 				# Change font color for better visibility on the light background
-				name_label.add_theme_color_override("font_color", Color.BLACK)
+				name_label.add_theme_color_override("font_color", Color.WHITE)
 			elif file.texture:
 				# It's an image, so use its texture
 				texture_rect.texture = file.texture
+				texture_rect.stretch_mode = TextureRect.StretchMode.STRETCH_KEEP_ASPECT_CENTERED
 			else:
 				# It's some other file type, use the generic icon
 				texture_rect.texture = unknown_file_icon

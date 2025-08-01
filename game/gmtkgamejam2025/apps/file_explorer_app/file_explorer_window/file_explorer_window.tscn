@@ -9,13 +9,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxhuy"]
-bg_color = Color(0.321728, 0.321728, 0.321728, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goage"]
 
 [node name="FileExplorerWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
 offset_right = 820.0
@@ -73,11 +67,15 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_cxhuy")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_goage")
 
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="FileExplorer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent" instance=ExtResource("4_i3qrd")]
 layout_mode = 2

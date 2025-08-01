@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="2_y4nv2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
-bg_color = Color(0, 0, 0, 0.294118)
+bg_color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxhuy"]
 bg_color = Color(0.321728, 0.321728, 0.321728, 1)

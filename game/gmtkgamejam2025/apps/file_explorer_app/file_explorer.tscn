@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgwj1gihalkoi"]
+[gd_scene load_steps=7 format=3 uid="uid://dgwj1gihalkoi"]
 
 [ext_resource type="Script" uid="uid://bihaanncehmrv" path="res://apps/file_explorer_app/file_explorer.gd" id="1_ylx0t"]
+[ext_resource type="Texture2D" uid="uid://ck62yw53r3drq" path="res://assets/ui/windows/window_inner_nine_patch_rect.png" id="2_6j7i7"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_led7x"]
 [ext_resource type="Script" uid="uid://pmxmwwfvu7gl" path="res://apps/file_explorer_app/file_system_access.gd" id="2_ylx0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo53c"]
@@ -9,6 +11,8 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6j7i7"]
 
 [node name="FileExplorer" type="Control"]
 layout_mode = 3
@@ -21,6 +25,7 @@ mouse_filter = 1
 script = ExtResource("1_ylx0t")
 
 [node name="Background" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +47,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6j7i7")
 
 [node name="TopBar" type="HBoxContainer" parent="VBoxContainer/Header"]
 layout_mode = 2
@@ -55,12 +61,35 @@ text = "Back"
 [node name="PathLabel" type="Label" parent="VBoxContainer/Header/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("2_led7x")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
-[node name="FileView" type="ScrollContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FileGrid" type="GridContainer" parent="VBoxContainer/FileView"]
+[node name="OS95WindowInnerNinePatchRect2" type="NinePatchRect" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("2_6j7i7")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="FileView" type="ScrollContainer" parent="VBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FileGrid" type="GridContainer" parent="VBoxContainer/MarginContainer/MarginContainer/FileView"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

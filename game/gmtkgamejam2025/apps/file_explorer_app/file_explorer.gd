@@ -3,7 +3,7 @@ extends Control
 
 @onready var back_button = $VBoxContainer/Header/TopBar/BackButton
 @onready var path_label = $VBoxContainer/Header/TopBar/PathLabel
-@onready var file_grid = $VBoxContainer/FileView/FileGrid
+@onready var file_grid = %FileGrid
 @onready var file_system = $FileSystemAccess
 @onready var header = $VBoxContainer/Header
 @onready var close_button = $VBoxContainer/Header/TopBar/WindowControls/CloseButton

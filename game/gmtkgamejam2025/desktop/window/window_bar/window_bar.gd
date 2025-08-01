@@ -12,6 +12,8 @@ signal drag_bar_hover_exited
 ## Displays the window title and sports the close button, drag bar
 ## ---
 
+@export var window_icon: Texture2D = null
+
 var window: DesktopWindow
 var window_title: String = "Computer Program"
 
@@ -22,6 +24,11 @@ func _ready() -> void:
 	%DragBar.mouse_exited.connect(_on_drag_bar_mouse_exit)
 	
 	%CloseButton.pressed.connect(_on_close_pressed)
+	
+	if window_icon:
+		%WindowIcon.texture = window_icon
+	else:
+		%WindowIcon.hide()
 
 func assign_window(_window: DesktopWindow) -> void:
 	window = _window
