@@ -26,7 +26,8 @@ var current_zoom_index: int = 1
 ## Copied texture
 var copied_buffer: Array[PackedColorArray]
 var copied_texture: Texture2D
-var copied_offset: Vector2
+var copied_lasso: PackedVector2Array
+var copied_lasso_pos: Vector2
 
 ## Moving pasted selection
 var is_pasted_moveable: bool = false
@@ -48,19 +49,16 @@ func _process(delta: float) -> void:
 	handle_actions(delta)
 	handle_movement(delta)
 	handle_zoom(delta)
-	
-	if is_pasted_moveable:
-		lasso_controller.disable()
-	else:
-		lasso_controller.enable()
 
 func handle_actions(delta: float) -> void:
 	if Input.is_action_just_pressed("copy"):
 		copy_selection()
+		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("cut"):
 		copy_selection()
 		delete_selection()
+		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("paste"):
 		paste_selection()
@@ -95,7 +93,7 @@ func handle_movement(delta: float) -> void:
 	
 	if Input.is_action_pressed("drag_pasted_selection") and is_pasted_moveable and not is_zero_approx(diff.length()):
 		pasted_selection.position += diff / editing_anchor.scale
-		lasso_controller.position = pasted_selection.position
+		lasso_controller.position = pasted_selection.position + copied_lasso_pos
 	
 	previous_mouse_position = current_mouse_position
 
@@ -125,6 +123,8 @@ func copy_selection() -> void:
 		translated_polygon[i] += lasso_controller.position
 	
 	copied_buffer = editable_image.get_pixel_buffer_in_polygon(translated_polygon)
+	copied_lasso = dotted_line.get_points()
+	copied_lasso_pos = lasso_controller.position
 
 func delete_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
@@ -135,9 +135,14 @@ func delete_selection() -> void:
 
 func paste_selection() -> void:
 	pasted_selection.position = Vector2.ZERO
+	lasso_controller.position = Vector2.ZERO
 	pasted_selection.set_pixel_buffer(copied_buffer)
 	
 	is_paste_confirmable = true
+	
+	dotted_line.set_points(copied_lasso)
+	lasso_controller.position = copied_lasso_pos
+	lasso_controller.disable()
 
 func paste_selection_to_image() -> void:
 	editable_image.impose_image(pasted_selection, pasted_selection.position)
@@ -145,4 +150,5 @@ func paste_selection_to_image() -> void:
 	is_paste_confirmable = false
 	
 	pasted_selection.clear()
-	print("Ya")
+	dotted_line.clear()
+	lasso_controller.enable()

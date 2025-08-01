@@ -62,6 +62,11 @@ func impose_image(other: SpriteBuffer, pos_offset: Vector2) -> void:
 			if is_zero_approx(color.a):
 				continue
 			
+			if new_pos.x < 0 or new_pos.x >= pixel_buffer.size():
+				continue
+			if new_pos.y < 0 or new_pos.y >= pixel_buffer[0].size():
+				continue
+			
 			pixel_buffer[new_pos.x][new_pos.y] = color
 			image.set_pixel(new_pos.x, new_pos.y, color)
 	
