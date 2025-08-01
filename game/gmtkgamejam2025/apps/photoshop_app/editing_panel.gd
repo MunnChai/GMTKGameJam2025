@@ -73,6 +73,9 @@ func handle_actions(delta: float) -> void:
 		cut_selection()
 	
 	if Input.is_action_just_pressed("paste"):
+		if is_paste_confirmable:
+			paste_selection_to_image()
+			await editable_image.finished_pasting
 		paste_selection()
 
 func handle_movement(delta: float) -> void:
@@ -145,6 +148,7 @@ func copy_selection() -> void:
 	
 	PhotoshopManager.copied_lasso = dotted_line.get_points()
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
+	PhotoshopManager.copied_paste_pos = Vector2(0, 0)
 
 func cut_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
@@ -156,6 +160,7 @@ func cut_selection() -> void:
 	
 	PhotoshopManager.copied_lasso = dotted_line.get_points()
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
+	PhotoshopManager.copied_paste_pos = Vector2(0, 0)
 
 #func delete_selection() -> void:
 	#var translated_polygon: PackedVector2Array = dotted_line.get_points()
@@ -167,7 +172,7 @@ func cut_selection() -> void:
 func paste_selection() -> void:
 	if PhotoshopManager.copied_buffer.is_empty():
 		return
-	pasted_selection.position = Vector2.ZERO
+	pasted_selection.position = PhotoshopManager.copied_paste_pos
 	lasso_controller.position = Vector2.ZERO
 	pasted_selection.set_pixel_buffer(PhotoshopManager.copied_buffer)
 	pasted_selection.set_trait_buffer(PhotoshopManager.copied_trait_buffer)
@@ -176,8 +181,9 @@ func paste_selection() -> void:
 	is_pasted_locked = false
 	
 	dotted_line.set_points(PhotoshopManager.copied_lasso)
-	lasso_controller.position = PhotoshopManager.copied_lasso_pos
+	lasso_controller.position = PhotoshopManager.copied_lasso_pos + PhotoshopManager.copied_paste_pos
 	lasso_controller.disable()
+	PhotoshopManager.copied_paste_pos += Vector2(5, 5)
 
 func paste_selection_to_image() -> void:
 	editable_image.impose_image(pasted_selection, pasted_selection.position)

@@ -24,8 +24,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("get_trait_dict") and name == "EditableImage":
 		var file: File = convert_to_file()
-		var info = ImageJudgement.get_file_info(file)
-		print(info)
+		#var info = ImageJudgement.get_file_info(file)
+		#print(info)
 
 #region Initialization
 
