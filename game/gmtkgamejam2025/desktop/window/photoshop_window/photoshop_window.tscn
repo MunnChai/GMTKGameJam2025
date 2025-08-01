@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6bgiruvd8hwu"]
+
+[ext_resource type="Script" uid="uid://ypixa58aak05" path="res://desktop/window/photoshop_window/photoshop_window.gd" id="1_dcbwl"]
+[ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_cgjju"]
+[ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="3_oa5mr"]
+[ext_resource type="PackedScene" uid="uid://omxyukgp61bw" path="res://apps/photoshop_app/photoshop_app.tscn" id="4_dcbwl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
+bg_color = Color(0, 0, 0, 0.294118)
+
+[node name="TestWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
+offset_right = 837.0
+offset_bottom = 535.0
+script = ExtResource("1_dcbwl")
+window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
+
+[node name="JuicePivot" parent="." instance=ExtResource("2_cgjju")]
+layout_mode = 1
+
+[node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -418.5
+offset_top = -267.5
+offset_right = 418.5
+offset_bottom = 267.5
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShadowPanel" type="Panel" parent="JuicePivot/MainPanel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
+
+[node name="VerticalSplit" type="VBoxContainer" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("3_oa5mr")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PhotoshopApp" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("4_dcbwl")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

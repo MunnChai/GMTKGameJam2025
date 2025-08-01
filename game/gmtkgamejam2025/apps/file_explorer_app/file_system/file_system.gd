@@ -20,8 +20,8 @@ func _ready():
 
 	# --- Create a sample file structure ---
 	# NOTE: You must have these images in the specified path for them to load.
-	var cat_image = load("res://game/assets/images/cat.png") 
-	var dog_image = load("res://game/assets/images/dog.png")
+	var cat_image = load("res://assets/images/nutreents_logo.png") 
+	var dog_image = load("res://assets/images/dog.png")
 
 	var file1 = File.new("cat_photo.png", "image", cat_image)
 	var file2 = File.new("dog_picture.jpg", "image", dog_image)
@@ -52,7 +52,8 @@ func open_file(node: FileNode) -> bool:
 		return false
 	if node is Folder:
 		return false
-	Desktop.instance.execute(&"error", {})
+	#Desktop.instance.execute(&"error", {})
+	Desktop.instance.execute(&"photoshop", {"texture": node.texture })
 	return true
 
 func add_file_node_at(path: String, file_node: FileNode) -> bool:
@@ -70,7 +71,6 @@ func parse_path(path: String) -> FileNode:
 	for name: String in names:
 		var traversed := false
 		var file_found := false
-		print(current_folder.children)
 		for child: FileNode in current_folder.children:
 			if child.node_name == name:
 				if child is Folder:

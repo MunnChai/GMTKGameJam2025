@@ -31,6 +31,10 @@ func add_point(local_pos: Vector2) -> void:
 func add_global_point(global_pos: Vector2) -> void:
 	line.add_point(to_local(global_pos))
 
+func set_points(points: PackedVector2Array) -> void:
+	line.points = points
+	
+
 ## Removes the point at the given index
 func remove(index: int) -> void:
 	line.remove_point(index)

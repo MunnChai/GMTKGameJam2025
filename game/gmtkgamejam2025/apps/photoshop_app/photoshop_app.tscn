@@ -28,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_5byx1")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -37,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_2tu6o")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
@@ -44,8 +46,8 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
-z_index = 1
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i8qo4")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/PanelContainer"]
@@ -58,20 +60,24 @@ layout_mode = 2
 [node name="SaveButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 disabled = true
 text = "Save"
 
 [node name="ResetButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Reset"
 
 [node name="ExportButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Export"
 
 [node name="EditingPanel" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 0
@@ -79,8 +85,8 @@ script = ExtResource("2_pedke")
 test_texture = ExtResource("3_rqrjq")
 
 [node name="ToolbarContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer/EditingPanel"]
-z_index = 1
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_2tu6o")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer"]
@@ -93,63 +99,71 @@ layout_mode = 2
 [node name="CopyButton" type="Button" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Copy
 "
 
 [node name="CutButton" type="Button" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Cut
 "
 
 [node name="PasteButton" type="Button" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Paste"
 
 [node name="UndoButton" type="Button" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Undo
 "
 
 [node name="RedoButton" type="Button" parent="PanelContainer/VBoxContainer/EditingPanel/ToolbarContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Redo"
 
-[node name="EditingPanel" type="Control" parent="PanelContainer/VBoxContainer/EditingPanel"]
+[node name="EditingNode" type="Control" parent="PanelContainer/VBoxContainer/EditingPanel"]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 1
 
-[node name="EditingAnchor" type="Control" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel"]
+[node name="EditingAnchor" type="Control" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode"]
 unique_name_in_owner = true
 anchors_preset = 0
 offset_left = 610.0
 offset_top = 330.0
 offset_right = 610.0
 offset_bottom = 330.0
+mouse_filter = 1
 
-[node name="CanvasBackground" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
+[node name="CanvasBackground" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor"]
 unique_name_in_owner = true
 texture_repeat = 2
 texture = ExtResource("3_2tu6o")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="EditableImage" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
+[node name="EditableImage" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor"]
 unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
-[node name="PastedSelection" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
+[node name="PastedSelection" type="Sprite2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor"]
 unique_name_in_owner = true
 script = ExtResource("6_rqrjq")
 
-[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor"]
+[node name="LassoController" type="Node2D" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor" node_paths=PackedStringArray("editing_node")]
 unique_name_in_owner = true
 script = ExtResource("6_kyq4q")
+editing_node = NodePath("../..")
 
-[node name="DottedLine" parent="PanelContainer/VBoxContainer/EditingPanel/EditingPanel/EditingAnchor/LassoController" instance=ExtResource("6_i8qo4")]
+[node name="DottedLine" parent="PanelContainer/VBoxContainer/EditingPanel/EditingNode/EditingAnchor/LassoController" instance=ExtResource("6_i8qo4")]
 unique_name_in_owner = true

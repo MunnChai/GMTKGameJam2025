@@ -54,12 +54,20 @@ func impose_image(other: SpriteBuffer, pos_offset: Vector2) -> void:
 	var image: Image = texture.get_image()
 	
 	var other_image: Image = other.texture.get_image()
+	
+	var size_diff = Vector2(other.pixel_buffer.size(), other.pixel_buffer[0].size()) - Vector2(pixel_buffer.size(), pixel_buffer[0].size())
+	
 	for x in other.pixel_buffer.size():
 		for y in other.pixel_buffer[0].size():
-			var new_pos = Vector2i(pos_offset + Vector2(x, y))
+			var new_pos = Vector2i(pos_offset + Vector2(x, y)) - Vector2i(size_diff / 2)
 			
 			var color = other_image.get_pixel(x, y)
 			if is_zero_approx(color.a):
+				continue
+			
+			if new_pos.x < 0 or new_pos.x >= pixel_buffer.size():
+				continue
+			if new_pos.y < 0 or new_pos.y >= pixel_buffer[0].size():
 				continue
 			
 			pixel_buffer[new_pos.x][new_pos.y] = color
