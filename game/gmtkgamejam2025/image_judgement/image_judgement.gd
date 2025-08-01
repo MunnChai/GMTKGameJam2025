@@ -23,6 +23,15 @@ enum Trait {
 }
 
 @export var trait_colors: Dictionary[Trait, Color]
+var color_hash_to_trait: Dictionary[int, Trait]
+
+func _ready() -> void:
+	generate_color_hash_dict()
+
+func generate_color_hash_dict() -> void:
+	for key in trait_colors:
+		var color = trait_colors[key]
+		color_hash_to_trait[color.to_rgba32()] = key
 
 func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
 	pass
@@ -35,17 +44,13 @@ func get_file_info(file: File) -> Dictionary:
 	var info_dict: Dictionary = {}
 	
 	var traits: Dictionary[Trait, int]
-	var trait_texture: Texture = file.trait_texture
-	var trait_image: Image = trait_texture.get_image()
+	var trait_image: Image = file.trait_texture.get_image()
 	for x in trait_image.get_size().x:
 		for y in trait_image.get_size().y:
 			var trait_color: Color = trait_image.get_pixel(x, y)
 			
 			var trait_type: Trait = get_trait_from_color(trait_color)
-			if traits.has(trait_type):
-				traits[trait_type] += 1
-			else:
-				traits[trait_type] = 1
+			traits[trait_type] = traits.get_or_add(trait_type, 0) + 1
 	
 	info_dict["traits"] = traits
 	info_dict["modified_count"] = file.modified_count
@@ -53,8 +58,7 @@ func get_file_info(file: File) -> Dictionary:
 	return info_dict
 
 func get_trait_from_color(color: Color) -> Trait:
-	for key in trait_colors.keys():
-		if color.is_equal_approx(trait_colors[key]):
-			return key
-	
+	var color_hash: int = color.to_rgba32()
+	if color_hash_to_trait.has(color_hash):
+		return color_hash_to_trait.get(color_hash)
 	return Trait.NONE

@@ -265,13 +265,11 @@ func get_buffers_in_polygon_and_delete(polygon: PackedVector2Array) -> Dictionar
 #region File Conversion
 
 func convert_to_file() -> File:
-	var texture_image: Image = Image.create_empty(pixel_buffer.size(), pixel_buffer[0].size(), false, Image.FORMAT_RGB8)
-	var trait_texture_image: Image = Image.create_empty(pixel_buffer.size(), pixel_buffer[0].size(), false, Image.FORMAT_RGB8)
+	var texture_image: Image = texture.get_image()
+	var trait_texture_image: Image = sprite_2d.texture.get_image()
 	var modified_count: int = 0
 	for x in pixel_buffer.size():
 		for y in pixel_buffer[0].size():
-			texture_image.set_pixel(x, y, pixel_buffer[x][y])
-			trait_texture_image.set_pixel(x, y, trait_buffer[x][y])
 			if modified_buffer[x][y] != 0:
 				modified_count += 1
 	
