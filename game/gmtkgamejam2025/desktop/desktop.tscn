@@ -1,16 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=8 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
-[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
+[ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
 [ext_resource type="PackedScene" uid="uid://84nw05m865xp" path="res://desktop/window/error_popup/error_popup.tscn" id="3_irqsv"]
 [ext_resource type="PackedScene" uid="uid://bf2h01ok52xw4" path="res://desktop/shortcut_icon/shortcut_icon.tscn" id="3_py4qr"]
 [ext_resource type="PackedScene" uid="uid://icmnoob2solt" path="res://apps/settings_app/settings_window/settings_window.tscn" id="4_hbe16"]
 [ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
+[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.tscn" id="5_6vopt"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
 window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"error": ExtResource("3_irqsv"),
+&"file_explorer": ExtResource("5_6vopt"),
 &"hello_world": ExtResource("2_87qqj"),
 &"settings": ExtResource("4_hbe16")
 })

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dw5pwp8i1xe4f"]
+[gd_scene load_steps=7 format=3 uid="uid://lysrnk033b8v"]
 
-[ext_resource type="Script" uid="uid://csl8qcwcrq6i1" path="res://desktop/window/test_window/test_window.gd" id="1_cxhuy"]
-[ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_712ap"]
-[ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="2_y4nv2"]
+[ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="1_sdsnj"]
+[ext_resource type="Script" uid="uid://df0n55m0hujim" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.gd" id="1_ytlu5"]
+[ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="2_ytlu5"]
+[ext_resource type="PackedScene" uid="uid://dgwj1gihalkoi" path="res://apps/file_explorer_app/file_explorer.tscn" id="4_i3qrd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
@@ -15,22 +16,22 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 
-[node name="TestWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
-offset_right = 419.0
-offset_bottom = 299.0
-script = ExtResource("1_cxhuy")
+[node name="FileExplorerWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
+offset_right = 820.0
+offset_bottom = 472.0
+script = ExtResource("1_ytlu5")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
 
-[node name="JuicePivot" parent="." instance=ExtResource("2_712ap")]
+[node name="JuicePivot" parent="." instance=ExtResource("1_sdsnj")]
 layout_mode = 1
 
 [node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -209.5
-offset_top = -149.5
-offset_right = 209.5
-offset_bottom = 149.5
+offset_left = -410.0
+offset_top = -236.0
+offset_right = 410.0
+offset_bottom = 236.0
 mouse_filter = 1
 
 [node name="Control" type="Control" parent="JuicePivot/MainPanel"]
@@ -53,7 +54,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("2_y4nv2")]
+[node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("2_ytlu5")]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -67,14 +68,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cxhuy")
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent"]
-unique_name_in_owner = true
+[node name="FileExplorer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent" instance=ExtResource("4_i3qrd")]
 layout_mode = 2
-mouse_filter = 1
-text = "Hello world!"
-fit_content = true
