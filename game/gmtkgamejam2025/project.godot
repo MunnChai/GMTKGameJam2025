@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 FileSystem="*res://apps/file_explorer_app/file_system/file_system.gd"
-<<<<<<<HEADFileSystem="*res://apps/file_explorer_app/file_system/file_system.gd"
 PhotoshopManager="*res://apps/photoshop_app/photoshop_manager/photoshop_manager.gd"
 CommissionManager="*res://apps/commissions_app/commission_manager.gd"
 
