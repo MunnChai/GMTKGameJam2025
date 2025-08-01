@@ -20,9 +20,9 @@ func _ready():
 
 	# --- Create a sample file structure ---
 	# NOTE: You must have these images in the specified path for them to load.
-	var nutreents_image = load("res://assets/images/nutreents_logo.png") 
+	#var nutreents_image = load("res://assets/images/nutreents_logo.png") 
 
-	var file1 = File.new("nutreents.png", "image", nutreents_image)
+	#var file1 = File.new("nutreents.png", "image", nutreents_image)
 	var file_2 = File.new("passwords.txt", "text", null)
 
 	add_file_node_at("/", file_2)
@@ -34,7 +34,7 @@ func _ready():
 	# Create a "images" folder
 	var images_folder = Folder.new("images")
 	add_file_node_at("/", images_folder)
-	add_file_node_at("/images", file1)
+	#add_file_node_at("/images", file1)
 	
 	var file3 = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
 	add_file_node_at("/", file3)

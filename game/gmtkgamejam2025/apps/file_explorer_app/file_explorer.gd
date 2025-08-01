@@ -2,7 +2,7 @@ class_name FileExplorer
 extends Control
 
 @onready var back_button = $VBoxContainer/Header/TopBar/BackButton
-@onready var path_label = $VBoxContainer/Header/TopBar/PathLabel
+@onready var path_label = %PathLabel
 @onready var file_grid = %FileGrid
 @onready var file_system = $FileSystemAccess
 @onready var header = $VBoxContainer/Header
@@ -38,3 +38,8 @@ func _on_directory_changed(contents: Array[FileNode]):
 		var folder = file_system.directory_history[i]
 		path_string += ("/" if i > 0 else "") + folder.node_name
 	path_label.text = path_string + "/"
+	
+	if file_system.directory_history.size() <= 1:
+		back_button.disabled = true
+	else: 
+		back_button.disabled = false
