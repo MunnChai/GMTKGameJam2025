@@ -8,12 +8,15 @@ extends Control
 
 @onready var date_label: RichTextLabel = %DateLabel
 
-const ICON_SPACING := 64.0
+const ICON_SPACING := 4.0
 
-var window_dict: Dictionary[DesktopWindow, ShortcutIcon]
-var shortcuts: Array[ShortcutIcon]
+var window_dict: Dictionary[DesktopWindow, TaskBarShortcut]
+var shortcuts: Array[TaskBarShortcut]
+
+static var instance: TaskBar
 
 func _ready() -> void:
+	instance = self
 	GameStateManager.day_changed.connect(update_date_label)
 
 func update_date_label(day: int) -> void:
@@ -47,6 +50,9 @@ func add_task(window: DesktopWindow) -> void:
 	window_dict.set(window, shortcut)
 	shortcuts.append(shortcut)
 	
+	shortcut.button_pressed = true
+	set_active(shortcut)
+	
 	_arrange_icons()
 
 ## Remove the task bar icon for the window, if it exists
@@ -54,28 +60,47 @@ func remove_task(window: DesktopWindow) -> void:
 	if not window_dict.has(window):
 		return
 	
-	var shortcut: ShortcutIcon = window_dict.get(window)
+	var shortcut: TaskBarShortcut = window_dict.get(window)
 	shortcuts.erase(shortcut)
 	window_dict.erase(window)
 	
 	shortcut.remove()
 	
+	## Get the next one
+	if Desktop.instance.has_active_window():
+		shortcut = window_dict.get(Desktop.instance.get_active_window())
+		shortcut.button_pressed = true
+		set_active(shortcut)
+	
 	_arrange_icons()
 
 ## Create a task bar shortcut for instances of programs
-const SHORTCUT_ICON = preload("res://desktop/shortcut_icon/shortcut_icon.tscn")
-func create_task_bar_shortcut() -> ShortcutIcon:
+const SHORTCUT_ICON = preload("res://desktop/task_bar/task_bar_shortcut/task_bar_shortcut.tscn")
+func create_task_bar_shortcut() -> TaskBarShortcut:
 	var new_shortcut_icon := SHORTCUT_ICON.instantiate()
-	add_child(new_shortcut_icon)
-	new_shortcut_icon.type = ShortcutIcon.IconType.INSTANCE
+	%TaskBarShortcuts.add_child(new_shortcut_icon)
+	#new_shortcut_icon.type = ShortcutIcon.IconType.INSTANCE
 	return new_shortcut_icon
 
 ## Arrange icons with offset in between
 func _arrange_icons() -> void:
-	var i = 0
+	var so_far = 0
 	for icon in shortcuts:
-		var offset := (float(i) - (shortcuts.size() / 2.0) + 0.5) * ICON_SPACING
-		TweenUtil.whoosh(icon, Vector2(offset, -32))
-		TweenUtil.pop_delta(icon, Vector2(0.2, 0.2), 0.5)
+		#var offset := (float(i) - (shortcuts.size() / 2.0) + 0.5) * ICON_SPACING
+		var offset = so_far
+		if not GameSettings.get_setting("reduced_motion", false, "graphics"):
+			TweenUtil.whoosh(icon, Vector2(offset, 0))
+			TweenUtil.pop_delta(icon, Vector2(0.2, 0.2), 0.5)
+		else:
+			icon.position = Vector2(offset, 0)
+		
+		if icon.is_new:
+			icon.is_new = false
+			icon.position = Vector2(offset, 0)
+		so_far += icon.size.x + ICON_SPACING
 		#icon.position = Vector2(offset, -32)
-		i += 1
+
+func set_active(shortcut: TaskBarShortcut) -> void:
+	for sc: TaskBarShortcut in shortcuts:
+		if sc != shortcut:
+			sc.button_pressed = false

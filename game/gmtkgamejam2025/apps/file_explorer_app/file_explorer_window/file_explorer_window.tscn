@@ -17,6 +17,7 @@ offset_right = 820.0
 offset_bottom = 472.0
 script = ExtResource("1_ytlu5")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
+taskbar_icon = ExtResource("5_cp83j")
 
 [node name="JuicePivot" parent="." instance=ExtResource("1_sdsnj")]
 layout_mode = 1
@@ -75,7 +76,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_goage")
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 

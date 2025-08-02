@@ -125,10 +125,11 @@ func close_window(window: DesktopWindow) -> void:
 	if not has_window(window) or window.is_closing:
 		return
 	
-	%TaskBar.remove_task(window)
-	
 	var index = get_index_of_window(window)
 	windows.erase(window)
+	
+	%TaskBar.remove_task(window)
+	
 	window.close_self()
 	
 	## Update every window after this one... 

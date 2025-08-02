@@ -20,7 +20,7 @@ offset_right = 446.0
 offset_bottom = 392.0
 script = ExtResource("1_vixk8")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
-taskbar_icon = SubResource("AtlasTexture_syg6c")
+taskbar_icon = ExtResource("5_syg6c")
 
 [node name="JuicePivot" parent="." instance=ExtResource("2_omlrf")]
 layout_mode = 1
