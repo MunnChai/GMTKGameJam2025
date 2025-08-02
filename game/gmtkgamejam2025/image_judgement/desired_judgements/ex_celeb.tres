@@ -22,4 +22,6 @@ feedback_comments = Dictionary[int, PackedStringArray]({
 })
 desired_modification = Vector2(1, 200000)
 modification_comments = PackedStringArray("Why did nothing change?", "", "This looks a little off from what i sent you...")
+min_money = 0.0
+max_money = 30.0
 metadata/_custom_type_script = "uid://bku7ds6r61ofw"

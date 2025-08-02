@@ -58,6 +58,7 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 		return {
 			"rating": rating,
 			"comments": comments,
+			"amount_paid": 0,
 		}
 	elif modified_count < desired_judgement.desired_modification.y: # Good modification
 		comments += desired_judgement.modification_comments[1]
@@ -99,9 +100,11 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 	
 	results["rating"] = rating
 	results["comments"] = comments
+	results["amount_paid"] = desired_judgement.min_money + (desired_judgement.max_money - desired_judgement.min_money) * (rating / 10.0)
 	
 	print("Rating: ", rating)
 	print("Comments: ", comments)
+	print("Amount Paid: ", results["amount_paid"])
 	return results
 
 # Returns a dictionary of various info about the file

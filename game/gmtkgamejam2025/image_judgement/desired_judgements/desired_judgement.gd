@@ -16,3 +16,6 @@ extends Resource
 @export var desired_modification: Vector2
 
 @export var modification_comments: PackedStringArray
+
+@export var min_money: float
+@export var max_money: float
