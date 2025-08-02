@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c683yxhh0pau7"]
+[gd_scene load_steps=3 format=3 uid="uid://viyeslkfohoe"]
 
-[ext_resource type="Script" uid="uid://c8mviiu0bctu4" path="res://start_screen.gd" id="1_pevhg"]
+[ext_resource type="Script" path="res://start_screen.gd" id="1_pevhg"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_pevhg"]
 
 [node name="StartScreen" type="Node2D"]

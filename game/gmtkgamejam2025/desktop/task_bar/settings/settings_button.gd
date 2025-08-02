@@ -2,8 +2,8 @@ class_name SettingsButton
 extends Button
 
 @onready var settings_panel: SettingsPanel = %SettingsPanel
-@onready var settings_button_text: RichTextLabel = %SettingsButtonText
-@onready var settings_icon: TextureRect = %SettingsIcon
+#@onready var settings_button_text: RichTextLabel = %SettingsButtonText
+#@onready var settings_icon: TextureRect = %SettingsIcon
 
 var is_open := true
 
