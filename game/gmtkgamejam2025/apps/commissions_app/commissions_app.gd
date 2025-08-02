@@ -47,6 +47,7 @@ func connect_signals() -> void:
 	submit_button.pressed.connect(on_submit_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
 	CommissionsManager.submission_added.connect(_on_submission_added)
+	Desktop.instance.transition_done.connect(update_comm)
 
 #region COMMISSION TAB
 
@@ -64,7 +65,6 @@ func on_upload_pressed() -> void:
 func on_submit_pressed() -> void:
 	add_feedback()
 	GameStateManager.next_day()
-	update_comm()
 
 func update_comm() -> void:
 	var day: int = GameStateManager.day
