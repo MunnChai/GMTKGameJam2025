@@ -40,31 +40,14 @@ func _ready() -> void:
 	connect_signals()
 	update_comm()
 	update_feedback()
-	_load_existing_feedback()
 
 func connect_signals() -> void:
 	download_button.pressed.connect(on_download_pressed)
 	upload_button.pressed.connect(on_upload_pressed)
 	submit_button.pressed.connect(on_submit_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
-	#CommissionsManager.feedback_added.connect(_on_feedback_added)
 	CommissionsManager.submission_added.connect(_on_submission_added)
 
-	
-	# # — placeholder
-	# var placeholder_tex := ImageTexture.new()
-	# var img := Image.new()
-	# img.create(128, 128, false, Image.FORMAT_RGBA8)
-	# img.fill(Color(0.8, 0.8, 0.8, 1.0))
-	# placeholder_tex.create_from_image(img)
-	# var fb = Feedback.new()
-	# fb.title = "title"
-	# fb.rating = 0
-	# fb.submission = placeholder_tex
-	# CommissionsManager.add_feedback(commission_stat.id, fb)
-	# day += 1
-	# update_comm()
-	# emit_signal("day_changed")
 #region COMMISSION TAB
 
 func on_download_pressed() -> void:
@@ -155,24 +138,4 @@ func update_feedback() -> void:
 		feedback_list.add_child(feedback_instance)
 		feedback_instance.setup(fb)
 		feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
-#endregion
-
-#region TYLERS CODE
-func _load_existing_feedback() -> void:
-	return
-	## caused error so i commented it for now
-	#var saved = CommissionsManager.get_feedbacks(int(commission_stat.id))
-	#for fb_data in saved:
-		#_create_feedback_item(fb_data)
-
-func _on_feedback_added(c_id: int, fb_data) -> void:
-	if c_id != int(commission_stat.id):
-		return
-	_create_feedback_item(fb_data)
-
-func _create_feedback_item(fb_data) -> void:
-	var item = FeedbackListItemScene.instantiate()
-	item.setup_with_data(commission_stat, fb_data)
-	feedback_list.add_child(item)
-	item.pressed.connect(on_feedback_item_pressed.bind(item))
 #endregion

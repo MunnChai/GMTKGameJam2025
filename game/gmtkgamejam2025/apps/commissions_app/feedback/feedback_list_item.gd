@@ -5,7 +5,6 @@ extends Button
 @onready var client_id: RichTextLabel = %ClientId
 
 
-# List item only contains a Feedback object and commission_stat
 var feedback: Feedback
 
 func setup(fb: Feedback) -> void:
