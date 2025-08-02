@@ -15,14 +15,9 @@ const DOWNLOAD_FILE = preload("res://apps/commissions_app/download_file_scene/do
 @onready var asset_list: Container = %AssetList
 
 # feedback related
-@onready var back_button: Button = %BackButton
 @onready var feedback_list: VBoxContainer = %FeedbackList
-@onready var feedback_details: MarginContainer = %FeedbackDetails
-@onready var feedback_id: RichTextLabel = %FeedbackId
-@onready var feedback_title: RichTextLabel = %FeedbackTitle
-@onready var feedback_desc: RichTextLabel = %FeedbackDesc
-@onready var feedback_rating: RichTextLabel = %FeedbackRating
-@onready var feedback_submission: TextureRect = %FeedbackSubmission
+@onready var feedback_details: FeedbackDetails = %FeedbackDetails
+
 
 @export var commissions: Dictionary
 
@@ -42,7 +37,7 @@ func connect_signals() -> void:
 	download_button.pressed.connect(on_download_pressed)
 	upload_button.pressed.connect(on_upload_pressed)
 	submit_button.pressed.connect(on_submit_pressed)
-	back_button.pressed.connect(on_back_button_pressed)
+	feedback_details.back_pressed.connect(on_back_button_pressed)
 	CommissionsManager.submission_added.connect(_on_submission_added)
 	#Desktop.instance.transition_done.connect(update_comm)
 
@@ -116,10 +111,10 @@ func add_feedback() -> void:
 	var rating: int = ImageJudgement.compare_file_to_desired(CommissionsManager.get_submission(), null)
 	var feedback: Feedback = Feedback.new(commission_stat, rating, CommissionsManager.get_submission())
 	CommissionsManager.add_feedback(feedback)
-	var feedback_instance = FeedbackListItemScene.instantiate()
+	var feedback_instance: FeedbackListItem = FeedbackListItemScene.instantiate()
 	feedback_list.add_child(feedback_instance)
 	feedback_instance.setup(feedback)
-	feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
+	feedback_instance.details_pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
 
 func on_back_button_pressed() -> void:
 	feedback_details.hide()
@@ -135,13 +130,7 @@ func _on_submission_added(work: File) -> void:
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()
 	feedback_list.hide()
-	var stat: CommissionStat = item.get_feedback().get_stat()
-	feedback_id.text = stat.id
-	feedback_title.text = stat.title
-	feedback_desc.text = stat.desc
-	var fb: Feedback = item.get_feedback()
-	feedback_rating.text = str(fb.rating)
-	feedback_submission.texture = fb.get_submission_texture()
+	feedback_details.setup(item.get_feedback())
 
 # update the feedback_tab
 func update_feedback() -> void:
@@ -150,5 +139,5 @@ func update_feedback() -> void:
 		var feedback_instance = FeedbackListItemScene.instantiate()
 		feedback_list.add_child(feedback_instance)
 		feedback_instance.setup(fb)
-		feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
+		feedback_instance.details_pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
 #endregion

@@ -4,6 +4,7 @@ extends Node
 var stat: CommissionStat
 var rating: int
 var submission: File
+var comments: String
 
 func _init(_stat: CommissionStat, _rating: int = 0, _submission: File = null) -> void:
 	stat = _stat
