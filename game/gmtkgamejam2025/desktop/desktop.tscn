@@ -111,13 +111,6 @@ args = Dictionary[StringName, Variant]({
 shortcut_name = "photoloop.exe"
 icon = ExtResource("10_4ndcx")
 
-[node name="SettingsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"settings"
-type = 2
-shortcut_name = "settings"
-icon = null
-
 [node name="Windows" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
 layout_mode = 3

@@ -57,6 +57,8 @@ func _on_pressed() -> void:
 	if being_removed:
 		return
 	trigger()
+	if GameSettings.get_setting("reduced_motion", false, "graphics"):
+		return
 	TweenUtil.pop_delta(self, Vector2(0.2, 0.2), 0.3)
 
 ## Trigger this shortcut
@@ -82,6 +84,9 @@ func remove() -> void:
 	if being_removed:
 		return
 	being_removed = true
+	if GameSettings.get_setting("reduced_motion", false, "graphics"):
+		queue_free()
+		return
 	await TweenUtil.scale_to(self, Vector2.ZERO, 0.3).finished
 	queue_free()
 
@@ -95,6 +100,7 @@ func _process(delta: float) -> void:
 	if is_hovered:
 		target_pos += Vector2.UP * 6.0
 	
-	%Circle.position = MathUtil.decay(%Circle.position, target_pos, 15.0, delta)
-	
-	## TODO: Update icon with icon texture specified in the window
+	if not GameSettings.get_setting("reduced_motion", false, "graphics"):
+		%Circle.position = MathUtil.decay(%Circle.position, target_pos, 15.0, delta)
+	else:
+		%Circle.position = base_pos

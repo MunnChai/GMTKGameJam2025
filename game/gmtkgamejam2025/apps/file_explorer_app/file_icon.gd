@@ -43,10 +43,14 @@ func setup(node: FileNode):
 @onready var base_pos: Vector2 = %TextureRect.position
 
 func _on_mouse_entered() -> void:
+	if GameSettings.get_setting("reduced_motion", false, "graphics"):
+		return
 	if is_instance_valid(%TextureRect):
 		TweenUtil.whoosh(%TextureRect, base_pos + Vector2.UP * 8.0, 0.3)
 		TweenUtil.pop_delta(%TexturePivot, Vector2(0.2, 0.2), 0.35)
 
 func _on_mouse_exited() -> void:
+	if GameSettings.get_setting("reduced_motion", false, "graphics"):
+		return
 	if is_instance_valid(%TextureRect):
 		TweenUtil.whoosh(%TextureRect, base_pos, 0.3)

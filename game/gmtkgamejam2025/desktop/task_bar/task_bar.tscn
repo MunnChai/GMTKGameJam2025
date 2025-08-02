@@ -1,6 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://bgj7bok1k4k1n"]
+[gd_scene load_steps=35 format=3 uid="uid://bgj7bok1k4k1n"]
 
 [ext_resource type="Script" uid="uid://bcn0ybr3x7jsh" path="res://desktop/task_bar/task_bar.gd" id="1_jxr6l"]
+[ext_resource type="Script" uid="uid://bqrq6rh3jr0el" path="res://desktop/task_bar/settings_pivot.gd" id="2_okagq"]
 [ext_resource type="Texture2D" uid="uid://cyw5b3rw3jdnw" path="res://assets/ui/task_bar.png" id="2_rkt6j"]
 [ext_resource type="Texture2D" uid="uid://dvw6gu8cmy168" path="res://assets/ui/buttons/button_default.png" id="3_e7cxb"]
 [ext_resource type="Texture2D" uid="uid://cvmpmymnwn5c7" path="res://assets/ui/buttons/button_pressed.png" id="4_j88fw"]
@@ -68,11 +69,13 @@ anchors_preset = 0
 script = ExtResource("1_jxr6l")
 
 [node name="SettingsPivot" type="Control" parent="."]
+unique_name_in_owner = true
 anchors_preset = 0
 offset_left = -640.0
 offset_top = -32.0
 offset_right = -640.0
 offset_bottom = -32.0
+script = ExtResource("2_okagq")
 
 [node name="SettingsPanel" type="PanelContainer" parent="SettingsPivot"]
 unique_name_in_owner = true
