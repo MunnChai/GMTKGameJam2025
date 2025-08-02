@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://gpow37rw70ga"]
+[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://dd6j68a6j11b6"]
 
-[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_f3c8k"]
+[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_bmjcj"]
 
 [resource]
-script = ExtResource("1_f3c8k")
+script = ExtResource("1_bmjcj")
 desired_traits = Dictionary[int, Vector2]({
--999: Vector2(0, 20000),
+-999: Vector2(0, 50000),
 -4: Vector2(20000, 100000),
 0: Vector2(0, 4000),
 2: Vector2(0, 4000),

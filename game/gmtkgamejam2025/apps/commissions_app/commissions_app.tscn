@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=22 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
-[ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_one.tres" id="3_3bsde"]
-[ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_two.tres" id="4_3bsde"]
+[ext_resource type="Resource" uid="uid://ckvad7n4rhhi6" path="res://apps/commissions_app/commission_stats/day_3.tres" id="2_w3uk5"]
+[ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_1.tres" id="3_3bsde"]
+[ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_2.tres" id="4_3bsde"]
+[ext_resource type="Resource" uid="uid://mkkp3617s3yx" path="res://apps/commissions_app/commission_stats/day_4.tres" id="4_xc82q"]
 [ext_resource type="Script" uid="uid://l7p1qi71fcel" path="res://apps/commissions_app/tab_container.gd" id="5_uo6yc"]
 [ext_resource type="Texture2D" uid="uid://8hx1vewrqp8a" path="res://assets/ui/buttons/top_button_hovered.png" id="6_78gvv"]
 [ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="6_gvy75"]
@@ -51,7 +53,10 @@ mouse_filter = 1
 script = ExtResource("1_qmn3t")
 commissions = {
 1: ExtResource("3_3bsde"),
-2: ExtResource("4_3bsde")
+2: ExtResource("4_3bsde"),
+3: ExtResource("2_w3uk5"),
+4: ExtResource("4_xc82q"),
+5: ExtResource("4_xc82q")
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
