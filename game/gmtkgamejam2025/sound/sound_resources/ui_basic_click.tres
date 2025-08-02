@@ -10,7 +10,7 @@
 [resource]
 script = ExtResource("6_ggsi2")
 id = &"ui_basic_click"
-linear_volume = 1.3
+linear_volume = 0.5
 pitch_variation_range = 0.3
 attenuation_override = -1.0
 audio_streams = Array[AudioStream]([ExtResource("5_k76t6"), ExtResource("2_1uthu"), ExtResource("3_3ntu8"), ExtResource("4_hyuhu"), ExtResource("5_8k3uv")])

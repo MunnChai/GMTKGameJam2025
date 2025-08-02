@@ -65,6 +65,7 @@ window_icon = ExtResource("5_syg6c")
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_bottom = 6
 
 [node name="CommissionsApp" parent="JuicePivot/MainPanel/VerticalSplit/WindowContent" instance=ExtResource("4_vixk8")]
 layout_mode = 2

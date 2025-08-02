@@ -98,7 +98,7 @@ func start_global_player(id: StringName, linear_volume: float = 0.7) -> AudioStr
 	add_child(audio_player)
 	audio_player.stream = stream
 	audio_player.pitch_scale = 1.0 + randf_range(-sound.pitch_variation_range, sound.pitch_variation_range)
-	audio_player.volume_linear = linear_volume
+	audio_player.volume_linear = sound.linear_volume
 	audio_player.bus = sfx_bus_id
 	audio_player.play()
 	
