@@ -1,10 +1,6 @@
 class_name CommissionApp
 extends Control
 
-# TODO for commission app
-# update asset list (working with file explorer maybe)
-# submit work
-# generate rating
 
 @onready var id: RichTextLabel = %Id
 @onready var title: RichTextLabel = %Title
@@ -101,7 +97,8 @@ func update_comm() -> void:
 #region FEEDBACK TAB
 
 func add_feedback() -> void:
-	var feedback: Feedback = Feedback.new(commission_stat, randi_range(0, 10), CommissionsManager.get_submission())
+	var rating: int = ImageJudgement.compare_file_to_desired(CommissionsManager.get_submission(), null)
+	var feedback: Feedback = Feedback.new(commission_stat, rating, CommissionsManager.get_submission())
 	CommissionsManager.add_feedback(feedback)
 	var feedback_instance = FeedbackListItemScene.instantiate()
 	feedback_list.add_child(feedback_instance)

@@ -34,8 +34,12 @@ func generate_color_hash_dict() -> void:
 		var color = trait_colors[key]
 		color_hash_to_trait[color.to_rgba32()] = key
 
-func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
-	pass
+#func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
+	#pass
+
+func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> int:
+	# TODO
+	return randi_range(0, 10)
 
 # Returns a dictionary of various info about the file
 # Keys: 
