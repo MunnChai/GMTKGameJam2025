@@ -1,8 +1,12 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cuqmn3lhjdfe5"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cuqmn3lhjdfe5"]
 
 [ext_resource type="FontFile" uid="uid://cilb2yb8y16fb" path="res://assets/fonts/dot_gothic_16_regular.ttf" id="1_0bpuq"]
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="1_1lgha"]
 [ext_resource type="Texture2D" uid="uid://bc6bm0dc2o6dr" path="res://assets/ui/buttons/basic_button_default.png" id="1_hjl2y"]
+[ext_resource type="Texture2D" uid="uid://c5i1fadfp548j" path="res://assets/ui/scroll_bar/scroll_up_low_res.png" id="3_q3l3v"]
+[ext_resource type="Texture2D" uid="uid://b6unldkg1mxbo" path="res://assets/ui/scroll_bar/scroll_down_low_res.png" id="4_l6nqo"]
+[ext_resource type="Texture2D" uid="uid://chbavdmuiutyi" path="res://assets/ui/scroll_bar/scroll_grabber_low_res.png" id="5_ma75u"]
+[ext_resource type="Texture2D" uid="uid://bgwdgx2ik2wif" path="res://assets/ui/scroll_bar/scroll_bar_low_res.png" id="6_rg1cx"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3abrm"]
 texture = ExtResource("1_1lgha")
@@ -34,6 +38,33 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xpjdk"]
+texture = ExtResource("5_ma75u")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l6nqo"]
+texture = ExtResource("5_ma75u")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ma75u"]
+texture = ExtResource("5_ma75u")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_el5nh"]
+texture = ExtResource("6_rg1cx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rg1cx"]
+texture = ExtResource("6_rg1cx")
+
 [resource]
 default_font = ExtResource("1_0bpuq")
 default_font_size = 13
@@ -52,3 +83,14 @@ Button/styles/focus = SubResource("StyleBoxEmpty_kp6fn")
 Button/styles/hover = SubResource("StyleBoxTexture_q3l3v")
 Button/styles/normal = SubResource("StyleBoxTexture_1f45t")
 Button/styles/pressed = SubResource("StyleBoxTexture_hjl2y")
+VScrollBar/icons/decrement = ExtResource("3_q3l3v")
+VScrollBar/icons/decrement_highlight = ExtResource("3_q3l3v")
+VScrollBar/icons/decrement_pressed = ExtResource("3_q3l3v")
+VScrollBar/icons/increment = ExtResource("4_l6nqo")
+VScrollBar/icons/increment_highlight = ExtResource("4_l6nqo")
+VScrollBar/icons/increment_pressed = ExtResource("4_l6nqo")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_xpjdk")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_l6nqo")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_ma75u")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_el5nh")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_rg1cx")
