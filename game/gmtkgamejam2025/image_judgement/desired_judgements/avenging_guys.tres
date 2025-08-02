@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_bmjcj")
-desired_traits = Dictionary[int, Vector2]({
+desired_traits = Dictionary[Variant, Vector2]({
 -5: Vector2(0, 10000),
 -4: Vector2(0, 10000),
 -3: Vector2(0, 10000),
@@ -15,7 +15,7 @@ desired_traits = Dictionary[int, Vector2]({
 7: Vector2(25000, 500000),
 11: Vector2(25000, 500000)
 })
-feedback_comments = Dictionary[int, PackedStringArray]({
+feedback_comments = Dictionary[Variant, PackedStringArray]({
 -5: PackedStringArray("", "", "Who is this bald person?"),
 -4: PackedStringArray("", "", "Please don\'t edit random people into photos with my son."),
 -3: PackedStringArray("", "", "Who is that lady? She looks lonely."),

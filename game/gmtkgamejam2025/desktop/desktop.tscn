@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="13_qk0lg"]
-[ext_resource type="AudioStream" uid="uid://b3ddo8hcfifds" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to.mp3" id="17_sscii"]
+[ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx87n"]
 atlas = ExtResource("13_qk0lg")
@@ -164,6 +164,6 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_sscii")
+stream = ExtResource("15_kx87n")
 autoplay = true
 bus = &"Music"

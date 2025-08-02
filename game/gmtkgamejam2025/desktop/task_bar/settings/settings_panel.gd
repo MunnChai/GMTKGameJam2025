@@ -16,8 +16,8 @@ func _ready() -> void:
 	reduced_motion_box.toggled.connect(_on_motion_box_checked)
 	
 	GameSettings.load_from_config()
-	music_slider.value = GameSettings.get_setting("music_volume", 1.0, "audio")
-	sound_slider.value = GameSettings.get_setting("sound_volume", 1.0, "audio")
+	music_slider.value = GameSettings.get_setting("music_volume", 0.5, "audio")
+	sound_slider.value = GameSettings.get_setting("sound_volume", 0.5, "audio")
 	reduced_motion_box.button_pressed = GameSettings.get_setting("reduced_motion", false, "graphics")
 	
 	ready_done = true
