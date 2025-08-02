@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_6j2b4")
-desired_traits = Dictionary[int, Vector2]({})
+desired_traits = Dictionary[Variant, Vector2]({})
 desired_modification = Vector2(0, 0)
-feedback_comments = Dictionary[int, PackedStringArray]({})
+feedback_comments = Dictionary[Variant, PackedStringArray]({})
 metadata/_custom_type_script = "uid://bku7ds6r61ofw"
