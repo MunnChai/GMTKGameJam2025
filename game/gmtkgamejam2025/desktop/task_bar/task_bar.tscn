@@ -346,3 +346,11 @@ icon = ExtResource("15_s3o61")
 text_overrun_behavior = 3
 expand_icon = true
 script = ExtResource("5_gsjrs")
+
+[node name="TaskBarShortcuts" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -550.0
+offset_top = -31.0
+offset_right = -550.0
+offset_bottom = -31.0
