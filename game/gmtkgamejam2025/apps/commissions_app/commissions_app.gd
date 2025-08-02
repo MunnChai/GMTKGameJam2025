@@ -49,10 +49,13 @@ func connect_signals() -> void:
 func on_download_pressed() -> void:
 	var files = asset_list.get_children()
 	var folder_name: String = "User " + commission_stat.id
-	var client_folder = Folder.new(folder_name)
-	FileSystem.add_file_node_at("/commissions", client_folder)
+	
 	for download_file: DownloadFile in files:
-		FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
+		var success: bool = FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
+		if not success:
+			var client_folder = Folder.new(folder_name)
+			FileSystem.add_file_node_at("/commissions", client_folder)
+			FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
 	
 	var args := {
 		"title": "DOWNLOAD SUCCESS",
