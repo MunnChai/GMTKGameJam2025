@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=3 format=3 uid="uid://c3h1ska7c1664"]
+
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="1_6cwox"]
+[ext_resource type="AudioStream" uid="uid://c03p3a66qhiq6" path="res://sound/sound_files/scissors_test.wav" id="1_besef"]
+
+[resource]
+script = ExtResource("1_6cwox")
+id = &"cut"
+linear_volume = 1.0
+pitch_variation_range = 0.3
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("1_besef")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"

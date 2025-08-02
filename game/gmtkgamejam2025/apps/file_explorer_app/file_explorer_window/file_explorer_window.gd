@@ -29,3 +29,5 @@ func boot(args: Dictionary = {}) -> void:
 	if args.has("folder_path"):
 		for folder_name in args.get("folder_path"):
 			file_explorer.file_system.change_directory(folder_name)
+	
+	SoundManager.play_global_oneshot(&"disk_read")

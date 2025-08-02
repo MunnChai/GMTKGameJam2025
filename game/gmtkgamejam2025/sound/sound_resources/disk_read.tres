@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=5 format=3 uid="uid://320tppymiq84"]
+
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="1_3e635"]
+[ext_resource type="AudioStream" uid="uid://dqeln5lxlbngt" path="res://sound/sound_files/disk_read.ogg" id="1_mopsx"]
+[ext_resource type="AudioStream" uid="uid://b8brlquidp7ge" path="res://sound/sound_files/disk_read-001.ogg" id="2_obdm1"]
+[ext_resource type="AudioStream" uid="uid://dfc07u82qnd38" path="res://sound/sound_files/disk_read-002.ogg" id="3_of0ge"]
+
+[resource]
+script = ExtResource("1_3e635")
+id = &"disk_read"
+linear_volume = 0.1
+pitch_variation_range = 0.3
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("1_mopsx"), ExtResource("2_obdm1"), ExtResource("3_of0ge")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"
