@@ -48,7 +48,8 @@ var is_waiting_for_thread: bool = false
 
 func _ready() -> void:
 	await get_tree().process_frame
-	editing_anchor.position = editing_node.size / 2
+	#editing_anchor.position = editing_node.size / 2
+	editing_anchor.position = Vector2(757.0, 440.0) / 2
 	
 	editing_node.mouse_entered.connect(func():
 		is_hovered = true)
