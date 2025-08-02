@@ -3,6 +3,9 @@ extends Control
 
 const DOWNLOAD_FILE = preload("res://apps/commissions_app/download_file_scene/download_file.tscn")
 
+@onready var commissions_button: Button = %CommissionsButton
+@onready var review_button: Button = %ReviewButton
+
 @onready var id: RichTextLabel = %Id
 @onready var title: RichTextLabel = %Title
 @onready var desc: RichTextLabel = %Description

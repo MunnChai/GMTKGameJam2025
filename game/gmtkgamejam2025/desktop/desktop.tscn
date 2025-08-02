@@ -68,6 +68,7 @@ offset_right = 231.0
 offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("10_1m8fn")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 50

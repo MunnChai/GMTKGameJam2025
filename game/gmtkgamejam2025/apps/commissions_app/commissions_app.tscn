@@ -78,10 +78,11 @@ theme_override_constants/separation = 6
 layout_mode = 2
 theme_override_constants/separation = 4
 script = ExtResource("5_uo6yc")
-tab_buttons = [NodePath("Button"), NodePath("Button2")]
+tab_buttons = [NodePath("CommissionsButton"), NodePath("ReviewButton")]
 tab_panels = [NodePath("../PanelContainer/MarginContainer/PanelContainer/Commissions"), NodePath("../PanelContainer/MarginContainer/PanelContainer/Feedbacks")]
 
-[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="CommissionsButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("6_mv6ju")
 theme_override_styles/hover = SubResource("StyleBoxTexture_opfwy")
@@ -91,7 +92,8 @@ toggle_mode = true
 button_pressed = true
 text = "Commissions"
 
-[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+[node name="ReviewButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("6_mv6ju")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_p6d6e")

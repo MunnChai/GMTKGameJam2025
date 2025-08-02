@@ -69,6 +69,7 @@ script = ExtResource("1_jxr6l")
 
 [node name="SettingsPivot" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_left = -637.0
 offset_top = -32.0
@@ -341,7 +342,6 @@ theme = ExtResource("5_e36ol")
 theme_override_constants/h_separation = 3
 theme_override_font_sizes/font_size = 12
 toggle_mode = true
-button_pressed = true
 text = "Settings"
 icon = ExtResource("15_s3o61")
 text_overrun_behavior = 3

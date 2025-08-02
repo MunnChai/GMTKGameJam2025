@@ -3,6 +3,7 @@ extends Control
 @onready var pos := position
 
 func open() -> void:
+	visible = true
 	if GameSettings.get_setting("reduced_motion", false, "graphics"):
 		position = pos
 		return

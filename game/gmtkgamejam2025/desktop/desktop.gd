@@ -30,6 +30,22 @@ static func is_instanced() -> bool:
 func _ready() -> void:
 	instance = self
 	GameStateManager.day_changed.connect(_on_day_changed)
+	
+	await get_tree().create_timer(1).timeout
+	
+	show_day_1_notification()
+
+func show_day_1_notification() -> void:
+	var args := {
+		"title": "NOTIFICATION",
+		"text": "New commission available!",
+		"confirm_label": "Open Commissions App",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
+	window.confirmed.connect(func():
+		Desktop.instance.execute(&"commissions")
+		)
 
 ## When we press left mouse button, bring the hovered window to front
 func _input(event: InputEvent) -> void:
@@ -179,7 +195,7 @@ func _on_fade_out_complete() -> void:
 	for w in windows.duplicate():
 		close_window(w)
 	
-	day_label.text = "Day " + str(GameStateManager.day) + "/4"
+	day_label.text = "Day " + str(GameStateManager.day) + " / 5"
 	day_label.move_to_front()
 	day_label.visible = true
 	day_label.modulate.a = 0.0
@@ -201,5 +217,16 @@ func _on_fade_out_complete() -> void:
 
 func _on_fade_in_complete() -> void:
 	fade_rect.visible = false
+	
+	var args := {
+		"title": "NOTIFICATION",
+		"text": "Feedback received on commission!",
+		"confirm_label": "See Review",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
+	window.confirmed.connect(func():
+		Desktop.instance.execute(&"commissions", {"open_reviews": true})
+		)
 
 #endregion
