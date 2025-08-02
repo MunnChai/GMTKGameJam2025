@@ -1,7 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://nc4dkxqnh35a"]
+[gd_scene load_steps=3 format=3 uid="uid://nc4dkxqnh35a"]
 
 [ext_resource type="PackedScene" uid="uid://dvrpk4wp2vd4u" path="res://desktop/desktop.tscn" id="1_80nbo"]
+[ext_resource type="AudioStream" uid="uid://b3ddo8hcfifds" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to.mp3" id="2_e2o6t"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Desktop" parent="." instance=ExtResource("1_80nbo")]
+
+[node name="ChillLofiTuneToPhotoloopAndRelaxTo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_e2o6t")
+autoplay = true
