@@ -84,6 +84,7 @@ tab_panels = [NodePath("../PanelContainer/MarginContainer/PanelContainer/Commiss
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme = ExtResource("6_mv6ju")
 theme_override_styles/hover = SubResource("StyleBoxTexture_opfwy")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_p6d6e")
@@ -95,6 +96,7 @@ text = "Commissions"
 [node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 theme = ExtResource("6_mv6ju")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_p6d6e")
 theme_override_styles/normal = SubResource("StyleBoxTexture_gvy75")
