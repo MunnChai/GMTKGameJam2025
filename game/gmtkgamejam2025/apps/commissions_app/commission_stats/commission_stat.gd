@@ -7,3 +7,5 @@ extends Resource
 
 @export var day: int
 @export var assets: Array[FileResource]
+
+@export var desired_judgement: DesiredJudgement
