@@ -43,7 +43,7 @@ func connect_signals() -> void:
 	submit_button.pressed.connect(on_submit_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
 	CommissionsManager.submission_added.connect(_on_submission_added)
-	Desktop.instance.transition_done.connect(update_comm)
+	#Desktop.instance.transition_done.connect(update_comm)
 
 #region COMMISSION TAB
 

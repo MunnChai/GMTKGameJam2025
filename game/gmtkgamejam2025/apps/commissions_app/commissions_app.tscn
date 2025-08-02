@@ -1,15 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=18 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_one.tres" id="3_3bsde"]
 [ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_two.tres" id="4_3bsde"]
+[ext_resource type="Script" uid="uid://l7p1qi71fcel" path="res://apps/commissions_app/tab_container.gd" id="5_uo6yc"]
+[ext_resource type="Texture2D" uid="uid://8hx1vewrqp8a" path="res://assets/ui/buttons/top_button_hovered.png" id="6_78gvv"]
+[ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="6_gvy75"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="6_mv6ju"]
+[ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="7_78gvv"]
+[ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="7_mv6ju"]
+[ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/commissions/speech_bubble.png" id="10_78gvv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojmwe"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvy75"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opfwy"]
+texture = ExtResource("6_78gvv")
+texture_margin_left = 4.0
+texture_margin_right = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6d6e"]
+texture = ExtResource("7_mv6ju")
+texture_margin_left = 4.0
+texture_margin_right = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gvy75"]
+texture = ExtResource("7_78gvv")
+texture_margin_left = 4.0
+texture_margin_right = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_78gvv"]
+texture = ExtResource("6_gvy75")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_78gvv"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mv6ju"]
+size = Vector2(64, 64)
 
 [node name="CommissionsApp" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qmn3t")
 commissions = {
@@ -18,77 +51,158 @@ commissions = {
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(600, 650)
-layout_mode = 0
-offset_right = 705.0
-offset_bottom = 650.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_ojmwe")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gvy75")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
 
-[node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-current_tab = 0
+theme_override_constants/separation = 6
 
-[node name="Commissions" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+[node name="TabContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("tab_buttons", "tab_panels")]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 0
+theme_override_constants/separation = 4
+script = ExtResource("5_uo6yc")
+tab_buttons = [NodePath("Button"), NodePath("Button2")]
+tab_panels = [NodePath("../PanelContainer/Commissions"), NodePath("../PanelContainer/Feedbacks")]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions"]
-custom_minimum_size = Vector2(650, 570)
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme = ExtResource("6_mv6ju")
+theme_override_styles/hover = SubResource("StyleBoxTexture_opfwy")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p6d6e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gvy75")
+toggle_mode = true
+button_pressed = true
+text = "Commissions"
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+theme = ExtResource("6_mv6ju")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_p6d6e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_gvy75")
+toggle_mode = true
+text = "Reviews"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_78gvv")
+
+[node name="Commissions" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions"]
+layout_mode = 2
+theme = ExtResource("6_mv6ju")
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer"]
-custom_minimum_size = Vector2(650, 0)
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer"]
+clip_children = 1
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_78gvv")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("PlaceholderTexture2D_mv6ju")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 30
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("10_78gvv")
+region_rect = Rect2(0, 0, 325, 188)
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_bottom = 40
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 10
 
-[node name="Id" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+[node name="Id" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Id"
 fit_content = true
 
-[node name="Title" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/bold_italics_font_size = 30
 bbcode_enabled = true
 text = "Title"
 fit_content = true
 
-[node name="Description" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Description"
 fit_content = true
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_right = 50
 
-[node name="AssetList" type="HBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/MarginContainer"]
+[node name="AssetList" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 230)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="SubmittedWork" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+[node name="SubmittedWork" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 70)
@@ -96,59 +210,57 @@ layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Download" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Download" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "Download"
 
-[node name="Upload" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Upload" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Upload"
 
-[node name="Submit" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Commissions/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Submit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Commissions/ScrollContainer/PanelContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "Submit"
 
-[node name="Feedbacks" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+[node name="Feedbacks" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
-metadata/_tab_index = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks"]
 custom_minimum_size = Vector2(0, 570)
 layout_mode = 2
+theme = ExtResource("6_mv6ju")
 
-[node name="FeedbackList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer"]
+[node name="FeedbackList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer"]
+[node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+[node name="BackButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -156,34 +268,34 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "Back"
 
-[node name="FeedbackId" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackId" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "User"
 fit_content = true
 
-[node name="FeedbackTitle" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackTitle" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "Title of original commission"
 fit_content = true
 
-[node name="FeedbackDesc" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackDesc" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "Description of commission"
 fit_content = true
 
-[node name="FeedbackRating" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackRating" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Rating: 1.0"
 fit_content = true
 
-[node name="FeedbackSubmission" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackSubmission" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
