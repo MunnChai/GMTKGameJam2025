@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=19 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
 [ext_resource type="PackedScene" uid="uid://dniuofjt4onnt" path="res://desktop/window/success/success.tscn" id="8_b6j2u"]
 [ext_resource type="Texture2D" uid="uid://d2tkrsndv76ln" path="res://assets/ui/file_explorer/folder_icon_desktop.png" id="9_b6j2u"]
+[ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
 [ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="9_jsfay"]
 [ext_resource type="Texture2D" uid="uid://d2etpwefg0clb" path="res://assets/ui/icons/PhotoLoopIcon.png" id="10_4ndcx"]
 [ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/bald_fish_man.tres" id="10_kx87n"]
@@ -26,6 +27,7 @@ window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"export_success": ExtResource("8_b6j2u"),
 &"file_explorer": ExtResource("5_6vopt"),
 &"hello_world": ExtResource("2_87qqj"),
+&"info": ExtResource("9_jqijg"),
 &"photoshop": ExtResource("6_t632k"),
 &"settings": ExtResource("4_hbe16")
 })
@@ -55,8 +57,6 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 88.0
-offset_bottom = 472.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -65,14 +65,18 @@ theme_override_constants/margin_top = 64
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DesktopIcons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DesktopIcons"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DesktopIcons/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 64
 
-[node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"file_explorer"
 args = Dictionary[StringName, Variant]({
@@ -81,14 +85,14 @@ args = Dictionary[StringName, Variant]({
 shortcut_name = "files"
 icon = ExtResource("9_b6j2u")
 
-[node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"commissions"
 type = 2
 shortcut_name = "commissions"
 icon = null
 
-[node name="PhotoshopIcon" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="PhotoshopIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"photoshop"
 args = Dictionary[StringName, Variant]({
@@ -97,7 +101,7 @@ args = Dictionary[StringName, Variant]({
 shortcut_name = "photoloop.exe"
 icon = ExtResource("10_4ndcx")
 
-[node name="PhotoshopIcon2" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="PhotoshopIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"photoshop"
 args = Dictionary[StringName, Variant]({
@@ -106,7 +110,7 @@ args = Dictionary[StringName, Variant]({
 shortcut_name = "photoloop.exe"
 icon = ExtResource("10_4ndcx")
 
-[node name="PhotoshopIcon3" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="PhotoshopIcon3" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"photoshop"
 args = Dictionary[StringName, Variant]({
@@ -115,7 +119,7 @@ args = Dictionary[StringName, Variant]({
 shortcut_name = "photoloop.exe"
 icon = ExtResource("10_4ndcx")
 
-[node name="PhotoshopIcon4" parent="CanvasLayer/DesktopIcons/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="PhotoshopIcon4" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"photoshop"
 args = Dictionary[StringName, Variant]({
@@ -123,6 +127,31 @@ args = Dictionary[StringName, Variant]({
 })
 shortcut_name = "photoloop.exe"
 icon = ExtResource("10_4ndcx")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DesktopIcons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 64
+
+[node name="InfoTestIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer2" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"info"
+args = Dictionary[StringName, Variant]({
+&"confirm_label": "Howdy!",
+&"text": "Hello world!",
+&"title": "HI!"
+})
+shortcut_name = "test1.exe"
+
+[node name="InfoTestIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer2" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"info"
+args = Dictionary[StringName, Variant]({
+&"text": "In rail terminology, a siding is a low-speed track section distinct from a running line or through route such as a main line, branch line, or spur. It may connect to through track or to other sidings at either end. Sidings often have lighter rails, meant for lower speed or less heavy traffic, and few, if any, signals. Sidings connected at both ends to a running line are commonly known as loops;[1][2] those not so connected may be referred to as single-ended or dead-end sidings,[3] or (if short) stubs.[4]"
+})
+shortcut_name = "Very Long Info"
 
 [node name="Windows" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true

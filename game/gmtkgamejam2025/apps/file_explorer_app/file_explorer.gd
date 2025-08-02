@@ -22,7 +22,8 @@ func _ready():
 func _on_directory_changed(contents: Array[FileNode]):
 	for child in file_grid.get_children():
 		child.queue_free()
-
+	
+	var counter = 0
 	for file_node in contents:
 		var icon_instance = FileIconScene.instantiate()
 		file_grid.add_child(icon_instance)
@@ -31,7 +32,8 @@ func _on_directory_changed(contents: Array[FileNode]):
 		
 		icon_instance.modulate.a = 0
 		var tween = create_tween()
-		tween.tween_property(icon_instance, "modulate:a", 1.0, 0.2).set_delay(0.05 * file_grid.get_child_count())
+		tween.tween_property(icon_instance, "modulate:a", 1.0, 0.2).set_delay(0.05 * counter)
+		counter += 1
 
 	var path_string = ""
 	for i in range(file_system.directory_history.size()):

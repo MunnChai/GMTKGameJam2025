@@ -9,9 +9,6 @@ extends Node2D
 ## - Other misc. desktop details
 ## ---
 
-## TODO:
-## - Texture support for everything, really
-
 ## Day fade
 signal transition_done()
 @onready var fade_rect: ColorRect = $CanvasLayer/DayFade
@@ -173,15 +170,20 @@ func _play_day_transition() -> void:
 	fade_rect.modulate = Color(0,0,0,0)
 	fade_rect.move_to_front()
 	var tween_out = get_tree().create_tween()
-	tween_out.tween_property(fade_rect, "modulate:a", 1.0, 3.0)
+	tween_out.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween_out.tween_property(fade_rect, "modulate:a", 1.0, 1.0)
 	tween_out.finished.connect(_on_fade_out_complete)
 
 func _on_fade_out_complete() -> void:
 	for w in windows.duplicate():
 		close_window(w)
+	
+	await get_tree().create_timer(1.0).timeout
+	
 	transition_done.emit()
 	var tween_in = get_tree().create_tween()
-	tween_in.tween_property(fade_rect, "modulate:a", 0.0, 3.0)
+	tween_in.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween_in.tween_property(fade_rect, "modulate:a", 0.0, 1.0)
 	tween_in.finished.connect(_on_fade_in_complete)
 
 func _on_fade_in_complete() -> void:

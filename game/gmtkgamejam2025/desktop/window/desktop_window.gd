@@ -35,6 +35,9 @@ signal drag_moved(delta: Vector2)
 @export var window_bar: WindowBar 
 @export var taskbar_icon: Texture2D
 
+## Matches size with the given control node, if not null
+@export var match_size: Control = null
+
 ## The window's index
 ## 0 being highest, larger numbers being further back
 var window_index := 0
@@ -80,6 +83,19 @@ func close() -> void:
 func _process(delta: float) -> void:
 	position = MathUtil.decay(position, target_pos, 64.0, delta)
 	constrain_to_viewport()
+	
+	if match_size:
+		_match_size()
+
+func _match_size() -> void:
+	if not match_size:
+		return
+	if size != match_size.size:
+		size = match_size.size
+		
+		if is_instance_valid(%JuicePivot):
+			%JuicePivot.position = size / 2.0
+			match_size.position = -size / 2.0
 
 func _on_close_pressed() -> void:
 	if Desktop.is_instanced() and not is_closing:

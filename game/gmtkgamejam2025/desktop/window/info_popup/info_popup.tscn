@@ -1,0 +1,133 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw2rvurkii0h2"]
+
+[ext_resource type="Script" uid="uid://b6b43d8g30v4g" path="res://desktop/window/info_popup/info_popup.gd" id="1_48pu0"]
+[ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_hm7mb"]
+[ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_t6tbi"]
+[ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="4_uaqkj"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="5_12j6y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
+bg_color = Color(0, 0, 0, 0.294118)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ra3x3"]
+
+[node name="InfoPopup" type="ReferenceRect" node_paths=PackedStringArray("window_bar", "match_size")]
+offset_right = 333.0
+offset_bottom = 249.0
+border_width = 0.0
+script = ExtResource("1_48pu0")
+window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
+match_size = NodePath("JuicePivot/MainPanel")
+
+[node name="JuicePivot" parent="." instance=ExtResource("2_hm7mb")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(333, 0)
+layout_mode = 1
+offset_left = -166.5
+offset_top = -124.5
+offset_right = 166.5
+offset_bottom = 56.5
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ShadowPanel" type="Panel" parent="JuicePivot/MainPanel/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_712ap")
+
+[node name="OS95WindowNinePatchRect" type="NinePatchRect" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("3_t6tbi")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="VerticalSplit" type="VBoxContainer" parent="JuicePivot/MainPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("4_uaqkj")]
+unique_name_in_owner = true
+layout_mode = 2
+window_icon = null
+
+[node name="BgPanelContainer" type="PanelContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ra3x3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="OS95WindowNinePatchRect2" type="NinePatchRect" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer/TextContent"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("3_t6tbi")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Margin" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer/TextContent"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer/TextContent/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+theme = ExtResource("5_12j6y")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Text"
+fit_content = true
+vertical_alignment = 1
+
+[node name="Buttons" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+alignment = 1
+
+[node name="ConfirmButton" type="Button" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/VBoxContainer/Buttons/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_12j6y")
+text = "Okay!"
