@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=5 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
-[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="2_2e8ng"]
 [ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_one.tres" id="3_3bsde"]
 [ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_two.tres" id="4_3bsde"]
 
@@ -13,13 +12,13 @@ layout_mode = 3
 anchors_preset = 0
 mouse_filter = 1
 script = ExtResource("1_qmn3t")
-commissions = Dictionary[int, ExtResource("2_2e8ng")]({
+commissions = {
 1: ExtResource("3_3bsde"),
 2: ExtResource("4_3bsde")
-})
+}
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(705, 650)
+custom_minimum_size = Vector2(600, 650)
 layout_mode = 0
 offset_right = 705.0
 offset_bottom = 650.0
@@ -140,15 +139,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks"]
+[node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer"]
 unique_name_in_owner = true
 visible = false
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails"]
 layout_mode = 2
 
-[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+[node name="BackButton" type="Button" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
@@ -156,23 +156,36 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "Back"
 
-[node name="FeedbackId" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackId" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "User"
 fit_content = true
 
-[node name="FeedbackTitle" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackTitle" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "Title of original commission"
 fit_content = true
 
-[node name="FeedbackDesc" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/FeedbackDetails/VBoxContainer"]
+[node name="FeedbackDesc" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
 text = "Description of commission"
 fit_content = true
+
+[node name="FeedbackRating" type="RichTextLabel" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Rating: 1.0"
+fit_content = true
+
+[node name="FeedbackSubmission" type="TextureRect" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer/FeedbackDetails/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5

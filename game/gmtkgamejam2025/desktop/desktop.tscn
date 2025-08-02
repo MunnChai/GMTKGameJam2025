@@ -39,6 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.435294, 0.54902, 0.501961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
