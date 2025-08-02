@@ -11,8 +11,8 @@
 bg_color = Color(0, 0, 0, 0.294118)
 
 [node name="CommissionsWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
-offset_right = 506.0
-offset_bottom = 503.0
+offset_right = 406.0
+offset_bottom = 440.0
 script = ExtResource("1_vixk8")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
 
@@ -22,10 +22,10 @@ layout_mode = 1
 [node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -252.0
-offset_top = -251.5
-offset_right = 254.0
-offset_bottom = 251.5
+offset_left = -203.0
+offset_top = -220.0
+offset_right = 203.0
+offset_bottom = 220.0
 mouse_filter = 1
 
 [node name="Control" type="Control" parent="JuicePivot/MainPanel"]

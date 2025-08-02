@@ -12,10 +12,11 @@ func _ready() -> void:
 
 func _on_button_toggled(toggled_on: bool, pressed_button: Button, panel: Container) -> void:
 	if not toggled_on:
+		pressed_button.set_pressed_no_signal(true)
 		return
 	
 	for tab_button: Button in tab_buttons:
-		tab_button.button_pressed = tab_button == pressed_button
+		tab_button.set_pressed_no_signal(tab_button == pressed_button)
 	
 	for tab_panel: Container in tab_panels:
 		tab_panel.visible = tab_panel == panel
