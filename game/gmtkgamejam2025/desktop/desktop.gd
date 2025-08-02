@@ -12,6 +12,10 @@ extends Node2D
 ## TODO:
 ## - Texture support for everything, really
 
+## Day fade
+signal transition_done()
+@onready var fade_rect: ColorRect = $CanvasLayer/DayFade
+
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]
 
@@ -27,6 +31,7 @@ static func is_instanced() -> bool:
 
 func _ready() -> void:
 	instance = self
+	GameStateManager.day_changed.connect(_on_day_changed)
 
 ## When we press left mouse button, bring the hovered window to front
 func _input(event: InputEvent) -> void:
@@ -155,5 +160,31 @@ func _shift_windows_forward(front_index: int = 0) -> void:
 	for i in range(front_index + 1, windows.size()):
 		if not windows[i].is_closing:
 			windows[i].shift_self_forward(i)
+
+#endregion
+
+#region DAY TRANSITION
+
+func _on_day_changed(new_day: int) -> void:
+	call_deferred("_play_day_transition")
+
+func _play_day_transition() -> void:
+	fade_rect.visible = true
+	fade_rect.modulate = Color(0,0,0,0)
+	fade_rect.move_to_front()
+	var tween_out = get_tree().create_tween()
+	tween_out.tween_property(fade_rect, "modulate:a", 1.0, 3.0)
+	tween_out.finished.connect(_on_fade_out_complete)
+
+func _on_fade_out_complete() -> void:
+	for w in windows.duplicate():
+		close_window(w)
+	transition_done.emit()
+	var tween_in = get_tree().create_tween()
+	tween_in.tween_property(fade_rect, "modulate:a", 0.0, 3.0)
+	tween_in.finished.connect(_on_fade_in_complete)
+
+func _on_fade_in_complete() -> void:
+	fade_rect.visible = false
 
 #endregion

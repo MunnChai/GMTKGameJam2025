@@ -31,6 +31,15 @@ window_packed_scenes = Dictionary[StringName, PackedScene]({
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="DayFade" type="ColorRect" parent="CanvasLayer"]
+visibility_layer = 524288
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="DesktopBg" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +54,8 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 88.0
+offset_bottom = 472.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
