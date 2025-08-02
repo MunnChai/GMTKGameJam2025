@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://bgj7bok1k4k1n"]
 
 [ext_resource type="Script" uid="uid://bcn0ybr3x7jsh" path="res://desktop/task_bar/task_bar.gd" id="1_jxr6l"]
-[ext_resource type="Script" path="res://desktop/task_bar/settings_pivot.gd" id="2_okagq"]
+[ext_resource type="Script" uid="uid://bqrq6rh3jr0el" path="res://desktop/task_bar/settings_pivot.gd" id="2_okagq"]
 [ext_resource type="Texture2D" uid="uid://cyw5b3rw3jdnw" path="res://assets/ui/task_bar.png" id="2_rkt6j"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="5_e36ol"]
 [ext_resource type="Script" uid="uid://cjhiuou3penh4" path="res://desktop/task_bar/settings/settings_button.gd" id="5_gsjrs"]
