@@ -1,37 +1,94 @@
-[gd_scene load_steps=2 format=3 uid="uid://cl1xh4ieujfcs"]
+[gd_scene load_steps=5 format=3 uid="uid://cl1xh4ieujfcs"]
 
 [ext_resource type="Script" uid="uid://cba1ci6sl6c7l" path="res://apps/commissions_app/feedback/feedback_list_item.gd" id="1_vi54g"]
+[ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/commissions/speech_bubble.png" id="2_tukwo"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_tukwo"]
 
-[node name="FeedbackListItem" type="Button"]
-custom_minimum_size = Vector2(665, 100)
-mouse_filter = 1
-mouse_default_cursor_shape = 2
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_haye7"]
+size = Vector2(64, 64)
+
+[node name="FeedbackListItem" type="MarginContainer"]
+offset_right = 258.0
+offset_bottom = 216.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 script = ExtResource("1_vi54g")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 165.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 20
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = SubResource("PlaceholderTexture2D_haye7")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_top = 30
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_tukwo")
+region_rect = Rect2(0, 0, 325, 188)
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_bottom = 40
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="ItemTitle" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="ItemTitle" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-text = "Commission Title"
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Title"
 fit_content = true
 
-[node name="ClientId" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="ClientId" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-text = "User balabala"
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Id"
 fit_content = true
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="DetailsButton" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_tukwo")
+text = "Details"

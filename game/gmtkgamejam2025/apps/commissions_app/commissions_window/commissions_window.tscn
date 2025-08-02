@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba01qxttnfxam"]
+[gd_scene load_steps=8 format=3 uid="uid://ba01qxttnfxam"]
 
 [ext_resource type="Script" uid="uid://cqiih5k5uxtb0" path="res://apps/commissions_app/commissions_window/commissions_window.gd" id="1_vixk8"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_omlrf"]
@@ -10,17 +10,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxhuy"]
-bg_color = Color(0.321728, 0.321728, 0.321728, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-
 [node name="CommissionsWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
-offset_right = 707.0
-offset_bottom = 684.0
+offset_right = 446.0
+offset_bottom = 392.0
 script = ExtResource("1_vixk8")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
 
@@ -30,10 +22,10 @@ layout_mode = 1
 [node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -353.5
-offset_top = -342.0
-offset_right = 353.5
-offset_bottom = 342.0
+offset_left = -223.0
+offset_top = -196.0
+offset_right = 223.0
+offset_bottom = 196.0
 mouse_filter = 1
 
 [node name="Control" type="Control" parent="JuicePivot/MainPanel"]
@@ -70,20 +62,9 @@ unique_name_in_owner = true
 layout_mode = 2
 window_icon = ExtResource("5_syg6c")
 
-[node name="BgPanelContainer" type="PanelContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
-unique_name_in_owner = true
+[node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_cxhuy")
 
-[node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="CommissionsApp" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent" instance=ExtResource("4_vixk8")]
+[node name="CommissionsApp" parent="JuicePivot/MainPanel/VerticalSplit/WindowContent" instance=ExtResource("4_vixk8")]
 layout_mode = 2
