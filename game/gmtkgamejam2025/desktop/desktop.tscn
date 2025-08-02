@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=18 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d2tkrsndv76ln" path="res://assets/ui/file_explorer/folder_icon_desktop.png" id="9_b6j2u"]
 [ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
+[ext_resource type="PackedScene" uid="uid://w8qqa2l8sq6b" path="res://desktop/window/bank_window/bank_window.tscn" id="10_iy36f"]
 [ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="13_qk0lg"]
 [ext_resource type="AudioStream" uid="uid://b3ddo8hcfifds" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to.mp3" id="17_sscii"]
 
@@ -24,6 +25,7 @@ margin = Rect2(0, -15, 0, 0)
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
 window_packed_scenes = Dictionary[StringName, PackedScene]({
+&"bank": ExtResource("10_iy36f"),
 &"commissions": ExtResource("6_r3xg6"),
 &"error": ExtResource("3_irqsv"),
 &"export_success": ExtResource("8_b6j2u"),
@@ -116,6 +118,12 @@ app_id = &"commissions"
 type = 2
 shortcut_name = "commissions"
 icon = SubResource("AtlasTexture_kx87n")
+
+[node name="CommissionsIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"bank"
+type = 2
+shortcut_name = "bank"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DesktopIcons/HBoxContainer"]
 layout_mode = 2

@@ -1,9 +1,140 @@
-[gd_scene format=3 uid="uid://bbrtermfxiebt"]
+[gd_scene load_steps=6 format=3 uid="uid://bbrtermfxiebt"]
+
+[ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="1_hy14y"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_xkiw2"]
+[ext_resource type="Texture2D" uid="uid://doaio76dl16o7" path="res://assets/ui/windows/window_rect.png" id="3_xkiw2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36y8t"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36y8t"]
+texture = ExtResource("3_xkiw2")
 
 [node name="BankApp" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1280.0
+offset_bottom = -720.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 293.0
+offset_bottom = 305.0
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_36y8t")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("1_hy14y")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="CompanyName" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "BankAndHomeRentalAgencyCo."
+fit_content = true
+
+[node name="WelcomeMessage" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 15
+text = "Welcome, User."
+fit_content = true
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="BalanceTitle" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "Your Balance (poor):"
+fit_content = true
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_36y8t")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="Balance" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 15
+text = "$0.00"
+fit_content = true
+
+[node name="BillsTitle" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "This month's rent"
+fit_content = true
+
+[node name="BillsTitle2" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 15
+text = "Due in X days"
+fit_content = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_36y8t")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="Bills" type="RichTextLabel" parent="PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("2_xkiw2")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 15
+text = "$100.00"
+fit_content = true
