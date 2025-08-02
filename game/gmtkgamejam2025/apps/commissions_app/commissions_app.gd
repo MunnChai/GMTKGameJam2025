@@ -10,25 +10,30 @@ extends Control
 @onready var title: RichTextLabel = %Title
 @onready var desc: RichTextLabel = %Description
 
+# commission related
 @onready var download_button: Button = %Download
 @onready var upload_button: Button = %Upload
 @onready var submit_button: Button = %Submit
+@onready var submitted_work: TextureRect = %SubmittedWork
 @onready var asset_list: HBoxContainer = %AssetList
+
+# feedback related
 @onready var back_button: Button = %BackButton
 @onready var feedback_list: VBoxContainer = %FeedbackList
 @onready var feedback_details: MarginContainer = %FeedbackDetails
 @onready var feedback_id: RichTextLabel = %FeedbackId
 @onready var feedback_title: RichTextLabel = %FeedbackTitle
 @onready var feedback_desc: RichTextLabel = %FeedbackDesc
-@onready var submitted_work: TextureRect = %SubmittedWork
+@onready var feedback_rating: RichTextLabel = %FeedbackRating
+@onready var feedback_submission: TextureRect = %FeedbackSubmission
 
 @export var commissions: Dictionary
 
 var commission_stat: CommissionStat
 
 const FileIconScene = preload("res://apps/file_explorer_app/file_icon.tscn")
-const FeedbackListItemScene = preload("res://apps/commissions_app/feedback_list_item.tscn")
-const FeedbackScript = preload("res://apps/commissions_app/feedback.gd")
+const FeedbackListItemScene = preload("res://apps/commissions_app/feedback/feedback_list_item.tscn")
+const FeedbackScript = preload("res://apps/commissions_app/feedback/feedback.gd")
 
 
 func _ready() -> void:
@@ -76,10 +81,11 @@ func on_submit_pressed() -> void:
 	# emit_signal("day_changed")
 
 func add_feedback() -> void:
-	var feedback_instance: FeedbackListItem = FeedbackListItemScene.instantiate()
+	var feedback: Feedback = Feedback.new(randi_range(0, 10), CommissionsManager.get_submission())
+	CommissionsManager.add_feedback(feedback)
+	var feedback_instance = FeedbackListItemScene.instantiate()
 	feedback_list.add_child(feedback_instance)
-	feedback_instance.setup(commission_stat)
-	# add submission in the future
+	feedback_instance.setup(commission_stat, feedback)
 	feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
 
 func on_back_button_pressed() -> void:
@@ -93,14 +99,6 @@ func _on_submission_added(work: File) -> void:
 	submitted_work.show()
 	submitted_work.texture = work.texture
 
-func on_feedback_item_pressed(item: FeedbackListItem) -> void:
-	feedback_details.show()
-	feedback_list.hide()
-	var stat: CommissionStat = item.commission_stat
-	feedback_id.text = stat.id
-	feedback_title.text = stat.title
-	feedback_desc.text = stat.desc
-	#feedback_work.texture = item.submission
 
 func update_comm() -> void:
 	var day: int = GameStateManager.day
@@ -132,11 +130,26 @@ func update_comm() -> void:
 		asset_list.add_child(icon_instance)
 		icon_instance.setup(file)
 
+
+func on_feedback_item_pressed(item: FeedbackListItem) -> void:
+	feedback_details.show()
+	feedback_list.hide()
+	var stat: CommissionStat = item.commission_stat
+	feedback_id.text = stat.id
+	feedback_title.text = stat.title
+	feedback_desc.text = stat.desc
+	var fb: Feedback = item.get_feedback()
+	feedback_rating.text = str(fb.rating)
+	feedback_submission.texture = fb.get_submission_texture()
+	#feedback_work.texture = item.submission
+
 #region TYLERS CODE
 func _load_existing_feedback() -> void:
-	var saved = CommissionsManager.get_feedbacks(int(commission_stat.id))
-	for fb_data in saved:
-		_create_feedback_item(fb_data)
+	return
+	## caused error so i commented it for now
+	#var saved = CommissionsManager.get_feedbacks(int(commission_stat.id))
+	#for fb_data in saved:
+		#_create_feedback_item(fb_data)
 
 func _on_feedback_added(c_id: int, fb_data) -> void:
 	if c_id != int(commission_stat.id):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cl1xh4ieujfcs"]
 
-[ext_resource type="Script" path="res://apps/commissions_app/feedback_list_item.gd" id="1_vi54g"]
+[ext_resource type="Script" uid="uid://cba1ci6sl6c7l" path="res://apps/commissions_app/feedback/feedback_list_item.gd" id="1_vi54g"]
 
 [node name="FeedbackListItem" type="Button"]
 custom_minimum_size = Vector2(665, 100)
