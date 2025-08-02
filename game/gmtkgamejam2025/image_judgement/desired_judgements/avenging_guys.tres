@@ -5,21 +5,27 @@
 [resource]
 script = ExtResource("1_bmjcj")
 desired_traits = Dictionary[int, Vector2]({
--999: Vector2(0, 50000),
--4: Vector2(20000, 100000),
-0: Vector2(0, 4000),
+-5: Vector2(0, 10000),
+-4: Vector2(0, 10000),
+-3: Vector2(0, 10000),
+-2: Vector2(20000, 150000),
 2: Vector2(0, 4000),
 3: Vector2(0, 10000),
-4: Vector2(20000, 100000)
+4: Vector2(0, 10000),
+7: Vector2(25000, 500000),
+11: Vector2(25000, 500000)
 })
 feedback_comments = Dictionary[int, PackedStringArray]({
--999: PackedStringArray("", "", "Next time fill the giant hole in the pic..."),
--4: PackedStringArray("I think you cut out the wrong person...", "", "Why is there so much of me??"),
-0: PackedStringArray("", "", "... what\'s up with the bald head. "),
-2: PackedStringArray("", "", "Is that a fish? Why?"),
-3: PackedStringArray("", "Thanks for getting rid of my ex!", "Did you even get rid of my ex???"),
-4: PackedStringArray("Where did Taylor go???", "Look at Taylor in all of her glory!", "Uh... maybe too much celebrity energy coming from this one.")
+-5: PackedStringArray("", "", "Who is this bald person?"),
+-4: PackedStringArray("", "", "Please don\'t edit random people into photos with my son."),
+-3: PackedStringArray("", "", "Who is that lady? She looks lonely."),
+-2: PackedStringArray("Where is my son?", "", "Did you copy and paste my own son?"),
+2: PackedStringArray("", "", "The fish was not requested."),
+3: PackedStringArray("", "", "Why is there a random woman?"),
+4: PackedStringArray("", "", "Taylor Swift is not part of the Avenging Guys."),
+7: PackedStringArray("You edited out too much of the background.", "", ""),
+11: PackedStringArray("Did you forget to add the Avenging Guys?", "Thanks for adding the Avenging Guys!", "")
 })
 desired_modification = Vector2(1, 200000)
-modification_comments = PackedStringArray("Why did nothing change?", "", "This looks a little off from what i sent you...")
+modification_comments = PackedStringArray("This is unchanged from the original.", "", "You have modified the image too much.")
 metadata/_custom_type_script = "uid://bku7ds6r61ofw"

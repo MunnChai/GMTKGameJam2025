@@ -1,17 +1,21 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://mkkp3617s3yx"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=7 format=3 uid="uid://mkkp3617s3yx"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_8oy6f"]
-[ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/remove_ex.tres" id="2_wvxsw"]
-[ext_resource type="Resource" uid="uid://gpow37rw70ga" path="res://image_judgement/desired_judgements/ex_celeb.tres" id="3_y644a"]
+[ext_resource type="Resource" uid="uid://bvlxx3653ms7m" path="res://assets/file_resources/commissions/pls_add_avenging_guys.tres" id="2_y644a"]
+[ext_resource type="Resource" uid="uid://ci28ncrfqa0nt" path="res://assets/file_resources/external_images/captain_usa.tres" id="3_x0m0q"]
+[ext_resource type="Resource" uid="uid://b7qtk6h8cc07r" path="res://assets/file_resources/external_images/steel_guy.tres" id="4_67lvq"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_x0m0q"]
+[ext_resource type="Resource" uid="uid://dd6j68a6j11b6" path="res://image_judgement/desired_judgements/avenging_guys.tres" id="5_y644a"]
 
 [resource]
 script = ExtResource("4_x0m0q")
-id = "Swiftie_Era"
-title = "My ex is ruining this photo"
-desc = "I want to post this photo I took with Taylor Swift but my ex is in it. Could you please remove her from the photo?
+id = "DadMan2000"
+title = "Please edit the Avenging Guys into this photo."
+desc = "Hello, my son's birthday is coming up soon, and I'd love to have a photo of him with his favourite superheroes, the Avenging Guys. I have attached photos of his favourite characters. 
+
+Thank you in advance.
 "
-day = 2
-assets = Array[ExtResource("1_8oy6f")]([ExtResource("2_wvxsw")])
-desired_judgement = ExtResource("3_y644a")
+day = 4
+assets = Array[ExtResource("1_8oy6f")]([ExtResource("2_y644a"), ExtResource("3_x0m0q"), ExtResource("4_67lvq")])
+desired_judgement = ExtResource("5_y644a")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
