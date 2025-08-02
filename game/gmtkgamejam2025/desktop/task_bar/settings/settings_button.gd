@@ -8,11 +8,14 @@ extends Button
 var is_open := false
 
 func _ready() -> void:
+	pivot_offset = size / 2.0
+	
 	pressed.connect(_on_pressed)
 
 func _on_pressed() -> void:
 	is_open = !is_open
 	
+	TweenUtil.pop_delta(self, Vector2(0.2, 0.2), 0.3)
 	SoundManager.play_global_oneshot(&"ui_basic_click")
 
 	

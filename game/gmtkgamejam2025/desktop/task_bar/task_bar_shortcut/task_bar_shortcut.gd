@@ -17,6 +17,8 @@ func _ready() -> void:
 	
 	if shortcut_icon:
 		icon = shortcut_icon
+	else:
+		icon = null
 	text = shortcut_name
 	
 	pivot_offset = size / 2.0
