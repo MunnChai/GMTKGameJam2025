@@ -39,6 +39,7 @@ const FeedbackScript = preload("res://apps/commissions_app/feedback/feedback.gd"
 func _ready() -> void:
 	connect_signals()
 	update_comm()
+	update_feedback()
 	_load_existing_feedback()
 
 func connect_signals() -> void:
@@ -46,8 +47,25 @@ func connect_signals() -> void:
 	upload_button.pressed.connect(on_upload_pressed)
 	submit_button.pressed.connect(on_submit_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
-	CommissionsManager.feedback_added.connect(_on_feedback_added)
+	#CommissionsManager.feedback_added.connect(_on_feedback_added)
 	CommissionsManager.submission_added.connect(_on_submission_added)
+
+	
+	# # — placeholder
+	# var placeholder_tex := ImageTexture.new()
+	# var img := Image.new()
+	# img.create(128, 128, false, Image.FORMAT_RGBA8)
+	# img.fill(Color(0.8, 0.8, 0.8, 1.0))
+	# placeholder_tex.create_from_image(img)
+	# var fb = Feedback.new()
+	# fb.title = "title"
+	# fb.rating = 0
+	# fb.submission = placeholder_tex
+	# CommissionsManager.add_feedback(commission_stat.id, fb)
+	# day += 1
+	# update_comm()
+	# emit_signal("day_changed")
+#region COMMISSION TAB
 
 func on_download_pressed() -> void:
 	var files = asset_list.get_children()
@@ -64,41 +82,6 @@ func on_submit_pressed() -> void:
 	add_feedback()
 	GameStateManager.next_day()
 	update_comm()
-	
-	# # — placeholder
-	# var placeholder_tex := ImageTexture.new()
-	# var img := Image.new()
-	# img.create(128, 128, false, Image.FORMAT_RGBA8)
-	# img.fill(Color(0.8, 0.8, 0.8, 1.0))
-	# placeholder_tex.create_from_image(img)
-	# var fb = Feedback.new()
-	# fb.title = "title"
-	# fb.rating = 0
-	# fb.submission = placeholder_tex
-	# CommissionsManager.add_feedback(commission_stat.id, fb)
-	# day += 1
-	# update_comm()
-	# emit_signal("day_changed")
-
-func add_feedback() -> void:
-	var feedback: Feedback = Feedback.new(randi_range(0, 10), CommissionsManager.get_submission())
-	CommissionsManager.add_feedback(feedback)
-	var feedback_instance = FeedbackListItemScene.instantiate()
-	feedback_list.add_child(feedback_instance)
-	feedback_instance.setup(commission_stat, feedback)
-	feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
-
-func on_back_button_pressed() -> void:
-	feedback_details.hide()
-	feedback_list.show()
-
-func _on_submission_added(work: File) -> void:
-	if not work:
-		submitted_work.hide()
-		return
-	submitted_work.show()
-	submitted_work.texture = work.texture
-
 
 func update_comm() -> void:
 	var day: int = GameStateManager.day
@@ -130,18 +113,49 @@ func update_comm() -> void:
 		asset_list.add_child(icon_instance)
 		icon_instance.setup(file)
 
+#endregion
+
+#region FEEDBACK TAB
+
+func add_feedback() -> void:
+	var feedback: Feedback = Feedback.new(commission_stat, randi_range(0, 10), CommissionsManager.get_submission())
+	CommissionsManager.add_feedback(feedback)
+	var feedback_instance = FeedbackListItemScene.instantiate()
+	feedback_list.add_child(feedback_instance)
+	feedback_instance.setup(feedback)
+	feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
+
+func on_back_button_pressed() -> void:
+	feedback_details.hide()
+	feedback_list.show()
+
+func _on_submission_added(work: File) -> void:
+	if not work:
+		submitted_work.hide()
+		return
+	submitted_work.show()
+	submitted_work.texture = work.texture
 
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()
 	feedback_list.hide()
-	var stat: CommissionStat = item.commission_stat
+	var stat: CommissionStat = item.get_feedback().get_stat()
 	feedback_id.text = stat.id
 	feedback_title.text = stat.title
 	feedback_desc.text = stat.desc
 	var fb: Feedback = item.get_feedback()
 	feedback_rating.text = str(fb.rating)
 	feedback_submission.texture = fb.get_submission_texture()
-	#feedback_work.texture = item.submission
+
+# update the feedback_tab
+func update_feedback() -> void:
+	var feedbacks: Array[Feedback] = CommissionsManager.get_feedbacks()
+	for fb in feedbacks:
+		var feedback_instance = FeedbackListItemScene.instantiate()
+		feedback_list.add_child(feedback_instance)
+		feedback_instance.setup(fb)
+		feedback_instance.pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
+#endregion
 
 #region TYLERS CODE
 func _load_existing_feedback() -> void:

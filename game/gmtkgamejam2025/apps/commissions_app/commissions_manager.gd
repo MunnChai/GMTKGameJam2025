@@ -1,7 +1,6 @@
 class_name CommissionsManagerGlobal
 extends Node
 
-signal feedback_added(commission_id: int, feedback: Feedback)
 signal submission_added(work: File)
 
 var feedbacks: Array[Feedback]

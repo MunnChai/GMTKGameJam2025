@@ -6,22 +6,13 @@ extends Button
 
 
 # List item only contains a Feedback object and commission_stat
-var commission_stat: CommissionStat
 var feedback: Feedback
 
-func setup(stat: CommissionStat, fb: Feedback) -> void:
-	commission_stat = stat
+func setup(fb: Feedback) -> void:
 	feedback = fb
+	var stat: CommissionStat = fb.get_stat()
 	item_title.text = stat.title
 	client_id.text = stat.id
 
 func get_feedback() -> Feedback:
 	return feedback
-
-func setup_with_data(stat: CommissionStat, fb: Feedback) -> void:
-	#commission_stat = stat
-	#feedback = fb
-	#submission = fb.submission
-	#item_title.text = fb.title
-	#client_id.text = stat.id
-	return

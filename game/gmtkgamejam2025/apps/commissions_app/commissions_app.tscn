@@ -30,10 +30,9 @@ layout_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-current_tab = 1
+current_tab = 0
 
 [node name="Commissions" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -121,6 +120,7 @@ mouse_default_cursor_shape = 2
 text = "Submit"
 
 [node name="Feedbacks" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -134,7 +134,6 @@ layout_mode = 2
 
 [node name="FeedbackList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer"]
 unique_name_in_owner = true
-visible = false
 custom_minimum_size = Vector2(0, 350)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -142,6 +141,7 @@ size_flags_vertical = 0
 
 [node name="FeedbackDetails" type="MarginContainer" parent="PanelContainer/VBoxContainer/TabContainer/Feedbacks/ScrollContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 
