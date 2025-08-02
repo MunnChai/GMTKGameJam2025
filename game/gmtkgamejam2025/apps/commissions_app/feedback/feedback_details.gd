@@ -24,7 +24,7 @@ func setup(feedback: Feedback) -> void:
 	feedback_submission.texture = feedback.get_submission_texture()
 	
 	feedback_id_2.text = "User: [b]" + stat.id + "[/b]"
-	feedback_rating.text = str(feedback.rating)
+	feedback_rating.text = "Overall Rating:" + str(feedback.rating) + "/10"
 	feedback_comments.text = "Comments:\n" + feedback.comments
 
 func _on_back_pressed() -> void:

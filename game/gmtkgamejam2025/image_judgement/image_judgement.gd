@@ -37,9 +37,39 @@ func generate_color_hash_dict() -> void:
 #func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
 	#pass
 
-func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> int:
-	# TODO
-	return randi_range(0, 10)
+func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> Dictionary:
+	var results := {}
+	var file_info: Dictionary = get_file_info(file)
+	var traits: Dictionary = file_info["traits"]
+	var modified_count: int = file_info["modified_count"]
+	
+	if modified_count < desired_judgement.desired_modification.x: # Not modified enough
+		pass 
+	elif modified_count < desired_judgement.desired_modification.y: # Good modification
+		pass
+	else: # Too much modification
+		pass
+	
+	var comments: String = ""
+	
+	for trait_type: Trait in desired_judgement.desired_traits:
+		var desired_range: Vector2 = desired_judgement.desired_traits[trait_type]
+		var submission_trait: int = traits.get_or_add(trait_type, 0)
+		
+		var new_comment: String = ""
+		
+		if modified_count < desired_judgement.desired_modification.x: # Not enough trait
+			new_comment = desired_judgement.feedback_comments[trait_type][0]
+		elif modified_count < desired_judgement.desired_modification.y: # Good amount
+			pass
+		else: # Too much trait
+			new_comment = desired_judgement.feedback_comments[trait_type][1]
+		
+		comments += new_comment
+	
+	results["rating"] = randi_range(0, 10)
+	results["comments"] = comments
+	return results
 
 # Returns a dictionary of various info about the file
 # Keys: 

@@ -108,8 +108,9 @@ func update_comm() -> void:
 #region FEEDBACK TAB
 
 func add_feedback() -> void:
-	var rating: int = ImageJudgement.compare_file_to_desired(CommissionsManager.get_submission(), null)
-	var feedback: Feedback = Feedback.new(commission_stat, rating, CommissionsManager.get_submission())
+	var submission = CommissionsManager.get_submission()
+	var result: Dictionary = ImageJudgement.compare_file_to_desired(submission, commission_stat.desired_judgement)
+	var feedback: Feedback = Feedback.new(commission_stat, result, submission)
 	CommissionsManager.add_feedback(feedback)
 	var feedback_instance: FeedbackListItem = FeedbackListItemScene.instantiate()
 	feedback_list.add_child(feedback_instance)
