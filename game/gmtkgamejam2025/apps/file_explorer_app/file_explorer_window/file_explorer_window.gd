@@ -21,6 +21,11 @@ func boot(args: Dictionary = {}) -> void:
 		%WindowBar.set_window_title("Select to upload your work")
 	else:
 		%WindowBar.set_window_title("File Explorer")
+	
 	# if this is a upload file window, close this window when a file is selected
 	file_explorer.set_upload_mode(upload)
 	file_explorer.get_file_system_access().upload_done.connect(_on_close_pressed)
+	
+	if args.has("folder_path"):
+		for folder_name in args.get("folder_path"):
+			file_explorer.file_system.change_directory(folder_name)

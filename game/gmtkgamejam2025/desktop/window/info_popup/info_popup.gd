@@ -30,4 +30,5 @@ func boot(args: Dictionary = {}) -> void:
 	constrain_to_viewport()
 
 func _on_confirm() -> void:
+	confirmed.emit()
 	Desktop.instance.close_window(self)

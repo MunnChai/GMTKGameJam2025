@@ -55,6 +55,21 @@ func on_download_pressed() -> void:
 	FileSystem.add_file_node_at("/commissions", client_folder)
 	for download_file: DownloadFile in files:
 		FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
+	
+	var args := {
+		"title": "DOWNLOAD SUCCESS",
+		"text": "Downloaded files to \"/commissions/" + folder_name + "\"!",
+		"confirm_label": "Open in File Explorer",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
+	window.confirmed.connect(func():
+		var file_explorer_args := {
+			"upload": false,
+			"folder_path": ["commissions", folder_name]
+		}
+		Desktop.instance.execute(&"file_explorer", file_explorer_args)
+		)
 
 func on_upload_pressed() -> void:
 	Desktop.instance.execute(&"file_explorer", {"upload": true})
