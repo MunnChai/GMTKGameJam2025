@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=7 format=3 uid="uid://do2mjky24ris7"]
+
+[ext_resource type="AudioStream" uid="uid://bkt1nj8gv7q0" path="res://sound/sound_files/ui_basic_click-002.ogg" id="2_1uthu"]
+[ext_resource type="AudioStream" uid="uid://5t5iyde7wi1b" path="res://sound/sound_files/ui_basic_click-003.ogg" id="3_3ntu8"]
+[ext_resource type="AudioStream" uid="uid://bdfjrcvo3hdfj" path="res://sound/sound_files/ui_basic_click-004.ogg" id="4_hyuhu"]
+[ext_resource type="AudioStream" uid="uid://bnej64cae3o5h" path="res://sound/sound_files/ui_basic_click-005.ogg" id="5_8k3uv"]
+[ext_resource type="AudioStream" uid="uid://cnik7m63x60" path="res://sound/sound_files/ui_basic_click.ogg" id="5_k76t6"]
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="6_ggsi2"]
+
+[resource]
+script = ExtResource("6_ggsi2")
+id = &"ui_basic_click"
+linear_volume = 1.3
+pitch_variation_range = 0.3
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("5_k76t6"), ExtResource("2_1uthu"), ExtResource("3_3ntu8"), ExtResource("4_hyuhu"), ExtResource("5_8k3uv")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"

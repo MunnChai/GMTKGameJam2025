@@ -67,9 +67,11 @@ func on_download_pressed() -> void:
 		)
 
 func on_upload_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	Desktop.instance.execute(&"file_explorer", {"upload": true})
 
 func on_submit_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	add_feedback()
 	GameStateManager.next_day()
 

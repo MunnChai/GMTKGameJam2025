@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=3 format=3 uid="uid://cao1q1wfktpd6"]
+
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="1_ky7wq"]
+[ext_resource type="AudioStream" uid="uid://bw300gkvun7gv" path="res://sound/sound_files/blip_success.wav" id="1_y8pow"]
+
+[resource]
+script = ExtResource("1_ky7wq")
+id = &"ui_success"
+linear_volume = 1.0
+pitch_variation_range = 0.3
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("1_y8pow")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"

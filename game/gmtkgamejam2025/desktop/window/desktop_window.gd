@@ -99,6 +99,7 @@ func _match_size() -> void:
 
 func _on_close_pressed() -> void:
 	if Desktop.is_instanced() and not is_closing:
+		SoundManager.play_global_oneshot(&"ui_basic_click")
 		Desktop.instance.close_window(self)
 
 func _on_mouse_entered() -> void:
@@ -127,6 +128,7 @@ func handle_drag_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"lmb") and drag_hovered:
 		is_dragging = true
 		drag_started.emit()
+		SoundManager.play_global_oneshot(&"ui_basic_click")
 	if event.is_action_released(&"lmb"):
 		is_dragging = false
 		drag_released.emit()

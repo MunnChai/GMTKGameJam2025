@@ -71,13 +71,13 @@ func start_player(id: StringName, global_pos: Vector2) -> AudioStreamPlayer2D:
 	add_child(audio_player)
 	
 	## Set settings...
-	audio_player.base_attenuation = default_attenuation
+	audio_player.attenuation = default_attenuation
 	if sound.attenuation_override >= 0.0:
-		audio_player.base_attenuation = sound.attenuation_override
+		audio_player.attenuation = sound.attenuation_override
 	audio_player.global_position = global_pos
 	audio_player.stream = stream
 	audio_player.pitch_scale = 1.0 + randf_range(-sound.pitch_variation_range, sound.pitch_variation_range)
-	audio_player.base_volume = sound.linear_volume
+	audio_player.volume_linear = sound.linear_volume
 	audio_player.bus = sfx_bus_id
 	audio_player.play()
 	

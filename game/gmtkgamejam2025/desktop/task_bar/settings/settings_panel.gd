@@ -30,7 +30,8 @@ func _on_music_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 	
 	if ready_done:
-		pass ## Play click sfx
+		SoundManager.play_global_oneshot(&"ui_basic_click")
+
 
 func _on_sound_value_changed(value: float) -> void:
 	GameSettings.set_setting("sound_volume", value, "audio")
@@ -40,8 +41,11 @@ func _on_sound_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
 	
 	if ready_done:
-		pass ## Play click sfx, juice
+		SoundManager.play_global_oneshot(&"ui_basic_click")
 
 func _on_motion_box_checked(is_toggled: bool) -> void:
 	GameSettings.set_setting("reduced_motion", is_toggled, "graphics")
 	GameSettings.save_to_config()
+	
+	if ready_done:
+		SoundManager.play_global_oneshot(&"ui_basic_click")
