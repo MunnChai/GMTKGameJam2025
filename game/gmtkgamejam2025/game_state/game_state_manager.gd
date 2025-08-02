@@ -1,6 +1,7 @@
 extends Node
 
-var money: int = 0
+var money: int = 5
+
 var day: int = 1
 
 signal money_changed(new_money)

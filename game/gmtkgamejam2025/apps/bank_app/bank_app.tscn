@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbrtermfxiebt"]
+[gd_scene load_steps=7 format=3 uid="uid://bbrtermfxiebt"]
 
+[ext_resource type="Script" uid="uid://bt18ey8jp2b5x" path="res://apps/bank_app/bank_app.gd" id="1_36y8t"]
 [ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="1_hy14y"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_xkiw2"]
 [ext_resource type="Texture2D" uid="uid://doaio76dl16o7" path="res://assets/ui/windows/window_rect.png" id="3_xkiw2"]
@@ -18,8 +19,10 @@ offset_right = -1280.0
 offset_bottom = -720.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_36y8t")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
 offset_right = 293.0
 offset_bottom = 305.0
 size_flags_vertical = 3
