@@ -16,6 +16,6 @@ feedback_comments = Dictionary[int, PackedStringArray]({
 1: PackedStringArray("", "The hair looks great!", "Uh... this might be a bit TOO much hair..."),
 2: PackedStringArray("WHAT HAPPENED TO MY FISH???", "", "Why is there so much... fish?")
 })
-desired_modification = Vector2(1, 300000)
+desired_modification = Vector2(1, 150000)
 modification_comments = PackedStringArray("Did you even change anything?", "", "Uh... it looks a little different from the original.")
 metadata/_custom_type_script = "uid://bku7ds6r61ofw"

@@ -1,15 +1,17 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=4 format=3 uid="uid://dbn28hkhlg18e"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://dbn28hkhlg18e"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_0hmug"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="1_hreqq"]
 [ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/remove_ex.tres" id="2_c8h00"]
+[ext_resource type="Resource" uid="uid://gpow37rw70ga" path="res://image_judgement/desired_judgements/ex_celeb.tres" id="3_c8h00"]
 
 [resource]
 script = ExtResource("1_hreqq")
 id = "Swiftie_Era"
 title = "My ex is ruining this photo"
-desc = "I want to post this photo I took with Taylor Swift but my ex is in it. Could you please remove him from the photo?
+desc = "I want to post this photo I took with Taylor Swift but my ex is in it. Could you please remove her from the photo?
 "
 day = 2
 assets = Array[ExtResource("1_0hmug")]([ExtResource("2_c8h00")])
+desired_judgement = ExtResource("3_c8h00")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
