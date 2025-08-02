@@ -77,12 +77,14 @@ offset_left = -638.0
 offset_top = -31.0
 offset_right = -577.0
 offset_bottom = -3.0
+toggle_mode = true
 texture_normal = ExtResource("3_e7cxb")
 texture_pressed = ExtResource("4_j88fw")
 stretch_mode = 0
 script = ExtResource("5_gsjrs")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SettingsButton"]
+[node name="SettingsButtonText" type="RichTextLabel" parent="SettingsButton"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 62.0
 offset_bottom = 26.0
@@ -95,11 +97,10 @@ vertical_alignment = 1
 
 [node name="SettingsPanel" type="PanelContainer" parent="SettingsButton"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_left = -2.0
-offset_top = -294.0
-offset_right = 318.0
+offset_top = -248.0
+offset_right = 289.0
 offset_bottom = -3.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_e36ol")
 script = ExtResource("7_okagq")
@@ -117,6 +118,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="MarginContainer2" type="MarginContainer" parent="SettingsButton/SettingsPanel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
@@ -124,7 +126,6 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 5
 
 [node name="NinePatchRect" type="NinePatchRect" parent="SettingsButton/SettingsPanel/HBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 texture = ExtResource("7_e36ol")
 region_rect = Rect2(0, 0, 53, 53)
@@ -146,7 +147,7 @@ layout_mode = 2
 alignment = 2
 
 [node name="Control" type="Control" parent="SettingsButton/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="SettingsButton/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer"]
