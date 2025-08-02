@@ -41,6 +41,13 @@ func _ready():
 	
 	var exports_folder = Folder.new("exports")
 	add_file_node_at("/", exports_folder)
+	
+	add_file_node_at("/", Folder.new("very_big_folder"))
+	
+	for i in range(100):
+		var new_file = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
+		new_file.node_name = "sad_" + str(i) + ".png"
+		add_file_node_at("/very_big_folder", new_file)
 
 func open_file_at(path: String) -> bool:
 	var node: FileNode = parse_path(path)
