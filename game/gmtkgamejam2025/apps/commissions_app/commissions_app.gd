@@ -127,6 +127,7 @@ func _on_submission_added(work: File) -> void:
 		return
 	submitted_work.show()
 	submitted_work.setup(work)
+	submit_button.disabled = false
 
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()

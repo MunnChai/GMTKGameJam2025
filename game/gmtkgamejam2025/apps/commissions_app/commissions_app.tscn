@@ -293,6 +293,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+disabled = true
 text = "Submit"
 
 [node name="Feedbacks" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer"]

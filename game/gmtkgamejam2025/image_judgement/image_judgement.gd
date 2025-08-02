@@ -38,37 +38,66 @@ func generate_color_hash_dict() -> void:
 	#pass
 
 func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> Dictionary:
+	if file.file_type != "image":
+		var results := {
+			"rating": 0,
+			"comments": "This is just a text file...",
+		}
+		return results
+	
 	var results := {}
 	var file_info: Dictionary = get_file_info(file)
 	var traits: Dictionary = file_info["traits"]
 	var modified_count: int = file_info["modified_count"]
 	
-	if modified_count < desired_judgement.desired_modification.x: # Not modified enough
-		pass 
-	elif modified_count < desired_judgement.desired_modification.y: # Good modification
-		pass
-	else: # Too much modification
-		pass
-	
+	var rating: int = 0
 	var comments: String = ""
 	
-	for trait_type: Trait in desired_judgement.desired_traits:
-		var desired_range: Vector2 = desired_judgement.desired_traits[trait_type]
-		var submission_trait: int = traits.get_or_add(trait_type, 0)
+	if modified_count < desired_judgement.desired_modification.x: # Not modified enough
+		comments += desired_judgement.modification_comments[0]
+	elif modified_count < desired_judgement.desired_modification.y: # Good modification
+		comments += desired_judgement.modification_comments[1]
+		rating += 2
+	elif modified_count >= desired_judgement.desired_modification.y:
+		comments += desired_judgement.modification_comments[2]
+	
+	if not comments.ends_with(" ") and comments != "":
+		comments += " "
+	
+	var desired_traits: Dictionary = desired_judgement.desired_traits
+	var feedback_comments: Dictionary = desired_judgement.feedback_comments
+	
+	var num_desired_traits_completed: float = 0
+	var num_desired_traits: float = desired_traits.keys().size()
+	for trait_type: Trait in desired_traits.keys():
+		var desired_range: Vector2 = desired_traits[trait_type]
+		var submission_trait_value: int = traits.get_or_add(trait_type, 0)
 		
 		var new_comment: String = ""
 		
-		if modified_count < desired_judgement.desired_modification.x: # Not enough trait
-			new_comment = desired_judgement.feedback_comments[trait_type][0]
-		elif modified_count < desired_judgement.desired_modification.y: # Good amount
-			pass
-		else: # Too much trait
-			new_comment = desired_judgement.feedback_comments[trait_type][1]
+		if submission_trait_value < desired_range.x: # Not enough trait
+			new_comment = feedback_comments[trait_type][0]
+		elif submission_trait_value < desired_range.y: # Good amount
+			num_desired_traits_completed += 1
+			new_comment = feedback_comments[trait_type][1]
+		elif submission_trait_value >= desired_range.y: # Too much trait
+			new_comment = feedback_comments[trait_type][2]
 		
+		#print("Trait: ", trait_type)
+		#print("Amount: ", submission_trait_value)
+		#print("Range: ", desired_range)
+		
+		if not new_comment.ends_with(" ") and new_comment != "":
+			new_comment += " "
 		comments += new_comment
 	
-	results["rating"] = randi_range(0, 10)
+	rating += int(num_desired_traits_completed * 8 / num_desired_traits)
+	
+	results["rating"] = rating
 	results["comments"] = comments
+	
+	print("Rating: ", rating)
+	print("Comments: ", comments)
 	return results
 
 # Returns a dictionary of various info about the file

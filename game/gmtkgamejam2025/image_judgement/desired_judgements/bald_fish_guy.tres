@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://cqwaat8xah5ow"]
+
+[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_wrg3b"]
+
+[resource]
+script = ExtResource("1_wrg3b")
+desired_traits = Dictionary[Variant, Vector2]({
+-5: Vector2(150000, 200000),
+0: Vector2(5000, 7200),
+1: Vector2(4000, 80000),
+2: Vector2(30000, 100000)
+})
+feedback_comments = Dictionary[Variant, PackedStringArray]({
+-5: PackedStringArray("What happened to me??", "", ""),
+0: PackedStringArray("", "Eh... I still look pretty bald. ", "Hey, I don\'t look bald anymore!"),
+1: PackedStringArray("", "The hair looks great!", "Uh... this might be a bit TOO much hair..."),
+2: PackedStringArray("WHAT HAPPENED TO MY FISH???", "", "Why is there so much... fish?")
+})
+desired_modification = Vector2(1, 300000)
+modification_comments = PackedStringArray("Did you even change anything?", "", "Uh... it looks a little different from the original.")
+metadata/_custom_type_script = "uid://bku7ds6r61ofw"
