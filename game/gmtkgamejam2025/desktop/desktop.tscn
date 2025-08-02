@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=17 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -12,13 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://dniuofjt4onnt" path="res://desktop/window/success/success.tscn" id="8_b6j2u"]
 [ext_resource type="Texture2D" uid="uid://d2tkrsndv76ln" path="res://assets/ui/file_explorer/folder_icon_desktop.png" id="9_b6j2u"]
 [ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
-[ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="9_jsfay"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
-[ext_resource type="Texture2D" uid="uid://d2etpwefg0clb" path="res://assets/ui/icons/PhotoLoopIcon.png" id="10_4ndcx"]
-[ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/bald_fish_man.tres" id="10_kx87n"]
-[ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/remove_ex.tres" id="12_iy36f"]
-[ext_resource type="Resource" uid="uid://bvlxx3653ms7m" path="res://assets/file_resources/commissions/pls_add_avenging_guys.tres" id="14_sscii"]
+[ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="13_qk0lg"]
 [ext_resource type="AudioStream" uid="uid://b3ddo8hcfifds" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to.mp3" id="17_sscii"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx87n"]
+atlas = ExtResource("13_qk0lg")
+region = Rect2(0, -14.8371, 43, 58.8371)
+margin = Rect2(0, -15, 0, 0)
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
@@ -114,43 +115,7 @@ layout_mode = 2
 app_id = &"commissions"
 type = 2
 shortcut_name = "commissions"
-icon = null
-
-[node name="PhotoshopIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"photoshop"
-args = Dictionary[StringName, Variant]({
-&"file": ExtResource("10_kx87n")
-})
-shortcut_name = "photoloop.exe"
-icon = ExtResource("10_4ndcx")
-
-[node name="PhotoshopIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"photoshop"
-args = Dictionary[StringName, Variant]({
-&"file": ExtResource("12_iy36f")
-})
-shortcut_name = "photoloop.exe"
-icon = ExtResource("10_4ndcx")
-
-[node name="PhotoshopIcon3" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"photoshop"
-args = Dictionary[StringName, Variant]({
-&"file": ExtResource("9_jsfay")
-})
-shortcut_name = "photoloop.exe"
-icon = ExtResource("10_4ndcx")
-
-[node name="PhotoshopIcon4" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"photoshop"
-args = Dictionary[StringName, Variant]({
-&"file": ExtResource("14_sscii")
-})
-shortcut_name = "photoloop.exe"
-icon = ExtResource("10_4ndcx")
+icon = SubResource("AtlasTexture_kx87n")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DesktopIcons/HBoxContainer"]
 layout_mode = 2
