@@ -70,15 +70,18 @@ func _ready() -> void:
 
 func _on_copy_pressed() -> void:
 	copy_selection()
+	SoundManager.play_global_oneshot(&"cut")
 	dotted_line.clear()
 
 func _on_cut_pressed() -> void:
+	SoundManager.play_global_oneshot(&"cut")
 	cut_selection()
 
 func _on_paste_pressed() -> void:
 	if is_paste_confirmable:
 		paste_selection_to_image()
 		await editable_image.finished_pasting
+	SoundManager.play_global_oneshot(&"paste")
 	paste_selection()
 
 func _on_redo_pressed() -> void:
@@ -101,16 +104,19 @@ func handle_actions(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("copy"):
+		SoundManager.play_global_oneshot(&"cut")
 		copy_selection()
 		dotted_line.clear()
 	
 	if Input.is_action_just_pressed("cut"):
+		SoundManager.play_global_oneshot(&"cut")
 		cut_selection()
 	
 	if Input.is_action_just_pressed("paste"):
 		if is_paste_confirmable:
 			paste_selection_to_image()
 			await editable_image.finished_pasting
+		SoundManager.play_global_oneshot(&"paste")
 		paste_selection()
 
 func handle_movement(delta: float) -> void:

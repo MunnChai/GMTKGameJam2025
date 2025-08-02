@@ -25,7 +25,10 @@ func boot(args: Dictionary = {}) -> void:
 	target_pos = position
 	constrain_to_viewport()
 	
+	## TODO: Standardize window open spam to move toward corner...
 	error_counter += 1
+	
+	SoundManager.play_global_oneshot(&"ui_error")
 
 func _on_close() -> void:
 	error_counter -= 1

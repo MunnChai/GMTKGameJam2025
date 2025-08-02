@@ -56,6 +56,7 @@ func _on_mouse_exited() -> void:
 func _on_pressed() -> void:
 	if being_removed:
 		return
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	trigger()
 	if GameSettings.get_setting("reduced_motion", false, "graphics"):
 		return

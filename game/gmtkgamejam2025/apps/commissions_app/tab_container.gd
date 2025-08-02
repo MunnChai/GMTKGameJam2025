@@ -20,3 +20,5 @@ func _on_button_toggled(toggled_on: bool, pressed_button: Button, panel: Contain
 	
 	for tab_panel: Container in tab_panels:
 		tab_panel.visible = tab_panel == panel
+	
+	SoundManager.play_global_oneshot(&"ui_basic_click")

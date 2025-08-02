@@ -73,9 +73,11 @@ func on_download_pressed() -> void:
 		)
 
 func on_upload_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	Desktop.instance.execute(&"file_explorer", {"upload": true})
 
 func on_submit_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	add_feedback()
 	GameStateManager.next_day()
 
@@ -126,6 +128,7 @@ func add_feedback() -> void:
 func on_back_button_pressed() -> void:
 	feedback_details.hide()
 	feedback_list.show()
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 
 func _on_submission_added(work: File) -> void:
 	if not work:
@@ -139,6 +142,7 @@ func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()
 	feedback_list.hide()
 	feedback_details.setup(item.get_feedback())
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 
 # update the feedback_tab
 func update_feedback() -> void:

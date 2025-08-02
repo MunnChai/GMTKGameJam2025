@@ -2,6 +2,9 @@ extends Control
 
 @onready var pos := position
 
+func _ready() -> void:
+	position = pos + Vector2.DOWN * 256.0
+
 func open() -> void:
 	visible = true
 	if GameSettings.get_setting("reduced_motion", false, "graphics"):

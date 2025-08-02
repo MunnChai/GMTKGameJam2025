@@ -13,6 +13,9 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	is_open = !is_open
 	
+	SoundManager.play_global_oneshot(&"ui_basic_click")
+
+	
 	#settings_panel.visible = !settings_panel.visible
 	
 	if is_open:

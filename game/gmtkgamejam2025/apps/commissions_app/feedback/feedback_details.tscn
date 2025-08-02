@@ -34,6 +34,7 @@ text = "Back"
 [node name="Control3" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="InitialCommission" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -53,6 +54,7 @@ theme_override_constants/margin_top = 30
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/InitialCommission/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 texture = ExtResource("3_imh2b")
 region_rect = Rect2(0, 0, 325, 188)
 patch_margin_left = 40
@@ -96,6 +98,7 @@ fit_content = true
 [node name="Control" type="Control" parent="VBoxContainer/InitialCommission/MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="FeedbackDesc" type="RichTextLabel" parent="VBoxContainer/InitialCommission/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -109,6 +112,7 @@ fit_content = true
 [node name="Control2" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="SubmittedWork" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -123,6 +127,7 @@ theme_override_constants/margin_top = 30
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/SubmittedWork/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 texture = ExtResource("4_62d03")
 region_rect = Rect2(0, 0, 325, 188)
 patch_margin_top = 40
@@ -167,6 +172,7 @@ texture = SubResource("PlaceholderTexture2D_62d03")
 [node name="Control4" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="Feedback" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -186,6 +192,7 @@ theme_override_constants/margin_top = 30
 
 [node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer/Feedback/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 texture = ExtResource("3_imh2b")
 region_rect = Rect2(0, 0, 325, 188)
 patch_margin_left = 40
@@ -228,10 +235,12 @@ fit_content = true
 [node name="Control" type="Control" parent="VBoxContainer/Feedback/MarginContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="FeedbackRating" type="RichTextLabel" parent="VBoxContainer/Feedback/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("2_ytrpd")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Rating: 1.0"
@@ -240,6 +249,7 @@ fit_content = true
 [node name="FeedbackComments" type="RichTextLabel" parent="VBoxContainer/Feedback/MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("2_ytrpd")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Comments:"

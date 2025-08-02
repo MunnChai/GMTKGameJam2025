@@ -26,9 +26,16 @@ func boot(args: Dictionary = {}) -> void:
 	
 	%ConfirmButton.pressed.connect(_on_confirm)
 	
+	SoundManager.play_global_oneshot(&"ui_success")
+	
+	confirmed.connect(_confirmed)
+	
 	target_pos = position
 	constrain_to_viewport()
 
 func _on_confirm() -> void:
 	confirmed.emit()
 	Desktop.instance.close_window(self)
+
+func _confirmed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")

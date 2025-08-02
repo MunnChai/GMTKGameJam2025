@@ -32,6 +32,8 @@ func change_directory(folder_name: String) -> bool:
 	return false
 
 func go_back() -> bool:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
+
 	if directory_history.size() > 1:
 		directory_history.pop_back()
 		current_directory = directory_history.back()
@@ -43,6 +45,7 @@ func get_current_contents() -> Array[FileNode]:
 	return current_directory.children
 
 func open_file(file_node: FileNode):
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	if file_node.is_folder():
 		change_directory(file_node.node_name)
 	else:
