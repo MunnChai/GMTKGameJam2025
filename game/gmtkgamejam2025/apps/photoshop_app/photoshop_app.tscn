@@ -69,6 +69,7 @@ layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_qpycq")
+disabled = true
 text = "Save"
 
 [node name="ResetButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/Filebar"]
@@ -143,30 +144,35 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_wr4rw")
 
 [node name="CutButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_vydbk")
 
 [node name="PasteButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("9_ljndt")
 
 [node name="RedoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("10_sgpd6")
 
 [node name="UndoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("11_a0s55")
 
 [node name="EditingNode" type="Control" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel"]

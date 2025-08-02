@@ -24,6 +24,14 @@ func set_file(file: File) -> void:
 	editing_panel.set_file(file)
 
 func _on_reset_pressed() -> void:
+	var args := {
+		"title": "RESET SUCCESS",
+		"text": "Reset image to original state!",
+		"confirm_label": "Okay...",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
+	
 	editing_panel.reset_texture()
 
 func _on_export_pressed() -> void:

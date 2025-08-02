@@ -191,6 +191,8 @@ func bring_self_to_front() -> void:
 	is_active = true
 	brought_to_front.emit(true)
 	
+	SoundManager.play_global_oneshot(&"ui_basic_click")
+	
 	move_to_front()
 	
 	## TODO: Bringing to front animation
