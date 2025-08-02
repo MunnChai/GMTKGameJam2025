@@ -48,12 +48,11 @@ func on_download_pressed() -> void:
 	var files = asset_list.get_children()
 	var folder_name: String = "Client " + commission_stat.id
 	var client_folder = Folder.new(folder_name)
-	FileSystem.add_file_node_at("/Commissions", client_folder)
+	FileSystem.add_file_node_at("/commissions", client_folder)
 	for file in files:
-		FileSystem.add_file_node_at("/Commissions/" + folder_name, file.file_node)
+		FileSystem.add_file_node_at("/commissions/" + folder_name, file.file_node)
 
 func on_upload_pressed() -> void:
-#	Desktop.instance.execute(&"photoshop", {"texture": node.texture })
 	Desktop.instance.execute(&"file_explorer", {"upload": true})
 
 func on_submit_pressed() -> void:
@@ -124,15 +123,16 @@ func update_comm() -> void:
 	submitted_work.hide()
 	submitted_work.texture = null
 
-	var assets: Dictionary = stat.assets
+	var assets: Array[FileResource] = stat.assets
 	if not assets:
 		return
-	for file_name in assets.keys():
-		var file: File = File.new(file_name, "image", assets[file_name])
+	for file_res in assets:
+		var file: File = File.create_from_resource(file_res)
 		var icon_instance = FileIconScene.instantiate()
 		asset_list.add_child(icon_instance)
 		icon_instance.setup(file)
 
+#region TYLERS CODE
 func _load_existing_feedback() -> void:
 	var saved = CommissionsManager.get_feedbacks(int(commission_stat.id))
 	for fb_data in saved:
@@ -148,3 +148,4 @@ func _create_feedback_item(fb_data) -> void:
 	item.setup_with_data(commission_stat, fb_data)
 	feedback_list.add_child(item)
 	item.pressed.connect(on_feedback_item_pressed.bind(item))
+#endregion

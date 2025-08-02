@@ -6,4 +6,4 @@ extends Resource
 @export_multiline var desc: String
 
 @export var day: int
-@export var assets: Dictionary[String, Texture2D] # [file name, texture]
+@export var assets: Array[FileResource]
