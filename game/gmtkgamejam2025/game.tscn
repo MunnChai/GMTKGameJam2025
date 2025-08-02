@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://nc4dkxqnh35a"]
 
-[ext_resource type="PackedScene" uid="uid://dvrpk4wp2vd4u" path="res://desktop/desktop.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://c683yxhh0pau7" path="res://start_screen.tscn" id="2_e2o6t"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Desktop" parent="." instance=ExtResource("1_80nbo")]
+[node name="StartScreen" parent="." instance=ExtResource("2_e2o6t")]
