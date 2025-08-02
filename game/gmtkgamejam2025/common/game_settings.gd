@@ -18,16 +18,16 @@ const SETTINGS_PATH := "user://settings.cfg"
 ## Set setting
 ## Default to "default" category...
 static func set_setting(key: String, value: Variant, section: String = DEFAULT_CATEGORY_NAME) -> void:
-	var settings: Dictionary[String, Variant] = settings_categories.get(section, {})
+	var settings: Dictionary = settings_categories.get(section, {})
 	settings.set(key, value)
-	settings_categories.set(key, value)
+	settings_categories.set(section, settings)
 
 ## Get setting
 ## Returns default if section or key doesn't exist
-static func get_setting(key: String, value: Variant, default: Variant = null, section: String = DEFAULT_CATEGORY_NAME) -> Variant:
+static func get_setting(key: String, default: Variant = null, section: String = DEFAULT_CATEGORY_NAME) -> Variant:
 	if settings_categories.has(section):
 		if settings_categories[section].has(key):
-			return settings_categories.get(key, default)
+			return settings_categories[section].get(key, default)
 	return default
 
 ## Save EVERYTHING in settings_categories to config file
@@ -36,7 +36,7 @@ static func save_to_config() -> void:
 	
 	## Save each category...
 	for category: String in settings_categories.keys():
-		var settings: Dictionary[String, Variant] = settings_categories[category]
+		var settings: Dictionary = settings_categories[category]
 		for key: String in settings:
 			config.set_value(category, key, settings[key])
 	
@@ -61,7 +61,7 @@ static func load_from_config(path: String = SETTINGS_PATH) -> void:
 			settings_categories.set(section, {})
 		
 		## Get reference to that section
-		var settings: Dictionary[String, Variant] = settings_categories[section]
+		var settings: Dictionary = settings_categories[section]
 		
 		## Load key-values into there...
 		for key: String in config.get_section_keys(section):

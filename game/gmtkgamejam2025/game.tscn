@@ -7,6 +7,7 @@
 
 [node name="Desktop" parent="." instance=ExtResource("1_80nbo")]
 
-[node name="ChillLofiTuneToPhotoloopAndRelaxTo" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_e2o6t")
 autoplay = true
+bus = &"Music"
