@@ -45,7 +45,7 @@ func connect_signals() -> void:
 
 func on_download_pressed() -> void:
 	var files = asset_list.get_children()
-	var folder_name: String = "Client " + commission_stat.id
+	var folder_name: String = "User " + commission_stat.id
 	var client_folder = Folder.new(folder_name)
 	FileSystem.add_file_node_at("/commissions", client_folder)
 	for download_file: DownloadFile in files:
@@ -84,7 +84,7 @@ func update_comm() -> void:
 		return
 	commission_stat = stat
 
-	id.text = "User [b]" + stat.id + "[/b]"
+	id.text = "User: [b]" + stat.id + "[/b]"
 	title.text = "[b][i]" + stat.title + "[/i][/b]"
 	desc.text = stat.desc
 
@@ -135,6 +135,7 @@ func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 # update the feedback_tab
 func update_feedback() -> void:
 	var feedbacks: Array[Feedback] = CommissionsManager.get_feedbacks()
+	feedbacks.reverse()
 	for fb in feedbacks:
 		var feedback_instance = FeedbackListItemScene.instantiate()
 		feedback_list.add_child(feedback_instance)

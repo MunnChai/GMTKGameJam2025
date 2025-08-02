@@ -17,12 +17,13 @@ func _ready() -> void:
 
 func setup(feedback: Feedback) -> void:
 	var stat: CommissionStat = feedback.get_stat()
-	feedback_id.text = "Client " + stat.id
+	feedback_id.text = "User: [b]" + stat.id + "[/b]"
 	feedback_title.text = stat.title
 	feedback_desc.text = stat.desc
 	
 	feedback_submission.texture = feedback.get_submission_texture()
 	
+	feedback_id_2.text = "User: [b]" + stat.id + "[/b]"
 	feedback_rating.text = str(feedback.rating)
 	feedback_comments.text = "Comments:\n" + feedback.comments
 

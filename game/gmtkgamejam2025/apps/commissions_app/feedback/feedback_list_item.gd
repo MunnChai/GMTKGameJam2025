@@ -16,7 +16,7 @@ func setup(fb: Feedback) -> void:
 	feedback = fb
 	var stat: CommissionStat = fb.get_stat()
 	item_title.text = stat.title
-	client_id.text = stat.id
+	client_id.text = "User: " + stat.id
 
 func get_feedback() -> Feedback:
 	return feedback
