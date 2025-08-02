@@ -12,6 +12,7 @@ extends Node2D
 ## Day fade
 signal transition_done()
 @onready var fade_rect: ColorRect = $CanvasLayer/DayFade
+@onready var day_label: RichTextLabel = %DayLabel
 
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]
@@ -178,7 +179,19 @@ func _on_fade_out_complete() -> void:
 	for w in windows.duplicate():
 		close_window(w)
 	
-	await get_tree().create_timer(1.0).timeout
+	day_label.text = "Day " + str(GameStateManager.day) + "/4"
+	day_label.move_to_front()
+	day_label.visible = true
+	day_label.modulate.a = 0.0
+	var label_tween = get_tree().create_tween()
+	label_tween.set_trans(Tween.TRANS_CUBIC)
+	label_tween.set_parallel(false)
+	label_tween.tween_property(day_label, "modulate:a", 1.0, 1.0)
+	label_tween.tween_interval(1.0)
+	label_tween.tween_property(day_label, "modulate:a", 0.0, 1.0)
+	
+	await label_tween.finished
+	day_label.visible = false
 	
 	transition_done.emit()
 	var tween_in = get_tree().create_tween()

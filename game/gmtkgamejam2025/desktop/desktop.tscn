@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=20 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d2tkrsndv76ln" path="res://assets/ui/file_explorer/folder_icon_desktop.png" id="9_b6j2u"]
 [ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
 [ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="9_jsfay"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="Texture2D" uid="uid://d2etpwefg0clb" path="res://assets/ui/icons/PhotoLoopIcon.png" id="10_4ndcx"]
 [ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/bald_fish_man.tres" id="10_kx87n"]
 [ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/remove_ex.tres" id="12_iy36f"]
@@ -52,6 +53,28 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.435294, 0.54902, 0.501961, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="DayLabel" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -231.0
+offset_top = -53.0
+offset_right = 231.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("10_1m8fn")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "Day 1"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15

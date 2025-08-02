@@ -347,3 +347,16 @@ icon = ExtResource("15_s3o61")
 text_overrun_behavior = 3
 expand_icon = true
 script = ExtResource("5_gsjrs")
+
+[node name="DateLabel" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 456.0
+offset_top = -37.0
+offset_right = 633.0
+offset_bottom = 3.0
+theme = ExtResource("5_e36ol")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "27/7/2025"
+horizontal_alignment = 2
+vertical_alignment = 1
