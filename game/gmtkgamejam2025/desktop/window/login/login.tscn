@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://lhahjhcphvs"]
 
-[ext_resource type="Script" uid="uid://c7t72ybuufey8" path="res://desktop/window/export_success/export_success.gd" id="1_f2gex"]
+[ext_resource type="Script" uid="uid://c7t72ybuufey8" path="res://desktop/window/success/success.gd" id="1_f2gex"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_roinn"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_7qujq"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="4_chdpo"]

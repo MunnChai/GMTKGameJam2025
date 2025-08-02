@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.tscn" id="5_6vopt"]
 [ext_resource type="PackedScene" uid="uid://ba01qxttnfxam" path="res://apps/commissions_app/commissions_window/commissions_window.tscn" id="6_r3xg6"]
 [ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
-[ext_resource type="PackedScene" uid="uid://dniuofjt4onnt" path="res://desktop/window/success/success.tscn" id="8_b6j2u"]
+[ext_resource type="PackedScene" uid="uid://n64dite5vves" path="res://desktop/window/export_success/export_success.tscn" id="8_b6j2u"]
 [ext_resource type="Texture2D" uid="uid://d2tkrsndv76ln" path="res://assets/ui/file_explorer/folder_icon_desktop.png" id="9_b6j2u"]
 [ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="9_jsfay"]
 [ext_resource type="Texture2D" uid="uid://d2etpwefg0clb" path="res://assets/ui/icons/PhotoLoopIcon.png" id="10_4ndcx"]

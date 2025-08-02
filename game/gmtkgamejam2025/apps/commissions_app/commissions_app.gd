@@ -1,6 +1,7 @@
 class_name CommissionApp
 extends Control
 
+const DOWNLOAD_FILE = preload("res://apps/commissions_app/download_file_scene/download_file.tscn")
 
 @onready var id: RichTextLabel = %Id
 @onready var title: RichTextLabel = %Title
@@ -10,8 +11,8 @@ extends Control
 @onready var download_button: Button = %Download
 @onready var upload_button: Button = %Upload
 @onready var submit_button: Button = %Submit
-@onready var submitted_work: TextureRect = %SubmittedWork
-@onready var asset_list: HBoxContainer = %AssetList
+@onready var submitted_work: DownloadFile = %SubmittedWork
+@onready var asset_list: Container = %AssetList
 
 # feedback related
 @onready var back_button: Button = %BackButton
@@ -52,8 +53,8 @@ func on_download_pressed() -> void:
 	var folder_name: String = "Client " + commission_stat.id
 	var client_folder = Folder.new(folder_name)
 	FileSystem.add_file_node_at("/commissions", client_folder)
-	for file in files:
-		FileSystem.add_file_node_at("/commissions/" + folder_name, file.file_node)
+	for download_file: DownloadFile in files:
+		FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
 
 func on_upload_pressed() -> void:
 	Desktop.instance.execute(&"file_explorer", {"upload": true})
@@ -81,16 +82,16 @@ func update_comm() -> void:
 		child.queue_free()
 
 	submitted_work.hide()
-	submitted_work.texture = null
+	submitted_work.clear()
 
 	var assets: Array[FileResource] = stat.assets
 	if not assets:
 		return
 	for file_res in assets:
+		var download_file: DownloadFile = DOWNLOAD_FILE.instantiate()
 		var file: File = File.create_from_resource(file_res)
-		var icon_instance = FileIconScene.instantiate()
-		asset_list.add_child(icon_instance)
-		icon_instance.setup(file)
+		asset_list.add_child(download_file)
+		download_file.setup(file)
 
 #endregion
 
@@ -114,7 +115,7 @@ func _on_submission_added(work: File) -> void:
 		submitted_work.hide()
 		return
 	submitted_work.show()
-	submitted_work.texture = work.texture
+	submitted_work.setup(work)
 
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()

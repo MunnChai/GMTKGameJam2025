@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://dps6rblk20cu3"]
+
+[ext_resource type="Texture2D" uid="uid://c1nabqph8kidd" path="res://assets/ui/commissions/white_background.png" id="1_5r5i6"]
+[ext_resource type="Texture2D" uid="uid://3tyn5ohvho2x" path="res://assets/ui/commissions/paperclip_icon.png" id="2_8ntn2"]
+[ext_resource type="Script" uid="uid://47k6jdbrjb1r" path="res://apps/commissions_app/download_file_scene/download_file.gd" id="2_t0m3o"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_t0m3o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5oj0"]
+texture = ExtResource("1_5r5i6")
+
+[node name="DownloadFile" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 28)
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_a5oj0")
+script = ExtResource("2_t0m3o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8ntn2")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme = ExtResource("3_t0m3o")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "sad_birthday.png"
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
