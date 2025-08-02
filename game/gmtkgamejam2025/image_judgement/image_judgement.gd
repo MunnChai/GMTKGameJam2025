@@ -55,6 +55,10 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 	
 	if modified_count < desired_judgement.desired_modification.x: # Not modified enough
 		comments += desired_judgement.modification_comments[0]
+		return {
+			"rating": rating,
+			"comments": comments,
+		}
 	elif modified_count < desired_judgement.desired_modification.y: # Good modification
 		comments += desired_judgement.modification_comments[1]
 		rating += 2
