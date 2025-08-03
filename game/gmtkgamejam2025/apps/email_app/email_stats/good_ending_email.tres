@@ -7,7 +7,5 @@ script = ExtResource("1_yldyd")
 sender = "landlord@loopmail.com"
 recipient = ""
 title = "Rent Paid"
-message = "You paid your rent! ... but still don't have much more money... Time to get back to editing photos!
-
-Ending 2/3"
+message = "You paid your rent! ... but still don't have much more money... Time to get back to editing photos!"
 metadata/_custom_type_script = "uid://crcryufm2fdv3"

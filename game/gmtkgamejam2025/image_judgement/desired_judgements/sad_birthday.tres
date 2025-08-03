@@ -11,7 +11,7 @@ desired_traits = Dictionary[Variant, Vector2]({
 -3: Vector2(20000, 40000),
 2: Vector2(0, 4000),
 4: Vector2(0, 10000),
-6: Vector2(0, 10000),
+6: Vector2(0, 20000),
 7: Vector2(10000, 400000)
 })
 trait_weights = Dictionary[Variant, float]({
@@ -31,7 +31,7 @@ feedback_comments = Dictionary[Variant, PackedStringArray]({
 -3: PackedStringArray("did u edit me out?", "", "too much of me..."),
 2: PackedStringArray("", "", "why is there fish."),
 4: PackedStringArray("", "", "is that taylor swift."),
-6: PackedStringArray("", "", "still too much rain..."),
+6: PackedStringArray("", "", "i do wish it were sunnier..."),
 7: PackedStringArray("not enough sun...", "thanks for adding the sun!!", "")
 })
 desired_modification = Vector2(1, 250000)
