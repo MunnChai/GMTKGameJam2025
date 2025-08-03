@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5cvvol0ybjf7"]
+[gd_scene load_steps=8 format=3 uid="uid://c5cvvol0ybjf7"]
 
 [ext_resource type="Script" uid="uid://blov42j8mcgep" path="res://game_state/game_state_manager.gd" id="1_1lx4m"]
 [ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="2_fdq2r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://dp75kk4648ri3" path="res://apps/email_app/email_stats/good_ending_email.tres" id="4_ac7wn"]
 [ext_resource type="Resource" uid="uid://dubhi3c0ras1f" path="res://apps/email_app/email_stats/true_ending_email.tres" id="5_h1w3i"]
 [ext_resource type="Resource" uid="uid://fh3ifhkmpnsv" path="res://apps/email_app/email_stats/intro_email.tres" id="6_1vxvt"]
+[ext_resource type="Resource" uid="uid://bmj7n6aqq6qtt" path="res://apps/email_app/email_stats/intro_email_2.tres" id="7_ib4bt"]
 
 [node name="GameStateManager" type="Node"]
 script = ExtResource("1_1lx4m")
@@ -13,5 +14,6 @@ email_stats = Dictionary[String, ExtResource("2_fdq2r")]({
 "bad_ending": ExtResource("3_ac7wn"),
 "good_ending": ExtResource("4_ac7wn"),
 "intro": ExtResource("6_1vxvt"),
+"intro_2": ExtResource("7_ib4bt"),
 "true_ending": ExtResource("5_h1w3i")
 })

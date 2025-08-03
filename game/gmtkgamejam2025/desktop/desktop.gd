@@ -36,6 +36,7 @@ func _ready() -> void:
 	show_day_1_notification()
 
 func show_day_1_notification() -> void:
+	GameStateManager.add_email(GameStateManager.email_stats["intro_2"])
 	GameStateManager.add_email(GameStateManager.email_stats["intro"])
 	SoundManager.play_global_oneshot(&"mail")
 	

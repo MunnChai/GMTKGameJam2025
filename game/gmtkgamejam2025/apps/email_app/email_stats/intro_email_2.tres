@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EmailStat" load_steps=2 format=3 uid="uid://bmj7n6aqq6qtt"]
+
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="1_amqmo"]
+
+[resource]
+script = ExtResource("1_amqmo")
+sender = "friendlyfriend@loopmail.com"
+recipient = null
+title = "Sticker delivery!!"
+message = "Yo!! I heard you were struggling a bit with your commissions, so I snuck some nice sticker sheets into your files!! You should use them for your commissions to spice them up a little. Don't forget, you can copy from one canvas and paste on another!!!
+
+Your pal B)"
+metadata/_custom_type_script = "uid://crcryufm2fdv3"
