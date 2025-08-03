@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=13 format=3 uid="uid://dwjva6iavrd2o"]
 
 [ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="1_6eb55"]
-[ext_resource type="FontFile" uid="uid://cilb2yb8y16fb" path="res://assets/fonts/dot_gothic_16_regular.ttf" id="1_eseb5"]
 [ext_resource type="Texture2D" uid="uid://8hx1vewrqp8a" path="res://assets/ui/buttons/top_button_hovered.png" id="1_mo6rq"]
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="3_duiel"]
 [ext_resource type="Texture2D" uid="uid://bhw2fu8536qnv" path="res://assets/ui/text_box/text_box.png" id="4_8adp7"]
+[ext_resource type="FontFile" uid="uid://8yu2dre01qap" path="res://assets/fonts/VictorMono-Regular.ttf" id="5_8adp7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mvb6a"]
 texture = ExtResource("3_duiel")
@@ -51,8 +51,8 @@ texture_margin_right = 2.0
 texture_margin_bottom = 2.0
 
 [resource]
-default_font = ExtResource("1_eseb5")
-default_font_size = 13
+default_font = ExtResource("5_8adp7")
+default_font_size = 12
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
