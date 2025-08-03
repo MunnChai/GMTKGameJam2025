@@ -94,6 +94,7 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 		
 		if not new_comment.ends_with(" ") and new_comment != "":
 			new_comment += " "
+		
 		comments += new_comment
 	
 	rating += int(num_desired_traits_completed * 8 / num_desired_traits)
