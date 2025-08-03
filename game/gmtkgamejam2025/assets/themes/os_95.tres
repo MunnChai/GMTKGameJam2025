@@ -67,7 +67,7 @@ texture = ExtResource("6_rg1cx")
 
 [resource]
 default_font = ExtResource("7_q3l3v")
-default_font_size = 13
+default_font_size = 12
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
 Button/colors/font_hover_color = Color(0, 0, 0, 1)
