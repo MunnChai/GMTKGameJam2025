@@ -29,7 +29,7 @@ static func is_instanced() -> bool:
 
 func _ready() -> void:
 	instance = self
-	GameStateManager.day_changed.connect(_on_day_changed)
+	GameStateManager.submitted.connect(_on_submission)
 	
 	await get_tree().create_timer(1).timeout
 	
@@ -183,7 +183,7 @@ func _shift_windows_forward(front_index: int = 0) -> void:
 
 #region DAY TRANSITION
 
-func _on_day_changed(new_day: int) -> void:
+func _on_submission() -> void:
 	call_deferred("_play_day_transition")
 
 func _play_day_transition() -> void:
@@ -199,6 +199,7 @@ func _on_fade_out_complete() -> void:
 	for w in windows.duplicate():
 		close_window(w)
 	
+	GameStateManager.next_day()
 	day_label.text = "Day " + str(GameStateManager.day) + " / 5"
 	if GameStateManager.day > 5:
 		day_label.text = "Rent is Due!"

@@ -80,7 +80,7 @@ func on_upload_pressed() -> void:
 func on_submit_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
 	add_feedback()
-	GameStateManager.next_day()
+	GameStateManager.submitted.emit()
 
 func update_comm() -> void:
 	var day: int = GameStateManager.day
