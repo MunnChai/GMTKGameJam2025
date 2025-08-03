@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://c152giso5pcy"]
+
+[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_0hqlq"]
+
+[resource]
+script = ExtResource("1_0hqlq")
+desired_traits = Dictionary[Variant, Vector2]({
+-999: Vector2(0, 20000),
+-4: Vector2(20000, 100000),
+0: Vector2(0, 4000),
+2: Vector2(0, 4000),
+3: Vector2(0, 10000),
+4: Vector2(20000, 100000)
+})
+trait_weights = Dictionary[Variant, float]({
+-999: 5.0,
+-4: 10.0,
+0: 1.0,
+2: 1.0,
+3: 10.0,
+4: 10.0
+})
+feedback_comments = Dictionary[Variant, PackedStringArray]({
+-999: PackedStringArray("", "", "Next time fill the giant hole in the pic..."),
+-4: PackedStringArray("I think you cut out the wrong person...", "", "Why is there so much of me??"),
+0: PackedStringArray("", "", "... what\'s up with the bald head. "),
+2: PackedStringArray("", "", "Is that a fish? Why?"),
+3: PackedStringArray("", "Thanks for getting rid of my ex!", "Did you even get rid of my ex???"),
+4: PackedStringArray("Where did Taylor go???", "Look at Taylor in all of her glory!", "Uh... maybe too much celebrity energy coming from this one.")
+})
+desired_modification = Vector2(1, 200000)
+modification_comments = PackedStringArray("Why did nothing change?", "", "This looks a little off from what i sent you...")
+min_money = 0.0
+max_money = 30.0
+metadata/_custom_type_script = "uid://bku7ds6r61ofw"
