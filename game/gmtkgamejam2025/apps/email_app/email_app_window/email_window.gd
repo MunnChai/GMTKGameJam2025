@@ -13,5 +13,5 @@ func _ready() -> void:
 
 ## @OVERRIDE
 func boot(args: Dictionary = {}) -> void:
-	%WindowBar.set_window_title("EMAIL")
+	%WindowBar.set_window_title("Email")
 	

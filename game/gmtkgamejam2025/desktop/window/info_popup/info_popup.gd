@@ -19,7 +19,7 @@ func boot(args: Dictionary = {}) -> void:
 	if args.has("title"):
 		%WindowBar.set_window_title(args.get("title"))
 	else:
-		%WindowBar.set_window_title("INFO")
+		%WindowBar.set_window_title("Info")
 	
 	if args.has("confirm_label"):
 		%ConfirmButton.text = args.get("confirm_label")

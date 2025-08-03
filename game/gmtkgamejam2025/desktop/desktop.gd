@@ -40,7 +40,7 @@ func show_day_1_notification() -> void:
 	SoundManager.play_global_oneshot(&"mail")
 	
 	var args := {
-		"title": "NOTIFICATION",
+		"title": "Notification",
 		"text": "You received an email!",
 		"confirm_label": "See Emails",
 	}
@@ -229,7 +229,7 @@ func _on_fade_in_complete() -> void:
 		return
 	
 	var args := {
-		"title": "NOTIFICATION",
+		"title": "Notification",
 		"text": "Feedback received on commission!",
 		"confirm_label": "See Review",
 	}
@@ -250,7 +250,7 @@ func popup_end_game_email() -> void:
 	SoundManager.play_global_oneshot(&"mail")
 	
 	var args := {
-		"title": "NOTIFICATION",
+		"title": "Notification",
 		"text": "You received an email!",
 		"confirm_label": "See Emails",
 	}

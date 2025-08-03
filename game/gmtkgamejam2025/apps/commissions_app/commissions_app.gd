@@ -59,7 +59,7 @@ func on_download_pressed() -> void:
 			FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
 	
 	var args := {
-		"title": "DOWNLOAD SUCCESS",
+		"title": "Download Success",
 		"text": "Downloaded files to \"/commissions/" + folder_name + "\"!",
 		"confirm_label": "Open in File Explorer",
 	}

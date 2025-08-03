@@ -10,7 +10,7 @@ func boot(args: Dictionary = {}) -> void:
 		print("ERROR: Export Success window executed without \"text\" argument!")
 		return
 	
-	%WindowBar.set_window_title("EXPORT SUCCESS")
+	%WindowBar.set_window_title("Export Success")
 	
 	target_pos = position
 	constrain_to_viewport()
