@@ -16,6 +16,13 @@ signal money_changed(new_money: int)
 signal day_changed(new_day: int)
 signal username_changed(new_username: String)
 
+var arrow = load("res://arrow.png")
+#var beam = load("res://beam.png")
+
+func _ready():
+	Input.set_custom_mouse_cursor(arrow, Input.CURSOR_ARROW)
+	#Input.set_custom_mouse_cursor(beam, Input.CURSOR_POINTING_HAND)
+	#Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)
 
 func add_money(amount: int) -> void:
 	money += amount
@@ -66,3 +73,7 @@ static func get_date_string(day: int) -> String:
 		7:
 			text = "4/8/2025"
 	return text
+
+func reset_game_state() -> void:
+	money = 5
+	day = 1

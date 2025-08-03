@@ -16,6 +16,7 @@ signal transition_done()
 
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]
+@export var ending_scenes: Dictionary[String, PackedScene]
 
 ## Increments by one every time a window is opened
 ## Never decrements...
@@ -298,6 +299,23 @@ func open_ending_email_client() -> void:
 	window.closed.connect(ending_sequence)
 
 func ending_sequence() -> void:
-	GameStateManager.submitted.emit() ## TEMP: Just do something... 
+	fade_rect.visible = true
+	fade_rect.modulate = Color(0,0,0,0)
+	fade_rect.move_to_front()
+	var tween_out = get_tree().create_tween()
+	tween_out.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	tween_out.tween_property(fade_rect, "modulate:a", 1.0, 1.0)
+	tween_out.finished.connect(_on_ending_fade_complete)
+
+func _on_ending_fade_complete() -> void:
+	var scene: PackedScene
+	if GameStateManager.money < GameStateManager.MONEY_TO_WIN:
+		scene = ending_scenes["bad_ending"]
+	elif GameStateManager.money < GameStateManager.MONEY_TO_TRUE_END:
+		scene = ending_scenes["good_ending"]
+	else:
+		scene = ending_scenes["true_ending"]
+	
+	get_tree().change_scene_to_packed(scene)
 
 #endregion

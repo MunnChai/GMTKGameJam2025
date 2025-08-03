@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=29 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -14,7 +14,10 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="PackedScene" uid="uid://w8qqa2l8sq6b" path="res://desktop/window/bank_window/bank_window.tscn" id="10_iy36f"]
 [ext_resource type="PackedScene" uid="uid://7kpvm6bjatun" path="res://apps/email_app/email_app_window/email_window.tscn" id="11_1m8fn"]
+[ext_resource type="PackedScene" uid="uid://dhg4mn3jcy0k0" path="res://ending_scenes/good_ending.tscn" id="12_pe1e2"]
 [ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="13_1ymmg"]
+[ext_resource type="PackedScene" uid="uid://d2ax0kvslj8kl" path="res://ending_scenes/bad_ending.tscn" id="13_mrak8"]
+[ext_resource type="PackedScene" uid="uid://ddbsrfmhh727w" path="res://ending_scenes/true_ending.tscn" id="14_mbwre"]
 [ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/apps/_desktop_icons/desktop_file_explorer.png" id="14_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
 [ext_resource type="Texture2D" uid="uid://2su3tyginxl0" path="res://assets/ui/apps/_desktop_icons/desktop_commissions.png" id="15_vxgw6"]
@@ -129,6 +132,11 @@ window_packed_scenes = Dictionary[StringName, PackedScene]({
 &"info": ExtResource("9_jqijg"),
 &"photoshop": ExtResource("6_t632k"),
 &"settings": ExtResource("4_hbe16")
+})
+ending_scenes = Dictionary[String, PackedScene]({
+"bad_ending": ExtResource("13_mrak8"),
+"good_ending": ExtResource("12_pe1e2"),
+"true_ending": ExtResource("14_mbwre")
 })
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
