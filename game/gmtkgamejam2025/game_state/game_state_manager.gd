@@ -2,6 +2,7 @@ extends Node
 
 var money: int = 0
 var day: int = 1
+var username: String
 
 signal money_changed(new_money)
 signal day_changed(new_day)
@@ -20,3 +21,6 @@ func spend_money(amount: int) -> bool:
 func next_day() -> void:
 	day += 1
 	emit_signal("day_changed", day)
+
+func set_username(name: String) -> void:
+	username = name
