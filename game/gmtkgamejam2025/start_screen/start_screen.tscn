@@ -251,6 +251,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("7_ssqdr")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+max_length = 20
 caret_blink = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
@@ -274,6 +275,7 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 theme = ExtResource("7_ssqdr")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+max_length = 20
 caret_blink = true
 secret = true
 
