@@ -192,6 +192,7 @@ func bring_self_to_front() -> void:
 	brought_to_front.emit(true)
 	
 	SoundManager.play_global_oneshot(&"ui_basic_click")
+	TaskBar.instance.set_active_of_window(self)
 	
 	move_to_front()
 	

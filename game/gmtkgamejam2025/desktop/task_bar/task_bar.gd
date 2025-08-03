@@ -69,7 +69,6 @@ func remove_task(window: DesktopWindow) -> void:
 	## Get the next one
 	if Desktop.instance.has_active_window():
 		shortcut = window_dict.get(Desktop.instance.get_active_window())
-		shortcut.button_pressed = true
 		set_active(shortcut)
 	
 	_arrange_icons()
@@ -101,6 +100,11 @@ func _arrange_icons() -> void:
 		#icon.position = Vector2(offset, -32)
 
 func set_active(shortcut: TaskBarShortcut) -> void:
+	shortcut.button_pressed = true
 	for sc: TaskBarShortcut in shortcuts:
 		if sc != shortcut:
 			sc.button_pressed = false
+
+func set_active_of_window(window: DesktopWindow) -> void:
+	var shortcut = window_dict.get(window)
+	set_active(shortcut)
