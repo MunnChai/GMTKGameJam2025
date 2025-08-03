@@ -10,7 +10,6 @@ const EmailListItemScene = preload("res://apps/email_app/email_list_item.tscn")
 
 func _ready() -> void:
 	email_details.back_to_list.connect(on_back_button_pressed)
-	GameStateManager.add_email(email_stats[0])
 	populate_email_list(GameStateManager.get_emails())
 	
 func populate_email_list(emails: Array[EmailStat]) -> void:

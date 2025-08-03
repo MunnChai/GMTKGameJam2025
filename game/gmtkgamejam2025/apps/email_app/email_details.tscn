@@ -14,6 +14,7 @@ theme = ExtResource("1_itfb3")
 script = ExtResource("1_vyas1")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 20
@@ -32,7 +33,7 @@ text = "Back"
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(518, 0)
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 10
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/VBoxContainer2/VBoxContainer"]
 unique_name_in_owner = true

@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5cvvol0ybjf7"]
+[gd_scene load_steps=5 format=3 uid="uid://c5cvvol0ybjf7"]
 
 [ext_resource type="Script" uid="uid://blov42j8mcgep" path="res://game_state/game_state_manager.gd" id="1_1lx4m"]
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="2_fdq2r"]
+[ext_resource type="Resource" uid="uid://186hcmbndb6f" path="res://apps/email_app/email_stats/bad_ending_email.tres" id="3_ac7wn"]
+[ext_resource type="Resource" uid="uid://dp75kk4648ri3" path="res://apps/email_app/email_stats/good_ending_email.tres" id="4_ac7wn"]
 
 [node name="GameStateManager" type="Node"]
 script = ExtResource("1_1lx4m")
+email_stats = Dictionary[String, ExtResource("2_fdq2r")]({
+"bad_ending": ExtResource("3_ac7wn"),
+"good_ending": ExtResource("4_ac7wn")
+})

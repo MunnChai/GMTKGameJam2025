@@ -1,9 +1,13 @@
 extends Node
 
+const MONEY_TO_TRUE_END: int = 180
+const MONEY_TO_WIN: int = 100
 var money: int = 5
 
-var day: int = 1
+var day: int = 5
 var username: String
+
+@export var email_stats: Dictionary[String, EmailStat]
 
 var emails: Array[EmailStat]
 

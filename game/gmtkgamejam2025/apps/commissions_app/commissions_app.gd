@@ -21,6 +21,7 @@ const DOWNLOAD_FILE = preload("res://apps/commissions_app/download_file_scene/do
 @onready var feedback_list: VBoxContainer = %FeedbackList
 @onready var feedback_details: FeedbackDetails = %FeedbackDetails
 
+@onready var commissions_container: MarginContainer = %CommissionsContainer
 
 @export var commissions: Dictionary
 
@@ -84,7 +85,9 @@ func on_submit_pressed() -> void:
 func update_comm() -> void:
 	var day: int = GameStateManager.day
 	
+	commissions_container.show()
 	if not commissions.has(day):
+		commissions_container.hide()
 		return
 
 	var stat: CommissionStat = commissions[day]
