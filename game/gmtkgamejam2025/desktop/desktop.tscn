@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=19 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -15,6 +15,8 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="13_qk0lg"]
 [ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
+[ext_resource type="Script" uid="uid://djsmnbyaw8n0f" path="res://sound/music/music_player.gd" id="16_iy36f"]
+[ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx87n"]
 atlas = ExtResource("13_qk0lg")
@@ -167,3 +169,5 @@ grow_vertical = 0
 stream = ExtResource("15_kx87n")
 autoplay = true
 bus = &"Music"
+script = ExtResource("16_iy36f")
+music_list = Array[AudioStream]([ExtResource("15_kx87n"), ExtResource("17_sscii")])
