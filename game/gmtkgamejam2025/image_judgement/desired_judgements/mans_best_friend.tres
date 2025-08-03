@@ -6,23 +6,44 @@
 script = ExtResource("1_0hqlq")
 desired_traits = Dictionary[Variant, Vector2]({
 -999: Vector2(0, 4000),
+-5: Vector2(0, 5000),
+-4: Vector2(0, 5000),
+-3: Vector2(0, 5000),
+-2: Vector2(0, 5000),
 -1: Vector2(70000, 130000),
 1: Vector2(10000, 50000),
+2: Vector2(0, 5000),
+4: Vector2(0, 5000),
 7: Vector2(40000, 5e+06),
+11: Vector2(0, 5000),
 12: Vector2(70000, 100000)
 })
 trait_weights = Dictionary[Variant, float]({
--999: 10.0,
--1: 7.0,
-1: 3.0,
-7: 3.0,
-12: 7.0
+-999: 25.0,
+-5: 1.0,
+-4: 1.0,
+-3: 1.0,
+-2: 1.0,
+-1: 5.0,
+1: 2.0,
+2: 1.0,
+4: 1.0,
+7: 2.0,
+11: 1.0,
+12: 5.0
 })
 feedback_comments = Dictionary[Variant, PackedStringArray]({
--999: PackedStringArray("", "", "I think you missed some of the corrupted parts..."),
+-999: PackedStringArray("", "Thank you for removing the corruption!", "I think you missed some of the corrupted parts..."),
+-5: PackedStringArray("", "", "Is that a random bald guy?"),
+-4: PackedStringArray("", "", "I don\'t know who the random dude is."),
+-3: PackedStringArray("", "", "Who\'s the girl?"),
+-2: PackedStringArray("", "", "Why is there a random kid in the photo?"),
 -1: PackedStringArray("You edited parts of me out...", "", "Did you copy my body?"),
 1: PackedStringArray("Where did my hair go...", "", "Why is there so much hair?"),
+2: PackedStringArray("", "", "Please don\'t add random fish to people\'s images."),
+4: PackedStringArray("", "", "I don\'t want Taylor Swift in my photo..."),
 7: PackedStringArray("Why did you edit the background out?", "", ""),
+11: PackedStringArray("", "", "The Avenging Guys are cool, but this photo is supposed to be a special moment with my dog..."),
 12: PackedStringArray("You got rid of my dog...", "", "I said edit the corruption out, not make the whole image my dog.")
 })
 desired_modification = Vector2(1, 1e+06)

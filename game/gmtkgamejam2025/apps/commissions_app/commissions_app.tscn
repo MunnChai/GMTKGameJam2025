@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=23 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Resource" uid="uid://ckvad7n4rhhi6" path="res://apps/commissions_app/commission_stats/day_3.tres" id="2_w3uk5"]
+[ext_resource type="Resource" uid="uid://csrkoib71ul2a" path="res://apps/commissions_app/commission_stats/day_5.tres" id="2_xc82q"]
 [ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/day_1.tres" id="3_3bsde"]
 [ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/day_2.tres" id="4_3bsde"]
 [ext_resource type="Resource" uid="uid://mkkp3617s3yx" path="res://apps/commissions_app/commission_stats/day_4.tres" id="4_xc82q"]
@@ -56,7 +57,7 @@ commissions = {
 2: ExtResource("4_3bsde"),
 3: ExtResource("2_w3uk5"),
 4: ExtResource("4_xc82q"),
-5: ExtResource("4_xc82q")
+5: ExtResource("2_xc82q")
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
