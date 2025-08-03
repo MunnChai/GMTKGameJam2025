@@ -4,8 +4,6 @@ extends CanvasLayer
 @onready var log_out_button: Button = %LogOutButton
 @onready var fade: ColorRect = %Fade
 
-const START_SCREEN = preload("res://start_screen/start_screen.tscn")
-
 func _ready() -> void:
 	close_button.pressed.connect(_on_button_pressed)
 	log_out_button.pressed.connect(_on_button_pressed)
@@ -19,5 +17,5 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
-	get_tree().change_scene_to_packed(START_SCREEN)
+	get_tree().change_scene_to_packed(load("res://start_screen/start_screen.tscn"))
 	GameStateManager.reset_game_state()

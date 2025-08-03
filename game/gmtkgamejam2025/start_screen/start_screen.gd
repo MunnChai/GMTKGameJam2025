@@ -5,8 +5,6 @@ extends Node2D
 @onready var username_input: LineEdit = %UsernameInput
 @onready var password_input: LineEdit = %PasswordInput
 
-const DesktopScene = preload("res://desktop/desktop.tscn")
-
 var can_login: bool = false
 
 func _ready() -> void:
@@ -37,7 +35,7 @@ func on_start_pressed() -> void:
 	if not can_login:
 		return
 	SoundManager.play_global_oneshot(&"ui_basic_click")
-	get_tree().change_scene_to_packed(DesktopScene)
+	get_tree().change_scene_to_packed(load("res://desktop/desktop.tscn"))
 	GameStateManager.set_username(username_input.text)
 
 
