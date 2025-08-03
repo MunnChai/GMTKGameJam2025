@@ -12,6 +12,7 @@ func _ready() -> void:
 	
 	fade.visible = true
 	var tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(fade, "modulate:a", 0.0, 1.0)
 	await tween.finished
 	fade.visible = false

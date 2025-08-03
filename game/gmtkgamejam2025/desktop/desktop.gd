@@ -305,9 +305,15 @@ func ending_sequence() -> void:
 	var tween_out = get_tree().create_tween()
 	tween_out.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	tween_out.tween_property(fade_rect, "modulate:a", 1.0, 1.0)
+	
 	tween_out.finished.connect(_on_ending_fade_complete)
+	
+	%MusicPlayer.fade_out(2.0)
+
 
 func _on_ending_fade_complete() -> void:
+	await get_tree().create_timer(2.5).timeout
+	
 	var scene: PackedScene
 	if GameStateManager.money < GameStateManager.MONEY_TO_WIN:
 		scene = ending_scenes["bad_ending"]

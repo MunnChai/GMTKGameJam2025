@@ -18,3 +18,7 @@ func do_play() -> void:
 func _on_finished() -> void:
 	await get_tree().create_timer(5.0).timeout
 	do_play()
+
+func fade_out(dur: float) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "volume_linear", 0.0, 2.0)

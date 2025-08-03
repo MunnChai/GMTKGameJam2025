@@ -20,6 +20,7 @@ var arrow = load("res://arrow.png")
 #var beam = load("res://beam.png")
 
 func _ready():
+	day = 6
 	Input.set_custom_mouse_cursor(arrow, Input.CURSOR_ARROW)
 	#Input.set_custom_mouse_cursor(beam, Input.CURSOR_POINTING_HAND)
 	#Input.set_custom_mouse_cursor(beam, Input.CURSOR_IBEAM)

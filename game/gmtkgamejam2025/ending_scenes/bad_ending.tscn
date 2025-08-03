@@ -172,7 +172,6 @@ text = "Logout"
 
 [node name="Fade" type="ColorRect" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
