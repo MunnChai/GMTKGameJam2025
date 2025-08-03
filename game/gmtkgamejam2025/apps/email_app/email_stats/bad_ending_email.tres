@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EmailStat" load_steps=2 format=3 uid="uid://186hcmbndb6f"]
+
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="1_df0j4"]
+
+[resource]
+script = ExtResource("1_df0j4")
+sender = "Landlord"
+recipient = null
+title = "Eviction Notice"
+message = "No money to pay rent. You got evicted. BAD ENDING"
+metadata/_custom_type_script = "uid://crcryufm2fdv3"
