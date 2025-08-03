@@ -69,7 +69,6 @@ script = ExtResource("1_jxr6l")
 
 [node name="SettingsPivot" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
 offset_left = -637.0
 offset_top = -32.0
@@ -200,7 +199,7 @@ step = 0.1
 value = 0.5
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="SettingsPivot/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(22.5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("5_e36ol")
@@ -247,7 +246,7 @@ step = 0.1
 value = 0.5
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="SettingsPivot/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(20, 0)
+custom_minimum_size = Vector2(22.5, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("5_e36ol")
@@ -335,7 +334,7 @@ texture = ExtResource("2_rkt6j")
 layout_mode = 0
 offset_left = -637.0
 offset_top = -31.0
-offset_right = -554.0
+offset_right = -548.0
 offset_bottom = -5.0
 mouse_default_cursor_shape = 2
 theme = ExtResource("5_e36ol")
@@ -364,7 +363,7 @@ vertical_alignment = 1
 [node name="TaskBarShortcuts" type="Control" parent="."]
 unique_name_in_owner = true
 anchors_preset = 0
-offset_left = -550.0
+offset_left = -544.0
 offset_top = -31.0
-offset_right = -550.0
+offset_right = -544.0
 offset_bottom = -31.0
