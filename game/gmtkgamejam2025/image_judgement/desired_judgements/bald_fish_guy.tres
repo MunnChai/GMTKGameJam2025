@@ -12,17 +12,17 @@ desired_traits = Dictionary[int, Vector2]({
 2: Vector2(30000, 100000)
 })
 trait_weights = Dictionary[int, float]({
--999: 5.0,
+-999: 2.0,
 -5: 5.0,
-0: 5.0,
-1: 5.0,
-2: 5.0
+0: 3.0,
+1: 10.0,
+2: 3.0
 })
 feedback_comments = Dictionary[int, PackedStringArray]({
 -999: PackedStringArray("", "", "Uhhh... there\'s some weird transparent parts in the photo."),
 -5: PackedStringArray("What happened to me??", "", ""),
 0: PackedStringArray("", "Eh... I still look pretty bald. ", "Hey, I don\'t look bald anymore!"),
-1: PackedStringArray("", "The hair looks great!", "Uh... this might be a bit TOO much hair..."),
+1: PackedStringArray("Where\'s the hair??", "The hair looks great!", "Uh... this might be a bit TOO much hair..."),
 2: PackedStringArray("WHAT HAPPENED TO MY FISH???", "", "Why is there so much... fish?")
 })
 desired_modification = Vector2(1, 150000)
