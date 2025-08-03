@@ -139,6 +139,7 @@ theme_override_constants/separation = 0
 
 [node name="WindowIcon" type="TextureRect" parent="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/WindowBar/MarginContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 texture = ExtResource("7_agb75")
@@ -215,6 +216,10 @@ text = "Enter a username and password to login."
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 1
+
+[node name="Control" type="Control" parent="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer"]
 layout_mode = 2

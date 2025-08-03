@@ -103,7 +103,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 72
 
 [node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
@@ -132,7 +132,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 72
 
 [node name="InfoTestIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer2" instance=ExtResource("3_py4qr")]
 layout_mode = 2
