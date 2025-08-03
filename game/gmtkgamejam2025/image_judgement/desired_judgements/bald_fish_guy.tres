@@ -4,21 +4,21 @@
 
 [resource]
 script = ExtResource("1_wrg3b")
-desired_traits = Dictionary[int, Vector2]({
+desired_traits = Dictionary[Variant, Vector2]({
 -999: Vector2(0, 10000),
 -5: Vector2(150000, 500000),
 0: Vector2(5000, 7200),
 1: Vector2(4000, 80000),
 2: Vector2(30000, 100000)
 })
-trait_weights = Dictionary[int, float]({
+trait_weights = Dictionary[Variant, float]({
 -999: 2.0,
 -5: 5.0,
 0: 3.0,
 1: 10.0,
 2: 3.0
 })
-feedback_comments = Dictionary[int, PackedStringArray]({
+feedback_comments = Dictionary[Variant, PackedStringArray]({
 -999: PackedStringArray("", "", "Uhhh... there\'s some weird transparent parts in the photo."),
 -5: PackedStringArray("What happened to me??", "", ""),
 0: PackedStringArray("", "Eh... I still look pretty bald. ", "Hey, I don\'t look bald anymore!"),

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://7kpvm6bjatun" path="res://apps/email_app/email_app_window/email_window.tscn" id="11_1m8fn"]
 [ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="13_qk0lg"]
 [ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
-[ext_resource type="Script" path="res://sound/music/music_player.gd" id="16_iy36f"]
+[ext_resource type="Script" uid="uid://djsmnbyaw8n0f" path="res://sound/music/music_player.gd" id="16_iy36f"]
 [ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kx87n"]
@@ -105,7 +105,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 72
 
 [node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
@@ -123,7 +123,7 @@ type = 2
 shortcut_name = "commissions"
 icon = SubResource("AtlasTexture_kx87n")
 
-[node name="CommissionsIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="BankIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"bank"
 type = 2
@@ -134,7 +134,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 64
+theme_override_constants/separation = 72
 
 [node name="InfoTestIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer2" instance=ExtResource("3_py4qr")]
 layout_mode = 2
@@ -177,6 +177,7 @@ grow_vertical = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_kx87n")
+volume_db = -10.0
 autoplay = true
 bus = &"Music"
 script = ExtResource("16_iy36f")

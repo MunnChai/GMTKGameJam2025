@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl1xh4ieujfcs"]
+[gd_scene load_steps=6 format=3 uid="uid://cl1xh4ieujfcs"]
 
 [ext_resource type="Script" uid="uid://cba1ci6sl6c7l" path="res://apps/commissions_app/feedback/feedback_list_item.gd" id="1_vi54g"]
 [ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/commissions/speech_bubble.png" id="2_tukwo"]
+[ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="3_bkco7"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_tukwo"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_haye7"]
@@ -60,6 +61,7 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_bkco7")
 theme_override_font_sizes/bold_italics_font_size = 30
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
@@ -70,6 +72,7 @@ fit_content = true
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
+theme = ExtResource("3_tukwo")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Id"

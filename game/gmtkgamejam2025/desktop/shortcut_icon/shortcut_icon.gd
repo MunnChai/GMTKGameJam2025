@@ -96,8 +96,8 @@ func remove() -> void:
 
 func _process(delta: float) -> void:
 	target_pos = base_pos
-	if window_instance and window_instance.is_active:
-		target_pos += Vector2.UP * 8.0
+	#if window_instance and window_instance.is_active:
+		#target_pos += Vector2.UP * 8.0
 	if is_hovered:
 		target_pos += Vector2.UP * 6.0
 	

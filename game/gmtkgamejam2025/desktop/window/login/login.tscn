@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://lhahjhcphvs"]
 
-[ext_resource type="Script" uid="uid://c7t72ybuufey8" path="res://desktop/window/success/success.gd" id="1_f2gex"]
+[ext_resource type="Script" uid="uid://c7t72ybuufey8" path="res://desktop/window/export_success/export_success.gd" id="1_f2gex"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_roinn"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_7qujq"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="4_chdpo"]
@@ -94,7 +94,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Control" type="Control" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer"]
-custom_minimum_size = Vector2(7.29, 0)
+custom_minimum_size = Vector2(7, 0)
 layout_mode = 2
 mouse_filter = 1
 
@@ -121,19 +121,20 @@ theme_override_constants/separation = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(70, 28)
+custom_minimum_size = Vector2(78, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 mouse_filter = 1
 theme = ExtResource("5_oiafk")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Username: "
+text = "Username:"
 fit_content = true
 vertical_alignment = 1
 
@@ -147,7 +148,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(70, 0)
+custom_minimum_size = Vector2(78, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 mouse_filter = 1
@@ -170,6 +171,7 @@ alignment = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("7_jacfh")
 texture_pressed = ExtResource("8_fx06e")
 stretch_mode = 0
@@ -180,7 +182,7 @@ offset_left = 6.0
 offset_top = 3.0
 offset_right = 50.0
 offset_bottom = 26.0
-mouse_filter = 1
+mouse_filter = 2
 theme = ExtResource("5_oiafk")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Login"
