@@ -163,6 +163,7 @@ texture_normal = ExtResource("9_ljndt")
 
 [node name="RedoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
@@ -170,6 +171,7 @@ texture_normal = ExtResource("10_sgpd6")
 
 [node name="UndoButton" type="TextureButton" parent="PanelContainer/VBoxContainer/MarginContainer/MarginContainer/EditingPanel/ToolbarContainer/MarginContainer/Toolbar"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2

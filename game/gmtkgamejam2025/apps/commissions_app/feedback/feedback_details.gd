@@ -58,7 +58,7 @@ func _on_collect_payment_pressed() -> void:
 	collect_payment_button.disabled = true
 	
 	var args := {
-		"title": "PAYMENT COLLECTED!",
+		"title": "Payment Collected",
 		"text": "$" + str("%0.2f" % current_feedback.amount_paid) + " added to your bank balance!!",
 		"confirm_label": "Hooray!",
 	}

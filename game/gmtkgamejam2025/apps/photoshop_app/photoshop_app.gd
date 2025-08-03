@@ -25,7 +25,7 @@ func set_file(file: File) -> void:
 
 func _on_reset_pressed() -> void:
 	var args := {
-		"title": "RESET SUCCESS",
+		"title": "Reset Success",
 		"text": "Reset image to original state!",
 		"confirm_label": "Okay...",
 	}
@@ -39,7 +39,7 @@ func _on_export_pressed() -> void:
 	file.node_name = file.node_name + "-export"
 	FileSystem.add_file_node_at("/exports/", file) 
 	var args := {
-		"title": "EXPORT SUCCESS",
+		"title": "Export Success",
 		"text": "Exported file to \"/commissions/" + file.node_name + "\"!",
 		"confirm_label": "Open in File Explorer",
 	}

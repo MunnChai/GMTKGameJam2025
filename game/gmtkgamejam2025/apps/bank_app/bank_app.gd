@@ -16,4 +16,8 @@ func set_balance(balance: float) -> void:
 	balance_label.text = "$" + str("%0.2f" % balance)
 
 func set_day(day: int) -> void:
-	due_date_label.text = "Due in " + str(5 - day) + " days"
+	var days_left: int = 6 - day
+	var days = " days"
+	if days_left == 1:
+		days = " day"
+	due_date_label.text = "Due in " + str(days_left) + days

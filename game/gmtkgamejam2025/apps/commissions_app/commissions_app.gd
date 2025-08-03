@@ -59,7 +59,7 @@ func on_download_pressed() -> void:
 			FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
 	
 	var args := {
-		"title": "DOWNLOAD SUCCESS",
+		"title": "Download Success",
 		"text": "Downloaded files to \"/commissions/" + folder_name + "\"!",
 		"confirm_label": "Open in File Explorer",
 	}
@@ -80,7 +80,7 @@ func on_upload_pressed() -> void:
 func on_submit_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
 	add_feedback()
-	GameStateManager.next_day()
+	GameStateManager.submitted.emit()
 
 func update_comm() -> void:
 	var day: int = GameStateManager.day

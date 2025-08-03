@@ -19,7 +19,7 @@ func boot(args: Dictionary = {}) -> void:
 	if args.has("text"):
 		%RichTextLabel.text = args.get("text")
 	
-	%WindowBar.set_window_title("ERROR")
+	%WindowBar.set_window_title("Error")
 	
 	position += Vector2(32, -32) * error_counter
 	target_pos = position

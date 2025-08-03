@@ -11,6 +11,7 @@ var username: String
 
 var emails: Array[EmailStat]
 
+signal submitted()
 signal money_changed(new_money: int)
 signal day_changed(new_day: int)
 signal username_changed(new_username: String)
