@@ -5,7 +5,7 @@ extends Button
 
 var file_node: FileNode
 
-var folder_icon = load("res://assets/ui/file_explorer/folder_icon_high_res.png")
+var folder_icon = load("res://assets/ui/apps/file_explorer/folder.png")
 #var unknown_file_icon = load("res://game/assets/icons/file_icon.png")
 var missing_icon = load("res://assets/ui/icons/netscape_missing.png")
 

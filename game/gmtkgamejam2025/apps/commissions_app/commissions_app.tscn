@@ -11,7 +11,7 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="6_mv6ju"]
 [ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="7_78gvv"]
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="7_mv6ju"]
-[ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/commissions/speech_bubble.png" id="10_78gvv"]
+[ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/apps/commissions/speech_bubble.png" id="10_78gvv"]
 [ext_resource type="PackedScene" uid="uid://dps6rblk20cu3" path="res://apps/commissions_app/download_file_scene/download_file.tscn" id="11_opfwy"]
 [ext_resource type="PackedScene" uid="uid://dfma7oxl3oo5f" path="res://apps/commissions_app/feedback/feedback_details.tscn" id="13_w3uk5"]
 

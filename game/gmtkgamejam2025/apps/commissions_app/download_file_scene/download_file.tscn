@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dps6rblk20cu3"]
 
-[ext_resource type="Texture2D" uid="uid://c1nabqph8kidd" path="res://assets/ui/commissions/white_background.png" id="1_5r5i6"]
-[ext_resource type="Texture2D" uid="uid://3tyn5ohvho2x" path="res://assets/ui/commissions/paperclip_icon.png" id="2_8ntn2"]
+[ext_resource type="Texture2D" uid="uid://c1nabqph8kidd" path="res://assets/ui/apps/commissions/white_background.png" id="1_5r5i6"]
+[ext_resource type="Texture2D" uid="uid://3tyn5ohvho2x" path="res://assets/ui/apps/commissions/paperclip_icon.png" id="2_8ntn2"]
 [ext_resource type="Script" uid="uid://47k6jdbrjb1r" path="res://apps/commissions_app/download_file_scene/download_file.gd" id="2_t0m3o"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_t0m3o"]
 

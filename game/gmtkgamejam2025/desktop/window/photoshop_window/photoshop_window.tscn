@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ypixa58aak05" path="res://desktop/window/photoshop_window/photoshop_window.gd" id="1_dcbwl"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_cgjju"]
-[ext_resource type="Texture2D" uid="uid://76nsexd8dp8w" path="res://assets/ui/photoloop/LassoTool.png" id="2_hunal"]
+[ext_resource type="Texture2D" uid="uid://dqg4gwjycnx20" path="res://assets/ui/apps/_window_icons/window_icon_photoloop.png" id="2_hunal"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_l58ti"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="3_oa5mr"]
 [ext_resource type="PackedScene" uid="uid://omxyukgp61bw" path="res://apps/photoshop_app/photoshop_app.tscn" id="4_dcbwl"]
-[ext_resource type="Texture2D" uid="uid://cpwslai77ij5r" path="res://assets/ui/icons/Lasso icon high res.png" id="5_xn7q2"]
+[ext_resource type="Texture2D" uid="uid://dttn6oyu5yiro" path="res://assets/ui/apps/_top_icons/top_icon_photoloop.png" id="6_hunal"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
@@ -62,7 +62,7 @@ theme_override_constants/separation = 0
 [node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("3_oa5mr")]
 unique_name_in_owner = true
 layout_mode = 2
-window_icon = ExtResource("5_xn7q2")
+window_icon = ExtResource("6_hunal")
 
 [node name="MarginContainer" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2

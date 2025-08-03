@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://baqi0xt5imkpu" path="res://desktop/shortcut_icon/shortcut_icon.gd" id="1_npcrg"]
 [ext_resource type="Texture2D" uid="uid://112pdxc6afet" path="res://assets/ui/icons/netscape_missing.png" id="2_5ky6a"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_5ky6a"]
-[ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/desktop_icons/desktop_file_explorer.png" id="3_s17x7"]
+[ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/apps/_desktop_icons/desktop_file_explorer.png" id="3_s17x7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npcrg"]
 bg_color = Color(1, 1, 1, 1)

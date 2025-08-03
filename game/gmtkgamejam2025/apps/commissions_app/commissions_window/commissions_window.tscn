@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ba01qxttnfxam"]
+[gd_scene load_steps=9 format=3 uid="uid://ba01qxttnfxam"]
 
 [ext_resource type="Script" uid="uid://cqiih5k5uxtb0" path="res://apps/commissions_app/commissions_window/commissions_window.gd" id="1_vixk8"]
+[ext_resource type="Texture2D" uid="uid://ci6oyq2bxu2wv" path="res://assets/ui/apps/_window_icons/window_icon_commissions.png" id="2_aj5vr"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="2_omlrf"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="3_g4v3e"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="3_lapa3"]
 [ext_resource type="PackedScene" uid="uid://ch0ww8kp2820e" path="res://apps/commissions_app/commissions_app.tscn" id="4_vixk8"]
-[ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="5_syg6c"]
+[ext_resource type="Texture2D" uid="uid://bdf0tl3joqxcc" path="res://assets/ui/apps/_top_icons/top_icon_commissions.png" id="6_aj5vr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
@@ -15,7 +16,7 @@ offset_right = 446.0
 offset_bottom = 392.0
 script = ExtResource("1_vixk8")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
-taskbar_icon = ExtResource("5_syg6c")
+taskbar_icon = ExtResource("2_aj5vr")
 
 [node name="JuicePivot" parent="." instance=ExtResource("2_omlrf")]
 layout_mode = 1
@@ -61,7 +62,7 @@ theme_override_constants/separation = 0
 [node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("3_g4v3e")]
 unique_name_in_owner = true
 layout_mode = 2
-window_icon = ExtResource("5_syg6c")
+window_icon = ExtResource("6_aj5vr")
 
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2

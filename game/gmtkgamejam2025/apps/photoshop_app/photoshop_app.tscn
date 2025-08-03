@@ -9,11 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://j0imf1m4hv8n" path="res://apps/photoshop_app/dotted_line/dotted_line.tscn" id="6_i8qo4"]
 [ext_resource type="Script" uid="uid://ddjyetu5ajpwf" path="res://apps/photoshop_app/lasso_controller.gd" id="6_kyq4q"]
 [ext_resource type="Script" uid="uid://oawoprj18hk" path="res://apps/photoshop_app/sprite_buffer.gd" id="6_rqrjq"]
-[ext_resource type="Texture2D" uid="uid://bpvcisydlm6hh" path="res://assets/ui/photoloop/cut_tool.png" id="7_vydbk"]
-[ext_resource type="Texture2D" uid="uid://bdt2myo8hflnb" path="res://assets/ui/photoloop/copy_tool.png" id="7_wr4rw"]
-[ext_resource type="Texture2D" uid="uid://brm7oyxtb41ob" path="res://assets/ui/photoloop/paste_tool.png" id="9_ljndt"]
-[ext_resource type="Texture2D" uid="uid://cb1a1kbcfjni5" path="res://assets/ui/photoloop/redo_tool.png" id="10_sgpd6"]
-[ext_resource type="Texture2D" uid="uid://c4jsm1p6udrtk" path="res://assets/ui/photoloop/undo_tool.png" id="11_a0s55"]
+[ext_resource type="Texture2D" uid="uid://bpvcisydlm6hh" path="res://assets/ui/apps/photoloop/cut_tool.png" id="7_vydbk"]
+[ext_resource type="Texture2D" uid="uid://bdt2myo8hflnb" path="res://assets/ui/apps/photoloop/copy_tool.png" id="7_wr4rw"]
+[ext_resource type="Texture2D" uid="uid://brm7oyxtb41ob" path="res://assets/ui/apps/photoloop/paste_tool.png" id="9_ljndt"]
+[ext_resource type="Texture2D" uid="uid://cb1a1kbcfjni5" path="res://assets/ui/apps/photoloop/redo_tool.png" id="10_sgpd6"]
+[ext_resource type="Texture2D" uid="uid://c4jsm1p6udrtk" path="res://assets/ui/apps/photoloop/undo_tool.png" id="11_a0s55"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qpycq"]
 

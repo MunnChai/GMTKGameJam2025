@@ -14,13 +14,13 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="PackedScene" uid="uid://w8qqa2l8sq6b" path="res://desktop/window/bank_window/bank_window.tscn" id="10_iy36f"]
 [ext_resource type="PackedScene" uid="uid://7kpvm6bjatun" path="res://apps/email_app/email_app_window/email_window.tscn" id="11_1m8fn"]
-[ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/desktop_icons/desktop_file_explorer.png" id="14_vxgw6"]
+[ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/apps/_desktop_icons/desktop_file_explorer.png" id="14_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
-[ext_resource type="Texture2D" uid="uid://2su3tyginxl0" path="res://assets/ui/desktop_icons/desktop_commissions.png" id="15_vxgw6"]
+[ext_resource type="Texture2D" uid="uid://2su3tyginxl0" path="res://assets/ui/apps/_desktop_icons/desktop_commissions.png" id="15_vxgw6"]
 [ext_resource type="Script" uid="uid://djsmnbyaw8n0f" path="res://sound/music/music_player.gd" id="16_iy36f"]
-[ext_resource type="Texture2D" uid="uid://ygayde7qxdnp" path="res://assets/ui/desktop_icons/desktop_bank.png" id="16_vxgw6"]
+[ext_resource type="Texture2D" uid="uid://ygayde7qxdnp" path="res://assets/ui/apps/_desktop_icons/desktop_bank.png" id="16_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
-[ext_resource type="Texture2D" uid="uid://d3vfdvrh658u0" path="res://assets/ui/desktop_icons/desktop_email.png" id="17_vxgw6"]
+[ext_resource type="Texture2D" uid="uid://d3vfdvrh658u0" path="res://assets/ui/apps/_desktop_icons/desktop_email.png" id="17_vxgw6"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
