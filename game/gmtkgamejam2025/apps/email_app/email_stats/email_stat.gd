@@ -6,5 +6,7 @@ extends Resource
 @export var title: String
 @export_multiline var message: String
 
+var date_string: String
+
 func set_recipient(name: String) -> void:
 	recipient = name
