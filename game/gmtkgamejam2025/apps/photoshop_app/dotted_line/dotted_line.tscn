@@ -20,7 +20,7 @@ script = ExtResource("1_3oiol")
 [node name="Line" type="Line2D" parent="."]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_3oiol")
-width = 3.44
+width = 2.0
 texture_mode = 1
 joint_mode = 2
 begin_cap_mode = 1
