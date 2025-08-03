@@ -15,7 +15,9 @@ func _ready() -> void:
 func _on_pressed() -> void:
 	is_open = !is_open
 	
-	TweenUtil.pop_delta(self, Vector2(0.2, 0.2), 0.3)
+	if not GameSettings.get_setting("reduced_motion", false, "graphics"):
+		TweenUtil.pop_delta(self, Vector2(0.2, 0.2), 0.3)
+	
 	SoundManager.play_global_oneshot(&"ui_basic_click")
 
 	

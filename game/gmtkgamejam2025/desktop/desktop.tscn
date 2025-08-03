@@ -119,7 +119,7 @@ type = 2
 shortcut_name = "commissions"
 icon = SubResource("AtlasTexture_kx87n")
 
-[node name="CommissionsIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+[node name="BankIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"bank"
 type = 2
