@@ -1,15 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbrtermfxiebt"]
+[gd_scene load_steps=10 format=3 uid="uid://bbrtermfxiebt"]
 
 [ext_resource type="Script" uid="uid://bt18ey8jp2b5x" path="res://apps/bank_app/bank_app.gd" id="1_36y8t"]
 [ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="1_hy14y"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="2_u0kae"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_xkiw2"]
 [ext_resource type="Texture2D" uid="uid://doaio76dl16o7" path="res://assets/ui/windows/window_rect.png" id="3_xkiw2"]
+[ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="5_raw2o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_raw2o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36y8t"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36y8t"]
 texture = ExtResource("3_xkiw2")
+texture_margin_left = 2.0
+texture_margin_top = 2.0
+texture_margin_right = 2.0
+texture_margin_bottom = 2.0
 
 [node name="BankApp" type="Control"]
 layout_mode = 3
@@ -28,8 +35,10 @@ layout_mode = 0
 offset_right = 293.0
 offset_bottom = 305.0
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_raw2o")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer2"]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_u0kae")
 patch_margin_left = 4
@@ -82,6 +91,7 @@ layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_xkiw2")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_raw2o")
 theme_override_font_sizes/normal_font_size = 30
 text = "BankAndHomeRentalAgencyCo."
 fit_content = true
@@ -112,6 +122,7 @@ fit_content = true
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer2/MarginContainer/PanelContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_36y8t")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer2/MarginContainer/PanelContainer/MarginContainer/MarginContainer/VBoxContainer/PanelContainer"]
@@ -143,6 +154,7 @@ layout_mode = 2
 mouse_filter = 1
 theme = ExtResource("2_xkiw2")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/bold_font = ExtResource("5_raw2o")
 theme_override_font_sizes/normal_font_size = 15
 text = "Due in X days"
 fit_content = true

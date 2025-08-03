@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=26 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -14,13 +14,107 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="PackedScene" uid="uid://w8qqa2l8sq6b" path="res://desktop/window/bank_window/bank_window.tscn" id="10_iy36f"]
 [ext_resource type="PackedScene" uid="uid://7kpvm6bjatun" path="res://apps/email_app/email_app_window/email_window.tscn" id="11_1m8fn"]
+[ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="13_1ymmg"]
 [ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/apps/_desktop_icons/desktop_file_explorer.png" id="14_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
 [ext_resource type="Texture2D" uid="uid://2su3tyginxl0" path="res://assets/ui/apps/_desktop_icons/desktop_commissions.png" id="15_vxgw6"]
-[ext_resource type="Script" path="res://sound/music/music_player.gd" id="16_iy36f"]
+[ext_resource type="Script" uid="uid://djsmnbyaw8n0f" path="res://sound/music/music_player.gd" id="16_iy36f"]
 [ext_resource type="Texture2D" uid="uid://ygayde7qxdnp" path="res://assets/ui/apps/_desktop_icons/desktop_bank.png" id="16_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
 [ext_resource type="Texture2D" uid="uid://d3vfdvrh658u0" path="res://assets/ui/apps/_desktop_icons/desktop_email.png" id="17_vxgw6"]
+
+[sub_resource type="Animation" id="Animation_0kn7h"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/DayLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(320, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DayLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(306.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DayLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1ymmg"]
+resource_name = "day_transition"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/DayLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(320, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.18, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DayLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(188, -0.25, 0, 0, 173, 308.5, -1.03501, 5, 0.9, -7, 477.5, -0.133333, -218, 0.25, 0),
+"times": PackedFloat32Array(0, 2.03333, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DayLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.18333, 3.45103, 4)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_day_label"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kn7h"]
+_data = {
+&"RESET": SubResource("Animation_0kn7h"),
+&"day_transition": SubResource("Animation_1ymmg")
+}
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
@@ -66,15 +160,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -231.0
-offset_top = -53.0
-offset_right = 231.0
-offset_bottom = 54.0
+offset_left = -320.0
+offset_top = -53.5
+offset_right = 320.0
+offset_bottom = 53.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("10_1m8fn")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("13_1ymmg")
 theme_override_font_sizes/normal_font_size = 50
 text = "Day 1"
 fit_content = true
@@ -82,6 +177,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -162,3 +258,9 @@ autoplay = true
 bus = &"Music"
 script = ExtResource("16_iy36f")
 music_list = Array[AudioStream]([ExtResource("15_kx87n"), ExtResource("17_sscii")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0kn7h")
+}

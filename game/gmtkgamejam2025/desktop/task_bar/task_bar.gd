@@ -20,19 +20,7 @@ func _ready() -> void:
 	GameStateManager.day_changed.connect(update_date_label)
 
 func update_date_label(day: int) -> void:
-	var text: String = ""
-	match day:
-		1:
-			text = "30/7/2025"
-		2:
-			text = "31/7/2025"
-		3:
-			text = "1/8/2025"
-		4:
-			text = "2/8/2025"
-		5:
-			text = "3/8/2025"
-	date_label.text = text
+	date_label.text = GameStateManager.get_date_string(day)
 
 ## Add a new task bar icon for the window, if it doesn't already exist
 func add_task(window: DesktopWindow) -> void:

@@ -12,8 +12,8 @@
 bg_color = Color(0, 0, 0, 0.294118)
 
 [node name="BankWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
-offset_right = 295.0
-offset_bottom = 339.0
+offset_right = 294.0
+offset_bottom = 348.0
 border_width = 0.0
 script = ExtResource("1_akf48")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
@@ -26,10 +26,10 @@ layout_mode = 1
 [node name="MainPanel" type="PanelContainer" parent="JuicePivot"]
 unique_name_in_owner = true
 layout_mode = 1
-offset_left = -147.5
-offset_top = -169.5
-offset_right = 147.5
-offset_bottom = 169.5
+offset_left = -146.0
+offset_top = -172.5
+offset_right = 147.0
+offset_bottom = 173.5
 mouse_filter = 1
 
 [node name="Control" type="Control" parent="JuicePivot/MainPanel"]
@@ -69,6 +69,7 @@ window_icon = ExtResource("6_64vdt")
 [node name="MarginContainer" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_bottom = 0
 
 [node name="BankApp" parent="JuicePivot/MainPanel/VerticalSplit/MarginContainer" instance=ExtResource("5_akf48")]
 unique_name_in_owner = true

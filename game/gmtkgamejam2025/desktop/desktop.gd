@@ -200,33 +200,58 @@ func _on_fade_out_complete() -> void:
 	for w in windows.duplicate():
 		close_window(w)
 	
-	GameStateManager.next_day()
-	day_label.text = "Day " + str(GameStateManager.day) + " / 5"
-	if GameStateManager.day > 5:
-		day_label.text = "Rent is Due!"
-	day_label.move_to_front()
-	day_label.visible = true
-	day_label.modulate.a = 0.0
-	var label_tween = get_tree().create_tween()
-	label_tween.set_trans(Tween.TRANS_CUBIC)
-	label_tween.set_parallel(false)
-	label_tween.tween_property(day_label, "modulate:a", 1.0, 1.0)
-	label_tween.tween_interval(1.0)
-	label_tween.tween_property(day_label, "modulate:a", 0.0, 1.0)
+	trigger_day_transition()
 	
-	await label_tween.finished
-	day_label.visible = false
+	await %AnimationPlayer.animation_finished
+	
+	## Fade back in...
 	
 	transition_done.emit()
+	
 	var tween_in = get_tree().create_tween()
 	tween_in.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween_in.tween_property(fade_rect, "modulate:a", 0.0, 1.0)
 	tween_in.finished.connect(_on_fade_in_complete)
+	
+	day_label.visible = false
+
+func trigger_day_transition() -> void:
+	day_label.visible = true
+	day_label.modulate.a = 0
+	day_label.move_to_front()
+	%AnimationPlayer.play("day_transition")
+	
+	day_label.text = "Day " + str(GameStateManager.day) + " of 5"
+	if GameStateManager.day == 6:
+		day_label.text = "Evening Before Rent Payment"
+	if GameStateManager.day > 6:
+		day_label.text = "Rent is Due!"
+	#if GameStateManager.day > 5:
+		#day_label.text = "Rent is Due!"
+
+func update_day_label() -> void:
+	GameStateManager.next_day()
+	day_label.text = "Day " + str(GameStateManager.day) + " of 5"
+	if GameStateManager.day == 6:
+		day_label.text = "Evening Before Rent Payment"
+	if GameStateManager.day > 6:
+		day_label.text = "Rent is Due!"
+		## Delete! Delete!
+		if is_instance_valid(%DesktopIcons):
+			%DesktopIcons.queue_free()
+	
+	#%RemainingLabel.text = str((5 - GameStateManager.day) + 1) + " days until rent is due"
+	
+	day_label.pivot_offset = day_label.size / 2.0
+	TweenUtil.pop_delta(day_label, Vector2(0.2, 0.2))
 
 func _on_fade_in_complete() -> void:
 	fade_rect.visible = false
 	
-	if GameStateManager.day > 5:
+	if GameStateManager.day == 5: ## EVENING BEFORE
+		pass
+	
+	if GameStateManager.day > 6: ## END GAME SEQUENCE
 		popup_end_game_email()
 		return
 	
@@ -241,6 +266,9 @@ func _on_fade_in_complete() -> void:
 		Desktop.instance.execute(&"commissions", {"open_reviews": true})
 		)
 
+func popup_sleep_prompt() -> void:
+	pass
+
 func popup_end_game_email() -> void:
 	if GameStateManager.money >= GameStateManager.MONEY_TO_TRUE_END:
 		GameStateManager.add_email(GameStateManager.email_stats["true_ending"])
@@ -251,6 +279,9 @@ func popup_end_game_email() -> void:
 	
 	SoundManager.play_global_oneshot(&"mail")
 	
+	spawn_force_email()
+
+func spawn_force_email() -> void:
 	var args := {
 		"title": "Notification",
 		"text": "You received an email!",
@@ -258,8 +289,15 @@ func popup_end_game_email() -> void:
 	}
 	
 	var window: InfoPopup = Desktop.instance.execute(&"info", args)
-	window.confirmed.connect(func():
-		Desktop.instance.execute(&"email")
-		)
+	window.confirmed.connect(open_ending_email_client)
+	window.closed.connect(spawn_force_email)
+
+func open_ending_email_client() -> void:
+	var window: EmailWindow = Desktop.instance.execute(&"email")
+	
+	window.closed.connect(ending_sequence)
+
+func ending_sequence() -> void:
+	GameStateManager.submitted.emit() ## TEMP: Just do something... 
 
 #endregion

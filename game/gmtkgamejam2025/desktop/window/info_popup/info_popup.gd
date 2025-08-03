@@ -35,6 +35,7 @@ func boot(args: Dictionary = {}) -> void:
 
 func _on_confirm() -> void:
 	confirmed.emit()
+	should_emit_closed = false
 	Desktop.instance.close_window(self)
 
 func _confirmed() -> void:

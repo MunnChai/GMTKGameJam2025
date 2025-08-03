@@ -44,4 +44,25 @@ func get_emails() -> Array[EmailStat]:
 	return emails
 
 func add_email(email: EmailStat) -> void:
+	email = email.duplicate()
+	email.date_string = get_date_string(day)
 	emails.append(email)
+
+static func get_date_string(day: int) -> String:
+	var text: String = ""
+	match day:
+		1:
+			text = "30/7/2025"
+		2:
+			text = "31/7/2025"
+		3:
+			text = "1/8/2025"
+		4:
+			text = "2/8/2025"
+		5:
+			text = "3/8/2025"
+		6:
+			text = "3/8/2025"
+		7:
+			text = "4/8/2025"
+	return text

@@ -23,7 +23,7 @@ func populate_email_list(emails: Array[EmailStat]) -> void:
 		var email_instance: EmailListItem = EmailListItemScene.instantiate()
 		email_list.add_child(email_instance)
 		email_list.move_child(email_instance, 0)
-		email_instance.setup(email.title, email.sender)
+		email_instance.setup(email.title, email.sender, email.date_string)
 		email_instance.on_email_item_pressed.connect(on_email_item_pressed.bind(email))
 		
 func on_email_item_pressed(email: EmailStat) -> void:
