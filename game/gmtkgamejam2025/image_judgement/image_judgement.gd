@@ -71,19 +71,20 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 	
 	var desired_traits: Dictionary = desired_judgement.desired_traits
 	var feedback_comments: Dictionary = desired_judgement.feedback_comments
+	var trait_weights: Dictionary = desired_judgement.trait_weights
 	
-	var num_desired_traits_completed: float = 0
-	var num_desired_traits: float = desired_traits.keys().size()
+	var completed_trait_weight: float = 0
+	var total_trait_weight: float = 0
 	for trait_type: Trait in desired_traits.keys():
 		var desired_range: Vector2 = desired_traits[trait_type]
 		var submission_trait_value: int = traits.get_or_add(trait_type, 0)
 		
 		var new_comment: String = ""
-		
+		total_trait_weight += trait_weights[trait_type]
 		if submission_trait_value < desired_range.x: # Not enough trait
 			new_comment = feedback_comments[trait_type][0]
 		elif submission_trait_value < desired_range.y: # Good amount
-			num_desired_traits_completed += 1
+			completed_trait_weight += trait_weights[trait_type]
 			new_comment = feedback_comments[trait_type][1]
 		elif submission_trait_value >= desired_range.y: # Too much trait
 			new_comment = feedback_comments[trait_type][2]
@@ -94,13 +95,14 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 		
 		if not new_comment.ends_with(" ") and new_comment != "":
 			new_comment += " "
+		
 		comments += new_comment
 	
-	rating += int(num_desired_traits_completed * 8 / num_desired_traits)
+	rating += int(completed_trait_weight * 8 / total_trait_weight)
 	
 	results["rating"] = rating
 	results["comments"] = comments
-	results["amount_paid"] = desired_judgement.min_money + (desired_judgement.max_money - desired_judgement.min_money) * (rating / 10.0)
+	results["amount_paid"] = desired_judgement.min_money + (desired_judgement.max_money - desired_judgement.min_money) * (max(rating - 3, 0) / 7.0)
 	
 	print("Rating: ", rating)
 	print("Comments: ", comments)
