@@ -147,10 +147,11 @@ func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 # update the feedback_tab
 func update_feedback() -> void:
 	var feedbacks: Array[Feedback] = CommissionsManager.get_feedbacks()
-	feedbacks.reverse()
+	
 	for fb in feedbacks:
 		var feedback_instance = FeedbackListItemScene.instantiate()
 		feedback_list.add_child(feedback_instance)
+		feedback_list.move_child(feedback_instance, 0)
 		feedback_instance.setup(fb)
 		feedback_instance.details_pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
 #endregion

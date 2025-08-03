@@ -9,11 +9,16 @@ extends MarginContainer
 @onready var feedback_rating: RichTextLabel = %FeedbackRating
 @onready var feedback_submission: TextureRect = %FeedbackSubmission
 @onready var feedback_comments: RichTextLabel = %FeedbackComments
+@onready var amount_paid_label: RichTextLabel = %AmountPaid
+@onready var collect_payment_button: Button = %CollectPaymentButton
+
+var current_feedback: Feedback
 
 signal back_pressed
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back_pressed)
+	collect_payment_button.pressed.connect(_on_collect_payment_pressed)
 
 func setup(feedback: Feedback) -> void:
 	var stat: CommissionStat = feedback.get_stat()
@@ -26,6 +31,29 @@ func setup(feedback: Feedback) -> void:
 	feedback_id_2.text = "User: [b]" + stat.id + "[/b]"
 	feedback_rating.text = "Overall Rating:" + str(feedback.rating) + "/10"
 	feedback_comments.text = "Comments:\n" + feedback.comments
+	amount_paid_label.text = "Amount Paid: $" + str("%0.2f" % feedback.amount_paid)
+	current_feedback = feedback
+	
+	collect_payment_button.disabled = current_feedback.is_money_collected
+	if current_feedback.is_money_collected:
+		collect_payment_button.text = "Already Collected!"
+	if is_zero_approx(current_feedback.amount_paid):
+		collect_payment_button.text = "No payment..."
+		collect_payment_button.disabled = true
 
 func _on_back_pressed() -> void:
 	back_pressed.emit()
+
+func _on_collect_payment_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
+	GameStateManager.add_money(current_feedback.amount_paid)
+	current_feedback.is_money_collected = true
+	collect_payment_button.disabled = true
+	
+	var args := {
+		"title": "PAYMENT COLLECTED!",
+		"text": "$" + str("%0.2f" % current_feedback.amount_paid) + " added to your bank balance!!",
+		"confirm_label": "Hooray!",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
