@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://7kpvm6bjatun"]
 
 [ext_resource type="Script" uid="uid://dw68lxbtm5wip" path="res://apps/email_app/email_app_window/email_window.gd" id="1_sij0t"]
-[ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="2_it36o"]
 [ext_resource type="PackedScene" uid="uid://b24nf7m03xv4b" path="res://desktop/window/juice_pivot/juice_pivot.tscn" id="3_ktlj2"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="4_3tmtr"]
 [ext_resource type="PackedScene" uid="uid://bx3qmlit7do7s" path="res://desktop/window/window_bar/window_bar.tscn" id="5_krdyy"]
+[ext_resource type="Texture2D" uid="uid://d24jab7fucx5w" path="res://assets/ui/icons/email_icon_low_res.png" id="5_sij0t"]
 [ext_resource type="PackedScene" uid="uid://bc3toqqlornsn" path="res://apps/email_app/email_app.tscn" id="6_sij0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
@@ -15,6 +15,7 @@ offset_right = 446.0
 offset_bottom = 392.0
 script = ExtResource("1_sij0t")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
+taskbar_icon = ExtResource("5_sij0t")
 
 [node name="JuicePivot" parent="." instance=ExtResource("3_ktlj2")]
 layout_mode = 1
@@ -60,7 +61,7 @@ theme_override_constants/separation = 0
 [node name="WindowBar" parent="JuicePivot/MainPanel/VerticalSplit" instance=ExtResource("5_krdyy")]
 unique_name_in_owner = true
 layout_mode = 2
-window_icon = ExtResource("2_it36o")
+window_icon = ExtResource("5_sij0t")
 
 [node name="WindowContent" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2

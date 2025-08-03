@@ -37,6 +37,7 @@ func _ready() -> void:
 
 func show_day_1_notification() -> void:
 	GameStateManager.add_email(GameStateManager.email_stats["intro"])
+	SoundManager.play_global_oneshot(&"mail")
 	
 	var args := {
 		"title": "NOTIFICATION",
@@ -245,6 +246,8 @@ func popup_end_game_email() -> void:
 		GameStateManager.add_email(GameStateManager.email_stats["good_ending"])
 	else:
 		GameStateManager.add_email(GameStateManager.email_stats["bad_ending"])
+	
+	SoundManager.play_global_oneshot(&"mail")
 	
 	var args := {
 		"title": "NOTIFICATION",

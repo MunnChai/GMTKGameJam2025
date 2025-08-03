@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=3 format=3 uid="uid://cn5t3s8gbrjfl"]
+
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="1_k0g8q"]
+[ext_resource type="AudioStream" uid="uid://bh5iolt48urff" path="res://sound/sound_files/you_got_mail.mp3" id="1_kphl7"]
+
+[resource]
+script = ExtResource("1_k0g8q")
+id = &"mail"
+linear_volume = 0.3
+pitch_variation_range = 0.0
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("1_kphl7")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"
