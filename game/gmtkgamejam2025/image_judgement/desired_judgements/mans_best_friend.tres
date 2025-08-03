@@ -5,31 +5,28 @@
 [resource]
 script = ExtResource("1_0hqlq")
 desired_traits = Dictionary[Variant, Vector2]({
--999: Vector2(0, 20000),
--4: Vector2(20000, 100000),
-0: Vector2(0, 4000),
-2: Vector2(0, 4000),
-3: Vector2(0, 10000),
-4: Vector2(20000, 100000)
+-999: Vector2(0, 4000),
+-1: Vector2(70000, 130000),
+1: Vector2(10000, 50000),
+7: Vector2(40000, 5e+06),
+12: Vector2(70000, 100000)
 })
 trait_weights = Dictionary[Variant, float]({
--999: 5.0,
--4: 10.0,
-0: 1.0,
-2: 1.0,
-3: 10.0,
-4: 10.0
+-999: 10.0,
+-1: 7.0,
+1: 3.0,
+7: 3.0,
+12: 7.0
 })
 feedback_comments = Dictionary[Variant, PackedStringArray]({
--999: PackedStringArray("", "", "Next time fill the giant hole in the pic..."),
--4: PackedStringArray("I think you cut out the wrong person...", "", "Why is there so much of me??"),
-0: PackedStringArray("", "", "... what\'s up with the bald head. "),
-2: PackedStringArray("", "", "Is that a fish? Why?"),
-3: PackedStringArray("", "Thanks for getting rid of my ex!", "Did you even get rid of my ex???"),
-4: PackedStringArray("Where did Taylor go???", "Look at Taylor in all of her glory!", "Uh... maybe too much celebrity energy coming from this one.")
+-999: PackedStringArray("", "", "I think you missed some of the corrupted parts..."),
+-1: PackedStringArray("You edited parts of me out...", "", "Did you copy my body?"),
+1: PackedStringArray("Where did my hair go...", "", "Why is there so much hair?"),
+7: PackedStringArray("Why did you edit the background out?", "", ""),
+12: PackedStringArray("You got rid of my dog...", "", "I said edit the corruption out, not make the whole image my dog.")
 })
-desired_modification = Vector2(1, 200000)
+desired_modification = Vector2(1, 1e+06)
 modification_comments = PackedStringArray("Why did nothing change?", "", "This looks a little off from what i sent you...")
 min_money = 0.0
-max_money = 30.0
+max_money = 60.0
 metadata/_custom_type_script = "uid://bku7ds6r61ofw"

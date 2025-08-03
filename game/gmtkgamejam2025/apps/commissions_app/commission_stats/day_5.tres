@@ -1,21 +1,16 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=7 format=3 uid="uid://csrkoib71ul2a"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://csrkoib71ul2a"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_fgsf8"]
-[ext_resource type="Resource" uid="uid://bvlxx3653ms7m" path="res://assets/file_resources/commissions/pls_add_avenging_guys.tres" id="2_1huvb"]
-[ext_resource type="Resource" uid="uid://ci28ncrfqa0nt" path="res://assets/file_resources/external_images/captain_usa.tres" id="3_04fjn"]
-[ext_resource type="Resource" uid="uid://b7qtk6h8cc07r" path="res://assets/file_resources/external_images/steel_guy.tres" id="4_g4oes"]
-[ext_resource type="Resource" uid="uid://dd6j68a6j11b6" path="res://image_judgement/desired_judgements/avenging_guys.tres" id="5_jtkri"]
+[ext_resource type="Resource" uid="uid://b4kenhgwrgamj" path="res://assets/file_resources/commissions/mans_best_friend.tres" id="2_c6fc5"]
+[ext_resource type="Resource" uid="uid://c152giso5pcy" path="res://image_judgement/desired_judgements/mans_best_friend.tres" id="3_lgnjv"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="6_enhq7"]
 
 [resource]
 script = ExtResource("6_enhq7")
-id = "DadMan2000"
-title = "Please edit the Avenging Guys into this photo."
-desc = "Hello, my son's birthday is coming up soon, and I'd love to have a photo of him with his favourite superheroes, the Avenging Guys. I have attached photos of his favourite characters. 
-
-Thank you in advance.
-"
-day = 4
-assets = Array[ExtResource("1_fgsf8")]([ExtResource("2_1huvb"), ExtResource("3_04fjn"), ExtResource("4_g4oes")])
-desired_judgement = ExtResource("5_jtkri")
+id = "DawgDawg"
+title = "Restore this corrupted image!"
+desc = "My favourite image of me and my dog recently got corrupted (my dog bit my harddrive), please help me restore the corrupted parts! "
+day = 5
+assets = Array[ExtResource("1_fgsf8")]([ExtResource("2_c6fc5")])
+desired_judgement = ExtResource("3_lgnjv")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
