@@ -19,3 +19,7 @@ func add_submission(work: File) -> void:
 
 func get_submission() -> File:
 	return submission
+
+func clear_feedbacks() -> void:
+	feedbacks.clear()
+	submission = null
