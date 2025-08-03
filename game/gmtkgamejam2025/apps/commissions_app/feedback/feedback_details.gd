@@ -29,7 +29,7 @@ func setup(feedback: Feedback) -> void:
 	feedback_submission.texture = feedback.get_submission_texture()
 	
 	feedback_id_2.text = "User: [b]" + stat.id + "[/b]"
-	feedback_rating.text = "Overall Rating:" + str(feedback.rating) + "/10"
+	feedback_rating.text = "Overall Rating: " + str(feedback.rating) + "/10"
 	feedback_comments.text = "Comments:\n" + feedback.comments
 	amount_paid_label.text = "Amount Paid: $" + str("%0.2f" % feedback.amount_paid)
 	current_feedback = feedback

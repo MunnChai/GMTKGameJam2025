@@ -203,7 +203,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/bold_italics_font_size = 30
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
-text = "Title"
+text = "Can"
 fit_content = true
 
 [node name="Id" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
@@ -212,7 +212,7 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "Id"
+text = "ID: kasjdkasld"
 fit_content = true
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
@@ -270,9 +270,12 @@ mouse_filter = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 1
+theme = ExtResource("6_mv6ju")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 15
-text = "Submissions"
+theme_override_font_sizes/bold_font_size = 15
+bbcode_enabled = true
+text = "[b]Submissions[/b]"
 fit_content = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/MarginContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
