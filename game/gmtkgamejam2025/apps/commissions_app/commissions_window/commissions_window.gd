@@ -12,7 +12,7 @@ func _ready() -> void:
 
 ## @OVERRIDE
 func boot(args: Dictionary = {}) -> void:
-	%WindowBar.set_window_title("Commissions!")
+	%WindowBar.set_window_title("COMMISSIONS")
 	
 	if args.has("open_reviews"):
 		if args.get("open_reviews"):

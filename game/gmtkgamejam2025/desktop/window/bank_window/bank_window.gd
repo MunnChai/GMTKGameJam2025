@@ -8,3 +8,5 @@ func _ready() -> void:
 
 func boot(args: Dictionary = {}) -> void:
 	bank_app.set_balance(GameStateManager.money)
+	
+	%WindowBar.set_window_title("BANK")

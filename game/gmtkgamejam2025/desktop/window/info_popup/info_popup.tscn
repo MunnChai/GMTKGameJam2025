@@ -13,7 +13,7 @@ bg_color = Color(0, 0, 0, 0.294118)
 
 [node name="InfoPopup" type="ReferenceRect" node_paths=PackedStringArray("window_bar", "match_size")]
 offset_right = 333.0
-offset_bottom = 249.0
+offset_bottom = 189.0
 border_width = 0.0
 script = ExtResource("1_48pu0")
 window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
@@ -28,9 +28,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(333, 0)
 layout_mode = 1
 offset_left = -166.5
-offset_top = -124.5
+offset_top = -94.5
 offset_right = 166.5
-offset_bottom = 56.5
+offset_bottom = 94.5
 mouse_filter = 1
 
 [node name="Control" type="Control" parent="JuicePivot/MainPanel"]
