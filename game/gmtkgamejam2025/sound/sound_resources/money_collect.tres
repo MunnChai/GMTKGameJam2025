@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=3 format=3 uid="uid://tmasj1kmovrx"]
+
+[ext_resource type="AudioStream" uid="uid://i3xer52gr1ok" path="res://sound/sound_files/money_collect.mp3" id="1_kijuk"]
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="1_yh1cp"]
+
+[resource]
+script = ExtResource("1_yh1cp")
+id = &"money_collect"
+linear_volume = 0.6
+pitch_variation_range = 0.3
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("1_kijuk")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"

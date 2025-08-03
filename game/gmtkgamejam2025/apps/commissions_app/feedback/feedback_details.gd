@@ -46,6 +46,7 @@ func _on_back_pressed() -> void:
 
 func _on_collect_payment_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
+	SoundManager.play_global_oneshot(&"money_collect")
 	GameStateManager.add_money(current_feedback.amount_paid)
 	current_feedback.is_money_collected = true
 	collect_payment_button.disabled = true
