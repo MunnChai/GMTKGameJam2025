@@ -17,21 +17,22 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="EmailApp" type="Control"]
 layout_mode = 3
-anchor_right = 0.445
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -0.600037
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_uevvc")
 email_stats = Array[ExtResource("2_87hw0")]([ExtResource("3_thqnb"), ExtResource("4_f32cr")])
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.967
-anchor_bottom = 0.736
-offset_right = -0.223022
-offset_bottom = 0.0799561
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -83,6 +84,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+theme_override_constants/separation = 2
 
 [node name="EmailDetails" parent="PanelContainer/MarginContainer/PanelContainer/MarginContainer/PanelContainer/ScrollContainer" instance=ExtResource("4_uevvc")]
 unique_name_in_owner = true

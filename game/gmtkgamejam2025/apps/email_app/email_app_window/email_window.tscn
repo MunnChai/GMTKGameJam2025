@@ -10,10 +10,11 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_712ap"]
 bg_color = Color(0, 0, 0, 0.294118)
 
-[node name="EmailWindow" type="ReferenceRect"]
+[node name="EmailWindow" type="ReferenceRect" node_paths=PackedStringArray("window_bar")]
 offset_right = 446.0
 offset_bottom = 392.0
 script = ExtResource("1_sij0t")
+window_bar = NodePath("JuicePivot/MainPanel/VerticalSplit/WindowBar")
 
 [node name="JuicePivot" parent="." instance=ExtResource("3_ktlj2")]
 layout_mode = 1

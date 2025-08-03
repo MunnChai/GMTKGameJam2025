@@ -15,8 +15,8 @@ func _ready() -> void:
 
 func setup(title: String, sender: String, message: String) -> void:
 	title_label.text = title
-	sender_label.text = sender
-	recipient_label.text = GameStateManager.get_username()
+	sender_label.text = "From: " + sender
+	recipient_label.text = "To: " + GameStateManager.get_username()
 	message_label.text = message
 
 func on_back_button_pressed() -> void:

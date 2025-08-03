@@ -36,15 +36,17 @@ func _ready() -> void:
 	show_day_1_notification()
 
 func show_day_1_notification() -> void:
+	GameStateManager.add_email(GameStateManager.email_stats["intro"])
+	
 	var args := {
 		"title": "NOTIFICATION",
-		"text": "New commission available!",
-		"confirm_label": "Open Commissions App",
+		"text": "You received an email!",
+		"confirm_label": "See Emails",
 	}
 	
 	var window: InfoPopup = Desktop.instance.execute(&"info", args)
 	window.confirmed.connect(func():
-		Desktop.instance.execute(&"commissions")
+		Desktop.instance.execute(&"email")
 		)
 
 ## When we press left mouse button, bring the hovered window to front
@@ -237,18 +239,18 @@ func _on_fade_in_complete() -> void:
 		)
 
 func popup_end_game_email() -> void:
+	if GameStateManager.money >= GameStateManager.MONEY_TO_TRUE_END:
+		GameStateManager.add_email(GameStateManager.email_stats["true_ending"])
+	elif GameStateManager.money >= GameStateManager.MONEY_TO_WIN:
+		GameStateManager.add_email(GameStateManager.email_stats["good_ending"])
+	else:
+		GameStateManager.add_email(GameStateManager.email_stats["bad_ending"])
+	
 	var args := {
 		"title": "NOTIFICATION",
 		"text": "You received an email!",
 		"confirm_label": "See Emails",
 	}
-	
-	if GameStateManager.money >= GameStateManager.MONEY_TO_TRUE_END:
-		GameStateManager.add_email(GameStateManager.email_stats["best_ending"])
-	elif GameStateManager.money >= GameStateManager.MONEY_TO_WIN:
-		GameStateManager.add_email(GameStateManager.email_stats["good_ending"])
-	else:
-		GameStateManager.add_email(GameStateManager.email_stats["bad_ending"])
 	
 	var window: InfoPopup = Desktop.instance.execute(&"info", args)
 	window.confirmed.connect(func():

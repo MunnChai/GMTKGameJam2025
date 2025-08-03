@@ -7,5 +7,7 @@ script = ExtResource("1_yldyd")
 sender = "Landlord"
 recipient = null
 title = "Rent Payed"
-message = "You payed your rent! GOOD ENDING YAY"
+message = "You payed your rent! ... but still don't have much more money... Time to get back to editing photos!
+
+Ending 2/3"
 metadata/_custom_type_script = "uid://crcryufm2fdv3"

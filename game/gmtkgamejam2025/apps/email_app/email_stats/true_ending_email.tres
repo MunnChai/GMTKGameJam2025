@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EmailStat" load_steps=2 format=3 uid="uid://dubhi3c0ras1f"]
+
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="1_mavdv"]
+
+[resource]
+script = ExtResource("1_mavdv")
+sender = "PhotoLoop"
+recipient = null
+title = "Employment Offer"
+message = "We saw how incredible you were at editing photos. Come work with us at PhotoLoop together. 
+
+Ending 3/3"
+metadata/_custom_type_script = "uid://crcryufm2fdv3"

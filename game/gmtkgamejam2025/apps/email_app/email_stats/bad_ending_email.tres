@@ -7,5 +7,7 @@ script = ExtResource("1_df0j4")
 sender = "Landlord"
 recipient = null
 title = "Eviction Notice"
-message = "No money to pay rent. You got evicted. BAD ENDING"
+message = "This is the last time you pay rent late. You are being evicted immediately. 
+
+Ending 1/3"
 metadata/_custom_type_script = "uid://crcryufm2fdv3"

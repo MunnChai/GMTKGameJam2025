@@ -11,13 +11,18 @@ const EmailListItemScene = preload("res://apps/email_app/email_list_item.tscn")
 func _ready() -> void:
 	email_details.back_to_list.connect(on_back_button_pressed)
 	populate_email_list(GameStateManager.get_emails())
-	
+
 func populate_email_list(emails: Array[EmailStat]) -> void:
 	if not emails or emails.is_empty():
 		return
+	
+	for child in email_list.get_children():
+		child.queue_free()
+	
 	for email in emails:
 		var email_instance: EmailListItem = EmailListItemScene.instantiate()
 		email_list.add_child(email_instance)
+		email_list.move_child(email_instance, 0)
 		email_instance.setup(email.title, email.sender)
 		email_instance.on_email_item_pressed.connect(on_email_item_pressed.bind(email))
 		
