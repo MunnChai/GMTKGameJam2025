@@ -11,6 +11,7 @@ extends MarginContainer
 @onready var feedback_comments: RichTextLabel = %FeedbackComments
 @onready var amount_paid_label: RichTextLabel = %AmountPaid
 @onready var collect_payment_button: Button = %CollectPaymentButton
+@onready var your_username: RichTextLabel = %YourUsername
 
 var current_feedback: Feedback
 
@@ -33,6 +34,8 @@ func setup(feedback: Feedback) -> void:
 	feedback_comments.text = "Comments:\n" + feedback.comments
 	amount_paid_label.text = "Amount Paid: $" + str("%0.2f" % feedback.amount_paid)
 	current_feedback = feedback
+	
+	your_username.text = "User: [b]" + GameStateManager.username + "[/b]"
 	
 	collect_payment_button.disabled = current_feedback.is_money_collected
 	if current_feedback.is_money_collected:
