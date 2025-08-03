@@ -21,11 +21,11 @@ buses/default_bus_layout="res://sound/default_bus_layout.tres"
 
 [autoload]
 
+GameStateManager="*res://game_state/game_state_manager.tscn"
 FileSystem="*res://apps/file_explorer_app/file_system/file_system.gd"
 <<<<<<<HEADFileSystem="*res://apps/file_explorer_app/file_system/file_system.gd"
 PhotoshopManager="*res://apps/photoshop_app/photoshop_manager/photoshop_manager.gd"
 ImageJudgement="*res://image_judgement/image_judgement.tscn"
-GameStateManager="*res://game_state/game_state_manager.gd"
 CommissionsManager="*res://apps/commissions_app/commissions_manager.gd"
 SoundManager="*res://common/sound/sound_manager.gd"
 

@@ -18,3 +18,6 @@ func get_child(child_name: String) -> FileNode:
 		if child.node_name == child_name:
 			return child
 	return null
+
+func rename(new_name: String) -> void:
+	node_name = new_name

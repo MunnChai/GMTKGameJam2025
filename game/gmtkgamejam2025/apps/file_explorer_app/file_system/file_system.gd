@@ -15,8 +15,12 @@ signal folder_removed
 var root: Folder
 
 func _ready():
-	# Create the root directory
 	root = Folder.new("user")
+	
+	# Create the root directory
+	GameStateManager.username_changed.connect(func(new_username: String):
+		root.rename(new_username)
+		)
 
 	# --- Create a sample file structure ---
 	# NOTE: You must have these images in the specified path for them to load.

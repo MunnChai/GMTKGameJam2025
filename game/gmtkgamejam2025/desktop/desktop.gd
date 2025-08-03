@@ -36,15 +36,17 @@ func _ready() -> void:
 	show_day_1_notification()
 
 func show_day_1_notification() -> void:
+	GameStateManager.add_email(GameStateManager.email_stats["intro"])
+	
 	var args := {
 		"title": "NOTIFICATION",
-		"text": "New commission available!",
-		"confirm_label": "Open Commissions App",
+		"text": "You received an email!",
+		"confirm_label": "See Emails",
 	}
 	
 	var window: InfoPopup = Desktop.instance.execute(&"info", args)
 	window.confirmed.connect(func():
-		Desktop.instance.execute(&"commissions")
+		Desktop.instance.execute(&"email")
 		)
 
 ## When we press left mouse button, bring the hovered window to front
@@ -197,6 +199,8 @@ func _on_fade_out_complete() -> void:
 		close_window(w)
 	
 	day_label.text = "Day " + str(GameStateManager.day) + " / 5"
+	if GameStateManager.day > 5:
+		day_label.text = "Rent is Due!"
 	day_label.move_to_front()
 	day_label.visible = true
 	day_label.modulate.a = 0.0
@@ -219,6 +223,10 @@ func _on_fade_out_complete() -> void:
 func _on_fade_in_complete() -> void:
 	fade_rect.visible = false
 	
+	if GameStateManager.day > 5:
+		popup_end_game_email()
+		return
+	
 	var args := {
 		"title": "NOTIFICATION",
 		"text": "Feedback received on commission!",
@@ -228,6 +236,25 @@ func _on_fade_in_complete() -> void:
 	var window: InfoPopup = Desktop.instance.execute(&"info", args)
 	window.confirmed.connect(func():
 		Desktop.instance.execute(&"commissions", {"open_reviews": true})
+		)
+
+func popup_end_game_email() -> void:
+	if GameStateManager.money >= GameStateManager.MONEY_TO_TRUE_END:
+		GameStateManager.add_email(GameStateManager.email_stats["true_ending"])
+	elif GameStateManager.money >= GameStateManager.MONEY_TO_WIN:
+		GameStateManager.add_email(GameStateManager.email_stats["good_ending"])
+	else:
+		GameStateManager.add_email(GameStateManager.email_stats["bad_ending"])
+	
+	var args := {
+		"title": "NOTIFICATION",
+		"text": "You received an email!",
+		"confirm_label": "See Emails",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
+	window.confirmed.connect(func():
+		Desktop.instance.execute(&"email")
 		)
 
 #endregion
