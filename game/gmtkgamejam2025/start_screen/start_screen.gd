@@ -39,3 +39,11 @@ func on_start_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
 	get_tree().change_scene_to_packed(DesktopScene)
 	GameStateManager.set_username(username_input.text)
+
+
+func _on_password_input_text_changed(new_text: String) -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
+
+
+func _on_username_input_text_changed(new_text: String) -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")

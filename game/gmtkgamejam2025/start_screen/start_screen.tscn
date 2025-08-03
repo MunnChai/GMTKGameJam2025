@@ -313,3 +313,6 @@ layout_mode = 2
 [node name="Control2" type="Control" parent="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer"]
 custom_minimum_size = Vector2(4, 0)
 layout_mode = 2
+
+[connection signal="text_changed" from="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/UsernameInput" to="." method="_on_username_input_text_changed"]
+[connection signal="text_changed" from="CanvasLayer/Login/JuicePivot/MainPanel/VerticalSplit/BgPanelContainer/WindowContent/HBoxContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer2/PasswordInput" to="." method="_on_password_input_text_changed"]
