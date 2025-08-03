@@ -4,6 +4,8 @@ var money: int = 0
 var day: int = 1
 var username: String
 
+var emails: Array[EmailStat]
+
 signal money_changed(new_money)
 signal day_changed(new_day)
 
@@ -24,3 +26,12 @@ func next_day() -> void:
 
 func set_username(name: String) -> void:
 	username = name
+
+func get_username() -> String:
+	return username
+
+func get_emails() -> Array[EmailStat]:
+	return emails
+
+func add_email(email: EmailStat) -> void:
+	emails.append(email)
