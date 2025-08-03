@@ -30,8 +30,10 @@ func on_email_item_pressed(email: EmailStat) -> void:
 	email_list.hide()
 	email_details.show()
 	email_details.setup(email.title, email.sender, email.message)
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 
 func on_back_button_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 	email_list.show()
 	email_details.hide()
 	populate_email_list(GameStateManager.get_emails())
