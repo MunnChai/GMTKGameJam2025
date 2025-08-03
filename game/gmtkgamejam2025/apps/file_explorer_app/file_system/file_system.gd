@@ -12,6 +12,9 @@ signal folder_removed
 ## The file system logic, for what files are where
 ## ---
 
+const STICKERS_1 = preload("res://assets/file_resources/external_images/stickers_1.tres")
+const STICKERS_2 = preload("res://assets/file_resources/external_images/stickers_2.tres")
+
 var root: Folder
 
 func _ready():
@@ -30,19 +33,20 @@ func _ready():
 	#var file_2 = File.new("passwords.txt", "text", null)
 
 	#add_file_node_at("/", file_2)
-
+	
+	# Create a "images" folder and fill with stickers
+	var file1 = File.create_from_resource(STICKERS_1)
+	var file2 = File.create_from_resource(STICKERS_2)
+	var images_folder = Folder.new("stickers")
+	add_file_node_at("/", images_folder)
+	add_file_node_at("/stickers", file1)
+	add_file_node_at("/stickers", file2)
+	
 	# Create a "commissions" folder
 	var commissions_folder = Folder.new("commissions")
 	add_file_node_at("/", commissions_folder)
 	
-	# Create a "images" folder
-	#var images_folder = Folder.new("images")
-	#add_file_node_at("/", images_folder)
-	#add_file_node_at("/images", file1)
-	
-	var file3 = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
-	add_file_node_at("/", file3)
-	
+	# Create exports folder
 	var exports_folder = Folder.new("exports")
 	add_file_node_at("/", exports_folder)
 	

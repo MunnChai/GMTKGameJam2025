@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="FileResource" load_steps=4 format=3 uid="uid://cwa80jpveksrv"]
+
+[ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_vumhl"]
+[ext_resource type="Texture2D" uid="uid://ryuoyphljorm" path="res://assets/images/external_images/stickers_1.png" id="2_vumhl"]
+[ext_resource type="Texture2D" uid="uid://dqxklb0ikwaem" path="res://assets/images/external_images/stickers_1_trait.png" id="3_01640"]
+
+[resource]
+script = ExtResource("1_vumhl")
+file_name = "stickers_1.png"
+texture = ExtResource("2_vumhl")
+trait_texture = ExtResource("3_01640")
+metadata/_custom_type_script = "uid://c35i354iy57g4"
