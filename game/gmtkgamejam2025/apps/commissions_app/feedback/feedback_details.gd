@@ -39,6 +39,7 @@ func setup(feedback: Feedback) -> void:
 		collect_payment_button.text = "Already Collected!"
 	if is_zero_approx(current_feedback.amount_paid):
 		collect_payment_button.text = "No payment..."
+		collect_payment_button.disabled = true
 
 func _on_back_pressed() -> void:
 	back_pressed.emit()
@@ -48,3 +49,11 @@ func _on_collect_payment_pressed() -> void:
 	GameStateManager.add_money(current_feedback.amount_paid)
 	current_feedback.is_money_collected = true
 	collect_payment_button.disabled = true
+	
+	var args := {
+		"title": "PAYMENT COLLECTED!",
+		"text": "$" + str("%0.2f" % current_feedback.amount_paid) + " added to your bank balance!!",
+		"confirm_label": "Hooray!",
+	}
+	
+	var window: InfoPopup = Desktop.instance.execute(&"info", args)
