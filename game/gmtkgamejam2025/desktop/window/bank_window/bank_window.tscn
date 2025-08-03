@@ -69,6 +69,7 @@ window_icon = ExtResource("6_64vdt")
 [node name="MarginContainer" type="MarginContainer" parent="JuicePivot/MainPanel/VerticalSplit"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_bottom = 0
 
 [node name="BankApp" parent="JuicePivot/MainPanel/VerticalSplit/MarginContainer" instance=ExtResource("5_akf48")]
 unique_name_in_owner = true

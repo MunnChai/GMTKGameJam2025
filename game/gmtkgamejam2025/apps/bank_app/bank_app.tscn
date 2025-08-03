@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbrtermfxiebt"]
+[gd_scene load_steps=10 format=3 uid="uid://bbrtermfxiebt"]
 
 [ext_resource type="Script" uid="uid://bt18ey8jp2b5x" path="res://apps/bank_app/bank_app.gd" id="1_36y8t"]
 [ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="1_hy14y"]
@@ -6,6 +6,8 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="2_xkiw2"]
 [ext_resource type="Texture2D" uid="uid://doaio76dl16o7" path="res://assets/ui/windows/window_rect.png" id="3_xkiw2"]
 [ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="5_raw2o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_raw2o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36y8t"]
 
@@ -33,8 +35,10 @@ layout_mode = 0
 offset_right = 293.0
 offset_bottom = 305.0
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_raw2o")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer2"]
+visible = false
 layout_mode = 2
 texture = ExtResource("2_u0kae")
 patch_margin_left = 4
