@@ -22,6 +22,7 @@ func spend_money(amount: int) -> bool:
 func next_day() -> void:
 	day += 1
 	emit_signal("day_changed", day)
+	SoundManager.play_global_oneshot(&"day_end")
 
 func set_username(name: String) -> void:
 	username = name

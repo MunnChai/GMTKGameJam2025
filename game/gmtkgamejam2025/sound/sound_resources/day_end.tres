@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SoundResource" load_steps=3 format=3 uid="uid://dmc6joh6v7ua1"]
+
+[ext_resource type="AudioStream" uid="uid://4jvkvcscmx7t" path="res://sound/sound_files/photoloop_end_of_day_jingle.mp3" id="1_d6vht"]
+[ext_resource type="Script" uid="uid://c6e3drajq1i0a" path="res://common/sound/sound_resource.gd" id="1_icl3g"]
+
+[resource]
+script = ExtResource("1_icl3g")
+id = &"day_end"
+linear_volume = 0.25
+pitch_variation_range = 0.0
+attenuation_override = -1.0
+audio_streams = Array[AudioStream]([ExtResource("1_d6vht")])
+metadata/_custom_type_script = "uid://c6e3drajq1i0a"
