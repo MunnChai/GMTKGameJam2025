@@ -6,7 +6,7 @@
 script = ExtResource("1_wrg3b")
 desired_traits = Dictionary[int, Vector2]({
 -999: Vector2(0, 10000),
--5: Vector2(150000, 200000),
+-5: Vector2(150000, 500000),
 0: Vector2(5000, 7200),
 1: Vector2(4000, 80000),
 2: Vector2(30000, 100000)
@@ -14,7 +14,7 @@ desired_traits = Dictionary[int, Vector2]({
 trait_weights = Dictionary[int, float]({
 -999: 2.0,
 -5: 5.0,
-0: 3.0,
+0: 0.0,
 1: 10.0,
 2: 3.0
 })
