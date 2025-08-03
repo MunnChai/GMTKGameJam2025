@@ -324,6 +324,53 @@ mouse_default_cursor_shape = 2
 disabled = true
 text = "Submit"
 
+[node name="SleepContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/SleepContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/SleepContainer/CenterContainer"]
+custom_minimum_size = Vector2(343.07, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/SleepContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("6_mv6ju")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "You have no active commissions at this time. [b]You may collect any of your outstanding payments from the Reviews tab.[/b]
+
+It's been a long day. Go to sleep?"
+fit_content = true
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/SleepContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SleepButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/SleepContainer/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("6_mv6ju")
+text = "Go to Sleep"
+
 [node name="Feedbacks" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer"]
 visible = false
 layout_mode = 2

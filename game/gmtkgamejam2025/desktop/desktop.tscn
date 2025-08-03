@@ -23,6 +23,42 @@
 [ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
 [ext_resource type="Texture2D" uid="uid://d3vfdvrh658u0" path="res://assets/ui/apps/_desktop_icons/desktop_email.png" id="17_vxgw6"]
 
+[sub_resource type="Animation" id="Animation_0kn7h"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/DayLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(320, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DayLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(306.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DayLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
 [sub_resource type="Animation" id="Animation_1ymmg"]
 resource_name = "day_transition"
 length = 4.0
@@ -34,7 +70,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
-"points": PackedFloat32Array(409, -0.25, 0, 0.25, 0, 409, -0.25, 0, 0.25, 0, 409, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(320, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 2.18, 5)
 }
 tracks/1/type = "bezier"
@@ -72,42 +108,6 @@ tracks/3/keys = {
 "args": [],
 "method": &"update_day_label"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_0kn7h"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/DayLabel:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(409, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/DayLabel:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(307, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CanvasLayer/DayLabel:modulate:a")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0kn7h"]
@@ -160,10 +160,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -231.0
-offset_top = -53.0
-offset_right = 231.0
-offset_bottom = 54.0
+offset_left = -320.0
+offset_top = -53.5
+offset_right = 320.0
+offset_bottom = 53.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
@@ -177,6 +177,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

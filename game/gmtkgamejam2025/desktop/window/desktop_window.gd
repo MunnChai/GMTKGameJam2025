@@ -49,6 +49,8 @@ var mouse_hovered := false # Hovered over anywhere on the window?
 var drag_hovered := false # Hovered over drag bar?
 var is_dragging := false # Clicked while hovering over drag bar?
 
+var should_emit_closed := true
+
 func _ready() -> void:
 	if Desktop.is_instanced():
 		Desktop.instance.open_window(self)
@@ -220,7 +222,8 @@ func close_self() -> void:
 	is_active = false
 	is_closing = true
 	all_clear_for_queue_free = true
-	closed.emit() # NOTE: Some things from the signal may change all_clear_for_queue_free
+	if should_emit_closed:
+		closed.emit() # NOTE: Some things from the signal may change all_clear_for_queue_free
 	
 	close()
 

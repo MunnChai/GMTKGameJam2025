@@ -43,7 +43,13 @@ func connect_signals() -> void:
 	submit_button.pressed.connect(on_submit_pressed)
 	feedback_details.back_pressed.connect(on_back_button_pressed)
 	CommissionsManager.submission_added.connect(_on_submission_added)
+	
+	%SleepButton.pressed.connect(_on_sleep_pressed)
 	#Desktop.instance.transition_done.connect(update_comm)
+
+func _on_sleep_pressed() -> void:
+	SoundManager.play_global_oneshot(&"ui_basic_click")
+	GameStateManager.submitted.emit()
 
 #region COMMISSION TAB
 
@@ -86,8 +92,10 @@ func update_comm() -> void:
 	var day: int = GameStateManager.day
 	
 	commissions_container.show()
+	%SleepContainer.hide()
 	if not commissions.has(day):
 		commissions_container.hide()
+		%SleepContainer.show()
 		return
 
 	var stat: CommissionStat = commissions[day]

@@ -61,4 +61,8 @@ static func get_date_string(day: int) -> String:
 			text = "2/8/2025"
 		5:
 			text = "3/8/2025"
+		6:
+			text = "3/8/2025"
+		7:
+			text = "4/8/2025"
 	return text
