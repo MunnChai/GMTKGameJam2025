@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_mavdv")
-sender = "PhotoLoop"
+sender = "hiring@photoloop.com"
 recipient = null
 title = "Employment Offer"
 message = "We saw how incredible you were at editing photos. Come work with us at PhotoLoop together. 

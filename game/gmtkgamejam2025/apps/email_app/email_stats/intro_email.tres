@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_bc44i")
-sender = "Landlord"
+sender = "landlord@loopmail.com"
 recipient = null
 title = "Rent Due Soon"
 message = "Hey. Your rent is due in 5 days. It better not be late, or you're getting evicted."

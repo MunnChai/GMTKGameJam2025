@@ -27,17 +27,17 @@ func _ready():
 	#var nutreents_image = load("res://assets/images/nutreents_logo.png") 
 
 	#var file1 = File.new("nutreents.png", "image", nutreents_image)
-	var file_2 = File.new("passwords.txt", "text", null)
+	#var file_2 = File.new("passwords.txt", "text", null)
 
-	add_file_node_at("/", file_2)
+	#add_file_node_at("/", file_2)
 
 	# Create a "commissions" folder
 	var commissions_folder = Folder.new("commissions")
 	add_file_node_at("/", commissions_folder)
 	
 	# Create a "images" folder
-	var images_folder = Folder.new("images")
-	add_file_node_at("/", images_folder)
+	#var images_folder = Folder.new("images")
+	#add_file_node_at("/", images_folder)
 	#add_file_node_at("/images", file1)
 	
 	var file3 = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
@@ -46,12 +46,12 @@ func _ready():
 	var exports_folder = Folder.new("exports")
 	add_file_node_at("/", exports_folder)
 	
-	add_file_node_at("/", Folder.new("very_big_folder"))
+	#add_file_node_at("/", Folder.new("very_big_folder"))
 	
-	for i in range(100):
-		var new_file = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
-		new_file.node_name = "sad_" + str(i) + ".png"
-		add_file_node_at("/very_big_folder", new_file)
+	#for i in range(100):
+		#var new_file = File.create_from_resource(load("res://assets/file_resources/commissions/sad_birthday.tres"))
+		#new_file.node_name = "sad_" + str(i) + ".png"
+		#add_file_node_at("/very_big_folder", new_file)
 
 func open_file_at(path: String) -> bool:
 	var node: FileNode = parse_path(path)

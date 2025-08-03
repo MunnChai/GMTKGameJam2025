@@ -91,7 +91,7 @@ func remove() -> void:
 	await TweenUtil.scale_to(self, Vector2.ZERO, 0.3).finished
 	queue_free()
 
-@onready var base_pos: Vector2 = %Circle.position
+@onready var base_pos: Vector2 = %IconTexture.position
 @onready var target_pos := base_pos
 
 func _process(delta: float) -> void:
@@ -102,6 +102,6 @@ func _process(delta: float) -> void:
 		target_pos += Vector2.UP * 6.0
 	
 	if not GameSettings.get_setting("reduced_motion", false, "graphics"):
-		%Circle.position = MathUtil.decay(%Circle.position, target_pos, 15.0, delta)
+		%IconTexture.position = MathUtil.decay(%IconTexture.position, target_pos, 15.0, delta)
 	else:
-		%Circle.position = base_pos
+		%IconTexture.position = base_pos

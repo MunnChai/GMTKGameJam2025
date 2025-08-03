@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvrpk4wp2vd4u"]
+[gd_scene load_steps=22 format=3 uid="uid://dvrpk4wp2vd4u"]
 
 [ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
 [ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
@@ -10,20 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://ba01qxttnfxam" path="res://apps/commissions_app/commissions_window/commissions_window.tscn" id="6_r3xg6"]
 [ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
 [ext_resource type="PackedScene" uid="uid://dniuofjt4onnt" path="res://desktop/window/success/success.tscn" id="8_b6j2u"]
-[ext_resource type="Texture2D" uid="uid://d2tkrsndv76ln" path="res://assets/ui/file_explorer/folder_icon_desktop.png" id="9_b6j2u"]
 [ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
 [ext_resource type="PackedScene" uid="uid://w8qqa2l8sq6b" path="res://desktop/window/bank_window/bank_window.tscn" id="10_iy36f"]
 [ext_resource type="PackedScene" uid="uid://7kpvm6bjatun" path="res://apps/email_app/email_app_window/email_window.tscn" id="11_1m8fn"]
-[ext_resource type="Texture2D" uid="uid://d31s7nyn6qv1y" path="res://assets/ui/icons/Commissions icon high res.png" id="13_qk0lg"]
+[ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/desktop_icons/desktop_file_explorer.png" id="14_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
+[ext_resource type="Texture2D" uid="uid://2su3tyginxl0" path="res://assets/ui/desktop_icons/desktop_commissions.png" id="15_vxgw6"]
 [ext_resource type="Script" uid="uid://djsmnbyaw8n0f" path="res://sound/music/music_player.gd" id="16_iy36f"]
+[ext_resource type="Texture2D" uid="uid://ygayde7qxdnp" path="res://assets/ui/desktop_icons/desktop_bank.png" id="16_vxgw6"]
 [ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kx87n"]
-atlas = ExtResource("13_qk0lg")
-region = Rect2(0, -14.8371, 43, 58.8371)
-margin = Rect2(0, -15, 0, 0)
+[ext_resource type="Texture2D" uid="uid://d3vfdvrh658u0" path="res://assets/ui/desktop_icons/desktop_email.png" id="17_vxgw6"]
 
 [node name="Desktop" type="Node2D"]
 script = ExtResource("1_cg3fv")
@@ -105,7 +102,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-theme_override_constants/separation = 72
+theme_override_constants/separation = 86
 
 [node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
@@ -113,46 +110,29 @@ app_id = &"file_explorer"
 args = Dictionary[StringName, Variant]({
 &"text": "Something went wrong!"
 })
-shortcut_name = "files"
-icon = ExtResource("9_b6j2u")
+shortcut_name = "File Explorer"
+icon = ExtResource("14_vxgw6")
 
 [node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"commissions"
 type = 2
-shortcut_name = "commissions"
-icon = SubResource("AtlasTexture_kx87n")
+shortcut_name = "Commissions"
+icon = ExtResource("15_vxgw6")
 
 [node name="BankIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
 app_id = &"bank"
 type = 2
-shortcut_name = "bank"
+shortcut_name = "Bank"
+icon = ExtResource("16_vxgw6")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/DesktopIcons/HBoxContainer"]
+[node name="EmailIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-mouse_filter = 2
-theme_override_constants/separation = 72
-
-[node name="InfoTestIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer2" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"info"
-args = Dictionary[StringName, Variant]({
-&"confirm_label": "Howdy!",
-&"text": "Hello world!",
-&"title": "HI!"
-})
-shortcut_name = "test1.exe"
-
-[node name="InfoTestIcon2" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer2" instance=ExtResource("3_py4qr")]
-layout_mode = 2
-app_id = &"info"
-args = Dictionary[StringName, Variant]({
-&"text": "In rail terminology, a siding is a low-speed track section distinct from a running line or through route such as a main line, branch line, or spur. It may connect to through track or to other sidings at either end. Sidings often have lighter rails, meant for lower speed or less heavy traffic, and few, if any, signals. Sidings connected at both ends to a running line are commonly known as loops;[1][2] those not so connected may be referred to as single-ended or dead-end sidings,[3] or (if short) stubs.[4]"
-})
-shortcut_name = "Very Long Info"
+app_id = &"email"
+type = 2
+shortcut_name = "E-mail"
+icon = ExtResource("17_vxgw6")
 
 [node name="Windows" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true

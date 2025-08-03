@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_df0j4")
-sender = "Landlord"
+sender = "landlord@loopmail.com"
 recipient = null
 title = "Eviction Notice"
 message = "This is the last time you pay rent late. You are being evicted immediately. 
