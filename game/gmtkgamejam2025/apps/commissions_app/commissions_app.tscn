@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="7_mv6ju"]
 [ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/apps/commissions/speech_bubble.png" id="10_78gvv"]
 [ext_resource type="PackedScene" uid="uid://dps6rblk20cu3" path="res://apps/commissions_app/download_file_scene/download_file.tscn" id="11_opfwy"]
+[ext_resource type="Texture2D" uid="uid://lxumg8l5qi1d" path="res://assets/ui/icons/anonymous_pfp.png" id="13_utvmo"]
 [ext_resource type="PackedScene" uid="uid://dfma7oxl3oo5f" path="res://apps/commissions_app/feedback/feedback_details.tscn" id="13_w3uk5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvy75"]
@@ -37,9 +38,6 @@ texture_margin_right = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78gvv"]
 bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mv6ju"]
-size = Vector2(64, 64)
 
 [node name="CommissionsApp" type="Control"]
 layout_mode = 3
@@ -168,7 +166,7 @@ size_flags_vertical = 3
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-texture = SubResource("PlaceholderTexture2D_mv6ju")
+texture = ExtResource("13_utvmo")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer"]
 layout_mode = 2
