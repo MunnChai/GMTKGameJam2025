@@ -46,6 +46,9 @@ var is_hovered: bool = false
 
 var is_waiting_for_thread: bool = false
 
+
+var undo_redo: UndoRedo
+
 func _ready() -> void:
 	await get_tree().process_frame
 	#editing_anchor.position = editing_node.size / 2
@@ -66,6 +69,8 @@ func _ready() -> void:
 	paste_button.pressed.connect(_on_paste_pressed)
 	redo_button.pressed.connect(_on_redo_pressed)
 	undo_button.pressed.connect(_on_undo_pressed)
+	
+	undo_redo = UndoRedo.new()
 
 func _on_copy_pressed() -> void:
 	try_copy_action()
@@ -197,24 +202,24 @@ func try_copy_action() -> void:
 	dotted_line.clear()
 
 func try_cut_action() -> void:
-	SoundManager.play_global_oneshot(&"cut")
 	cut_selection()
+	SoundManager.play_global_oneshot(&"cut")
 
 func try_paste_action() -> void:
 	if is_paste_confirmable:
 		paste_selection_to_image()
 		await editable_image.finished_pasting
-	SoundManager.play_global_oneshot(&"paste")
 	paste_selection()
+	SoundManager.play_global_oneshot(&"paste")
 
 func try_delete_action() -> void:
 	delete_selection()
 
 func try_undo_action() -> void:
-	pass
+	undo_redo.undo()
 
 func try_redo_action() -> void:
-	pass
+	undo_redo.redo()
 
 
 func copy_selection() -> void:
@@ -247,6 +252,7 @@ func delete_selection() -> void:
 		translated_polygon[i] += lasso_controller.position
 	
 	editable_image.delete_buffers_in_polygon(translated_polygon)
+	is_waiting_for_thread = true
 
 func paste_selection() -> void:
 	if PhotoshopManager.copied_buffer.is_empty():

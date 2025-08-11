@@ -235,8 +235,20 @@ func _get_buffers_in_polygon(polygon: PackedVector2Array) -> Dictionary:
 		if vector.y > max_y:
 			max_y = min(pixel_buffer[0].size() - 1, vector.y)
 	
-	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
-	var new_trait_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	var new_buffer: Array[PackedColorArray] = []
+	var new_trait_buffer: Array[PackedColorArray] = []
+	new_buffer.resize(pixel_buffer.size())
+	new_trait_buffer.resize(pixel_buffer.size())
+	
+	for i in new_buffer.size():
+		var new_pixel_array: PackedColorArray = []
+		new_pixel_array.resize(pixel_buffer[0].size())
+		new_pixel_array.fill(Color(0, 0, 0, 0))
+		new_buffer[i] = new_pixel_array
+		var new_trait_array: PackedColorArray = []
+		new_trait_array.resize(pixel_buffer[0].size())
+		new_trait_array.fill(Color(0, 0, 0, 0))
+		new_trait_buffer[i] = new_trait_array
 	
 	for x in range(min_x, max_x + 1):
 		for y in range(min_y, max_y + 1):
@@ -244,6 +256,9 @@ func _get_buffers_in_polygon(polygon: PackedVector2Array) -> Dictionary:
 			if not Geometry2D.is_point_in_polygon(Vector2(x, y), translated_polygon):
 				new_buffer[x][y].a = 0
 				new_trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
+			else:
+				new_buffer[x][y] = pixel_buffer[x][y]
+				new_trait_buffer[x][y] = trait_buffer[x][y]
 	
 	buffers["pixel"] = new_buffer
 	buffers["trait"] = new_trait_buffer
