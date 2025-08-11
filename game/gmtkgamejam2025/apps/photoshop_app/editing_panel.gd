@@ -56,7 +56,6 @@ func _ready() -> void:
 	editing_node.mouse_exited.connect(func():
 		is_hovered = false)
 	
-	
 	editable_image.got_buffers.connect(_set_copied_buffers)
 	editable_image.finished_deletion.connect(_on_deletion_finished)
 	editable_image.finished_pasting.connect(_on_paste_confirm_finished)
@@ -69,20 +68,13 @@ func _ready() -> void:
 	undo_button.pressed.connect(_on_undo_pressed)
 
 func _on_copy_pressed() -> void:
-	copy_selection()
-	SoundManager.play_global_oneshot(&"cut")
-	dotted_line.clear()
+	try_copy_action()
 
 func _on_cut_pressed() -> void:
-	SoundManager.play_global_oneshot(&"cut")
-	cut_selection()
+	try_cut_action()
 
 func _on_paste_pressed() -> void:
-	if is_paste_confirmable:
-		paste_selection_to_image()
-		await editable_image.finished_pasting
-	SoundManager.play_global_oneshot(&"paste")
-	paste_selection()
+	try_paste_action()
 
 func _on_redo_pressed() -> void:
 	pass
@@ -104,20 +96,22 @@ func handle_actions(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("copy"):
-		SoundManager.play_global_oneshot(&"cut")
-		copy_selection()
-		dotted_line.clear()
+		try_copy_action()
 	
 	if Input.is_action_just_pressed("cut"):
-		SoundManager.play_global_oneshot(&"cut")
-		cut_selection()
+		try_cut_action()
 	
 	if Input.is_action_just_pressed("paste"):
-		if is_paste_confirmable:
-			paste_selection_to_image()
-			await editable_image.finished_pasting
-		SoundManager.play_global_oneshot(&"paste")
-		paste_selection()
+		try_paste_action()
+	
+	if Input.is_action_just_pressed("delete"):
+		try_delete_action()
+	
+	if Input.is_action_just_pressed("undo"):
+		try_undo_action()
+	
+	if Input.is_action_just_pressed("redo"):
+		try_redo_action()
 
 func handle_movement(delta: float) -> void:
 	var current_mouse_position: Vector2 = editing_node.get_local_mouse_position()
@@ -194,6 +188,35 @@ func init_canvas(file: File) -> void:
 func set_file(file: File) -> void:
 	init_canvas(file)
 
+
+
+
+func try_copy_action() -> void:
+	copy_selection()
+	SoundManager.play_global_oneshot(&"cut")
+	dotted_line.clear()
+
+func try_cut_action() -> void:
+	SoundManager.play_global_oneshot(&"cut")
+	cut_selection()
+
+func try_paste_action() -> void:
+	if is_paste_confirmable:
+		paste_selection_to_image()
+		await editable_image.finished_pasting
+	SoundManager.play_global_oneshot(&"paste")
+	paste_selection()
+
+func try_delete_action() -> void:
+	delete_selection()
+
+func try_undo_action() -> void:
+	pass
+
+func try_redo_action() -> void:
+	pass
+
+
 func copy_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
 	for i in translated_polygon.size():
@@ -218,12 +241,12 @@ func cut_selection() -> void:
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 	PhotoshopManager.copied_paste_pos = Vector2(0, 0)
 
-#func delete_selection() -> void:
-	#var translated_polygon: PackedVector2Array = dotted_line.get_points()
-	#for i in translated_polygon.size():
-		#translated_polygon[i] += lasso_controller.position
-	#
-	#editable_image.erase_pixels_in_polygon(translated_polygon)
+func delete_selection() -> void:
+	var translated_polygon: PackedVector2Array = dotted_line.get_points()
+	for i in translated_polygon.size():
+		translated_polygon[i] += lasso_controller.position
+	
+	editable_image.delete_buffers_in_polygon(translated_polygon)
 
 func paste_selection() -> void:
 	if PhotoshopManager.copied_buffer.is_empty():
@@ -248,7 +271,11 @@ func paste_selection_to_image() -> void:
 	is_pasted_locked = true
 	dotted_line.clear()
 
-#region Thread Return Setters
+
+
+
+
+#region Thread Return
 
 func _on_paste_confirm_finished() -> void:
 	pasted_selection.clear()
@@ -273,3 +300,5 @@ func get_current_file() -> File:
 	var file: File = editable_image.convert_to_file()
 	file.node_name = original_file.node_name
 	return file
+
+#endregion
