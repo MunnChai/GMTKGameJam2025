@@ -318,11 +318,17 @@ func set_pixel_and_trait_buffers(pixel_buffer: Array[PackedColorArray], trait_bu
 
 #region Thread Return
 
-func _on_paste_confirm_finished() -> void:
+func _on_paste_confirm_finished(new_pixel_buffer: Array[PackedColorArray], new_trait_buffer: Array[PackedColorArray], previous_pixel_buffer: Array[PackedColorArray], previous_trait_buffer: Array[PackedColorArray]) -> void:
 	pasted_selection.clear()
 	lasso_controller.enable()
 	is_paste_confirmable = false
 	is_waiting_for_thread = false
+	
+	undo_redo.undo()
+	undo_redo.create_action("Paste Selection")
+	undo_redo.add_do_method(set_pixel_and_trait_buffers.bind(new_pixel_buffer, new_trait_buffer))
+	undo_redo.add_undo_method(set_pixel_and_trait_buffers.bind(previous_pixel_buffer, previous_trait_buffer))
+	undo_redo.commit_action(false)
 
 func _on_deletion_finished(new_pixel_buffer: Array[PackedColorArray], new_trait_buffer: Array[PackedColorArray], previous_pixel_buffer: Array[PackedColorArray], previous_trait_buffer: Array[PackedColorArray]) -> void:
 	undo_redo.create_action("Delete Selection")

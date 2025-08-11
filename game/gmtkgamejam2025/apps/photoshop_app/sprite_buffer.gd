@@ -367,6 +367,9 @@ func impose_image(other: SpriteBuffer, pos_offset: Vector2) -> void:
 func _impose_image(this_pixel_buffer: Array, other_pixel_buffer: Array, pos_offset: Vector2, image: Image, trait_image: Image, other_image: Image, other_trait_image: Image) -> Dictionary:
 	var size_diff = Vector2(other_pixel_buffer.size(), other_pixel_buffer[0].size()) - Vector2(this_pixel_buffer.size(), this_pixel_buffer[0].size())
 	
+	var old_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
+	var old_trait_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	
 	for x in other_pixel_buffer.size():
 		for y in other_pixel_buffer[0].size():
 			var new_pos = Vector2i(pos_offset + Vector2(x, y)) - Vector2i(size_diff / 2)
@@ -389,6 +392,10 @@ func _impose_image(this_pixel_buffer: Array, other_pixel_buffer: Array, pos_offs
 			modified_buffer[new_pos.x][new_pos.y] = 1
 	
 	var textures := {
+		"old_buffer": old_buffer,
+		"old_trait_buffer": old_trait_buffer,
+		"new_buffer": pixel_buffer.duplicate(true),
+		"new_trait_buffer": trait_buffer.duplicate(true),
 		"pixel_texture": ImageTexture.create_from_image(image),
 		"trait_texture": ImageTexture.create_from_image(trait_image)
 	}
@@ -401,7 +408,7 @@ func _on_paste_finished() -> void:
 	var textures: Dictionary = thread.wait_to_finish()
 	texture = textures["pixel_texture"]
 	sprite_2d.texture = textures["trait_texture"]
-	finished_pasting.emit()
+	finished_pasting.emit(textures["new_buffer"], textures["new_trait_buffer"], textures["old_buffer"], textures["old_trait_buffer"])
 
 #endregion
 
