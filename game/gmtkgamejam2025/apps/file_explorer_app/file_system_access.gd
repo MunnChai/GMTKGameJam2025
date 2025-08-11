@@ -13,7 +13,7 @@ var current_directory: Folder
 var directory_history: Array[Folder]
 var upload_mode: bool = false
 
-signal upload_done()
+signal upload_done(file_node: FileNode)
 
 func _ready() -> void:
 	current_directory = FileSystem.root
@@ -44,17 +44,18 @@ func go_back() -> bool:
 func get_current_contents() -> Array[FileNode]:
 	return current_directory.children
 
+## Interact with a file node
 func open_file(file_node: FileNode):
 	SoundManager.play_global_oneshot(&"ui_basic_click")
-	if file_node.is_folder():
+	
+	if file_node.is_folder(): ## Node is folder, navigate and terminate
 		change_directory(file_node.node_name)
-	else:
-		# This is where you would add logic to open a file.
-		# For now, we'll just print it.
+	else: ## Node is file, try and open...
 		print("Attempting to open file: ", file_node.node_name)
-		if upload_mode:
-			CommissionsManager.add_submission(file_node)
-			upload_done.emit()
+		
+		if upload_mode: ## We are doing uploading, so emit the upload
+			upload_done.emit(file_node)
 			return
+		
+		## We are not uploading, so open the file as expected
 		FileSystem.open_file(file_node)
-		# If you re-add the photoshop app, you would connect its 'open_file' method here.

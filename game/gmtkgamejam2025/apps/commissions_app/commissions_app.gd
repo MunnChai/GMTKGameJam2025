@@ -81,7 +81,11 @@ func on_download_pressed() -> void:
 
 func on_upload_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
-	Desktop.instance.execute(&"file_explorer", {"upload": true})
+	var window: FileExplorerWindow = Desktop.instance.execute(&"file_explorer", {"upload": true})
+	window.upload_done.connect(_on_upload_finished)
+
+func _on_upload_finished(file_node: FileNode) -> void:
+	CommissionsManager.add_submission(file_node)
 
 func on_submit_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")

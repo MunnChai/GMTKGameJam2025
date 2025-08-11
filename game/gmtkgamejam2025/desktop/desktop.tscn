@@ -150,7 +150,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="DesktopBg" type="ColorRect" parent="CanvasLayer"]
+[node name="BaseDesktopBg" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -159,6 +159,14 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.435294, 0.54902, 0.501961, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="DesktopBg" type="TextureRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DayLabel" type="RichTextLabel" parent="CanvasLayer"]
 unique_name_in_owner = true

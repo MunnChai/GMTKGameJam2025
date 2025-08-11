@@ -325,3 +325,19 @@ func _on_ending_fade_complete() -> void:
 	get_tree().change_scene_to_packed(scene)
 
 #endregion
+
+#region BACKGROUND ADJUSTMENT
+
+func prompt_change_background() -> void:
+	var window: FileExplorerWindow = Desktop.instance.execute(&"file_explorer", {"upload": true, "title_override": "Select a new desktop background"})
+	window.upload_done.connect(_on_bg_selected)
+
+func _on_bg_selected(file_node: FileNode) -> void:
+	var file: File = file_node
+	match file.file_type:
+		"image":
+			%DesktopBg.texture = file.get_file_resource().texture
+		_:
+			Desktop.instance.execute(&"error", {"text": "Invalid file type."})
+
+#endregion

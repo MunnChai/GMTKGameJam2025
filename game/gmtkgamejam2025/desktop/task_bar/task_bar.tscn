@@ -311,7 +311,18 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Reduced Motion"
 
 [node name="Control3" type="Control" parent="SettingsPivot/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="BgButton" type="Button" parent="SettingsPivot/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("5_e36ol")
+text = "Change Background"
+
+[node name="Control4" type="Control" parent="SettingsPivot/SettingsPanel/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
 [node name="TaskBarTexture" type="TextureRect" parent="."]
