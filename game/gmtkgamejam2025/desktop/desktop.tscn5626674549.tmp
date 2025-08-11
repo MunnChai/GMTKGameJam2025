@@ -1,0 +1,275 @@
+[gd_scene load_steps=29 format=3 uid="uid://dvrpk4wp2vd4u"]
+
+[ext_resource type="Script" uid="uid://cqjrvgo3y4e3h" path="res://desktop/desktop.gd" id="1_cg3fv"]
+[ext_resource type="PackedScene" uid="uid://dw5pwp8i1xe4f" path="res://desktop/window/test_window/test_window.tscn" id="2_87qqj"]
+[ext_resource type="PackedScene" uid="uid://84nw05m865xp" path="res://desktop/window/error_popup/error_popup.tscn" id="3_irqsv"]
+[ext_resource type="PackedScene" uid="uid://bf2h01ok52xw4" path="res://desktop/shortcut_icon/shortcut_icon.tscn" id="3_py4qr"]
+[ext_resource type="PackedScene" uid="uid://icmnoob2solt" path="res://apps/settings_app/settings_window/settings_window.tscn" id="4_hbe16"]
+[ext_resource type="PackedScene" uid="uid://bgj7bok1k4k1n" path="res://desktop/task_bar/task_bar.tscn" id="4_xkt3d"]
+[ext_resource type="PackedScene" uid="uid://lysrnk033b8v" path="res://apps/file_explorer_app/file_explorer_window/file_explorer_window.tscn" id="5_6vopt"]
+[ext_resource type="PackedScene" uid="uid://ba01qxttnfxam" path="res://apps/commissions_app/commissions_window/commissions_window.tscn" id="6_r3xg6"]
+[ext_resource type="PackedScene" uid="uid://c6bgiruvd8hwu" path="res://desktop/window/photoshop_window/photoshop_window.tscn" id="6_t632k"]
+[ext_resource type="PackedScene" uid="uid://dniuofjt4onnt" path="res://desktop/window/success/success.tscn" id="8_b6j2u"]
+[ext_resource type="PackedScene" uid="uid://bw2rvurkii0h2" path="res://desktop/window/info_popup/info_popup.tscn" id="9_jqijg"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="10_1m8fn"]
+[ext_resource type="PackedScene" uid="uid://w8qqa2l8sq6b" path="res://desktop/window/bank_window/bank_window.tscn" id="10_iy36f"]
+[ext_resource type="PackedScene" uid="uid://7kpvm6bjatun" path="res://apps/email_app/email_app_window/email_window.tscn" id="11_1m8fn"]
+[ext_resource type="PackedScene" uid="uid://dhg4mn3jcy0k0" path="res://ending_scenes/good_ending.tscn" id="12_pe1e2"]
+[ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="13_1ymmg"]
+[ext_resource type="PackedScene" uid="uid://d2ax0kvslj8kl" path="res://ending_scenes/bad_ending.tscn" id="13_mrak8"]
+[ext_resource type="PackedScene" uid="uid://ddbsrfmhh727w" path="res://ending_scenes/true_ending.tscn" id="14_mbwre"]
+[ext_resource type="Texture2D" uid="uid://cihaqcp6wwp56" path="res://assets/ui/apps/_desktop_icons/desktop_file_explorer.png" id="14_vxgw6"]
+[ext_resource type="AudioStream" uid="uid://k5sbfndcdmwb" path="res://sound/music/chill_lofi_tune_to_photoloop_and_relax_to_2.mp3" id="15_kx87n"]
+[ext_resource type="Texture2D" uid="uid://2su3tyginxl0" path="res://assets/ui/apps/_desktop_icons/desktop_commissions.png" id="15_vxgw6"]
+[ext_resource type="Script" uid="uid://djsmnbyaw8n0f" path="res://sound/music/music_player.gd" id="16_iy36f"]
+[ext_resource type="Texture2D" uid="uid://ygayde7qxdnp" path="res://assets/ui/apps/_desktop_icons/desktop_bank.png" id="16_vxgw6"]
+[ext_resource type="AudioStream" uid="uid://2pjhg8gj787w" path="res://sound/music/rain_on_your_piano.mp3" id="17_sscii"]
+[ext_resource type="Texture2D" uid="uid://d3vfdvrh658u0" path="res://assets/ui/apps/_desktop_icons/desktop_email.png" id="17_vxgw6"]
+
+[sub_resource type="Animation" id="Animation_0kn7h"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/DayLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(320, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DayLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(306.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DayLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1ymmg"]
+resource_name = "day_transition"
+length = 4.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/DayLabel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(320, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0, 320, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2.18, 5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/DayLabel:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(188, -0.25, 0, 0, 173, 308.5, -1.03501, 5, 0.9, -7, 477.5, -0.133333, -218, 0.25, 0),
+"times": PackedFloat32Array(0, 2.03333, 4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/DayLabel:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1.18333, 3.45103, 4)
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"update_day_label"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kn7h"]
+_data = {
+&"RESET": SubResource("Animation_0kn7h"),
+&"day_transition": SubResource("Animation_1ymmg")
+}
+
+[node name="Desktop" type="Node2D"]
+script = ExtResource("1_cg3fv")
+window_packed_scenes = Dictionary[StringName, PackedScene]({
+&"bank": ExtResource("10_iy36f"),
+&"commissions": ExtResource("6_r3xg6"),
+&"email": ExtResource("11_1m8fn"),
+&"error": ExtResource("3_irqsv"),
+&"export_success": ExtResource("8_b6j2u"),
+&"file_explorer": ExtResource("5_6vopt"),
+&"hello_world": ExtResource("2_87qqj"),
+&"info": ExtResource("9_jqijg"),
+&"photoshop": ExtResource("6_t632k"),
+&"settings": ExtResource("4_hbe16")
+})
+ending_scenes = Dictionary[String, PackedScene]({
+"bad_ending": ExtResource("13_mrak8"),
+"good_ending": ExtResource("12_pe1e2"),
+"true_ending": ExtResource("14_mbwre")
+})
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DayFade" type="ColorRect" parent="CanvasLayer"]
+visibility_layer = 524288
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DesktopBg" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.435294, 0.54902, 0.501961, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DayLabel" type="RichTextLabel" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -53.5
+offset_right = 320.0
+offset_bottom = 53.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("10_1m8fn")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("13_1ymmg")
+theme_override_font_sizes/normal_font_size = 50
+text = "Day 1"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DesktopIcons" type="MarginContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/DesktopIcons"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DesktopIcons/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 86
+
+[node name="FileExplorerIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"file_explorer"
+args = Dictionary[StringName, Variant]({
+&"text": "Something went wrong!"
+})
+shortcut_name = "File Explorer"
+icon = ExtResource("14_vxgw6")
+
+[node name="CommissionsIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"commissions"
+type = 2
+shortcut_name = "Commissions"
+icon = ExtResource("15_vxgw6")
+
+[node name="BankIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"bank"
+type = 2
+shortcut_name = "Bank"
+icon = ExtResource("16_vxgw6")
+
+[node name="EmailIcon" parent="CanvasLayer/DesktopIcons/HBoxContainer/VBoxContainer" instance=ExtResource("3_py4qr")]
+layout_mode = 2
+app_id = &"email"
+type = 2
+shortcut_name = "E-mail"
+icon = ExtResource("17_vxgw6")
+
+[node name="Windows" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TaskBar" parent="CanvasLayer" instance=ExtResource("4_xkt3d")]
+unique_name_in_owner = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("15_kx87n")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+script = ExtResource("16_iy36f")
+music_list = Array[AudioStream]([ExtResource("15_kx87n"), ExtResource("17_sscii")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_0kn7h")
+}

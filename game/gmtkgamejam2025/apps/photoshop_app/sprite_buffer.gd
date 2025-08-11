@@ -14,7 +14,7 @@ var modified_buffer: Array[PackedInt32Array]
 
 var thread: Thread
 
-signal got_buffers(buffers: Dictionary)
+signal got_buffers(buffers: Dictionary, set_clipboard: bool)
 signal finished_deletion()
 signal finished_pasting()
 signal finished_setting_buffers()
@@ -26,7 +26,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("get_trait_dict") and name == "EditableImage":
 		var file: File = convert_to_file()
 		var file_info = ImageJudgement.get_file_info(file)
-		print(file_info)
 
 
 
@@ -160,6 +159,9 @@ func _get_buffers_in_polygon_and_delete(polygon: PackedVector2Array, image: Imag
 		if vector.y > max_y:
 			max_y = min(pixel_buffer[0].size() - 1, vector.y)
 	
+	var previous_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
+	var previous_trait_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	
 	var new_buffer: Array[PackedColorArray] = []
 	var new_trait_buffer: Array[PackedColorArray] = []
 	new_buffer.resize(pixel_buffer.size())
@@ -194,6 +196,8 @@ func _get_buffers_in_polygon_and_delete(polygon: PackedVector2Array, image: Imag
 	buffers["trait"] = new_trait_buffer
 	buffers["pixel_texture"] = ImageTexture.create_from_image(image)
 	buffers["trait_texture"] = ImageTexture.create_from_image(trait_image)
+	buffers["prev_pixel"] = previous_buffer 
+	buffers["prev_trait"] = previous_trait_buffer
 	
 	call_deferred("_finished_buffer_calc_and_deletion")
 	
@@ -203,8 +207,8 @@ func _finished_buffer_calc_and_deletion() -> void:
 	var buffers: Dictionary = thread.wait_to_finish()
 	texture = buffers["pixel_texture"]
 	sprite_2d.texture = buffers["trait_texture"]
-	got_buffers.emit(buffers)
-	finished_deletion.emit()
+	got_buffers.emit(buffers, true)
+	finished_deletion.emit(pixel_buffer.duplicate(true), trait_buffer.duplicate(true), buffers["prev_pixel"].duplicate(true), buffers["prev_trait"].duplicate(true))
 
 
 
@@ -269,7 +273,7 @@ func _get_buffers_in_polygon(polygon: PackedVector2Array) -> Dictionary:
 
 func _finished_buffer_calc() -> void:
 	var buffers: Dictionary = thread.wait_to_finish()
-	got_buffers.emit(buffers)
+	got_buffers.emit(buffers, true)
 
 
 
@@ -303,8 +307,23 @@ func _delete_buffers_in_polygon(polygon: PackedVector2Array, image: Image, trait
 		if vector.y > max_y:
 			max_y = min(pixel_buffer[0].size() - 1, vector.y)
 	
-	var new_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
-	var new_trait_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	var previous_buffer: Array[PackedColorArray] = pixel_buffer.duplicate(true)
+	var previous_trait_buffer: Array[PackedColorArray] = trait_buffer.duplicate(true)
+	
+	var new_buffer: Array[PackedColorArray] = []
+	var new_trait_buffer: Array[PackedColorArray] = []
+	new_buffer.resize(pixel_buffer.size())
+	new_trait_buffer.resize(pixel_buffer.size())
+	
+	for i in new_buffer.size():
+		var new_pixel_array: PackedColorArray = []
+		new_pixel_array.resize(pixel_buffer[0].size())
+		new_pixel_array.fill(Color(0, 0, 0, 0))
+		new_buffer[i] = new_pixel_array
+		var new_trait_array: PackedColorArray = []
+		new_trait_array.resize(pixel_buffer[0].size())
+		new_trait_array.fill(Color(0, 0, 0, 0))
+		new_trait_buffer[i] = new_trait_array
 	
 	for x in range(min_x, max_x + 1):
 		for y in range(min_y, max_y + 1):
@@ -313,6 +332,8 @@ func _delete_buffers_in_polygon(polygon: PackedVector2Array, image: Image, trait
 				new_buffer[x][y].a = 0
 				new_trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
 			else: # Delete pixels within the selection
+				new_buffer[x][y] = pixel_buffer[x][y]
+				new_trait_buffer[x][y] = trait_buffer[x][y]
 				pixel_buffer[x][y] = Color(1, 1, 1, 0)
 				trait_buffer[x][y] = ImageJudgement.NO_TRAIT_COLOR
 				image.set_pixel(x, y, pixel_buffer[x][y])
@@ -323,8 +344,11 @@ func _delete_buffers_in_polygon(polygon: PackedVector2Array, image: Image, trait
 	buffers["trait"] = new_trait_buffer
 	buffers["pixel_texture"] = ImageTexture.create_from_image(image)
 	buffers["trait_texture"] = ImageTexture.create_from_image(trait_image)
+	buffers["prev_pixel"] = previous_buffer 
+	buffers["prev_trait"] = previous_trait_buffer
+	buffers["polygon"] = polygon.duplicate()
 	
-	call_deferred("_finished_deletion")
+	call_deferred("_finished_buffer_calc_and_deletion")
 	
 	return buffers
 
@@ -332,7 +356,7 @@ func _finished_deletion() -> void:
 	var buffers: Dictionary = thread.wait_to_finish()
 	texture = buffers["pixel_texture"]
 	sprite_2d.texture = buffers["trait_texture"]
-	finished_deletion.emit()
+	finished_deletion.emit(pixel_buffer.duplicate(true), trait_buffer.duplicate(true), buffers["prev_pixel"].duplicate(true), buffers["prev_trait"].duplicate(true))
 
 
 
