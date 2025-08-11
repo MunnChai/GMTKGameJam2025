@@ -128,7 +128,10 @@ func handle_movement(delta: float) -> void:
 	if Input.is_action_just_pressed("drag_pasted_selection"):
 		var local_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
 		
-		if pasted_selection.is_pos_in_pixel_buffer(local_mouse_pos):
+		var translated_polygon: PackedVector2Array = dotted_line.get_points().duplicate()
+		for i in translated_polygon.size():
+			translated_polygon[i] += lasso_controller.position
+		if Geometry2D.is_point_in_polygon(local_mouse_pos, translated_polygon):
 			is_pasted_moveable = true
 		else:
 			if is_paste_confirmable and not is_waiting_for_thread:
