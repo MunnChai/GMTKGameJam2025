@@ -57,5 +57,7 @@ func _on_motion_box_checked(is_toggled: bool) -> void:
 func _on_change_background_pressed() -> void:
 	## Launch background change prompt...
 	Desktop.instance.prompt_change_background()
+	
+	SoundManager.play_global_oneshot(&"ui_basic_click")
 
 #endregion
