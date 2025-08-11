@@ -324,8 +324,9 @@ func _on_paste_confirm_finished(new_pixel_buffer: Array[PackedColorArray], new_t
 	is_paste_confirmable = false
 	is_waiting_for_thread = false
 	
-	undo_redo.undo()
-	undo_redo.create_action("Paste Selection")
+	undo_redo.undo() # "Delete" the paste selection action
+	
+	undo_redo.create_action("Confirm Paste")
 	undo_redo.add_do_method(set_pixel_and_trait_buffers.bind(new_pixel_buffer, new_trait_buffer))
 	undo_redo.add_undo_method(set_pixel_and_trait_buffers.bind(previous_pixel_buffer, previous_trait_buffer))
 	undo_redo.commit_action(false)
