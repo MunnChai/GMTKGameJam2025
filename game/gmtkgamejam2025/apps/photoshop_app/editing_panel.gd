@@ -46,6 +46,9 @@ var is_hovered: bool = false
 
 var is_waiting_for_thread: bool = false
 
+
+var undo_redo: UndoRedo
+
 func _ready() -> void:
 	await get_tree().process_frame
 	#editing_anchor.position = editing_node.size / 2
@@ -55,7 +58,6 @@ func _ready() -> void:
 		is_hovered = true)
 	editing_node.mouse_exited.connect(func():
 		is_hovered = false)
-	
 	
 	editable_image.got_buffers.connect(_set_copied_buffers)
 	editable_image.finished_deletion.connect(_on_deletion_finished)
@@ -67,28 +69,23 @@ func _ready() -> void:
 	paste_button.pressed.connect(_on_paste_pressed)
 	redo_button.pressed.connect(_on_redo_pressed)
 	undo_button.pressed.connect(_on_undo_pressed)
+	
+	undo_redo = UndoRedo.new()
 
 func _on_copy_pressed() -> void:
-	copy_selection()
-	SoundManager.play_global_oneshot(&"cut")
-	dotted_line.clear()
+	try_copy_action()
 
 func _on_cut_pressed() -> void:
-	SoundManager.play_global_oneshot(&"cut")
-	cut_selection()
+	try_cut_action()
 
 func _on_paste_pressed() -> void:
-	if is_paste_confirmable:
-		paste_selection_to_image()
-		await editable_image.finished_pasting
-	SoundManager.play_global_oneshot(&"paste")
-	paste_selection()
+	try_paste_action()
 
 func _on_redo_pressed() -> void:
-	pass
+	try_redo_action()
 
 func _on_undo_pressed() -> void:
-	pass
+	try_undo_action()
 
 func _process(delta: float) -> void:
 	if not is_hovered:
@@ -104,20 +101,22 @@ func handle_actions(delta: float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("copy"):
-		SoundManager.play_global_oneshot(&"cut")
-		copy_selection()
-		dotted_line.clear()
+		try_copy_action()
 	
 	if Input.is_action_just_pressed("cut"):
-		SoundManager.play_global_oneshot(&"cut")
-		cut_selection()
+		try_cut_action()
 	
 	if Input.is_action_just_pressed("paste"):
-		if is_paste_confirmable:
-			paste_selection_to_image()
-			await editable_image.finished_pasting
-		SoundManager.play_global_oneshot(&"paste")
-		paste_selection()
+		try_paste_action()
+	
+	if Input.is_action_just_pressed("delete"):
+		try_delete_action()
+	
+	if Input.is_action_just_pressed("undo"):
+		try_undo_action()
+	
+	if Input.is_action_just_pressed("redo"):
+		try_redo_action()
 
 func handle_movement(delta: float) -> void:
 	var current_mouse_position: Vector2 = editing_node.get_local_mouse_position()
@@ -129,7 +128,10 @@ func handle_movement(delta: float) -> void:
 	if Input.is_action_just_pressed("drag_pasted_selection"):
 		var local_mouse_pos: Vector2 = (current_mouse_position - editing_anchor.position) / editing_anchor.scale
 		
-		if pasted_selection.is_pos_in_pixel_buffer(local_mouse_pos):
+		var translated_polygon: PackedVector2Array = dotted_line.get_points().duplicate()
+		for i in translated_polygon.size():
+			translated_polygon[i] += lasso_controller.position
+		if Geometry2D.is_point_in_polygon(local_mouse_pos, translated_polygon):
 			is_pasted_moveable = true
 		else:
 			if is_paste_confirmable and not is_waiting_for_thread:
@@ -194,6 +196,44 @@ func init_canvas(file: File) -> void:
 func set_file(file: File) -> void:
 	init_canvas(file)
 
+
+
+
+func try_copy_action() -> void:
+	copy_selection()
+	SoundManager.play_global_oneshot(&"cut")
+	dotted_line.clear()
+
+func try_cut_action() -> void:
+	cut_selection()
+	SoundManager.play_global_oneshot(&"cut")
+
+func try_paste_action() -> void:
+	if is_paste_confirmable:
+		paste_selection_to_image()
+		await editable_image.finished_pasting
+	paste_selection()
+	SoundManager.play_global_oneshot(&"paste")
+
+func try_delete_action() -> void:
+	delete_selection()
+
+func try_undo_action() -> void:
+	print_undo_redo()
+	if undo_redo.has_undo():
+		undo_redo.undo()
+
+func try_redo_action() -> void:
+	print_undo_redo()
+	if undo_redo.has_redo():
+		undo_redo.redo()
+
+func print_undo_redo() -> void:
+	print("Undo Redo History: ")
+	for i in undo_redo.get_history_count():
+		print(i, ". ", undo_redo.get_action_name(i))
+
+
 func copy_selection() -> void:
 	var translated_polygon: PackedVector2Array = dotted_line.get_points()
 	for i in translated_polygon.size():
@@ -218,28 +258,53 @@ func cut_selection() -> void:
 	PhotoshopManager.copied_lasso_pos = lasso_controller.position
 	PhotoshopManager.copied_paste_pos = Vector2(0, 0)
 
-#func delete_selection() -> void:
-	#var translated_polygon: PackedVector2Array = dotted_line.get_points()
-	#for i in translated_polygon.size():
-		#translated_polygon[i] += lasso_controller.position
-	#
-	#editable_image.erase_pixels_in_polygon(translated_polygon)
+func delete_selection(polygon: PackedVector2Array = dotted_line.get_points(), untranslate: bool = false) -> void:
+	var translated_polygon: PackedVector2Array = polygon
+	if untranslate:
+		for i in translated_polygon.size():
+			translated_polygon[i] -= lasso_controller.position
+	else:
+		for i in translated_polygon.size():
+			translated_polygon[i] += lasso_controller.position
+	
+	editable_image.delete_buffers_in_polygon(translated_polygon)
+	is_waiting_for_thread = true
 
 func paste_selection() -> void:
 	if PhotoshopManager.copied_buffer.is_empty():
 		return
-	pasted_selection.position = PhotoshopManager.copied_paste_pos
+	
+	undo_redo.create_action("Paste Selection")
+	undo_redo.add_do_method(_set_pasted_selection.bind(PhotoshopManager.copied_paste_pos, PhotoshopManager.copied_lasso_pos, PhotoshopManager.copied_buffer, PhotoshopManager.copied_trait_buffer, PhotoshopManager.copied_lasso))
+	undo_redo.add_undo_method(_unset_pasted_selection)
+	undo_redo.commit_action(true)
+
+func _set_pasted_selection(paste_pos: Vector2, lasso_pos: Vector2, pixel_buffer: Array[PackedColorArray], trait_buffer: Array[PackedColorArray], lasso_points: PackedVector2Array):
+	pasted_selection.position = paste_pos
 	lasso_controller.position = Vector2.ZERO
-	pasted_selection.set_pixel_buffer(PhotoshopManager.copied_buffer)
-	pasted_selection.set_trait_buffer(PhotoshopManager.copied_trait_buffer)
+	pasted_selection.set_pixel_buffer(pixel_buffer)
+	pasted_selection.set_trait_buffer(trait_buffer)
 	
 	is_paste_confirmable = true
 	is_pasted_locked = false
 	
-	dotted_line.set_points(PhotoshopManager.copied_lasso)
-	lasso_controller.position = PhotoshopManager.copied_lasso_pos + PhotoshopManager.copied_paste_pos
+	dotted_line.set_points(lasso_points)
+	lasso_controller.position = lasso_pos + paste_pos
 	lasso_controller.disable()
 	PhotoshopManager.copied_paste_pos += Vector2(5, 5)
+
+func _unset_pasted_selection() -> void:
+	pasted_selection.position = Vector2.ZERO
+	lasso_controller.position = Vector2.ZERO
+	pasted_selection.clear()
+	
+	is_paste_confirmable = false
+	is_pasted_locked = true
+	
+	dotted_line.clear()
+	lasso_controller.position = Vector2.ZERO
+	lasso_controller.enable()
+	PhotoshopManager.copied_paste_pos -= Vector2(5, 5)
 
 func paste_selection_to_image() -> void:
 	editable_image.impose_image(pasted_selection, pasted_selection.position)
@@ -248,21 +313,40 @@ func paste_selection_to_image() -> void:
 	is_pasted_locked = true
 	dotted_line.clear()
 
-#region Thread Return Setters
+func set_pixel_and_trait_buffers(pixel_buffer: Array[PackedColorArray], trait_buffer: Array[PackedColorArray]) -> void:
+	editable_image.set_pixel_buffer(pixel_buffer)
+	editable_image.set_trait_buffer(trait_buffer)
 
-func _on_paste_confirm_finished() -> void:
+
+
+#region Thread Return
+
+func _on_paste_confirm_finished(new_pixel_buffer: Array[PackedColorArray], new_trait_buffer: Array[PackedColorArray], previous_pixel_buffer: Array[PackedColorArray], previous_trait_buffer: Array[PackedColorArray]) -> void:
 	pasted_selection.clear()
 	lasso_controller.enable()
 	is_paste_confirmable = false
 	is_waiting_for_thread = false
+	
+	undo_redo.undo() # "Delete" the paste selection action
+	
+	undo_redo.create_action("Confirm Paste")
+	undo_redo.add_do_method(set_pixel_and_trait_buffers.bind(new_pixel_buffer, new_trait_buffer))
+	undo_redo.add_undo_method(set_pixel_and_trait_buffers.bind(previous_pixel_buffer, previous_trait_buffer))
+	undo_redo.commit_action(false)
 
-func _on_deletion_finished() -> void:
+func _on_deletion_finished(new_pixel_buffer: Array[PackedColorArray], new_trait_buffer: Array[PackedColorArray], previous_pixel_buffer: Array[PackedColorArray], previous_trait_buffer: Array[PackedColorArray]) -> void:
+	undo_redo.create_action("Delete Selection")
+	undo_redo.add_do_method(set_pixel_and_trait_buffers.bind(new_pixel_buffer, new_trait_buffer))
+	undo_redo.add_undo_method(set_pixel_and_trait_buffers.bind(previous_pixel_buffer, previous_trait_buffer))
+	undo_redo.commit_action(false)
+	
 	dotted_line.clear()
 	is_waiting_for_thread = false
 
-func _set_copied_buffers(buffers: Dictionary) -> void:
-	PhotoshopManager.copied_buffer = buffers["pixel"]
-	PhotoshopManager.copied_trait_buffer = buffers["trait"]
+func _set_copied_buffers(buffers: Dictionary, set_clipboard: bool) -> void:
+	if set_clipboard:
+		PhotoshopManager.copied_buffer = buffers["pixel"]
+		PhotoshopManager.copied_trait_buffer = buffers["trait"]
 	is_waiting_for_thread = false
 
 func _on_buffer_set_finished() -> void:
@@ -273,3 +357,5 @@ func get_current_file() -> File:
 	var file: File = editable_image.convert_to_file()
 	file.node_name = original_file.node_name
 	return file
+
+#endregion
