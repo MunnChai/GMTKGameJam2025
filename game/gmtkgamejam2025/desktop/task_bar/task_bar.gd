@@ -40,6 +40,8 @@ func add_task(window: DesktopWindow) -> void:
 	
 	shortcut.button_pressed = true
 	set_active(shortcut)
+	if not GameSettings.get_setting("reduced_motion", false, "graphics"):
+		TweenUtil.pop_delta(shortcut, Vector2(0.2, 0.2), 0.5)
 	
 	_arrange_icons()
 
@@ -58,6 +60,8 @@ func remove_task(window: DesktopWindow) -> void:
 	if Desktop.instance.has_active_window():
 		shortcut = window_dict.get(Desktop.instance.get_active_window())
 		set_active(shortcut)
+		if not GameSettings.get_setting("reduced_motion", false, "graphics"):
+			TweenUtil.pop_delta(shortcut, Vector2(0.2, 0.2), 0.5)
 	
 	_arrange_icons()
 
@@ -77,7 +81,7 @@ func _arrange_icons() -> void:
 		var offset = so_far
 		if not GameSettings.get_setting("reduced_motion", false, "graphics"):
 			TweenUtil.whoosh(icon, Vector2(offset, 0))
-			TweenUtil.pop_delta(icon, Vector2(0.2, 0.2), 0.5)
+			#TweenUtil.pop_delta(icon, Vector2(0.2, 0.2), 0.5)
 		else:
 			icon.position = Vector2(offset, 0)
 		
