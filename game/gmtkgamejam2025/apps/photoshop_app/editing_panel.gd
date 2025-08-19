@@ -43,6 +43,7 @@ var true_image: Image
 var canvas_size: Vector2
 
 var is_hovered: bool = false
+var is_focused: bool = false
 
 var is_waiting_for_thread: bool = false
 
@@ -88,13 +89,18 @@ func _on_undo_pressed() -> void:
 	try_undo_action()
 
 func _process(delta: float) -> void:
-	if not is_hovered:
+	if not is_focused:
 		return
 	
+	# Keyboard actions
 	handle_actions(delta)
-	handle_movement(delta)
-	handle_zoom(delta)
-	handle_boundaries()
+	
+	# Don't handle mouse actions if not hovering
+	if is_hovered:
+		handle_movement(delta)
+		handle_zoom(delta)
+		handle_boundaries()
+
 
 func handle_actions(delta: float) -> void:
 	if is_waiting_for_thread:
@@ -359,3 +365,6 @@ func get_current_file() -> File:
 	return file
 
 #endregion
+
+func set_focus(value: bool) -> void:
+	is_focused = value

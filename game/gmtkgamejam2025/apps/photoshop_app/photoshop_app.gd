@@ -23,6 +23,9 @@ func _ready() -> void:
 func set_file(file: File) -> void:
 	editing_panel.set_file(file)
 
+func set_focus(value: bool) -> void:
+	editing_panel.set_focus(value)
+
 func _on_reset_pressed() -> void:
 	var args := {
 		"title": "Reset Success",
