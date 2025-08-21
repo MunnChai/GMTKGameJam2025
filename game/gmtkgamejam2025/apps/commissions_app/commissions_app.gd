@@ -1,29 +1,18 @@
 class_name CommissionApp
 extends Control
 
-const DOWNLOAD_FILE = preload("res://apps/commissions_app/download_file_scene/download_file.tscn")
+const COMMISSIONS_CONTAINER = preload("res://apps/commissions_app/commissions_window/commissions_container/commissions_container.tscn")
 
 @onready var commissions_button: Button = %CommissionsButton
 @onready var review_button: Button = %ReviewButton
-
-@onready var id: RichTextLabel = %Id
-@onready var title: RichTextLabel = %Title
-@onready var desc: RichTextLabel = %Description
-
-# commission related
-@onready var download_button: Button = %Download
-@onready var upload_button: Button = %Upload
-@onready var submit_button: Button = %Submit
-@onready var submitted_work: DownloadFile = %SubmittedWork
-@onready var asset_list: Container = %AssetList
 
 # feedback related
 @onready var feedback_list: VBoxContainer = %FeedbackList
 @onready var feedback_details: FeedbackDetails = %FeedbackDetails
 
-@onready var commissions_container: MarginContainer = %CommissionsContainer
+@onready var commissions_list: VBoxContainer = %CommissionsList
 
-@export var commissions: Dictionary
+@export var commissions: Dictionary[int, Array]
 
 var commission_stat: CommissionStat
 
@@ -38,14 +27,9 @@ func _ready() -> void:
 	update_feedback()
 
 func connect_signals() -> void:
-	download_button.pressed.connect(on_download_pressed)
-	upload_button.pressed.connect(on_upload_pressed)
-	submit_button.pressed.connect(on_submit_pressed)
 	feedback_details.back_pressed.connect(on_back_button_pressed)
-	CommissionsManager.submission_added.connect(_on_submission_added)
 	
 	%SleepButton.pressed.connect(_on_sleep_pressed)
-	#Desktop.instance.transition_done.connect(update_comm)
 
 func _on_sleep_pressed() -> void:
 	SoundManager.play_global_oneshot(&"ui_basic_click")
@@ -53,106 +37,37 @@ func _on_sleep_pressed() -> void:
 
 #region COMMISSION TAB
 
-func on_download_pressed() -> void:
-	var files = asset_list.get_children()
-	var folder_name: String = "User " + commission_stat.id
-	
-	for download_file: DownloadFile in files:
-		var success: bool = FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
-		if not success:
-			var client_folder = Folder.new(folder_name)
-			FileSystem.add_file_node_at("/commissions", client_folder)
-			FileSystem.add_file_node_at("/commissions/" + folder_name, download_file.file)
-	
-	var args := {
-		"title": "Download Success",
-		"text": "Downloaded files to \"/commissions/" + folder_name + "\"!",
-		"confirm_label": "Open in File Explorer",
-	}
-	
-	var window: InfoPopup = Desktop.instance.execute(&"info", args)
-	window.confirmed.connect(func():
-		var file_explorer_args := {
-			"upload": false,
-			"folder_path": ["commissions", folder_name]
-		}
-		Desktop.instance.execute(&"file_explorer", file_explorer_args)
-		)
-
-func on_upload_pressed() -> void:
-	SoundManager.play_global_oneshot(&"ui_basic_click")
-	var window: FileExplorerWindow = Desktop.instance.execute(&"file_explorer", {"upload": true})
-	window.upload_done.connect(_on_upload_finished)
-
-func _on_upload_finished(file_node: FileNode) -> void:
-	CommissionsManager.add_submission(file_node)
-
-func on_submit_pressed() -> void:
-	SoundManager.play_global_oneshot(&"ui_basic_click")
-	add_feedback()
-	GameStateManager.submitted.emit()
-	submit_button.disabled = true
-
 func update_comm() -> void:
 	var day: int = GameStateManager.day
 	
-	commissions_container.show()
+	commissions_list.show()
 	%SleepContainer.hide()
 	if not commissions.has(day):
-		commissions_container.hide()
+		commissions_list.hide()
 		%SleepContainer.show()
 		return
 
-	var stat: CommissionStat = commissions[day]
-	if not stat:
+	var stats: Array = commissions[day]
+	if not stats:
 		return
-	commission_stat = stat
-
-	id.text = "User: [b]" + stat.id + "[/b]"
-	title.text = "[b][i]" + stat.title + "[/i][/b]"
-	desc.text = stat.desc
-
-	for child in asset_list.get_children():
+	
+	for child: Node in commissions_list.get_children():
 		child.queue_free()
-
-	submitted_work.hide()
-	submitted_work.clear()
-
-	var assets: Array[FileResource] = stat.assets
-	if not assets:
-		return
-	for file_res in assets:
-		var download_file: DownloadFile = DOWNLOAD_FILE.instantiate()
-		var file: File = File.create_from_resource(file_res)
-		asset_list.add_child(download_file)
-		download_file.setup(file)
+	
+	for commission: CommissionStat in stats:
+		var commission_container: CommissionsContainer = COMMISSIONS_CONTAINER.instantiate()
+		commissions_list.add_child(commission_container)
+		commission_container.set_commission(commission)
+		print("ADDING")
 
 #endregion
 
 #region FEEDBACK TAB
 
-func add_feedback() -> void:
-	var submission = CommissionsManager.get_submission()
-	var result: Dictionary = ImageJudgement.compare_file_to_desired(submission, commission_stat.desired_judgement)
-	var feedback: Feedback = Feedback.new(commission_stat, result, submission)
-	CommissionsManager.add_feedback(feedback)
-	var feedback_instance: FeedbackListItem = FeedbackListItemScene.instantiate()
-	feedback_list.add_child(feedback_instance)
-	feedback_instance.setup(feedback)
-	feedback_instance.details_pressed.connect(on_feedback_item_pressed.bind(feedback_instance))
-
 func on_back_button_pressed() -> void:
 	feedback_details.hide()
 	feedback_list.show()
 	SoundManager.play_global_oneshot(&"ui_basic_click")
-
-func _on_submission_added(work: File) -> void:
-	if not work:
-		submitted_work.hide()
-		return
-	submitted_work.show()
-	submitted_work.setup(work)
-	submit_button.disabled = false
 
 func on_feedback_item_pressed(item: FeedbackListItem) -> void:
 	feedback_details.show()

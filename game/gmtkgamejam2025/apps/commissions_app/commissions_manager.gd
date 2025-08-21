@@ -1,10 +1,10 @@
 class_name CommissionsManagerGlobal
 extends Node
 
-signal submission_added(work: File)
+signal submission_added(commission: CommissionStat, work: File)
 
 var feedbacks: Array[Feedback]
-var submission: File
+var submissions: Dictionary[CommissionStat, File]
 
 func add_feedback(fb: Feedback) -> void:
 	feedbacks.append(fb)
@@ -12,14 +12,14 @@ func add_feedback(fb: Feedback) -> void:
 func get_feedbacks() -> Array[Feedback]:
 	return feedbacks
 
-func add_submission(work: File) -> void:
+func add_submission(commission: CommissionStat, work: File) -> void:
 	if work:
-		submission = work
-		submission_added.emit(work)
+		submissions[commission] = work
+		submission_added.emit(commission, work)
 
-func get_submission() -> File:
-	return submission
+func get_submission(commission: CommissionStat) -> File:
+	return submissions[commission]
 
 func clear_feedbacks() -> void:
 	feedbacks.clear()
-	submission = null
+	submissions.clear()

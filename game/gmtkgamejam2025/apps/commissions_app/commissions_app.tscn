@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=21 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Resource" uid="uid://ckvad7n4rhhi6" path="res://apps/commissions_app/commission_stats/day_3.tres" id="2_w3uk5"]
@@ -12,10 +12,8 @@
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="6_mv6ju"]
 [ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="7_78gvv"]
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="7_mv6ju"]
-[ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/apps/commissions/speech_bubble.png" id="10_78gvv"]
-[ext_resource type="PackedScene" uid="uid://dps6rblk20cu3" path="res://apps/commissions_app/download_file_scene/download_file.tscn" id="11_opfwy"]
-[ext_resource type="Texture2D" uid="uid://lxumg8l5qi1d" path="res://assets/ui/icons/anonymous_pfp.png" id="13_utvmo"]
 [ext_resource type="PackedScene" uid="uid://dfma7oxl3oo5f" path="res://apps/commissions_app/feedback/feedback_details.tscn" id="13_w3uk5"]
+[ext_resource type="PackedScene" uid="uid://ynwf4sv7semp" path="res://apps/commissions_app/commissions_window/commissions_container/commissions_container.tscn" id="13_xc82q"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvy75"]
 
@@ -50,13 +48,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qmn3t")
-commissions = {
-1: ExtResource("3_3bsde"),
-2: ExtResource("4_3bsde"),
-3: ExtResource("2_w3uk5"),
-4: ExtResource("4_xc82q"),
-5: ExtResource("2_xc82q")
-}
+commissions = Dictionary[int, Array]({
+1: [ExtResource("3_3bsde"), ExtResource("2_w3uk5")],
+2: [ExtResource("4_3bsde")],
+3: [ExtResource("2_w3uk5")],
+4: [ExtResource("4_xc82q")],
+5: [ExtResource("2_xc82q")]
+})
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -149,179 +147,15 @@ layout_mode = 2
 theme = ExtResource("6_mv6ju")
 horizontal_scroll_mode = 0
 
-[node name="CommissionsContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer"]
+[node name="CommissionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-texture = ExtResource("13_utvmo")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme_override_constants/margin_top = 30
-
-[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 1
-texture = ExtResource("10_78gvv")
-region_rect = Rect2(0, 0, 325, 188)
-patch_margin_left = 40
-patch_margin_top = 40
-patch_margin_bottom = 40
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 0
-
-[node name="Title" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="CommissionsContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsList" instance=ExtResource("13_xc82q")]
 unique_name_in_owner = true
 layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/bold_italics_font_size = 30
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-text = "Can"
-fit_content = true
-
-[node name="Id" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-bbcode_enabled = true
-text = "ID: kasjdkasld"
-fit_content = true
-
-[node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Description" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Description"
-fit_content = true
-
-[node name="Control2" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="AssetList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="DownloadFile" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/AssetList" instance=ExtResource("11_opfwy")]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Download" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "Download"
-
-[node name="Control3" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme = ExtResource("6_mv6ju")
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 15
-theme_override_font_sizes/bold_font_size = 15
-bbcode_enabled = true
-text = "[b]Submissions[/b]"
-fit_content = true
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="AssetList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SubmittedWork" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/AssetList" instance=ExtResource("11_opfwy")]
-unique_name_in_owner = true
-layout_mode = 2
-mouse_filter = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-alignment = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Upload" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-text = "Upload"
-
-[node name="Control4" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Submit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions/ScrollContainer/CommissionsContainer/HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 0
-mouse_filter = 1
-mouse_default_cursor_shape = 2
-disabled = true
-text = "Submit"
 
 [node name="SleepContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/PanelContainer/Commissions"]
 unique_name_in_owner = true

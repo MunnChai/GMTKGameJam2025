@@ -1,0 +1,180 @@
+[gd_scene load_steps=6 format=3 uid="uid://ynwf4sv7semp"]
+
+[ext_resource type="Script" uid="uid://b0ygsbqqq1f7x" path="res://apps/commissions_app/commissions_window/commissions_container/commissions_container.gd" id="1_2ewjt"]
+[ext_resource type="Texture2D" uid="uid://lxumg8l5qi1d" path="res://assets/ui/icons/anonymous_pfp.png" id="1_mls1k"]
+[ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/apps/commissions/speech_bubble.png" id="2_2ewjt"]
+[ext_resource type="PackedScene" uid="uid://dps6rblk20cu3" path="res://apps/commissions_app/download_file_scene/download_file.tscn" id="3_ksyay"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="4_k3sjq"]
+
+[node name="CommissionsContainer" type="MarginContainer"]
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_2ewjt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("1_mls1k")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_top = 30
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+texture = ExtResource("2_2ewjt")
+region_rect = Rect2(0, 0, 325, 188)
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_bottom = 40
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Title" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Can"
+fit_content = true
+
+[node name="Id" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "ID: kasjdkasld"
+fit_content = true
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Description" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Description"
+fit_content = true
+
+[node name="Control2" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AssetList" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DownloadFile" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/AssetList" instance=ExtResource("3_ksyay")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Download" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "Download"
+
+[node name="Control3" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme = ExtResource("4_k3sjq")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 15
+bbcode_enabled = true
+text = "[b]Submissions[/b]"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AssetList" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SubmittedWork" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/AssetList" instance=ExtResource("3_ksyay")]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Upload" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+text = "Upload"
+
+[node name="Control4" type="Control" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Submit" type="Button" parent="HBoxContainer/MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Submit"
