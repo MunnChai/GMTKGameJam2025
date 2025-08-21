@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdqo2hgtlljv6"
-path="res://.godot/imported/pls_add_avenging_guys.png-7e9c24e31d3594c41b777b7c2fe75f5c.ctex"
+uid="uid://cjivtcd2blvdr"
+path="res://.godot/imported/bald_2_trait.png-591b7eddb48276a998a39630c7d0776c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/commissions/pls_add_avenging_guys.png"
-dest_files=["res://.godot/imported/pls_add_avenging_guys.png-7e9c24e31d3594c41b777b7c2fe75f5c.ctex"]
+source_file="res://assets/images/commissions/bald_guy/bald_2_trait.png"
+dest_files=["res://.godot/imported/bald_2_trait.png-591b7eddb48276a998a39630c7d0776c.ctex"]
 
 [params]
 

@@ -46,7 +46,7 @@ func update_comm() -> void:
 		commissions_list.hide()
 		%SleepContainer.show()
 		return
-
+	
 	var stats: Array = commissions[day]
 	if not stats:
 		return

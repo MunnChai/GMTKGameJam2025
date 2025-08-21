@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3fn5d7sl4n35"
-path="res://.godot/imported/bald_fish_man_trait.png-33ab38ef3b20f91a1587da505979f790.ctex"
+uid="uid://ui7oneedfepe"
+path="res://.godot/imported/stalker_2.png-09531343d1c2a2b49ecdf0b007d1b0c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/commissions/bald_fish_man_trait.png"
-dest_files=["res://.godot/imported/bald_fish_man_trait.png-33ab38ef3b20f91a1587da505979f790.ctex"]
+source_file="res://assets/images/commissions/stalker/stalker_2.png"
+dest_files=["res://.godot/imported/stalker_2.png-09531343d1c2a2b49ecdf0b007d1b0c4.ctex"]
 
 [params]
 

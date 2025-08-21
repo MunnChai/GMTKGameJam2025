@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://bdv0s8djsq7vo"]
+
+[ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_o1nl7"]
+[ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/bald_fish_man.tres" id="2_hoc3i"]
+[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/bald_fish_guy.tres" id="3_3rwry"]
+[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_g2h7s"]
+
+[resource]
+script = ExtResource("4_g2h7s")
+id = "bald_guy"
+title = "Can you give me hair?"
+desc = "This is my Tinder profile pic and I would love to have more hair on my scalp.
+Also it'd be nice if you can make me look cool :D"
+day = 1
+assets = Array[ExtResource("1_o1nl7")]([ExtResource("2_hoc3i")])
+desired_judgement = ExtResource("3_3rwry")
+metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

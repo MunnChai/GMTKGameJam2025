@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyasmkf87j8ub"
-path="res://.godot/imported/mans_best_friend.png-d90dcf7e3c413ce21114f4a44c7455a7.ctex"
+uid="uid://b5gy172sawrqy"
+path="res://.godot/imported/pls_add_avenging_guys_trait.png-5b58bc64e03736233bde61e023e51041.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/commissions/mans_best_friend.png"
-dest_files=["res://.godot/imported/mans_best_friend.png-d90dcf7e3c413ce21114f4a44c7455a7.ctex"]
+source_file="res://assets/images/commissions/default/pls_add_avenging_guys_trait.png"
+dest_files=["res://.godot/imported/pls_add_avenging_guys_trait.png-5b58bc64e03736233bde61e023e51041.ctex"]
 
 [params]
 

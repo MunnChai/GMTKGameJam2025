@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FileResource" load_steps=4 format=3 uid="uid://ovp2n5v5d7xd"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_v5jkv"]
-[ext_resource type="Texture2D" uid="uid://ck8clqhr8hmha" path="res://assets/images/commissions/bald_fish_man.png" id="2_akgqo"]
-[ext_resource type="Texture2D" uid="uid://b3fn5d7sl4n35" path="res://assets/images/commissions/bald_fish_man_trait.png" id="3_vimxp"]
+[ext_resource type="Texture2D" uid="uid://ck8clqhr8hmha" path="res://assets/images/commissions/default/bald_fish_man.png" id="2_akgqo"]
+[ext_resource type="Texture2D" uid="uid://b3fn5d7sl4n35" path="res://assets/images/commissions/default/bald_fish_man_trait.png" id="3_vimxp"]
 
 [resource]
 script = ExtResource("1_v5jkv")

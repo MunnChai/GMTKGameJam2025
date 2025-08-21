@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs3bbfaavk0g2"
-path="res://.godot/imported/ex_and_celeb_trait.png-4294c4a540ddf83f6b91c39b2fc3052b.ctex"
+uid="uid://r63wq8uteuqq"
+path="res://.godot/imported/ex_and_celeb.png-37eb73d6381f8d3aa560983e8f8d3d65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/commissions/ex_and_celeb_trait.png"
-dest_files=["res://.godot/imported/ex_and_celeb_trait.png-4294c4a540ddf83f6b91c39b2fc3052b.ctex"]
+source_file="res://assets/images/commissions/default/ex_and_celeb.png"
+dest_files=["res://.godot/imported/ex_and_celeb.png-37eb73d6381f8d3aa560983e8f8d3d65.ctex"]
 
 [params]
 

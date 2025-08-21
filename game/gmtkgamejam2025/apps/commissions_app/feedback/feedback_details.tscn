@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dsjwfjvbgdju2" path="res://assets/ui/apps/commissions/speech_bubble.png" id="3_imh2b"]
 [ext_resource type="Texture2D" uid="uid://dcajtk2fbd6wo" path="res://assets/ui/apps/commissions/speech_bubble_flipped.png" id="4_62d03"]
 [ext_resource type="FontFile" uid="uid://bcmjc82liw422" path="res://assets/fonts/VictorMono-Bold.ttf" id="4_bndnc"]
-[ext_resource type="Texture2D" uid="uid://blihwae41o5s" path="res://assets/images/commissions/sad_birthday.png" id="5_lfxqd"]
+[ext_resource type="Texture2D" uid="uid://blihwae41o5s" path="res://assets/images/commissions/default/sad_birthday.png" id="5_lfxqd"]
 
 [node name="FeedbackDetails" type="MarginContainer"]
 offset_right = 374.0

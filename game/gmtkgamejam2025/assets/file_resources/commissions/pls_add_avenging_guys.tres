@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FileResource" load_steps=4 format=3 uid="uid://bvlxx3653ms7m"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_o7sfk"]
-[ext_resource type="Texture2D" uid="uid://bdqo2hgtlljv6" path="res://assets/images/commissions/pls_add_avenging_guys.png" id="2_j28vy"]
-[ext_resource type="Texture2D" uid="uid://b5gy172sawrqy" path="res://assets/images/commissions/pls_add_avenging_guys_trait.png" id="3_glys6"]
+[ext_resource type="Texture2D" uid="uid://bdqo2hgtlljv6" path="res://assets/images/commissions/default/pls_add_avenging_guys.png" id="2_j28vy"]
+[ext_resource type="Texture2D" uid="uid://b5gy172sawrqy" path="res://assets/images/commissions/default/pls_add_avenging_guys_trait.png" id="3_glys6"]
 
 [resource]
 script = ExtResource("1_o7sfk")

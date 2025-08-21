@@ -22,6 +22,20 @@ enum Trait {
 	FRIENDS = 10,
 	AVENGING_GUYS = 11,
 	DOG = 12,
+	GLASSES = 13,
+	GLARE = 14,
+	BALD_MOM = 15,
+	BALD_DAD = 16,
+	BALD_BRO = 17,
+	HEADBAND = 18,
+	SMILING = 19,
+	SCUFFED = 20,
+	BLOOD = 21,
+	CAR = 22,
+	BALD_DAD_HEAD = 23,
+	BALD_FRIEND = 24,
+	STALKER = 25,
+	KNIFE = 26,
 }
 
 @export var trait_colors: Dictionary[Trait, Color]
@@ -31,9 +45,14 @@ func _ready() -> void:
 	generate_color_hash_dict()
 
 func generate_color_hash_dict() -> void:
+	print("Generating color hash dict...")
 	for key in trait_colors:
 		var color = trait_colors[key]
-		color_hash_to_trait[color.to_rgba32()] = key
+		var hash: int = color.to_rgba32()
+		if color_hash_to_trait.has(hash):
+			printerr("WARNING DUPLICATE HASH GENERATED: ", color, ", ", hash)
+		
+		color_hash_to_trait[hash] = key
 
 #func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) -> void:
 	#pass

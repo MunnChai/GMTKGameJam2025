@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://js0ely6ogy08"
-path="res://.godot/imported/sad_birthday_trait.png-ac89880c230ba18b90052ec27ccb6d54.ctex"
+uid="uid://bdqo2hgtlljv6"
+path="res://.godot/imported/pls_add_avenging_guys.png-fe2b95888124bd6562d3fb6bd464dcc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/commissions/sad_birthday_trait.png"
-dest_files=["res://.godot/imported/sad_birthday_trait.png-ac89880c230ba18b90052ec27ccb6d54.ctex"]
+source_file="res://assets/images/commissions/default/pls_add_avenging_guys.png"
+dest_files=["res://.godot/imported/pls_add_avenging_guys.png-fe2b95888124bd6562d3fb6bd464dcc9.ctex"]
 
 [params]
 

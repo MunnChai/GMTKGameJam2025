@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck8clqhr8hmha"
-path="res://.godot/imported/bald_fish_man.png-98129fb014d92bb631f155fc97be158a.ctex"
+uid="uid://cq70t41i36ior"
+path="res://.godot/imported/bald_4_1_trait.png-98a250d9d0144c2f56b35d6058a0d7ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/commissions/bald_fish_man.png"
-dest_files=["res://.godot/imported/bald_fish_man.png-98129fb014d92bb631f155fc97be158a.ctex"]
+source_file="res://assets/images/commissions/bald_guy/bald_4_1_trait.png"
+dest_files=["res://.godot/imported/bald_4_1_trait.png-98a250d9d0144c2f56b35d6058a0d7ac.ctex"]
 
 [params]
 
