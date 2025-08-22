@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_boy0k"]
 [ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/default/bald_fish_man.tres" id="2_brknm"]
-[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/bald_fish_guy.tres" id="3_61rtb"]
+[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/default/bald_fish_guy.tres" id="3_61rtb"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_yhgrg"]
 
 [resource]

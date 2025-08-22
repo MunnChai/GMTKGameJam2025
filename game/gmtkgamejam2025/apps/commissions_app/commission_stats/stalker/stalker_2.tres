@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://dp0yab4ss7m5q"]
+
+[ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_wqp4p"]
+[ext_resource type="Resource" uid="uid://m1dvi4whw4au" path="res://assets/file_resources/commissions/stalker/stalker_2.tres" id="2_332k7"]
+[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/default/bald_fish_guy.tres" id="3_skjye"]
+[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_c44ml"]
+
+[resource]
+script = ExtResource("4_c44ml")
+id = "NotSusGuy"
+title = "Edit the ketchup out of this picture"
+desc = "I was driving through the woods and crashed into a large bucket of ketchup. Remove the ketchup from this selfie. I will pay you lots."
+day = 2
+assets = Array[ExtResource("1_wqp4p")]([ExtResource("2_332k7")])
+desired_judgement = ExtResource("3_skjye")
+metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

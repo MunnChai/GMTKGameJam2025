@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://bxmpjstnot5so"]
+
+[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_kooiv"]
+
+[resource]
+script = ExtResource("1_kooiv")
+desired_traits = Dictionary[Variant, Vector2]({
+-999: Vector2(0, 5000),
+-5: Vector2(70000, 90000),
+0: Vector2(0, 1000),
+1: Vector2(40000, 100000),
+9: Vector2(40000, 1e+06),
+13: Vector2(1500, 3000),
+14: Vector2(0, 500),
+15: Vector2(40000, 60000),
+16: Vector2(60000, 100000),
+17: Vector2(55000, 85000),
+23: Vector2(6000, 10000)
+})
+trait_weights = Dictionary[Variant, float]({
+-999: 8.0,
+-5: 3.0,
+0: 20.0,
+1: 2.0,
+9: 2.0,
+13: 4.0,
+14: 15.0,
+15: 3.0,
+16: 3.0,
+17: 3.0,
+23: 5.0
+})
+feedback_comments = Dictionary[Variant, PackedStringArray]({
+-999: PackedStringArray(),
+-5: PackedStringArray(),
+0: PackedStringArray(),
+1: PackedStringArray(),
+9: PackedStringArray(),
+13: PackedStringArray(),
+14: PackedStringArray(),
+15: PackedStringArray(),
+16: PackedStringArray(),
+17: PackedStringArray(),
+23: PackedStringArray()
+})
+desired_modification = Vector2(1, 50000)
+modification_comments = PackedStringArray()
+min_money = 0.0
+max_money = 30.0
+metadata/_custom_type_script = "uid://bku7ds6r61ofw"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_5xli8"]
 [ext_resource type="Resource" uid="uid://cpudnk4ehygjv" path="res://assets/file_resources/commissions/bald_guy/bald_2.tres" id="2_ehie8"]
-[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/bald_fish_guy.tres" id="3_q8i1j"]
+[ext_resource type="Resource" uid="uid://bxmpjstnot5so" path="res://image_judgement/desired_judgements/bald_guy/bald_2.tres" id="3_ehie8"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_b8qox"]
 
 [resource]
@@ -12,5 +12,5 @@ title = "Please give me hair again"
 desc = "Please give me hair again I looked so good with hair in the last one. Also my dad has glare on his glasses please get rid of that too! "
 day = 2
 assets = Array[ExtResource("1_5xli8")]([ExtResource("2_ehie8")])
-desired_judgement = ExtResource("3_q8i1j")
+desired_judgement = ExtResource("3_ehie8")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://ci28ncrfqa0nt" path="res://assets/file_resources/external_images/captain_usa.tres" id="3_x0m0q"]
 [ext_resource type="Resource" uid="uid://b7qtk6h8cc07r" path="res://assets/file_resources/external_images/steel_guy.tres" id="4_67lvq"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_x0m0q"]
-[ext_resource type="Resource" uid="uid://dd6j68a6j11b6" path="res://image_judgement/desired_judgements/avenging_guys.tres" id="5_y644a"]
+[ext_resource type="Resource" uid="uid://dd6j68a6j11b6" path="res://image_judgement/desired_judgements/default/avenging_guys.tres" id="5_y644a"]
 
 [resource]
 script = ExtResource("4_x0m0q")

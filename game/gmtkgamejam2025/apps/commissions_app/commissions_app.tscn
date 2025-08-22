@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ch0ww8kp2820e"]
+[gd_scene load_steps=29 format=3 uid="uid://ch0ww8kp2820e"]
 
 [ext_resource type="Script" uid="uid://b1xwmatdlar7k" path="res://apps/commissions_app/commissions_app.gd" id="1_qmn3t"]
 [ext_resource type="Resource" uid="uid://ckvad7n4rhhi6" path="res://apps/commissions_app/commission_stats/default/day_3.tres" id="2_w3uk5"]
@@ -6,14 +6,22 @@
 [ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/default/day_1.tres" id="3_3bsde"]
 [ext_resource type="Resource" uid="uid://dbn28hkhlg18e" path="res://apps/commissions_app/commission_stats/default/day_2.tres" id="4_3bsde"]
 [ext_resource type="Resource" uid="uid://mkkp3617s3yx" path="res://apps/commissions_app/commission_stats/default/day_4.tres" id="4_xc82q"]
+[ext_resource type="Resource" uid="uid://cbwol6f7wv2rj" path="res://apps/commissions_app/commission_stats/bald_guy/bald_2.tres" id="5_c6yyr"]
 [ext_resource type="Script" uid="uid://l7p1qi71fcel" path="res://apps/commissions_app/tab_container.gd" id="5_uo6yc"]
 [ext_resource type="Texture2D" uid="uid://8hx1vewrqp8a" path="res://assets/ui/buttons/top_button_hovered.png" id="6_78gvv"]
 [ext_resource type="Texture2D" uid="uid://djsl02gircyln" path="res://assets/ui/windows/border_rect.png" id="6_gvy75"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="6_mv6ju"]
+[ext_resource type="Resource" uid="uid://dp0yab4ss7m5q" path="res://apps/commissions_app/commission_stats/stalker/stalker_2.tres" id="6_ym3nn"]
 [ext_resource type="Texture2D" uid="uid://bpux53a00yfq8" path="res://assets/ui/buttons/top_button_default.png" id="7_78gvv"]
+[ext_resource type="Resource" uid="uid://v5i6dwnawas5" path="res://apps/commissions_app/commission_stats/bald_guy/bald_3.tres" id="7_e1tck"]
 [ext_resource type="Texture2D" uid="uid://h2nf1rnquruy" path="res://assets/ui/buttons/top_button_clicked.png" id="7_mv6ju"]
+[ext_resource type="Resource" uid="uid://23mev8vysytd" path="res://apps/commissions_app/commission_stats/stalker/stalker_3.tres" id="8_slaq7"]
+[ext_resource type="Resource" uid="uid://bdv0s8djsq7vo" path="res://apps/commissions_app/commission_stats/bald_guy/bald_4.tres" id="10_upa8d"]
+[ext_resource type="Resource" uid="uid://decpajagvcdtd" path="res://apps/commissions_app/commission_stats/stalker/stalker_4.tres" id="11_27dyt"]
+[ext_resource type="Resource" uid="uid://dnfkh1bhesv76" path="res://apps/commissions_app/commission_stats/bald_guy/bald_5.tres" id="13_pq4j5"]
 [ext_resource type="PackedScene" uid="uid://dfma7oxl3oo5f" path="res://apps/commissions_app/feedback/feedback_details.tscn" id="13_w3uk5"]
 [ext_resource type="PackedScene" uid="uid://ynwf4sv7semp" path="res://apps/commissions_app/commissions_window/commissions_container/commissions_container.tscn" id="13_xc82q"]
+[ext_resource type="Resource" uid="uid://27qt0pwo8v0a" path="res://apps/commissions_app/commission_stats/stalker/stalker_5.tres" id="14_ddpcb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gvy75"]
 
@@ -49,11 +57,11 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qmn3t")
 commissions = Dictionary[int, Array]({
-1: [ExtResource("3_3bsde"), ExtResource("2_w3uk5")],
-2: [ExtResource("4_3bsde")],
-3: [ExtResource("2_w3uk5")],
-4: [ExtResource("4_xc82q")],
-5: [ExtResource("2_xc82q")]
+1: [ExtResource("3_3bsde"), ExtResource("6_ym3nn")],
+2: [ExtResource("4_3bsde"), ExtResource("5_c6yyr"), ExtResource("6_ym3nn")],
+3: [ExtResource("2_w3uk5"), ExtResource("7_e1tck"), ExtResource("8_slaq7")],
+4: [ExtResource("4_xc82q"), ExtResource("10_upa8d"), ExtResource("11_27dyt")],
+5: [ExtResource("2_xc82q"), ExtResource("13_pq4j5"), ExtResource("14_ddpcb")]
 })
 
 [node name="PanelContainer" type="PanelContainer" parent="."]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://c7ycelorrt0xy"]
+
+[ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_cygyl"]
+[ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/default/remove_ex.tres" id="2_sp3yg"]
+[ext_resource type="Resource" uid="uid://drjbdx7u2lhi8" path="res://image_judgement/desired_judgements/other_ex/other_ex.tres" id="3_p4cx5"]
+[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_4ihbl"]
+
+[resource]
+script = ExtResource("4_4ihbl")
+id = "taytay_swiftie2001"
+title = "Please remove my ex-partner."
+desc = "This is my favourite photo with me and Taylor Swift. PLEASE get rid of my annoying ex, his face ruins the whole photo..."
+day = 2
+assets = Array[ExtResource("1_cygyl")]([ExtResource("2_sp3yg")])
+desired_judgement = ExtResource("3_p4cx5")
+metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

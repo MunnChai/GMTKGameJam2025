@@ -26,6 +26,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("get_trait_dict") and name == "EditableImage":
 		var file: File = convert_to_file()
 		var file_info = ImageJudgement.get_file_info(file)
+		print(file_info)
 
 
 

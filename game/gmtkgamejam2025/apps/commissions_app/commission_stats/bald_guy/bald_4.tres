@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_o1nl7"]
 [ext_resource type="Resource" uid="uid://2gk24tinog86" path="res://assets/file_resources/commissions/bald_guy/bald_4_1.tres" id="2_hoc3i"]
-[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/bald_fish_guy.tres" id="3_3rwry"]
 [ext_resource type="Resource" uid="uid://dx3pdjmjxh318" path="res://assets/file_resources/commissions/bald_guy/bald_4_2.tres" id="3_g2h7s"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_g2h7s"]
+[ext_resource type="Resource" uid="uid://bsb01dxt53688" path="res://image_judgement/desired_judgements/bald_guy/bald_4.tres" id="4_hoc3i"]
 
 [resource]
 script = ExtResource("4_g2h7s")
@@ -14,5 +14,5 @@ desc = "Hello these are some of my bald friends. We took these two pics but neit
 Also give all of us hair so we are all cool B)"
 day = 1
 assets = Array[ExtResource("1_o1nl7")]([ExtResource("2_hoc3i"), ExtResource("3_g2h7s")])
-desired_judgement = ExtResource("3_3rwry")
+desired_judgement = ExtResource("4_hoc3i")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

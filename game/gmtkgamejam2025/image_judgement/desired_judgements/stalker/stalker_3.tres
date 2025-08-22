@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DesiredJudgement" load_steps=2 format=3 uid="uid://clu5b33wursnb"]
+
+[ext_resource type="Script" uid="uid://bku7ds6r61ofw" path="res://image_judgement/desired_judgements/desired_judgement.gd" id="1_wrkb0"]
+
+[resource]
+script = ExtResource("1_wrkb0")
+desired_traits = Dictionary[Variant, Vector2]({})
+trait_weights = Dictionary[Variant, float]({})
+feedback_comments = Dictionary[Variant, PackedStringArray]({})
+desired_modification = Vector2(1, 50000)
+modification_comments = PackedStringArray()
+min_money = 0.0
+max_money = 60.0
+metadata/_custom_type_script = "uid://bku7ds6r61ofw"
