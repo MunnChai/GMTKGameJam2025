@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_r7nh5"]
 [ext_resource type="Resource" uid="uid://pnmhi0twoals" path="res://assets/file_resources/commissions/bald_guy/bald_3.tres" id="2_r7nh5"]
-[ext_resource type="Resource" uid="uid://cqwaat8xah5ow" path="res://image_judgement/desired_judgements/default/bald_fish_guy.tres" id="3_rtox5"]
+[ext_resource type="Resource" uid="uid://cspimuqjundd8" path="res://image_judgement/desired_judgements/bald_guy/bald_3.tres" id="3_r7nh5"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_bsy2r"]
 
 [resource]
@@ -12,5 +12,5 @@ title = "MORE HAIR PLEASE"
 desc = "Here is a picture of me with my friends give me more hair so i can be like my friends! also if you could edit some theme park headbands onto our heads that would be awesome since we didnt buy any"
 day = 3
 assets = Array[ExtResource("1_r7nh5")]([ExtResource("2_r7nh5")])
-desired_judgement = ExtResource("3_rtox5")
+desired_judgement = ExtResource("3_r7nh5")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

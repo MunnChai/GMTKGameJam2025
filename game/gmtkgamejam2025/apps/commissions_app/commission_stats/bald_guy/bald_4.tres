@@ -12,7 +12,7 @@ id = "bald_guy"
 title = "Please make us smile (and hair)"
 desc = "Hello these are some of my bald friends. We took these two pics but neither of them have all of us smiling... please edit them together so we are all smiling in one picture! 
 Also give all of us hair so we are all cool B)"
-day = 1
+day = 4
 assets = Array[ExtResource("1_o1nl7")]([ExtResource("2_hoc3i"), ExtResource("3_g2h7s")])
 desired_judgement = ExtResource("4_hoc3i")
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
