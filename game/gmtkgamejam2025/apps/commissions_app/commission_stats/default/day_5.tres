@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://csrkoib71ul2a"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_fgsf8"]
-[ext_resource type="Resource" uid="uid://b4kenhgwrgamj" path="res://assets/file_resources/commissions/mans_best_friend.tres" id="2_c6fc5"]
+[ext_resource type="Resource" uid="uid://b4kenhgwrgamj" path="res://assets/file_resources/commissions/default/mans_best_friend.tres" id="2_c6fc5"]
 [ext_resource type="Resource" uid="uid://c152giso5pcy" path="res://image_judgement/desired_judgements/mans_best_friend.tres" id="3_lgnjv"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="6_enhq7"]
 

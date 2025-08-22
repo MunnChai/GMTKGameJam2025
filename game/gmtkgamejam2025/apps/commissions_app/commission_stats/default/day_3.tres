@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="CommissionStat" load_steps=7 format=3 uid="uid://ckvad7n4rhhi6"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_fc12i"]
-[ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/remove_ex.tres" id="2_1t86u"]
-[ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/sad_birthday.tres" id="2_7s7gv"]
+[ext_resource type="Resource" uid="uid://bl3b46lro0brn" path="res://assets/file_resources/commissions/default/remove_ex.tres" id="2_1t86u"]
+[ext_resource type="Resource" uid="uid://ygrurk35boet" path="res://assets/file_resources/commissions/default/sad_birthday.tres" id="2_7s7gv"]
 [ext_resource type="Resource" uid="uid://tewhe3unvcmp" path="res://image_judgement/desired_judgements/sad_birthday.tres" id="3_0q3ho"]
-[ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/bald_fish_man.tres" id="3_2iepa"]
+[ext_resource type="Resource" uid="uid://ovp2n5v5d7xd" path="res://assets/file_resources/commissions/default/bald_fish_man.tres" id="3_2iepa"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_wd6ik"]
 
 [resource]
