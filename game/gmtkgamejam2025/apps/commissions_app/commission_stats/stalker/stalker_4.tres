@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://decpajagvcdtd"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=6 format=3 uid="uid://decpajagvcdtd"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_nvqdq"]
 [ext_resource type="Resource" uid="uid://c8yix7x7ygi3b" path="res://assets/file_resources/commissions/stalker/stalker_4.tres" id="2_nvqdq"]
 [ext_resource type="Resource" uid="uid://dt5lf6uoc2yf2" path="res://image_judgement/desired_judgements/stalker/stalker_4.tres" id="3_ijiar"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_fnhfm"]
+[ext_resource type="Resource" uid="uid://23mev8vysytd" path="res://apps/commissions_app/commission_stats/stalker/stalker_3.tres" id="5_ijiar"]
 
 [resource]
 script = ExtResource("4_fnhfm")
@@ -13,5 +14,5 @@ desc = "I almost forgot. I need a mask for my costume as well. Edit a mask onto 
 day = 4
 assets = Array[ExtResource("1_nvqdq")]([ExtResource("2_nvqdq")])
 desired_judgement = ExtResource("3_ijiar")
-required_commissions = Array[ExtResource("4_fnhfm")]([])
+required_commissions = Array[ExtResource("4_fnhfm")]([ExtResource("5_ijiar")])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
