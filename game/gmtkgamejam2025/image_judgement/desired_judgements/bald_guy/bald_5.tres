@@ -4,9 +4,30 @@
 
 [resource]
 script = ExtResource("1_s21qe")
-desired_traits = Dictionary[Variant, Vector2]({})
-trait_weights = Dictionary[Variant, float]({})
-feedback_comments = Dictionary[Variant, PackedStringArray]({})
+desired_traits = Dictionary[Variant, Vector2]({
+-999: Vector2(0, 5000),
+-5: Vector2(75000, 95000),
+0: Vector2(0, 1000),
+1: Vector2(6000, 30000),
+23: Vector2(0, 1000),
+27: Vector2(90000, 110000)
+})
+trait_weights = Dictionary[Variant, float]({
+-999: 5.0,
+-5: 5.0,
+0: 10.0,
+1: 15.0,
+23: 10.0,
+27: 5.0
+})
+feedback_comments = Dictionary[Variant, PackedStringArray]({
+-999: PackedStringArray("", "", ""),
+-5: PackedStringArray("", "", ""),
+0: PackedStringArray("", "", ""),
+1: PackedStringArray("", "", ""),
+23: PackedStringArray("", "", ""),
+27: PackedStringArray("", "", "")
+})
 desired_modification = Vector2(1, 50000)
 modification_comments = PackedStringArray("", "", "")
 min_money = 0.0

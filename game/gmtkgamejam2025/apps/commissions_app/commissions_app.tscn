@@ -57,7 +57,7 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_qmn3t")
 commissions = Dictionary[int, Array]({
-1: [ExtResource("3_3bsde"), ExtResource("6_ym3nn")],
+1: [ExtResource("3_3bsde"), ExtResource("14_ddpcb")],
 2: [ExtResource("4_3bsde"), ExtResource("5_c6yyr"), ExtResource("6_ym3nn")],
 3: [ExtResource("2_w3uk5"), ExtResource("7_e1tck"), ExtResource("8_slaq7")],
 4: [ExtResource("4_xc82q"), ExtResource("10_upa8d"), ExtResource("11_27dyt")],

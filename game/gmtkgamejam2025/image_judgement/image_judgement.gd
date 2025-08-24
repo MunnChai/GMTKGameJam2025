@@ -38,6 +38,8 @@ enum Trait {
 	KNIFE = 26,
 	ONE_KICK_GUY = 27,
 	EDITOR = 28,
+	PARK_HEADBAND = 29,
+	MASK = 30,
 }
 
 @export var trait_colors: Dictionary[Trait, Color]
@@ -120,7 +122,10 @@ func compare_file_to_desired(file: File, desired_judgement: DesiredJudgement) ->
 		
 		comments += new_comment
 	
-	rating += int(completed_trait_weight * 8 / total_trait_weight)
+	if total_trait_weight == 0:
+		rating = 10
+	else:
+		rating += int(completed_trait_weight * 8 / total_trait_weight)
 	
 	results["rating"] = rating
 	results["comments"] = comments

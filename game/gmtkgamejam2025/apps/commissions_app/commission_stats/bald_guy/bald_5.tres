@@ -10,7 +10,8 @@
 script = ExtResource("4_yhgrg")
 id = "bald_guy"
 title = "One Last Hair Request"
-desc = "Hello. This is my last picture without hair. Give me hair once more, and remove my baldness. "
+desc = "Hello. This is my final picture without hair. 
+Give me and One Kick Man hair, and you will be given a special payment. "
 day = 5
 assets = Array[ExtResource("1_boy0k")]([ExtResource("2_brknm")])
 desired_judgement = ExtResource("2_3lkct")

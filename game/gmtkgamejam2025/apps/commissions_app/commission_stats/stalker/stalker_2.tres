@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=6 format=3 uid="uid://dp0yab4ss7m5q"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://dp0yab4ss7m5q"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_wqp4p"]
 [ext_resource type="Resource" uid="uid://m1dvi4whw4au" path="res://assets/file_resources/commissions/stalker/stalker_2.tres" id="2_332k7"]
 [ext_resource type="Resource" uid="uid://dacqtd887msjx" path="res://image_judgement/desired_judgements/stalker/stalker_2.tres" id="3_332k7"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_c44ml"]
-[ext_resource type="Resource" uid="uid://cfn2kqlu7midd" path="res://apps/commissions_app/commission_stats/default/day_1.tres" id="5_skjye"]
 
 [resource]
 script = ExtResource("4_c44ml")
@@ -15,5 +14,5 @@ desc = "I was driving through the woods and crashed into a large bucket of ketch
 day = 2
 assets = Array[ExtResource("1_wqp4p")]([ExtResource("2_332k7")])
 desired_judgement = ExtResource("3_332k7")
-required_commissions = Array[ExtResource("4_c44ml")]([ExtResource("5_skjye")])
+required_commissions = Array[ExtResource("4_c44ml")]([])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

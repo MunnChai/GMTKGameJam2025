@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=6 format=3 uid="uid://23mev8vysytd"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://23mev8vysytd"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_mesi0"]
 [ext_resource type="Resource" uid="uid://deqgfdncb67y6" path="res://assets/file_resources/commissions/stalker/stalker_3.tres" id="2_mesi0"]
 [ext_resource type="Resource" uid="uid://clu5b33wursnb" path="res://image_judgement/desired_judgements/stalker/stalker_3.tres" id="3_6b1vw"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_6d8ab"]
-[ext_resource type="Resource" uid="uid://dp0yab4ss7m5q" path="res://apps/commissions_app/commission_stats/stalker/stalker_2.tres" id="5_6b1vw"]
 
 [resource]
 script = ExtResource("4_6d8ab")
@@ -14,5 +13,5 @@ desc = "This is my halloween costume. I am missing a weapon. Please add a deadly
 day = 3
 assets = Array[ExtResource("1_mesi0")]([ExtResource("2_mesi0")])
 desired_judgement = ExtResource("3_6b1vw")
-required_commissions = Array[ExtResource("4_6d8ab")]([ExtResource("5_6b1vw")])
+required_commissions = Array[ExtResource("4_6d8ab")]([])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

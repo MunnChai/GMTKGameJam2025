@@ -23,13 +23,13 @@ trait_weights = Dictionary[Variant, float]({
 24: 6.0
 })
 feedback_comments = Dictionary[Variant, PackedStringArray]({
--999: PackedStringArray(),
--5: PackedStringArray(),
-0: PackedStringArray(),
-1: PackedStringArray(),
-9: PackedStringArray(),
-19: PackedStringArray(),
-24: PackedStringArray()
+-999: PackedStringArray("", "", ""),
+-5: PackedStringArray("", "", ""),
+0: PackedStringArray("", "", ""),
+1: PackedStringArray("", "", ""),
+9: PackedStringArray("", "", ""),
+19: PackedStringArray("", "", ""),
+24: PackedStringArray("", "", "")
 })
 desired_modification = Vector2(1, 100000)
 modification_comments = PackedStringArray("", "", "")

@@ -4,9 +4,21 @@
 
 [resource]
 script = ExtResource("1_wrkb0")
-desired_traits = Dictionary[Variant, Vector2]({})
-trait_weights = Dictionary[Variant, float]({})
-feedback_comments = Dictionary[Variant, PackedStringArray]({})
+desired_traits = Dictionary[Variant, Vector2]({
+-999: Vector2(0, 5000),
+25: Vector2(150000, 170000),
+26: Vector2(5000, 30000)
+})
+trait_weights = Dictionary[Variant, float]({
+-999: 5.0,
+25: 15.0,
+26: 30.0
+})
+feedback_comments = Dictionary[Variant, PackedStringArray]({
+-999: PackedStringArray("", "", ""),
+25: PackedStringArray("", "", ""),
+26: PackedStringArray("", "", "")
+})
 desired_modification = Vector2(1, 50000)
 modification_comments = PackedStringArray("", "", "")
 min_money = 0.0
