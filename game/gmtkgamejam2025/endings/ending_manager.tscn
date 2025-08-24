@@ -1,11 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcvvyt0kd8utf"]
+[gd_scene load_steps=16 format=3 uid="uid://bcvvyt0kd8utf"]
 
 [ext_resource type="Script" uid="uid://c5rinj7t6khta" path="res://endings/ending_manager.gd" id="1_a2d2r"]
+[ext_resource type="PackedScene" uid="uid://ddbsrfmhh727w" path="res://endings/ending_scenes/true_ending.tscn" id="2_suh4j"]
+[ext_resource type="PackedScene" uid="uid://d2ax0kvslj8kl" path="res://endings/ending_scenes/bad_ending.tscn" id="3_xw2lx"]
+[ext_resource type="PackedScene" uid="uid://dhg4mn3jcy0k0" path="res://endings/ending_scenes/good_ending.tscn" id="4_45p62"]
+[ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="5_17ay8"]
+[ext_resource type="Resource" uid="uid://27qt0pwo8v0a" path="res://apps/commissions_app/commission_stats/stalker/stalker_5.tres" id="6_ipu2c"]
+[ext_resource type="PackedScene" uid="uid://dtvuwugitsigw" path="res://endings/unique_endings/stalker/stalker_cutscene.tscn" id="7_in3bs"]
+[ext_resource type="Resource" uid="uid://dnfkh1bhesv76" path="res://apps/commissions_app/commission_stats/bald_guy/bald_5.tres" id="8_8t8wm"]
+[ext_resource type="PackedScene" uid="uid://c7ywajpf04xvf" path="res://endings/unique_endings/bald_ending.tscn" id="9_rnr1s"]
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="10_rnr1s"]
+[ext_resource type="Resource" uid="uid://dubhi3c0ras1f" path="res://apps/email_app/email_stats/true_ending_email.tres" id="11_ec7xo"]
+[ext_resource type="Resource" uid="uid://186hcmbndb6f" path="res://apps/email_app/email_stats/bad_ending_email.tres" id="12_vnjum"]
+[ext_resource type="Resource" uid="uid://dp75kk4648ri3" path="res://apps/email_app/email_stats/good_ending_email.tres" id="13_ywrfe"]
+[ext_resource type="Resource" uid="uid://bxn1peb8u04ii" path="res://apps/email_app/email_stats/stalker_email.tres" id="14_ec7xo"]
+[ext_resource type="Resource" uid="uid://dgmkewfv4t1ls" path="res://apps/email_app/email_stats/bald_guy_email.tres" id="15_vnjum"]
 
 [node name="EndingManager" type="Node"]
 script = ExtResource("1_a2d2r")
 ending_scenes = Dictionary[String, PackedScene]({
-"bad_ending": null,
-"good_ending": null,
-"true_ending": null
+"bad_ending": ExtResource("3_xw2lx"),
+"good_ending": ExtResource("4_45p62"),
+"true_ending": ExtResource("2_suh4j")
+})
+commission_ending_scenes = Dictionary[ExtResource("5_17ay8"), PackedScene]({
+ExtResource("6_ipu2c"): ExtResource("7_in3bs"),
+ExtResource("8_8t8wm"): ExtResource("9_rnr1s")
+})
+email_stats = Dictionary[String, ExtResource("10_rnr1s")]({
+"bad_ending": ExtResource("12_vnjum"),
+"good_ending": ExtResource("13_ywrfe"),
+"true_ending": ExtResource("11_ec7xo")
+})
+unique_email_stats = Dictionary[ExtResource("5_17ay8"), ExtResource("10_rnr1s")]({
+ExtResource("6_ipu2c"): ExtResource("14_ec7xo"),
+ExtResource("8_8t8wm"): ExtResource("15_vnjum")
 })

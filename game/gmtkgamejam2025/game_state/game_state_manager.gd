@@ -2,7 +2,7 @@ extends Node
 
 var money: int = 5
 
-var day: int = 1
+var day: int = 5
 var username: String
 
 @export var email_stats: Dictionary[String, EmailStat]

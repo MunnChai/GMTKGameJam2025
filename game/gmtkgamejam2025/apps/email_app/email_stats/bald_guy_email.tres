@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EmailStat" load_steps=2 format=3 uid="uid://dgmkewfv4t1ls"]
+
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="1_x8td5"]
+
+[resource]
+script = ExtResource("1_x8td5")
+sender = "bald_guy@loopmail.com"
+recipient = ""
+title = "Thanks for the hair!"
+message = "Thank you for continuously giving me hair. With your help, I have finally escaped the Curse of Baldness placed upon me many years ago... I hope you enjoy it now, haha!"
+metadata/_custom_type_script = "uid://crcryufm2fdv3"

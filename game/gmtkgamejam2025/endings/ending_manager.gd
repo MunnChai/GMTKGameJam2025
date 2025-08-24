@@ -6,6 +6,9 @@ const MONEY_TO_WIN: int = 100
 @export var ending_scenes: Dictionary[String, PackedScene]
 @export var commission_ending_scenes: Dictionary[CommissionStat, PackedScene]
 
+@export var email_stats: Dictionary[String, EmailStat]
+@export var unique_email_stats: Dictionary[CommissionStat, EmailStat]
+
 func get_ending_scene() -> PackedScene:
 	
 	var completed_commissions: Array = CommissionsManager.feedbacks.map(func(feedback: Feedback):

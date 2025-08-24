@@ -270,12 +270,24 @@ func popup_sleep_prompt() -> void:
 	pass
 
 func popup_end_game_email() -> void:
-	if GameStateManager.money >= GameStateManager.MONEY_TO_TRUE_END:
-		GameStateManager.add_email(GameStateManager.email_stats["true_ending"])
-	elif GameStateManager.money >= GameStateManager.MONEY_TO_WIN:
-		GameStateManager.add_email(GameStateManager.email_stats["good_ending"])
-	else:
-		GameStateManager.add_email(GameStateManager.email_stats["bad_ending"])
+	var completed_commissions: Array = CommissionsManager.feedbacks.map(func(feedback: Feedback):
+		return feedback.stat
+	)
+	
+	var email_sent: bool = false
+	for commission: CommissionStat in EndingManager.commission_ending_scenes.keys():
+		if completed_commissions.has(commission):
+			GameStateManager.add_email(EndingManager.unique_email_stats[commission])
+			email_sent = true
+			break
+	
+	if not email_sent:
+		if GameStateManager.money >= GameStateManager.MONEY_TO_TRUE_END:
+			GameStateManager.add_email(EndingManager.email_stats["true_ending"])
+		elif GameStateManager.money >= GameStateManager.MONEY_TO_WIN:
+			GameStateManager.add_email(EndingManager.email_stats["good_ending"])
+		else:
+			GameStateManager.add_email(EndingManager.email_stats["bad_ending"])
 	
 	SoundManager.play_global_oneshot(&"mail")
 	

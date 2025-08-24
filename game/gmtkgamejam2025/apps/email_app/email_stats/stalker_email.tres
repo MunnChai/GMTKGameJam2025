@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EmailStat" load_steps=2 format=3 uid="uid://bxn1peb8u04ii"]
+
+[ext_resource type="Script" uid="uid://crcryufm2fdv3" path="res://apps/email_app/email_stats/email_stat.gd" id="1_mh1tr"]
+
+[resource]
+script = ExtResource("1_mh1tr")
+sender = "i_see_you@loopmail.com"
+recipient = ""
+title = "I'm Here"
+message = "It is good to finally meet you :)"
+metadata/_custom_type_script = "uid://crcryufm2fdv3"
