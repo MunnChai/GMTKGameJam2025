@@ -8,9 +8,9 @@
 
 [resource]
 script = ExtResource("4_6d8ab")
-id = "FoundYou"
-title = ""
-desc = ""
+id = "NotSusGuy"
+title = "Add a weapon for my costume"
+desc = "This is my halloween costume. I am missing a weapon. Please add a deadly weapon to this picture. :)"
 day = 3
 assets = Array[ExtResource("1_mesi0")]([ExtResource("2_mesi0")])
 desired_judgement = ExtResource("3_6b1vw")

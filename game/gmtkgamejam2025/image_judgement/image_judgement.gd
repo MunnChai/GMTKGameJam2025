@@ -36,6 +36,8 @@ enum Trait {
 	BALD_FRIEND = 24,
 	STALKER = 25,
 	KNIFE = 26,
+	ONE_KICK_GUY = 27,
+	EDITOR = 28,
 }
 
 @export var trait_colors: Dictionary[Trait, Color]

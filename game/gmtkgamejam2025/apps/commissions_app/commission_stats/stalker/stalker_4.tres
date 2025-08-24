@@ -9,8 +9,8 @@
 [resource]
 script = ExtResource("4_fnhfm")
 id = "Soon"
-title = ""
-desc = ""
+title = "Give me a mask"
+desc = "I almost forgot. I need a mask for my costume as well. Edit a mask onto my face. :)"
 day = 4
 assets = Array[ExtResource("1_nvqdq")]([ExtResource("2_nvqdq")])
 desired_judgement = ExtResource("3_ijiar")

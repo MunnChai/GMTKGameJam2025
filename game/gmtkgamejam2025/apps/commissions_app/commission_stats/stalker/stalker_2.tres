@@ -10,7 +10,8 @@
 script = ExtResource("4_c44ml")
 id = "NotSusGuy"
 title = "Edit the ketchup out of this picture"
-desc = "I was driving through the woods and crashed into a large bucket of ketchup. Remove the ketchup from this selfie. I will pay you lots."
+desc = "I was driving through the woods and crashed into a large bucket of ketchup. Remove the ketchup from this selfie. I will pay you well. :)
+"
 day = 2
 assets = Array[ExtResource("1_wqp4p")]([ExtResource("2_332k7")])
 desired_judgement = ExtResource("3_332k7")
