@@ -113,7 +113,7 @@ mouse_filter = 2
 theme = ExtResource("4_8s3ar")
 theme_override_constants/table_v_separation = 20
 theme_override_constants/line_separation = 0
-text = "Ending 1
+text = "Bald Ending
 "
 fit_content = true
 vertical_alignment = 1
@@ -153,9 +153,8 @@ layout_mode = 2
 theme = ExtResource("4_8s3ar")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 20
-text = "In a world filled with many talented photo editors, you are not one of them. (Though, admittedly, this editing software leaves much to be desired.) 
-
-You couldn’t pay your rent in time and were evicted."
+text = "You are now bald
+"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
