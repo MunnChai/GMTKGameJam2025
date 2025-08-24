@@ -1,7 +1,5 @@
 extends Node
 
-const MONEY_TO_TRUE_END: int = 170
-const MONEY_TO_WIN: int = 100
 var money: int = 5
 
 var day: int = 1

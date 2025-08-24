@@ -1,11 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddbsrfmhh727w"]
+[gd_scene load_steps=9 format=3 uid="uid://d2ax0kvslj8kl"]
 
-[ext_resource type="Script" uid="uid://blanntep3ec8v" path="res://ending_scenes/ending_scene.gd" id="1_8plj8"]
-[ext_resource type="Texture2D" uid="uid://cyw5b3rw3jdnw" path="res://assets/ui/task_bar.png" id="1_q58is"]
-[ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="2_8plj8"]
-[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_swj1m"]
-[ext_resource type="Texture2D" uid="uid://bih3qhtry81jh" path="res://assets/ui/buttons/close_default.png" id="4_oceqe"]
-[ext_resource type="Texture2D" uid="uid://cdaaa32dslv5b" path="res://assets/ui/buttons/close_clicked.png" id="5_0ox2f"]
+[ext_resource type="Texture2D" uid="uid://cyw5b3rw3jdnw" path="res://assets/ui/task_bar.png" id="1_fg5wx"]
+[ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="2_8krmn"]
+[ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="3_7bt6h"]
+[ext_resource type="Texture2D" uid="uid://bih3qhtry81jh" path="res://assets/ui/buttons/close_default.png" id="4_5xska"]
+[ext_resource type="Texture2D" uid="uid://cdaaa32dslv5b" path="res://assets/ui/buttons/close_clicked.png" id="5_gjr21"]
+[ext_resource type="Script" uid="uid://blanntep3ec8v" path="res://endings/ending_scenes/ending_scene.gd" id="6_8krmn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apcxx"]
 bg_color = Color(0.517647, 0.517647, 0.517647, 1)
@@ -13,7 +13,7 @@ bg_color = Color(0.517647, 0.517647, 0.517647, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j2as5"]
 
 [node name="GoodEnding" type="CanvasLayer"]
-script = ExtResource("1_8plj8")
+script = ExtResource("6_8krmn")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -43,7 +43,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-texture = ExtResource("1_q58is")
+texture = ExtResource("1_fg5wx")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -57,7 +57,7 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
-texture = ExtResource("2_8plj8")
+texture = ExtResource("2_8krmn")
 patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
@@ -110,10 +110,10 @@ theme_override_constants/margin_left = 0
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 mouse_filter = 2
-theme = ExtResource("3_swj1m")
+theme = ExtResource("3_7bt6h")
 theme_override_constants/table_v_separation = 20
 theme_override_constants/line_separation = 0
-text = "Ending 3
+text = "Ending 1
 "
 fit_content = true
 vertical_alignment = 1
@@ -122,8 +122,8 @@ vertical_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 mouse_default_cursor_shape = 2
-texture_normal = ExtResource("4_oceqe")
-texture_pressed = ExtResource("5_0ox2f")
+texture_normal = ExtResource("4_5xska")
+texture_pressed = ExtResource("5_gjr21")
 
 [node name="PanelContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -140,20 +140,22 @@ alignment = 1
 
 [node name="GameOverLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_swj1m")
+theme = ExtResource("3_7bt6h")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
-text = "WE'RE PLEASED TO ANNOUNCE..."
+text = "GAME OVER"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Description" type="RichTextLabel" parent="PanelContainer/MarginContainer/PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("3_swj1m")
+theme = ExtResource("3_7bt6h")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 20
-text = "Against all odds, you’ve reached new heights in your career. The great borders of PhotoLoop’s extremely limited tool selection were not enough to hinder your talent, creativity, and insanity.  You were offered a position at PhotoLoop as an official editor. Maybe now you can afford a better PC."
+text = "In a world filled with many talented photo editors, you are not one of them. (Though, admittedly, this editing software leaves much to be desired.) 
+
+You couldn’t pay your rent in time and were evicted."
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -164,7 +166,7 @@ custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_swj1m")
+theme = ExtResource("3_7bt6h")
 theme_override_font_sizes/font_size = 25
 text = "Logout"
 

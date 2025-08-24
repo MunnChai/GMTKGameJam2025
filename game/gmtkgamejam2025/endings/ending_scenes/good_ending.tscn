@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dhg4mn3jcy0k0"]
 
-[ext_resource type="Script" uid="uid://blanntep3ec8v" path="res://ending_scenes/ending_scene.gd" id="1_ybefy"]
+[ext_resource type="Script" uid="uid://blanntep3ec8v" path="res://endings/ending_scenes/ending_scene.gd" id="1_ybefy"]
 [ext_resource type="Texture2D" uid="uid://cyw5b3rw3jdnw" path="res://assets/ui/task_bar.png" id="2_jacpi"]
 [ext_resource type="Theme" uid="uid://cuqmn3lhjdfe5" path="res://assets/themes/os_95.tres" id="4_78qwm"]
 [ext_resource type="Texture2D" uid="uid://lrl6qasaxqdw" path="res://assets/ui/windows/window_nine_patch_rect.png" id="5_hiwo1"]

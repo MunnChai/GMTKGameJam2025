@@ -28,6 +28,7 @@ PhotoshopManager="*res://apps/photoshop_app/photoshop_manager/photoshop_manager.
 ImageJudgement="*res://image_judgement/image_judgement.tscn"
 CommissionsManager="*res://apps/commissions_app/commissions_manager.gd"
 SoundManager="*res://common/sound/sound_manager.gd"
+EndingManager="*res://endings/ending_manager.tscn"
 
 [display]
 

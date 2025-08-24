@@ -16,7 +16,6 @@ signal transition_done()
 
 ## Registry of Window Program ID to PackedScene
 @export var window_packed_scenes: Dictionary[StringName, PackedScene]
-@export var ending_scenes: Dictionary[String, PackedScene]
 
 ## Increments by one every time a window is opened
 ## Never decrements...
@@ -314,14 +313,7 @@ func ending_sequence() -> void:
 func _on_ending_fade_complete() -> void:
 	await get_tree().create_timer(2.5).timeout
 	
-	var scene: PackedScene
-	if GameStateManager.money < GameStateManager.MONEY_TO_WIN:
-		scene = ending_scenes["bad_ending"]
-	elif GameStateManager.money < GameStateManager.MONEY_TO_TRUE_END:
-		scene = ending_scenes["good_ending"]
-	else:
-		scene = ending_scenes["true_ending"]
-	
+	var scene: PackedScene = EndingManager.get_ending_scene()
 	get_tree().change_scene_to_packed(scene)
 
 #endregion

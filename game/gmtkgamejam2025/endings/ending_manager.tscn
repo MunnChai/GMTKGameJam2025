@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcvvyt0kd8utf"]
+
+[ext_resource type="Script" uid="uid://c5rinj7t6khta" path="res://endings/ending_manager.gd" id="1_a2d2r"]
+
+[node name="EndingManager" type="Node"]
+script = ExtResource("1_a2d2r")
+ending_scenes = Dictionary[String, PackedScene]({
+"bad_ending": null,
+"good_ending": null,
+"true_ending": null
+})
