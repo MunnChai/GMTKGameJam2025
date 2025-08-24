@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://v5i6dwnawas5"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=6 format=3 uid="uid://v5i6dwnawas5"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_r7nh5"]
 [ext_resource type="Resource" uid="uid://pnmhi0twoals" path="res://assets/file_resources/commissions/bald_guy/bald_3.tres" id="2_r7nh5"]
 [ext_resource type="Resource" uid="uid://cspimuqjundd8" path="res://image_judgement/desired_judgements/bald_guy/bald_3.tres" id="3_r7nh5"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_bsy2r"]
+[ext_resource type="Resource" uid="uid://cbwol6f7wv2rj" path="res://apps/commissions_app/commission_stats/bald_guy/bald_2.tres" id="5_awpqs"]
 
 [resource]
 script = ExtResource("4_bsy2r")
@@ -13,4 +14,5 @@ desc = "Here is a picture of me with my friends give me more hair so i can be li
 day = 3
 assets = Array[ExtResource("1_r7nh5")]([ExtResource("2_r7nh5")])
 desired_judgement = ExtResource("3_r7nh5")
+required_commissions = Array[ExtResource("4_bsy2r")]([ExtResource("5_awpqs")])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

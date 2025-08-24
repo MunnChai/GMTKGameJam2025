@@ -14,4 +14,5 @@ Also it'd be nice if you can make me look cool :D"
 day = 1
 assets = Array[ExtResource("1_ah6j0")]([ExtResource("2_cnkwt")])
 desired_judgement = ExtResource("5_dnctc")
+required_commissions = Array[ExtResource("1_ttxtp")]([])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

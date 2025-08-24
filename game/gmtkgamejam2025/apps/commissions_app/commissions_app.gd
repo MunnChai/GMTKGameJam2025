@@ -55,10 +55,21 @@ func update_comm() -> void:
 		child.queue_free()
 	
 	for commission: CommissionStat in stats:
+		var required_commissions_completed: bool = true
+		var completed_commissions: Array = CommissionsManager.feedbacks.map(func(feedback: Feedback):
+			return feedback.stat
+		)
+		for required_commission: CommissionStat in commission.required_commissions:
+			if not completed_commissions.has(required_commission):
+				required_commissions_completed = false
+				break
+		
+		if not required_commissions_completed:
+			continue
+		
 		var commission_container: CommissionsContainer = COMMISSIONS_CONTAINER.instantiate()
 		commissions_list.add_child(commission_container)
 		commission_container.set_commission(commission)
-		print("ADDING")
 
 #endregion
 

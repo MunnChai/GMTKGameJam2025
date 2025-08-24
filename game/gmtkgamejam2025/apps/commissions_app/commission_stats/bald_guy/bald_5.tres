@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=4 format=3 uid="uid://dnfkh1bhesv76"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://dnfkh1bhesv76"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_boy0k"]
 [ext_resource type="Resource" uid="uid://vqadcdcresmy" path="res://image_judgement/desired_judgements/bald_guy/bald_5.tres" id="2_3lkct"]
+[ext_resource type="Resource" uid="uid://bdv0s8djsq7vo" path="res://apps/commissions_app/commission_stats/bald_guy/bald_4.tres" id="4_boy0k"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_yhgrg"]
 
 [resource]
@@ -12,4 +13,5 @@ desc = ""
 day = 5
 assets = Array[ExtResource("1_boy0k")]([])
 desired_judgement = ExtResource("2_3lkct")
+required_commissions = Array[ExtResource("4_yhgrg")]([ExtResource("4_boy0k")])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"

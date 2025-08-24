@@ -9,3 +9,5 @@ extends Resource
 @export var assets: Array[FileResource]
 
 @export var desired_judgement: DesiredJudgement
+
+@export var required_commissions: Array[CommissionStat]

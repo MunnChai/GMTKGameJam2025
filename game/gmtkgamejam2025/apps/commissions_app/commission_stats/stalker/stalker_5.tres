@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CommissionStat" load_steps=4 format=3 uid="uid://27qt0pwo8v0a"]
+[gd_resource type="Resource" script_class="CommissionStat" load_steps=5 format=3 uid="uid://27qt0pwo8v0a"]
 
 [ext_resource type="Script" uid="uid://c35i354iy57g4" path="res://assets/file_resources/file_resource.gd" id="1_efwbe"]
 [ext_resource type="Resource" uid="uid://b1p7erotrcx32" path="res://image_judgement/desired_judgements/stalker/stalker_5.tres" id="2_gjnwe"]
 [ext_resource type="Script" uid="uid://dp4mcnxq4gn30" path="res://apps/commissions_app/commission_stats/commission_stat.gd" id="4_0viru"]
+[ext_resource type="Resource" uid="uid://decpajagvcdtd" path="res://apps/commissions_app/commission_stats/stalker/stalker_4.tres" id="4_efwbe"]
 
 [resource]
 script = ExtResource("4_0viru")
@@ -12,4 +13,5 @@ desc = ""
 day = 5
 assets = Array[ExtResource("1_efwbe")]([])
 desired_judgement = ExtResource("2_gjnwe")
+required_commissions = Array[ExtResource("4_0viru")]([ExtResource("4_efwbe")])
 metadata/_custom_type_script = "uid://dp4mcnxq4gn30"
